@@ -35,8 +35,8 @@ paginate_path: blog/page:num
 navigation_header:
 - title: Home
   url: /
-- title: About
-  url: /about/
+- title: Sponsors
+  url: "#sponsors"
 - title: Blog
   url: /blog/
 
