@@ -2,6 +2,7 @@
 ---
 
 @import 'jekyll-theme-cayman';
+@import url("https://fonts.googleapis.com/css?family=Rubik:400,700");
 
 .page-header{
   background-image: linear-gradient(120deg, #0a2463, #3e92cc);
@@ -14,10 +15,21 @@
   width: 15%;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Rubik";
+  font-weight: lighter;
+}
+
 .main-content h1,
 .main-content h2,
 .main-content h3,
 .main-content h4,
 .main-content h5,
 .main-content h6 {
-  color: #3e92cc; }
+  color: #3e92cc;
+  font-family: "Rubik";
+  font-weight: lighter;
+}

@@ -5,6 +5,7 @@
  *    user zoom.
  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Rubik:400,700");
 html {
   font-family: sans-serif;
   /* 1 */
@@ -843,4 +844,21 @@ a {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 20%; }
+  width: 15%; }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Rubik";
+  font-weight: lighter; }
+
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  color: #3e92cc;
+  font-family: "Rubik";
+  font-weight: lighter; }
