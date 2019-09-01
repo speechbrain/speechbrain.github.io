@@ -3,4 +3,4 @@ description: SpeechBrain is a speech toolkit fully based on PyTorch.
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
-logo: https://localhost:4000/assets/logo.png
+logo: https://speechbrain.github.io/assets/logo.png
