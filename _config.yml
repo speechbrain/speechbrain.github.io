@@ -1,5 +1,5 @@
 title: SpeechBrain
-description: SpeechBrain is a speech toolkit fully based on PyTorch.
+description: The PyTorch-based Speech Toolkit.
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-cayman
