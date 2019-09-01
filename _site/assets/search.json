@@ -1,0 +1,47 @@
+
+
+[
+  
+  
+    
+    
+      {
+        "title": "Hello World",
+        "excerpt": "This is my very first blog post. I haven’t written anything yet but I’m sure I have some great stories to tell.\n",
+        "content": "This is my very first blog post. I haven’t written anything yet but I’m sure I have some great stories to tell.\n",
+        "url": "/general/2018/08/22/hello-world/"
+      },
+    
+  
+  
+  
+  {
+    "title": "About this website",
+    "excerpt": "\n",
+    "content": "I’m not sure yet what this website is about, but I’m sure I’ll work it out soon.\n",
+    "url": "/about/"
+  },
+  
+  {
+    "title": "Categories",
+    "excerpt": "Category index\n",
+    "content": "\n",
+    "url": "/categories/"
+  },
+  
+  {
+    "title": "Blog",
+    "excerpt": "\n",
+    "content": "\n",
+    "url": "/blog/"
+  },
+  
+  {
+    "title": "About Alembic",
+    "excerpt": "Alembic is a starting point for Jekyll projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it.\n",
+    "content": "Alembic is a starting point for Jekyll projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it.\n\nFork it  github\n\n Tweet it  twitter\n\n Install Alembic ⚗️\n Tip me $5 💸\n\nFeatures\n\n\n  Available as a theme gem and GitHub Pages theme\n  Simple and elegant design that can be used out of the box or as solid starting point\n  Tested in all major browsers, including IE and Edge\n  Built in Service Worker so it can work offline and on slow connections\n  Configurable colours and typography in a single settings file\n  Extensive set of shortcodes to include various elements; such as buttons, icons, figure images and more\n  Solid typographic framework from Sassline\n  Configurable navigation via a single file\n  Modular Jekyll components\n  Post category support in the form of a single post index page grouped by category\n  Built in live search using JavaScript\n  Contact form built in using Formspree\n  Designed with Siteleaf in mind\n  Has 9 of the most popular networks as performant sharing buttons\n  Has documentation\n\n\nExamples\n\nHere are a few examples of Alembic out in the wild being used in a variety of ways:\n\n\n  bitpodcast.com\n  joelcagedesign.com\n  bawejakunal.github.io\n  case2111.github.io\n  www.10people.co.uk\n  hrkeni.me\n  ccs17.bsc.es\n  karateca.org\n\n\nInstallation\n\nQuick setup\n\nTo give you a running start I’ve put together some starter kits that you can download, fork or even deploy immediately:\n\n\n  ⚗️🍨 Vanilla Jekyll starter kit\n\n  ⚗️🌲 Forestry starter kit\n\n\n  \n    ⚗️💠 Netlify CMS starter kit\n\n  \n  \n    ⚗️:octocat: GitHub Pages with remote theme kit\nDownload kit\n  \n  ⚗️🚀 Stackbit starter kit\n\n\n\nAs a Jekyll theme\n\n\n  Add gem \"alembic-jekyll-theme\" to your Gemfile to add the theme as a dependancy\n  Run the command bundle install in the root of project to install the theme and its dependancies\n  Add theme: alembic-jekyll-theme to your _config.yml file to set the site theme\n  Run bundle exec jekyll serve to build and serve your site\n  Done! Use the configuration documentation and the example _config.yml file to set things like the navigation, contact form and social sharing buttons\n\n\nAs a GitHub Pages remote theme\n\n\n  Add gem \"jekyll-remote-theme\" to your Gemfile to add the theme as a dependancy\n  Run the command bundle install in the root of project to install the jekyll remote theme gem as a dependancy\n  Add jekyll-remote-theme to the list of plugins in your _config.yml file\n  Add remote_theme: daviddarnes/alembic to your _config.yml file to set the site theme\n  Run bundle exec jekyll serve to build and serve your site\n  Done! Use the configuration documentation and the example _config.yml file to set things like the navigation, contact form and social sharing buttons\n\n\nAs a Boilerplate / Fork\n\n(deprecated, not recommended)\n\n\n  Fork the repo\n  Replace the Gemfile with one stating all the gems used in your project\n  Delete the following unnecessary files/folders: .github, LICENSE, screenshot.png, CNAME and alembic-jekyll-theme.gemspec\n  Run the command bundle install in the root of project to install the jekyll remote theme gem as a dependancy\n  Run bundle exec jekyll serve to build and serve your site\n  Done! Use the configuration documentation and the example _config.yml file to set things like the navigation, contact form and social sharing buttons\n\n\nCustomising\n\nWhen using Alembic as a theme means you can take advantage of the file overriding method. This allows you to overwrite any file in this theme with your own custom file, simply by matching the file name and path. The most common example of this would be if you want to add your own styles or change the core style settings.\n\nTo add your own styles copy the styles.scss into your own project with the same file path (assets/styles.scss). From there you can add your own styles, you can even optionally ignore the theme styles by removing the @import \"alembic\"; line.\n\nIf you’re looking to set your own colours and fonts you can overwrite them by matching the variable names from the _settings.scss file in your own styles.scss, make sure to state them before the @import \"alembic\"; line so they take effect. The settings are a mixture of custom variables and settings from Sassline - follow the link to find out how to configure the typographic settings.\n",
+    "url": "/"
+  }
+  
+]
+
