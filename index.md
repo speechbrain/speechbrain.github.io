@@ -1,7 +1,7 @@
 ---
 title: About Alembic
 feature_text: |
-feature_image: "http://localhost:4000/assets/head.png"
+feature_image: "https://speechbrain.github.io/assets/head.png"
 excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it."
 ---
 
