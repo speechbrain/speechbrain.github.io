@@ -5,9 +5,14 @@ layout: default
 
 # The project
 
-**SpeechBrain** is a completely open-source and all-in-one speech toolkit relying exclusively on [PyTorch](https://pytorch.org). The core feature of the project, is to enable the entire speech community to focus on a single, fully customizable, and user-friendly toolkit. **SpeechBrain** is designed to develop efficiently any application related to speech, including both end-to-end and DNN/HMM-based speech recognition, speaker identification/verification, self-supervised learning, features extraction, speech augmentation,..., It includes all the tools necessary to develop, benchmark and deploy state-of-the-art speech systems. It also proposes an easy integration of previously trained models on well-known toolkit, such as [Kaldi](http://kaldi-asr.org).
+**SpeechBrain** is an **open-source** **all-in-one** speech toolkit 
+relying on [PyTorch](https://pytorch.org).
+  
+The ambitious goal of the project is to develop a *single*, *flexible*, and *user-friendly* toolkit that can be used to easily develop state-of-the-art speech technologies of different types, including systems for **speech recognition** (both end-to-end and HMM-DNN), **speaker recognition**, **speech separation**, **multi-microphone signal processing** (e.g, beamforming), **self-supervised learning**, **speech contamination/augmentation**,  and many others.
+The toolkit will be designed to be a stand-alone framework, but simple interfaces with well-known toolkits, such as [Kaldi](http://kaldi-asr.org) will be implemented as well.
 
-**SpeechBrain** is currently under development and has just been announced. We expect a lot of news, and a first alpha version in the next few months. For more exciting, and real-time news, please follow the official SpeechBrain twitter!
+**SpeechBrain** is currently **under development** and has just been announced. A first alpha version will be available in the next months.  We plan to build a large community working on this project. Please, go here in you are interested to collaborate.
+Stay tuned!
 
 
 
