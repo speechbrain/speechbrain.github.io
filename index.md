@@ -31,7 +31,9 @@ Even though many of these frameworks could be very helpful for the specific task
 # Why PyTorch?
 To ensure the needed flexibility and the user-friendliness of our system, we think that our platform must be built on the top of PyTorch for the following reasons:  
 - PyTorch is a well-designed, flexible, popular, and well-document toolkit and a very large community has adopted it.
-- most speech applications rely on deep learning and signal processing techniques, that can be naturally implemented in PyTorch. - we can easily perform the processing steps either on GPUs or CPUs.
+- most speech applications rely on deep learning and signal processing techniques, that can be naturally implemented in PyTorch.
+
+- we can easily perform the processing steps either on GPUs or CPUs.
 - we can employ end-to-end differentiable systems, where the gradient can potentially flow through all the different parts of the architecture, including parts solving different audio and speech tasks.    
 
 
