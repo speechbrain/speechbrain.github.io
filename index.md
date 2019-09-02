@@ -22,6 +22,14 @@ Thanks to our sponsors, we can hire interns working for 3-6 months at Mila with 
 If you are interested to hear more about these opportunities,  contact 
 speechbrainproject@gmail.com
 
+# Why a single toolkit?
+Some speech processing toolkits have gained popularity in the last years. For speech recognition purposes, for instance, [Kaldi](http://kaldi-asr.org) is an established framework.  Some other speech recognition toolkits have been recently developed using the Python language such as [PyTorch-Kaldi](https://github.com/mravanelli/pytorch-kaldi), [PyKaldi](https://github.com/pykaldi/pykaldi), and [ESPnet](https://github.com/espnet/espnet). Beyond speech recognition, a variety of other toolkits have been developed for speech applications such as speech separation, speech enhancement, speaker recognition, and language model training. 
+
+Even though many of these frameworks could be very helpful for the specific task for which they are designed, our experience in the field suggests that having a single, efficient, and flexible toolkit can significantly **speed up research and development** of speech and audio processing techniques. It is significantly easier to familiarize oneself with a single toolkit than to learn several different frameworks. Moreover, the use of a **single platform** for different speech and audio applications makes it more natural to develop **multi-task systems** that jointly solve different problems.
+
+
+# Why PyTorch?
+
 
 # Sponsors
 - Mila
