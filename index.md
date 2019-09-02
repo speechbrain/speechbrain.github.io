@@ -17,7 +17,7 @@ Stay tuned!
 
 # How to collaborate
 Our goal is to build a large community working on this ambitious project. Feel free to contact us if you are interested to give a contribution.
-Thanks to our sponsors, we can hire interns working for 3-6 months at Mila with the core development team.  The ideal candidate is a PhD student with experience on PyTorch and speech technologies.
+Thanks to our [sponsors](#Sponsors), we can hire interns working for 3-6 months at Mila with the core development team.  The ideal candidate is a PhD student with experience on PyTorch and speech technologies.
 
 If you are interested to hear more about these opportunities,  contact 
 speechbrainproject@gmail.com
