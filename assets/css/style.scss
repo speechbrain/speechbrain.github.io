@@ -2,7 +2,7 @@
 ---
 
 @import 'jekyll-theme-cayman';
-@import url("https://fonts.googleapis.com/css?family=Rubik:400,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
 .page-header{
   background-image: linear-gradient(120deg, #0a2463, #3e92cc);
@@ -23,7 +23,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Rubik";
+  font-family: "Montserrat";
   font-weight: lighter;
 }
 
@@ -34,6 +34,6 @@ h4 {
 .main-content h5,
 .main-content h6 {
   color: #3e92cc;
-  font-family: "Rubik";
+  font-family: "Montserrat";
   font-weight: lighter;
 }
