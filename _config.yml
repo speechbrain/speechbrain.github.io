@@ -3,4 +3,4 @@ description: The PyTorch-based Speech Toolkit.
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-cayman
-logo: https://speechbrain.github.io/assets/logo.png
+logo: https://speechbrain.github.io/assets/logo_rounded.png
