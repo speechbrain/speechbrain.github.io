@@ -36,7 +36,7 @@ If you are interested to hear more about these opportunities, please contact spe
 
 
 # Sponsors
-![Mila](https://speechbrain.github.io/assets/logo_mila.png)
+![Mila](https://speechbrain.github.io/assets/logo_mila.png = 250x)
 ![Samsung](https://speechbrain.github.io/assets/logo_samsung.png)
 ![Nvidia](https://speechbrain.github.io/assets/logo_nvidia.png)
 ![Dolby](https://speechbrain.github.io/assets/logo_dolby.png)
