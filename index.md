@@ -36,12 +36,15 @@ If you are interested to hear more about these opportunities, please contact spe
 
 
 # Sponsors
+
 ![Mila](https://speechbrain.github.io/assets/logo_mila_small.png)
 ![Samsung](https://speechbrain.github.io/assets/logo_samsung.png)
+
 ![Nvidia](https://speechbrain.github.io/assets/logo_nvidia.png)
 ![Dolby](https://speechbrain.github.io/assets/logo_dolby.png)
 
 # Current collaborators
+
 ![PyTorch](https://speechbrain.github.io/assets/logo_pytorch.png)
 ![IBM](https://speechbrain.github.io/assets/logo_ibm.png)
 ![FluentAI](https://speechbrain.github.io/assets/logo_fluent.png)
