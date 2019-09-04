@@ -43,7 +43,7 @@ If you are interested to hear more about these opportunities, please contact spe
 ![Samsung](https://speechbrain.github.io/assets/logo_samsung.png)
 
 # Current collaborators
-
+![LIA](https://speechbrain.github.io/assets/logo_lia.png)
 ![PyTorch](https://speechbrain.github.io/assets/logo_pytorch.png)
 ![IBM](https://speechbrain.github.io/assets/IBM_logo.png)
 ![FluentAI](https://speechbrain.github.io/assets/logo_fluent.png)
