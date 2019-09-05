@@ -40,7 +40,6 @@ If you are interested to hear more about these opportunities, please contact spe
 ![Mila](https://speechbrain.github.io/assets/logo_mila_small.png)
 ![Nvidia](https://speechbrain.github.io/assets/logo_nvidia.png)
 ![Dolby](https://speechbrain.github.io/assets/logo_dolby.png)
-![Samsung](https://speechbrain.github.io/assets/logo_samsung.png)
 
 # Current collaborators
 ![LIA](https://speechbrain.github.io/assets/logo_LIA.png)
