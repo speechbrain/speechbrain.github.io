@@ -32,7 +32,7 @@ A strong toolkit needs a strong community. While a core team will be dedicated t
 # Join us!
 Thanks to our [sponsors](#Sponsors), we are hiring talented interns (3-6 months internships) at Mila (Montréal) with the core development team. The ideal candidate is a PhD student with a strong experience in both PyTorch and speech technologies.
 
-If you are interested to hear more about these opportunities, please contact speechbrainproject@gmail.com.
+If you are interested to hear more about these opportunities, please **contact us at *speechbrainproject@gmail.com***.
 
 
 # Current Sponsors
