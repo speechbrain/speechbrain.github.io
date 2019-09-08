@@ -30,10 +30,10 @@ To ensure the needed *flexibility* and the *user-friendliness* of our system, we
 A strong toolkit needs a strong community. While a core team will be dedicated to develop and maintain the core functionalities of SpeechBrain, we need the help of the entire community to extend this ambitious project to numerous and various applications. Feel free to contact us, if you are interested to contribute.
 
 # Join us!
-Thanks to our [sponsors](#Sponsors), we are hiring talented interns (3-6 months internships) that will work at Mila (Montréal) with the core development team. The ideal candidate is a PhD student with a strong experience in both PyTorch and speech technologies.
+Thanks to our [sponsors](#Sponsors), we are hiring talented interns (3-6 months internships) that will work at Mila (Montréal) with the core development team. The ideal candidate is a PhD student with a strong experience in both PyTorch and speech technologies. Send us your CV if you are interested in this opportunity!
 
-If you are interested to hear more about these opportunities, please **contact us at *speechbrainproject@gmail.com***.
-
+# Contact us
+If you are interested to collaborate or sponsor us, or if you simply want to hear more about this project, please **contact us at *speechbrainproject@gmail.com***.
 
 # Current Sponsors
 
