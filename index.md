@@ -40,7 +40,7 @@ If you are interested to collaborate or sponsor us, or if you simply want to hea
 ![Mila](https://speechbrain.github.io/assets/logo_mila_small.png)
 ![Nvidia](https://speechbrain.github.io/assets/logo_nvidia.png)
 ![Dolby](https://speechbrain.github.io/assets/logo_dolby.png)
-![Samsung](https://speechbrain.github.io/assets/logo_samsung.png)
+![Samsung](https://speechbrain.github.io/assets/samsung_official.png)
 
 # Current collaborators
 ![LIA](https://speechbrain.github.io/assets/logo_LIA.png)
