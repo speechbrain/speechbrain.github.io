@@ -10,7 +10,9 @@ relying on [PyTorch](https://pytorch.org).
 
 The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that can be used to easily develop state-of-the-art speech technologies, including systems for **speech recognition** (both end-to-end and HMM-DNN), **speaker recognition**, **speech separation**, **multi-microphone signal processing** (e.g, beamforming), **self-supervised and unsupervised learning**, **speech contamination / augmentation**,  and many others. The toolkit will be designed to be a **stand-alone framework**, but simple interfaces with well-known toolkits, such as [Kaldi](http://kaldi-asr.org) will also be implemented.
 
-**SpeechBrain** is currently **under development** and has been announced in September 2019. A first alpha version will be available in the next months.  
+**SpeechBrain** is currently **under development** and has been announced in September 2019. A first alpha version will be available in the next months. 
+
+[See a short introductory video on the SpeechBrain project](https://youtu.be/XETiKbN9ojE)
 
 Stay tuned!
 
