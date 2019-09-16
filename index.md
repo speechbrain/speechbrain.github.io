@@ -29,7 +29,7 @@ To ensure the needed *flexibility* and the *user-friendliness* of our system, we
 - It is feasible to design end-to-end differentiable systems, where the gradient can potentially flow through all the different parts of the architecture, including parts solving different audio and speech tasks (*e.g. joint training, multi-task learning, cooperative learning).  
 
 # Toolkits
-We look forward to partnering with NVIDIA to enable seamless mixing and manipulation of deep learning components through the Neural Modules toolkit, which provides flexibility and modularity to accelerate speech applications.
+During the project, we plan to collaborate with the PyTorch Audio team of Facebook and with NVIDIA, that has recently developed the Neural Modules toolkit (Nemo), which provides flexibility and modularity to accelerate speech applications. 
 
 # How to collaborate
 A strong toolkit needs a strong community. While a core team will be dedicated to develop and maintain the core functionalities of SpeechBrain, we need the help of the entire community to extend this ambitious project to numerous and various applications. Feel free to contact us, if you are interested to contribute.
