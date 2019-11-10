@@ -52,6 +52,7 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 
 # Current collaborators
 ![LIA](https://speechbrain.github.io/assets/logo_LIA.png)
+![LIA](https://speechbrain.github.io/assets/logo_lium.png)
 ![PyTorch](https://speechbrain.github.io/assets/logo_pytorch.png)
 ![IBM](https://speechbrain.github.io/assets/logo_ibm.png)
 ![FluentAI](https://speechbrain.github.io/assets/logo_fluent.png)
