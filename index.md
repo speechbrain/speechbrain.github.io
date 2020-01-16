@@ -55,7 +55,7 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 ![Samsung](https://speechbrain.github.io/assets/samsung_official.png)
 
 # Current collaborators
-![LIA](https://speechbrain.github.io/assets/logo_lia_sq.png)
+![LIA](https://speechbrain.github.io/assets/logo_lia2.png)
 ![LIUM](https://speechbrain.github.io/assets/lium_logo_official.png)
 ![PyTorch](https://speechbrain.github.io/assets/logo_pytorch.png)
 ![IBM](https://speechbrain.github.io/assets/logo_ibm.png)
