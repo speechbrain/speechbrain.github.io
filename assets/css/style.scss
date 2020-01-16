@@ -19,6 +19,11 @@ img {
 width: 200px;
 }
 
+img[src$="fullsize"] {
+  display:block;
+  margin: 0 auto;
+}
+
 #content{
   text-align: justify;
 }
