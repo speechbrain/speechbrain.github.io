@@ -16,6 +16,8 @@ The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that c
 
 Stay tuned!
 
+![timeline](https://speechbrain.github.io/assets/communication.png)
+
 # Why SpeechBrain?
 Speech processing toolkits have gained popularity in the last years. For automatic speech recognition (ASR) purposes, for instance, [Kaldi](http://kaldi-asr.org) is an established framework. Some other ASR toolkits have been recently developed using the Python language such as [PyTorch-Kaldi](https://github.com/mravanelli/pytorch-kaldi), [PyKaldi](https://github.com/pykaldi/pykaldi), and [ESPnet](https://github.com/espnet/espnet). Beyond speech recognition, a variety of other solutions have been developed for speech-related applications, such as speech separation, speech enhancement, speaker recognition, and language model training.
 
