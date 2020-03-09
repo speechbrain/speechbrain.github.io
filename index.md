@@ -16,7 +16,7 @@ The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that c
 
 We are also happy to share a timeline for the project. The **first release** will allow the community to start developing and use the toolkit freely and fully. The **second release** is expected to propose the complete SpeechBrain experience with different tasks added by the community and the core development team. The **private release** only concerns specific collaborators that have an important expertise on different speech-related domains, please see the *How to collaborate* Section if interested!
 
-![timeline](https://speechbrain.github.io/assets/communication.png?style=fullsize)
+![timeline](https://speechbrain.github.io/assets/com.png?style=fullsize)
 
 Stay tuned!
 
