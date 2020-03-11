@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-# The project
+# Team
 
 **SpeechBrain** is an **open-source** and **all-in-one** speech toolkit
 relying on [PyTorch](https://pytorch.org).
