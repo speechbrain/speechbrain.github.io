@@ -5,7 +5,7 @@
  *    user zoom.
  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
-@import url("https://fonts.googleapis.com/css?family=Rubik:400,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 html {
   font-family: sans-serif;
   /* 1 */
@@ -846,11 +846,22 @@ a {
   margin-right: auto;
   width: 15%; }
 
+img {
+  width: 200px; }
+
+img[src$="fullsize"] {
+  width: 800px;
+  display: block;
+  margin: 0 auto; }
+
+#content {
+  text-align: justify; }
+
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Rubik";
+  font-family: "Montserrat";
   font-weight: lighter; }
 
 .main-content h1,
@@ -860,5 +871,48 @@ h4 {
 .main-content h5,
 .main-content h6 {
   color: #3e92cc;
-  font-family: "Rubik";
+  font-family: "Montserrat";
   font-weight: lighter; }
+
+/* Three columns side by side */
+.column3 {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px; }
+
+/* Three columns side by side */
+.column2 {
+  float: left;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px; }
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+  .column2 .column3 {
+    width: 100%;
+    display: block; } }
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+  text-align: center; }
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+.title {
+  margin-top: -20px;
+  color: #3e92cc; }
+
+.container h2 {
+  font-size: 25px; }
+
+.team_pic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 200px; }

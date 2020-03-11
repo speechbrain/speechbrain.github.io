@@ -16,9 +16,7 @@ The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that c
 
 We are also happy to share a timeline for the project. The **first release** will allow the community to start developing and use the toolkit freely and fully. The **second release** is expected to propose the complete SpeechBrain experience with different tasks added by the community and the core development team. The **private release** only concerns specific collaborators that have an important expertise on different speech-related domains, please see the *How to collaborate* Section if interested!
 
-![timeline](https://speechbrain.github.io/assets/com.png?style=fullsize)
-
-Stay tuned!
+![timeline](../assets/com.png?style=fullsize)
 
 # Why SpeechBrain?
 Speech processing toolkits have gained popularity in the last years. For automatic speech recognition (ASR) purposes, for instance, [Kaldi](http://kaldi-asr.org) is an established framework. Some other ASR toolkits have been recently developed using the Python language such as [PyTorch-Kaldi](https://github.com/mravanelli/pytorch-kaldi), [PyKaldi](https://github.com/pykaldi/pykaldi), and [ESPnet](https://github.com/espnet/espnet). Beyond speech recognition, a variety of other solutions have been developed for speech-related applications, such as speech separation, speech enhancement, speaker recognition, and language model training.
@@ -55,8 +53,9 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 ![Samsung](https://speechbrain.github.io/assets/samsung_official.png)
 
 # Current collaborators
-![LIA](https://speechbrain.github.io/assets/logo_lia2.png)
-![LIUM](https://speechbrain.github.io/assets/lium_logo_official.png)
-![PyTorch](https://speechbrain.github.io/assets/logo_pytorch.png)
-![IBM](https://speechbrain.github.io/assets/logo_ibm.png)
-![FluentAI](https://speechbrain.github.io/assets/logo_fluent.png)
+<img src="../assets/logo_oxford.png" alt="OX" style="width:125px" />
+<img src="https://speechbrain.github.io/assets/logo_lia2.png" style="width:200px" />
+<img src="https://speechbrain.github.io/assets/lium_logo_official.png" style="width:250px" />
+<img src="https://speechbrain.github.io/assets/logo_pytorch.png" style="width:250px; margin-right:25px;" />
+<img src="https://speechbrain.github.io/assets/logo_ibm.png" style="width:300px; margin-right:25px;" />
+<img src="https://speechbrain.github.io/assets/logo_fluent.png" style="width:200px" />

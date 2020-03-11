@@ -3,20 +3,28 @@
   <head>
 
     
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146863989-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-146863989-1');
+      </script>
+    
     <meta charset="UTF-8">
 
 <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>SpeechBrain | SpeechBrain is a speech toolkit fully based on PyTorch.</title>
+<title>SpeechBrain | A PyTorch-based Speech Toolkit.</title>
 <meta name="generator" content="Jekyll v3.8.6" />
 <meta property="og:title" content="SpeechBrain" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="SpeechBrain is a speech toolkit fully based on PyTorch." />
-<meta property="og:description" content="SpeechBrain is a speech toolkit fully based on PyTorch." />
+<meta name="description" content="A PyTorch-based Speech Toolkit." />
+<meta property="og:description" content="A PyTorch-based Speech Toolkit." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="SpeechBrain" />
 <script type="application/ld+json">
-{"name":"SpeechBrain","description":"SpeechBrain is a speech toolkit fully based on PyTorch.","@type":"WebSite","url":"http://localhost:4000/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://speechbrain.github.io/assets/logo.png"}},"headline":"SpeechBrain","@context":"https://schema.org"}</script>
+{"headline":"SpeechBrain","url":"http://localhost:4000/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://speechbrain.github.io/assets/logo_noname_rounded_small.png"}},"name":"SpeechBrain","description":"A PyTorch-based Speech Toolkit.","@type":"WebSite","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,22 +36,74 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
-      <img src="https://speechbrain.github.io/assets/logo.png" id="logo"/>
+      <img src="https://speechbrain.github.io/assets/logo_noname_rounded_small.png" id="logo" />
       <h1 class="project-name">SpeechBrain</h1>
-      <h2 class="project-tagline">SpeechBrain is a speech toolkit fully based on PyTorch.</h2>
-        <a href="#" class="btn">GitHub</a>
-        <a href="#" class="btn">Get Started</a>
-        <a href="#" class="btn">Documentation</a>
-  
+      <h2 class="project-tagline">A PyTorch-based Speech Toolkit.</h2>
+      <a href="index.html" class="btn">Home</a>
+      <a href="team.html" class="btn">Our Team</a>
+
       
     </header>
 
     <main id="content" class="main-content" role="main">
       <h1 id="the-project">The project</h1>
 
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
+<p><strong>SpeechBrain</strong> is an <strong>open-source</strong> and <strong>all-in-one</strong> speech toolkit
+relying on <a href="https://pytorch.org">PyTorch</a>.</p>
 
-<h1 id="sponsors">Sponsors</h1>
+<p>The goal is to create a <em>single</em>, <em>flexible</em>, and <em>user-friendly</em> toolkit that can be used to easily develop state-of-the-art speech technologies, including systems for <strong>speech recognition</strong> (both end-to-end and HMM-DNN), <strong>speaker recognition</strong>, <strong>speech separation</strong>, <strong>multi-microphone signal processing</strong> (e.g, beamforming), <strong>self-supervised and unsupervised learning</strong>, <strong>speech contamination / augmentation</strong>,  and many others. The toolkit will be designed to be a <strong>stand-alone framework</strong>, but simple interfaces with well-known toolkits, such as <a href="http://kaldi-asr.org">Kaldi</a> will also be implemented.</p>
+
+<p><strong>SpeechBrain</strong> is currently <strong>under development</strong> and has been announced in September 2019. A first alpha version will be available in the next months.</p>
+
+<p><a href="https://youtu.be/XETiKbN9ojE">See a short introductory video on the SpeechBrain project</a></p>
+
+<p>We are also happy to share a timeline for the project. The <strong>first release</strong> will allow the community to start developing and use the toolkit freely and fully. The <strong>second release</strong> is expected to propose the complete SpeechBrain experience with different tasks added by the community and the core development team. The <strong>private release</strong> only concerns specific collaborators that have an important expertise on different speech-related domains, please see the <em>How to collaborate</em> Section if interested!</p>
+
+<p><img src="../assets/com.png?style=fullsize" alt="timeline" /></p>
+
+<h1 id="why-speechbrain">Why SpeechBrain?</h1>
+<p>Speech processing toolkits have gained popularity in the last years. For automatic speech recognition (ASR) purposes, for instance, <a href="http://kaldi-asr.org">Kaldi</a> is an established framework. Some other ASR toolkits have been recently developed using the Python language such as <a href="https://github.com/mravanelli/pytorch-kaldi">PyTorch-Kaldi</a>, <a href="https://github.com/pykaldi/pykaldi">PyKaldi</a>, and <a href="https://github.com/espnet/espnet">ESPnet</a>. Beyond speech recognition, a variety of other solutions have been developed for speech-related applications, such as speech separation, speech enhancement, speaker recognition, and language model training.</p>
+
+<p>Even though many of these frameworks could be very helpful for the specific task for which they are designed, our experience in the field suggests that having a <em>single</em>, <em>efficient</em>, and <em>flexible</em> toolkit can significantly <strong>speed up research and development</strong> of speech and audio processing techniques. Indeed, it is significantly easier to familiarize oneself with a single toolkit than to learn several different frameworks. Moreover, the use of a <strong>single platform</strong> for different speech and audio applications makes it more natural to develop <strong>multi-task systems</strong> that jointly solve different problems. It is also easier to build a strong and fruitful community when considering a unique and self-contained framework.</p>
+
+<h1 id="why-pytorch">Why PyTorch?</h1>
+<p>To ensure the needed <em>flexibility</em> and the <em>user-friendliness</em> of our system, we think that our platform must be built on the top of PyTorch for the following reasons:</p>
+<ul>
+  <li>PyTorch is a well-designed, flexible, popular, and well-documented toolkit with a very large community.</li>
+  <li>Most speech applications rely on deep learning and signal processing techniques, that can be naturally implemented in PyTorch.</li>
+  <li>Processing steps are performed either on GPUs or CPUs.</li>
+  <li>It is feasible to design end-to-end differentiable systems, where the gradient can potentially flow through all the different parts of the architecture, including parts solving different audio and speech tasks (*e.g. joint training, multi-task learning, cooperative learning).</li>
+</ul>
+
+<h1 id="toolkits">Toolkits</h1>
+<p>During the project, we plan to collaborate with the PyTorch Audio team of Facebook and with NVIDIA, that has recently developed the Neural Modules toolkit (Nemo), which provides flexibility and modularity to accelerate speech applications.</p>
+
+<h1 id="how-to-collaborate">How to collaborate</h1>
+<p>A strong toolkit needs a strong community. While a core team will be dedicated to develop and maintain the core functionalities of SpeechBrain, we need the help of the entire community to extend this ambitious project to numerous and various applications. Feel free to contact us, if you are interested to contribute.</p>
+
+<h1 id="join-us">Join us!</h1>
+<p>Thanks to our <a href="#Sponsors">sponsors</a>, we are hiring talented interns (3-6 months internships) that will work at Mila (Montréal) with the core development team. The ideal candidate is a PhD student with a strong experience in both PyTorch and speech technologies. Send us your CV if you are interested in this opportunity!</p>
+
+<h1 id="contact-us">Contact us</h1>
+<p>If you are interested to collaborate or sponsor us, or if you simply want to hear more about this project, please <strong>contact us at <em>speechbrainproject@gmail.com</em></strong>.</p>
+
+<h1 id="speechbrain-and-social-good">SpeechBrain and Social Good</h1>
+<p>The development and use of SpeechBrain technologies are parts of a policy of concern for AI for the “social good”. Therefore, all partners, collaborators and participants declare having read the <a href="https://www.montrealdeclaration-responsibleai.com">Montreal Declaration for a responsible development of AI</a>, adhere to these principles and implement them as part of the SpeechBrain project.</p>
+
+<h1 id="current-sponsors">Current Sponsors</h1>
+
+<p><img src="https://speechbrain.github.io/assets/logo_mila_small.png" alt="Mila" />
+<img src="https://speechbrain.github.io/assets/logo_nvidia.png" alt="Nvidia" />
+<img src="https://speechbrain.github.io/assets/logo_dolby.png" alt="Dolby" />
+<img src="https://speechbrain.github.io/assets/samsung_official.png" alt="Samsung" /></p>
+
+<h1 id="current-collaborators">Current collaborators</h1>
+<p><img src="../assets/logo_oxford.png" alt="OX" style="width:125px" />
+<img src="https://speechbrain.github.io/assets/logo_lia2.png" style="width:200px" />
+<img src="https://speechbrain.github.io/assets/lium_logo_official.png" style="width:250px" />
+<img src="https://speechbrain.github.io/assets/logo_pytorch.png" style="width:250px; margin-right:25px;" />
+<img src="https://speechbrain.github.io/assets/logo_ibm.png" style="width:300px; margin-right:25px;" />
+<img src="https://speechbrain.github.io/assets/logo_fluent.png" style="width:200px" /></p>
 
 
       <footer class="site-footer">
