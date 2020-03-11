@@ -35,7 +35,7 @@ layout: team
     <div class="row">
       <div class="column2">
         <div class="card">
-          <img src="../assets/elena.jpg" alt="Elena" class="team_pic">
+          <img src="../assets/Elena.jpg" alt="Elena" class="team_pic">
           <div class="container">
             <h2>Elena Rastorgueva</h2>
             <p class="title">Core Team Member</p>
