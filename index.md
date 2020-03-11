@@ -1,8 +1,5 @@
 ---
 layout: default
-nav:
-- page: nav-test
-  permalink: \#CThe-project
 ---
 
 
