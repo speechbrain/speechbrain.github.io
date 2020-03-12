@@ -53,9 +53,19 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 ![Samsung](https://speechbrain.github.io/assets/samsung_official.png)
 
 # Current collaborators
-<img src="../assets/logo_oxford.png" alt="OX" style="width:125px" />
+- University of Oxford (UK)
+- Le Mans University (FR)
+- University of Sherbrooke (CA)
+- PyTorch
+- IBM Research
+- Fluent.ai
+- Avignon University (FR)
+- Aalto University (FI)
+- Madras Institute Of Technology (IN)
+- The Ohio State University (USA)
+<!-- <img src="../assets/logo_oxford.png" alt="OX" style="width:125px" />
 <img src="https://speechbrain.github.io/assets/logo_lia2.png" style="width:200px" />
 <img src="https://speechbrain.github.io/assets/lium_logo_official.png" style="width:250px" />
 <img src="https://speechbrain.github.io/assets/logo_pytorch.png" style="width:250px; margin-right:25px;" />
 <img src="https://speechbrain.github.io/assets/logo_ibm.png" style="width:300px; margin-right:25px;" />
-<img src="https://speechbrain.github.io/assets/logo_fluent.png" style="width:200px" />
+<img src="https://speechbrain.github.io/assets/logo_fluent.png" style="width:200px" /> -->
