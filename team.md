@@ -190,3 +190,37 @@ layout: team
                           </div>
                         </div>
                       </div>
+
+                      <div class="row">
+                        <div class="column2">
+                          <div class="card">
+                            <img src="../assets/renato.jpeg" alt="Aris" class="team_pic">
+                            <div class="container">
+                              <h2>Renato De Mori</h2>
+                              <p class="affiliation">Emeritus Professor</p>
+                              <p class="affiliation">University of McGill (CA)</p>
+                              <p class="affiliation">Avignon University (FR)</p>
+                              <p></p>
+                              <p class="title">Scientific Advisor</p>
+                              <p></p>
+                              <p></p>
+                            </div>
+                          </div>
+                        </div>
+
+
+                          <div class="row">
+                            <div class="column2">
+                              <div class="card">
+                                <img src="../assets/yoshua.png" alt="Aris" class="team_pic">
+                                <div class="container">
+                                  <h2>Renato De Mori</h2>
+                                  <p class="affiliation">Professor</p>
+                                  <p class="affiliation">Mila, University of Montréal (CA)</p>
+                                  <p></p>
+                                  <p class="title">Scientific Advisor</p>
+                                  <a href="https://yoshuabengio.org/fr/profil/" style="text-align:center">Personal webpage</a>
+                                  <p></p>
+                                </div>
+                              </div>
+                            </div>
