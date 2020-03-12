@@ -79,7 +79,7 @@ layout: team
               <div class="container">
                 <h2>Loren Lugosch</h2>
                 <p class="affiliation">PhD student</p>
-                <p class="affiliation">Mila, University of Montréal (CA)</p>
+                <p class="affiliation">Mila, McGill University (CA)</p>
                 <p></p>
                 <p class="title">Core Team Member</p>
                 <p class="affiliation">HMM and E2E Teams</p>
