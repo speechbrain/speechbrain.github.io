@@ -168,7 +168,7 @@ layout: team
                           <p></p>
                           <p class="title">External Collaborator</p>
                           <p class="affiliation">Manager of the Multi-Microphone SP Team</p>
-                          <a href="francoisgrondin.com" style="text-align:center">Personal webpage</a>
+                          <a href="https://francoisgrondin.com" style="text-align:center">Personal webpage</a>
                           <p></p>
                         </div>
                       </div>
