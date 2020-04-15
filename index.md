@@ -56,6 +56,8 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 - University of Oxford (UK)
 - Le Mans University (FR)
 - University of Sherbrooke (CA)
+- Institut de Recherche en Informatique de Toulouse (IRIT, FR)
+- LINAGORA (FR)
 - PyTorch
 - IBM Research
 - Fluent.ai
