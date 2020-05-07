@@ -122,7 +122,7 @@ Partner Institutions are organizations that have accepted to collaborate within 
 </div>
 
 # Collaborators
-Collaborators are actors interested in contributing to the project. It could be individual or small groups of researchers, companies, or anyone whiling to develop an important module of SpeechBrain. Active collaborators are invited to the meetings to better synchronize their contributions.
+Collaborators are actors interested in contributing to the project. It could be individual or small groups of researchers, companies, or anyone interested to develop an important module of SpeechBrain. Active collaborators are invited to the meetings to better synchronize their contributions.
 
 - University of Oxford (UK)
 - Institut de Recherche en Informatique de Toulouse (IRIT, FR)
