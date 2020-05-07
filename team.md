@@ -5,7 +5,7 @@ layout: team
 
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/mirco_ravanelli.jpg" alt="Mirco" class="team_pic">
 <div class="container">
@@ -22,7 +22,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/titouan.jpg" alt="Titouan" class="team_pic">
 <div class="container">
@@ -39,7 +39,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/Elena.jpg" alt="Elena" class="team_pic">
 <div class="container">
@@ -56,7 +56,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/peter.jpg" alt="Peter" class="team_pic">
 <div class="container">
@@ -73,7 +73,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/loren.png" alt="Loren" class="team_pic">
 <div class="container">
@@ -90,7 +90,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/nauman.png" alt="Nauman" class="team_pic">
 <div class="container">
@@ -107,7 +107,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/aku.png" alt="Aku" class="team_pic">
 <div class="container">
@@ -124,7 +124,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/ju.png" alt="Ju" class="team_pic">
 <div class="container">
@@ -141,7 +141,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/abdel.png" alt="Ju" class="team_pic">
 <div class="container">
@@ -158,7 +158,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/francois.png" alt="Francois" class="team_pic">
 <div class="container">
@@ -175,7 +175,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/aris.jpg" alt="Aris" class="team_pic">
 <div class="container">
@@ -192,7 +192,7 @@ layout: team
 </div>
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/renato.jpeg" alt="Aris" class="team_pic">
 <div class="container">
@@ -210,7 +210,7 @@ layout: team
 
 
 <div class="row">
-<div class="column2">
+<div class="column3">
 <div class="card">
 <img src="../assets/yoshua.png" alt="Aris" class="team_pic">
 <div class="container">
