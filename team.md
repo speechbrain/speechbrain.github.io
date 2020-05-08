@@ -191,6 +191,40 @@ layout: team
 </div>
 </div>
 
+<div class="column3">
+<div class="card">
+<img src="../assets/chienfeng.JPG" alt="chien" class="team_pic">
+<div class="container">
+<h2>Chien-Feng Liao</h2>
+<p class="title">SpeechBrain Intern</p>
+<p class="affiliation">PhD Student</p>
+<p class="affiliation">National Taiwan University (TW)</p>
+<p></p>
+<p class="affiliation">Speech Enhancement</p>
+<a href="https://github.com/jerrygood0703" style="text-align:center">Personal webpage</a>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="column3">
+<div class="card">
+<img src="../assets/szu.jpg" alt="szu" class="team_pic">
+<div class="container">
+<h2>Szu-Wei Fu</h2>
+<p class="title">SpeechBrain Intern</p>
+<p class="affiliation">PhD Student</p>
+<p class="affiliation">Academia Sinica (TW)</p>
+<p></p>
+<p class="affiliation">Speech Enhancement</p>
+<a href="https://jasonswfu.github.io/JasonFu.github.io/" style="text-align:center">Personal webpage</a>
+</div>
+</div>
+</div>
 
 <div class="column3">
 <div class="card">
@@ -207,11 +241,6 @@ layout: team
 </div>
 </div>
 </div>
-
-</div>
-
-
-<div class="row">
 
 <div class="column3">
 <div class="card">
