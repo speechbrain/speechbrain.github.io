@@ -218,7 +218,7 @@ layout: team
 <h2>Szu-Wei Fu</h2>
 <p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD Student</p>
-<p class="affiliation">Academia Sinica (TW)</p>
+<p class="affiliation">Academia Sinica</p>
 <p></p>
 <p class="affiliation">Speech Enhancement</p>
 <a href="https://jasonswfu.github.io/JasonFu.github.io/" style="text-align:center">Personal webpage</a>
