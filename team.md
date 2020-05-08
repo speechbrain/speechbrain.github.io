@@ -198,7 +198,7 @@ layout: team
 <h2>Chien-Feng Liao</h2>
 <p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD Student</p>
-<p class="affiliation">National Taiwan University (TW)</p>
+<p class="affiliation">National Taiwan University</p>
 <p></p>
 <p class="affiliation">Speech Enhancement</p>
 <a href="https://github.com/jerrygood0703" style="text-align:center">Personal webpage</a>
@@ -213,12 +213,12 @@ layout: team
 
 <div class="column3">
 <div class="card">
-<img src="../assets/szu.jpg" alt="szu" class="team_pic">
+<img src="../assets/szu_sq.jpg" alt="szu" class="team_pic">
 <div class="container">
 <h2>Szu-Wei Fu</h2>
 <p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD Student</p>
-<p class="affiliation">Academia Sinica</p>
+<p class="affiliation">Academia Sinica (TW)</p>
 <p></p>
 <p class="affiliation">Speech Enhancement</p>
 <a href="https://jasonswfu.github.io/JasonFu.github.io/" style="text-align:center">Personal webpage</a>
