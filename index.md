@@ -101,16 +101,6 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 
 Partner Institutions are organizations that have accepted to collaborate within SpeechBrain by dedicating important human or hardware resources. They are involved in the decision process by participating in weekly organized meetings. If interested in becoming the next official partner, please **contact us at *speechbrainproject@gmail.com***.
 
-<div class="row">
-
-<div class="column2">
-<div class="card">
-<img src="https://speechbrain.github.io/assets/lium_logo_official.png" style="width:300px; " class="team_pic"  />
-<div class="container">
-</div>
-</div>
-</div>
-
 <div class="column2">
 <div class="card">
 <img src="https://speechbrain.github.io/assets/logo_sherbrooke.jpg" style="width:300px" class="team_pic" />
@@ -125,9 +115,10 @@ Partner Institutions are organizations that have accepted to collaborate within 
 Collaborators are actors interested in contributing to the project. It could be individual or small groups of researchers, companies, or anyone interested to develop an important module of SpeechBrain. Active collaborators are invited to the meetings to better synchronize their contributions.
 
 - University of Oxford (UK)
+- LIUM - Le Mans University (FR)
 - Institut de Recherche en Informatique de Toulouse (IRIT, FR)
 - LINAGORA (FR)
-- PyTorch
+- PyTorch Team
 - IBM Research
 - Fluent.ai
 - Avignon University (FR)
