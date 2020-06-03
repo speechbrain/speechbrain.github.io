@@ -101,6 +101,8 @@ The development and use of SpeechBrain technologies are parts of a policy of con
 
 Partner Institutions are organizations that have accepted to collaborate within SpeechBrain by dedicating important human or hardware resources. They are involved in the decision process by participating in weekly organized meetings. If interested in becoming the next official partner, please **contact us at *speechbrainproject@gmail.com***.
 
+<div class="row">
+
 <div class="column2">
 <div class="card">
 <img src="https://speechbrain.github.io/assets/logo_sherbrooke.jpg" style="width:300px" class="team_pic" />
@@ -109,6 +111,7 @@ Partner Institutions are organizations that have accepted to collaborate within 
 </div>
 </div>
 
+</div>
 
 # Collaborators
 Collaborators are actors interested in contributing to the project. It could be individual or small groups of researchers, companies, or anyone interested to develop an important module of SpeechBrain. Active collaborators are invited to the meetings to better synchronize their contributions.
