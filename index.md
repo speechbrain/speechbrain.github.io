@@ -109,7 +109,7 @@ Partner Institutions are organizations that have accepted to collaborate within 
 <div class="container">
 </div>
 </div>
-</div>
+
 
 <div class="column2">
 <div class="card">
