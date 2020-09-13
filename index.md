@@ -125,7 +125,7 @@ Collaborators are actors interested in contributing to the project. It could be 
 - Fluent.ai
 - Avignon University (FR)
 - Aalto University (FI)
-- Madras Institute Of Technology (IN)
+- Indian Institute of Technology Madras (IN)
 - The Ohio State University (USA)
 <!-- <img src="../assets/logo_oxford.png" alt="OX" style="width:125px" />
 <img src="https://speechbrain.github.io/assets/logo_lia2.png" style="width:200px" />
