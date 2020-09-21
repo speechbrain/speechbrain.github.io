@@ -14,7 +14,7 @@ The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that c
 
 [See a short introductory video on the SpeechBrain project](https://youtu.be/XETiKbN9ojE)
 
-We are also happy to share a timeline for the project. The **first release** will allow the community to start developing and use the toolkit freely and fully. The **second release** is expected to propose the complete SpeechBrain experience with different tasks added by the community and the core development team. The **private release** only concerns specific collaborators that have an important expertise on different speech-related domains, please see the *How to collaborate* Section if interested!
+We are also happy to share a timeline for the project. The **Public Release** will allow the community to start developing and use the toolkit freely and fully. The **private release** only concerns specific collaborators that have an important expertise on different speech-related domains, please see the *How to collaborate* Section if interested!
 
 ![timeline](../assets/com.png?style=fullsize)
 
@@ -105,8 +105,16 @@ Partner Institutions are organizations that have accepted to collaborate within 
 
 <div class="column2">
 <div class="card">
-<img src="https://speechbrain.github.io/assets/logo_sherbrooke.jpg" style="width:300px" class="team_pic" />
 <div class="container">
+<img src="https://speechbrain.github.io/assets/logo_lia2.png" style="width:200px" class="team_pic" />
+</div>
+</div>
+</div>
+
+<div class="column2">
+<div class="card">
+<div class="container">
+<img src="https://speechbrain.github.io/assets/logo_sherbrooke.jpg" style="width:300px" class="team_pic" />
 </div>
 </div>
 </div>
@@ -116,7 +124,7 @@ Partner Institutions are organizations that have accepted to collaborate within 
 # Collaborators
 Collaborators are actors interested in contributing to the project. It could be individual or small groups of researchers, companies, or anyone interested to develop an important module of SpeechBrain. Active collaborators are invited to the meetings to better synchronize their contributions.
 
-- University of Oxford (UK)
+- University of Cambridge (UK)
 - LIUM - Le Mans University (FR)
 - Institut de Recherche en Informatique de Toulouse (IRIT, FR)
 - LINAGORA (FR)

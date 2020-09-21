@@ -29,8 +29,8 @@ layout: team
 <div class="container">
 <h2>Titouan Parcollet</h2>
 <p class="title">Co-Principal Investigator</p>
-<p class="affiliation">Senior Research Associate</p>
-<p class="affiliation">University of Oxford (UK)</p>
+<p class="affiliation">Associate Professor</p>
+<p class="affiliation">Avignon Université (FR)</p>
 <p></p>
 <p></p>
 <a href="http://darnault-parcollet.fr/Parcollet/index.html" style="text-align:center">Personal webpage</a>
@@ -44,7 +44,6 @@ layout: team
 <img src="../assets/Elena.jpg" alt="Elena" class="team_pic">
 <div class="container">
 <h2>Elena Rastorgueva</h2>
-<p class="title">SpeechBrain Intern</p>
 <p></p>
 <p class="affiliation">Mila, University of Montréal (CA)</p>
 <p></p>
@@ -64,7 +63,6 @@ layout: team
 <img src="../assets/peter.jpg" alt="Peter" class="team_pic">
 <div class="container">
 <h2>Peter Plantinga</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD student</p>
 <p class="affiliation">Ohio State University (USA)</p>
 <p></p>
@@ -80,7 +78,6 @@ layout: team
 <img src="../assets/loren.png" alt="Loren" class="team_pic">
 <div class="container">
 <h2>Loren Lugosch</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD student</p>
 <p class="affiliation">Mila, McGill University (CA)</p>
 <p></p>
@@ -93,14 +90,13 @@ layout: team
 
 <div class="column3">
 <div class="card">
-<img src="../assets/nauman.png" alt="Nauman" class="team_pic">
+<img src="../assets/Nauman.jpg" alt="Nauman" class="team_pic">
 <div class="container">
 <h2>Nauman Dawalatabad</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD student</p>
 <p class="affiliation">Indian Institute of Technology Madras (IN)</p>
 <p></p>
-<p class="affiliation">Speaker Diarization</p>
+<p class="affiliation">Speaker Recognition & Diarization</p>
 <a href="http://www.cse.iitm.ac.in/~nauman/" style="text-align:center">Personal webpage</a>
 <p></p>
 </div>
@@ -116,7 +112,6 @@ layout: team
 <img src="../assets/aku.png" alt="Aku" class="team_pic">
 <div class="container">
 <h2>Aku Rouhe</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD student</p>
 <p class="affiliation">Aalto University (FI)</p>
 <p></p>
@@ -130,7 +125,6 @@ layout: team
 <img src="../assets/ju.png" alt="Ju" class="team_pic">
 <div class="container">
 <h2>Ju-Chieh Chou</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">Mila, University of Montréal (CA)</p>
 <p></p>
 <p class="affiliation">E2E ASR</p>
@@ -145,7 +139,6 @@ layout: team
 <img src="../assets/abdel.png" alt="Ju" class="team_pic">
 <div class="container">
 <h2>Abdel Heba</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD Student</p>
 <p class="affiliation">LINAGORA & IRIT (FR)</p>
 <p></p>
@@ -163,7 +156,6 @@ layout: team
 <img src="../assets/francois.png" alt="Francois" class="team_pic">
 <div class="container">
 <h2>Francois Grondin</h2>
-<p class="title">Partner Institution</p>
 <p class="affiliation">Assistant Professor</p>
 <p class="affiliation">University of Sherbrooke</p>
 <p></p>
@@ -180,11 +172,10 @@ layout: team
 <img src="../assets/aris.jpg" alt="Aris" class="team_pic">
 <div class="container">
 <h2>William Aris</h2>
-<p class="title">Partner Institution</p>
 <p class="affiliation">Intern at 3IT</p>
 <p class="affiliation">University of Sherbrooke</p>
 <p></p>
-<p class="affiliation">Multi-Microphone SP Team</p>
+<p class="affiliation">Multi-Microphone SP</p>
 <p></p>
 <p></p>
 </div>
@@ -196,7 +187,6 @@ layout: team
 <img src="../assets/chienfeng.JPG" alt="chien" class="team_pic">
 <div class="container">
 <h2>Chien-Feng Liao</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD Student</p>
 <p class="affiliation">National Taiwan University</p>
 <p></p>
@@ -216,7 +206,6 @@ layout: team
 <img src="../assets/szu_sq.jpg" alt="szu" class="team_pic">
 <div class="container">
 <h2>Szu-Wei Fu</h2>
-<p class="title">SpeechBrain Intern</p>
 <p class="affiliation">PhD Student</p>
 <p class="affiliation">Academia Sinica (TW)</p>
 <p></p>
