@@ -10,7 +10,7 @@ relying on [PyTorch](https://pytorch.org).
 
 The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that can be used to easily develop state-of-the-art speech technologies, including systems for **speech recognition** (both end-to-end and HMM-DNN), **speaker recognition**, **speech separation**, **multi-microphone signal processing** (e.g, beamforming), **self-supervised and unsupervised learning**, **speech contamination / augmentation**,  and many others. The toolkit will be designed to be a **stand-alone framework**, but simple interfaces with well-known toolkits, such as [Kaldi](http://kaldi-asr.org) will also be implemented.
 
-**SpeechBrain** is currently **under development** and has been announced in September 2019. A first alpha version will be available in the next months.
+**SpeechBrain** is currently **under development** and has been announced in September 2019. A first alpha version will be available during the 2020 winter.
 
 [See a short introductory video on the SpeechBrain project](https://youtu.be/XETiKbN9ojE)
 
@@ -43,7 +43,7 @@ Thanks to our [sponsors](#Sponsors), we are hiring talented interns (3-6 months 
 If you are interested to collaborate or sponsor us, or if you simply want to hear more about this project, please **contact us at *speechbrainproject@gmail.com***.
 
 # SpeechBrain and Social Good
-The development and use of SpeechBrain technologies are parts of a policy of concern for AI for the “social good”. Therefore, all partners, collaborators and participants declare having read the [Montreal Declaration for a responsible development of AI](https://www.montrealdeclaration-responsibleai.com), adhere to these principles and implement them as part of the SpeechBrain project. Unfortunately, and as SpeechBrain is a completely open source project, users of the toolkit do not have any legal obligation to respect this declaration. However, the initial SpeechBrain team started this project with the goal of impacting positively the civil society. 
+The development and use of SpeechBrain technologies are parts of a policy of concern for AI for the “social good”. Therefore, all partners, collaborators and participants declare having read the [Montreal Declaration for a responsible development of AI](https://www.montrealdeclaration-responsibleai.com), adhere to these principles and implement them as part of the SpeechBrain project. Unfortunately, and as SpeechBrain is a completely open source project, users of the toolkit do not have any legal obligation to respect this declaration. However, the initial SpeechBrain team started this project with the goal of impacting positively the civil society.
 
 
 # Sponsors
