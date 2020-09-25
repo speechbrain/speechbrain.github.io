@@ -90,7 +90,7 @@ layout: team
 
 <div class="column3">
 <div class="card">
-<img src="../assets/Nauman.jpg" alt="Nauman" class="team_pic">
+<img src="../assets/nauman.jpg" alt="Nauman" class="team_pic">
 <div class="container">
 <h2>Nauman Dawalatabad</h2>
 <p class="affiliation">PhD student</p>
