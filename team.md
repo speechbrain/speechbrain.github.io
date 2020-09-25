@@ -44,8 +44,8 @@ layout: team
 <img src="../assets/Elena.jpg" alt="Elena" class="team_pic">
 <div class="container">
 <h2>Elena Rastorgueva</h2>
-<p></p>
-<p class="affiliation">Mila, University of Montréal (CA)</p>
+<p class="affiliation">Applied Science Intern</p>
+<p class="affiliation">Amazon</p>
 <p></p>
 <p class="affiliation">HMM ASR</p>
 <a href="https://elenaras.github.io/." style="text-align:center">Personal webpage</a>
@@ -203,6 +203,68 @@ layout: team
 
 <div class="column3">
 <div class="card">
+<img src="../assets/samuele.jpg" alt="samuele" class="team_pic">
+<div class="container">
+<h2>Samuele Cornell</h2>
+<p class="affiliation">PhD Student</p>
+<p class="affiliation">Università Politecnica delle Marche (IT)</p>
+<p class="affiliation">Voice Activity Detection</p>
+<p></p>
+</div>
+</div>
+</div>
+
+<div class="column3">
+<div class="card">
+<img src="../assets/brian.jpg" alt="brian" class="team_pic">
+<div class="container">
+<h2>Sung-Lin Yeh</h2>
+<p class="affiliation">Research Assistant</p>
+<p class="affiliation">National Tsing Hua University (TW)</p>
+<p class="affiliation">E2E ASR</p>
+<a href="https://30stomercury.github.io/" style="text-align:center">Personal webpage</a>
+<p></p>
+<p></p>
+<p></p>
+</div>
+</div>
+</div>
+
+<div class="column3">
+<div class="card">
+<img src="../assets/hwidong.jpg" alt="hwidong" class="team_pic">
+<div class="container">
+<h2>Hwidong Na</h2>
+<p class="affiliation">Visiting Researcher</p>
+<p class="affiliation">Samsung SAIL (CA)</p>
+<p class="affiliation">Speaker Recognition</p>
+<a href="https://mila.quebec/en/person/hwidong-na/" style="text-align:center">Personal webpage</a>
+<p></p>
+<p></p>
+<p></p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="column3">
+<div class="card">
+<img src="../assets/yan.jpg" alt="yan" class="team_pic">
+<div class="container">
+<h2>Yan Gao</h2>
+<p class="affiliation">PhD Student</p>
+<p class="affiliation">University of Cambridge</p>
+<p class="affiliation">E2E ASR</p>
+<p></p>
+</div>
+</div>
+</div>
+
+<div class="column3">
+<div class="card">
 <img src="../assets/szu_sq.jpg" alt="szu" class="team_pic">
 <div class="container">
 <h2>Szu-Wei Fu</h2>
@@ -230,6 +292,11 @@ layout: team
 </div>
 </div>
 </div>
+
+</div>
+
+<div class="row">
+
 
 <div class="column3">
 <div class="card">

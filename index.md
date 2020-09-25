@@ -43,7 +43,8 @@ Thanks to our [sponsors](#Sponsors), we are hiring talented interns (3-6 months 
 If you are interested to collaborate or sponsor us, or if you simply want to hear more about this project, please **contact us at *speechbrainproject@gmail.com***.
 
 # SpeechBrain and Social Good
-The development and use of SpeechBrain technologies are parts of a policy of concern for AI for the “social good”. Therefore, all partners, collaborators and participants declare having read the [Montreal Declaration for a responsible development of AI](https://www.montrealdeclaration-responsibleai.com), adhere to these principles and implement them as part of the SpeechBrain project.
+The development and use of SpeechBrain technologies are parts of a policy of concern for AI for the “social good”. Therefore, all partners, collaborators and participants declare having read the [Montreal Declaration for a responsible development of AI](https://www.montrealdeclaration-responsibleai.com), adhere to these principles and implement them as part of the SpeechBrain project. Unfortunately, and as SpeechBrain is a completely open source project, users of the toolkit do not have any legal obligation to respect this declaration. However, the initial SpeechBrain team started this project with the goal of impacting positively the civil society. 
+
 
 # Sponsors
 
