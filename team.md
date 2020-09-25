@@ -297,6 +297,18 @@ layout: team
 
 <div class="row">
 
+<div class="column3">
+<div class="card">
+<img src="../assets/cem.jpg" alt="cem" class="team_pic">
+<div class="container">
+<h2>Cem Subakan</h2>
+<p class="affiliation">Research Scientist</p>
+<p class="affiliation">Mila, University of Montréal (CA)</p>
+<p></p>
+<p class="affiliation">Source Separation & Speech Enhancement</p>
+</div>
+</div>
+</div>
 
 <div class="column3">
 <div class="card">
