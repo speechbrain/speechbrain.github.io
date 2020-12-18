@@ -120,6 +120,14 @@ Partner Institutions are organizations that have accepted to collaborate within 
 </div>
 </div>
 
+<div class="column2">
+<div class="card">
+<div class="container">
+<img src="https://speechbrain.github.io/assets/logo_bioASP.jpg" style="width:300px" class="team_pic" />
+</div>
+</div>
+</div>
+
 </div>
 
 # Collaborators
