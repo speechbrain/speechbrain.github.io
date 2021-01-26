@@ -235,20 +235,17 @@
   								<div class="col-lg-6">
   									<div class="chart_img">
   										<pre><code class="python">
-class MyCustomModel(sb.nnet.containers.Sequential):
-    def __init__(
-        self,
-        input_shape,
-        dnn_neurons=512,
-    ):
-        super().__init__(input_shape=input_shape)
+class ASR_Brain(sb.Brain):
+  def compute_forward(self, batch, stage):
 
-        self.append(
-          nn.Linear(dnn_neurons),
-          nn.ReLU(),
-          nn.Linear(dnn_neurons),
-          nn.ReLU()
-        )
+    # Compute features (mfcc, fbansk, others) on the fly
+    feats = self.hparams.compute_feats(batch.wavs)
+
+    # Insert augmentation
+    feats = self.hparams.augment(feats)
+
+    # Apply your custom model
+    return self.modules.myCustomModel(feats)
                       </code></pre>
   									</div>
   								</div>
