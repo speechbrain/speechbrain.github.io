@@ -10,13 +10,10 @@ relying on [PyTorch](https://pytorch.org).
 
 The goal is to create a *single*, *flexible*, and *user-friendly* toolkit that can be used to easily develop state-of-the-art speech technologies, including systems for **speech recognition** (both end-to-end and HMM-DNN), **speaker recognition**, **speech separation**, **multi-microphone signal processing** (e.g, beamforming), **self-supervised and unsupervised learning**, **speech contamination / augmentation**,  and many others. The toolkit will be designed to be a **stand-alone framework**, but simple interfaces with well-known toolkits, such as [Kaldi](http://kaldi-asr.org) will also be implemented.
 
-**SpeechBrain** is currently **under development** and has been announced in September 2019. A first alpha version will be available during the 2020 winter.
+**SpeechBrain** is currently **under development** and has been announced in September 2019. A first alpha version will be available in the first semester of 2021.
 
 [See a short introductory video on the SpeechBrain project](https://youtu.be/XETiKbN9ojE)
 
-We are also happy to share a timeline for the project. The **Public Release** will allow the community to start developing and use the toolkit freely and fully. The **private release** only concerns specific collaborators that have an important expertise on different speech-related domains, please see the *How to collaborate* Section if interested!
-
-![timeline](../assets/com.png?style=fullsize)
 
 # Why SpeechBrain?
 Speech processing toolkits have gained popularity in the last years. For automatic speech recognition (ASR) purposes, for instance, [Kaldi](http://kaldi-asr.org) is an established framework. Some other ASR toolkits have been recently developed using the Python language such as [PyTorch-Kaldi](https://github.com/mravanelli/pytorch-kaldi), [PyKaldi](https://github.com/pykaldi/pykaldi), and [ESPnet](https://github.com/espnet/espnet). Beyond speech recognition, a variety of other solutions have been developed for speech-related applications, such as speech separation, speech enhancement, speaker recognition, and language model training.
