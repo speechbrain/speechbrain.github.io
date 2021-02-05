@@ -89,26 +89,25 @@
         <section class="work_area p_120">
         	<div class="container">
         		<div class="main_title">
-        			<h2>Key Features & Capabilities</h2>
-        			<p>SpeechBrain is an open-source and all-in-one speech toolkit. It is designed to be a simple, extremely flexible and user-friendly stand-alone framework.</p>
+        			<h2>Key Features</h2>
+        			<p>SpeechBrain is an open-source and all-in-one speech toolkit. It is designed to be a simple, extremely flexible and user-friendly.</p>
         		</div>
         		<div class="work_inner row">
         			<div class="col-lg-4">
         				<div class="work_item">
         					<i class="lnr lnr-mic"></i>
-        					<a href="#"><h4>E2E ASR</h4></a>
-                  <p> End-to-End Speech Recognition relies massively on deep neural networks.
-                    Hence, SpeechBrain is a perfect fit and we provide various state-of-the-art methods including
-                     CTC, CTC+Attention sequence to sequence models, transformers, transducers, recurrent and transformer-based language models.</p>
+        					<a href="#"><h4>Speech Recognition</h4></a>
+                  <p>SpeechBrain supports state-of-the-art methods for end-to-end
+                    speech recognition, including models based on CTC, CTC+Attention, transducers, Transformers,
+                    and neural language models relying on recurrent neural networks and transformers.</p>
         				</div>
         			</div>
         			<div class="col-lg-4">
         				<div class="work_item">
         					<i class="lnr lnr-user"></i>
         					<a href="#"><h4>Speaker Recognition</h4></a>
-                  <p>X-vectors have been game changing in the area of speaker recognition, diarization and identification.
-                    SpeechBrain provides different customizable models to approach these tasks : ECAPA-TDNN, Kaldi-like X-vectors, spectral clustering,
-                    LDA, PLDA, constrative learning.
+                  <p>Speaker recognition is already deployed in a wide variety of realistic applications.
+                    SpeechBrain provides different models for speaker recognition, including X-vector, ECAPA-TDNN, PLDA, contrastive learning
                    </p>
         				</div>
         			</div>
@@ -116,36 +115,36 @@
         				<div class="work_item">
         					<i class="lnr lnr-magic-wand"></i>
         					<a href="#"><h4>Speech Enhancement</h4></a>
-                  <p>Enhancing the quality of a speech signal is of crucial interest for many realistic tasks.
-                    Spectral masking, spectral mapping, and time-domain enhancement are different methods already available within SpeechBrain.</p>
+                  <p>Spectral masking, spectral mapping, and time-domain enhancement are different methods already available within SpeechBrain.
+                    Separation methods such as ConvTasnet, DualPath RNN, and SepFormer are implemented as well.</p>
         				</div>
         			</div>
               <div class="col-lg-4">
         				<div class="work_item">
         					<i class="lnr lnr-mic"></i>
         					<a href="#"><h4>Speech Processing</h4></a>
-                  <p>Good signal processing methods are often required to approach challenging tasks.
-                    SpeechBrain provides an handy framework to combine such methods with deep learning to quickly measure their performance. Various complex methods
-                    are already implemented including SpecAugment and TimeAugment, acoustic features extraction and normalization.
+                  <p>Speechbrain provides efficient and GPU-friendly speech augmentation pipelines and acoustic features extraction, normalisation
+                    that can be used on-the-fly during your experiment.
                   </p>
         				</div>
         			</div>
               <div class="col-lg-4">
         				<div class="work_item">
         					<i class="lnr lnr-mic"></i>
-        					<a href="#"><h4>Multi Microphone Audio Processing</h4></a>
-        					<p>The ability to combine multiple signals to solve a task is crucial in realistic and adversarial acoustic environments.
-                   SpeechBrain provides various multi microphones techniques such as delay-and-sum, MVDR and GeV beamforming.
+        					<a href="#"><h4>Multi Microphone Processing</h4></a>
+        					<p>Combining multiple microphones is a powerful approach to achieve robustness in adverse acoustic environments.
+                    SpeechBrain provides various techniques for beamforming (e.g, delay-and-sum, MVDR, and GeV) and speaker localization.
+
                 </p>
         				</div>
         			</div>
               <div class="col-lg-4">
         				<div class="work_item">
         					<i class="lnr lnr-smile"></i>
-        					<a href="#"><h4>Freedom of Research</h4></a>
-                  <p>Most importantly, SpeechBrain has been conceived with research and productivity in mind. Therefore,
-                    every single piece of our pipelines, models and recipes can easily be modified enabling users to develop new models.
-                    Programming will never be the bottleneck anymore!</p>
+        					<a href="#"><h4>Research & Development</h4></a>
+                  <p>SpeechBrain is designed to speed-up research and development of speech technologies.
+                    It is modular, flexible, easy-to-customize, and contains several recipes for popular datasets. Documentation and tutorials are here to
+                    help newcomers using SpeechBrain.</p>
         				</div>
         			</div>
         		</div>
@@ -203,10 +202,8 @@
 								<div class="col-lg-6">
 									<div class="left_side_text">
 										<h3>A single command.</h3>
-										<h6>Every single SpeechBrain expriment can be run with a single command. More precisely,
-                    all experiments are defined with two different files. First, a python script that defines
-                    precisely your recipe, and a yaml configuration file that describes all the parameters
-                    and functionalities used within your recipe.</h6>
+										<h6>Every SpeechBrain recipe relies on a YAML file that summarizes all the functions and hyperparameters of the system.
+                      A single Python script combines them to implement the desired task.</h6>
 										<a class="main_btn" href="tutorial_basics.html">Get Started Now</a>
 									</div>
 								</div>
@@ -229,11 +226,9 @@
   								<div class="col-lg-6">
   									<div class="left_side_text">
   										<h3>Built for research.</h3>
-  										<h6>SpeechBrain is meant to be used for research. Hence, flexibility and transparency are
-                      core concepts to facilitate our daily work. As a matter of facts, as long as you are familiar with
-                      PyTorch, SpeechBrain allows you to customize any part of your recipe. You can define your own
-                      deep learning models, losses, training / evaluation loops, input pipeline / transformations and use
-                      them handily without overhead.
+  										<h6>SpeechBrain is designed for research and development. Hence, flexibility and transparency are
+                      core concepts to facilitate our daily work. You can define your own deep learning models, losses, training / evaluation loops,
+                      input pipeline / transformations and use them handily without overhead.
                       </h6>
   										<a class="main_btn" href="tutorial_basics.html">Get Started Now</a>
   									</div>
@@ -272,7 +267,7 @@ class ASR_Brain(sb.Brain):
         	<div class="container">
             <div class="main_title">
         			<h2>Sponsors</h2>
-        			<p>Speechbrain thanks its generous sponsors. Sponsoring allows us to further expand the SpeechBrain team highly increasing the number of new features coming out !</p>
+        			<p>Speechbrain thanks its generous sponsors. Sponsoring allows us to expand the team and further extend the functionalities of the toolkit.</p>
         		</div>
             <div class="work_inner row">
               <div class="col-lg-4">
@@ -309,9 +304,20 @@ class ASR_Brain(sb.Brain):
         <section class="made_life_area p_120">
         	<div class="container">
         		<div class="main_title">
-        			<h2>They enjoy SpeechBrain!</h2>
+        			<h2>Collaborators</h2>
         		</div>
         		<div class="testi_slider owl-carousel">
+
+              <div class="item">
+        			<div class="testi_item">
+							<div class="media">
+								<div class="media-body">
+									<img src="img/partners/logo_lia.png" alt="" style="max-width:200px">
+								</div>
+							</div>
+        			</div>
+        			</div>
+
         			<div class="item">
                 <div class="testi_item">
   							<div class="media">
@@ -345,27 +351,7 @@ class ASR_Brain(sb.Brain):
         			<div class="testi_item">
 							<div class="media">
 								<div class="media-body">
-									<img src="img/partners/logo_fluent.png" alt="" style="max-width:200px">
-								</div>
-							</div>
-        			</div>
-        			</div>
-
-              <div class="item">
-        			<div class="testi_item">
-							<div class="media">
-								<div class="media-body">
-									<img src="img/partners/logo_ibm.png" alt="" style="max-width:200px">
-								</div>
-							</div>
-        			</div>
-        			</div>
-
-              <div class="item">
-        			<div class="testi_item">
-							<div class="media">
-								<div class="media-body">
-									<img src="img/partners/logo_lia.png" alt="" style="max-width:200px">
+									<img src="img/partners/logo_bioASP.jpg" alt="" style="max-width:200px">
 								</div>
 							</div>
         			</div>
@@ -395,7 +381,9 @@ class ASR_Brain(sb.Brain):
         					<div class="f_title">
         						<h3>About Us</h3>
         					</div>
-        					<p style="text-align:justify">SpeechBrain isn't a company nor an association. It is an open source toolkit and a community created by Dr. Ravanelli Mirco and co-created by Dr. Parcollet Titouan. We aim at building a bridge between deep learning and speech technologies. </p>
+        					<p style="text-align:justify">SpeechBrain isn't a company nor an association.
+                    It is an open-source toolkit and a community created by Dr. Ravanelli Mirco and co-created by Dr. Parcollet Titouan.
+                    We aim at making speech technologies more accessible for the community. </p>
         					<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
         				</aside>
@@ -405,7 +393,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         					<div class="f_title">
         						<h3>Opportunities</h3>
         					</div>
-        					<p>Thanks to our sponsors, we often recruit talented candidates to advance the state-of-the-art within SpeechBrain.
+        					<p>Thanks to our sponsors, we often recruit talented candidates to continue expanding the functionalities of SpeechBrain.
                     Feel free to contact us at: speechbrainproject@gmail.com</p>
         				</aside>
         			</div>
