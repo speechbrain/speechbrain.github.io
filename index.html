@@ -69,7 +69,7 @@
 						<div class="col-lg-7">
 							<div class="banner_content">
 								<h2>SpeechBrain <br /></h2>
-                <p>A Pytorch Powered Speech Toolkit</p>
+                <p>A PyTorch Powered Speech Toolkit</p>
 								<a class="banner_btn" href="tutorial_basics.html">Get Started</a>
 								<a class="banner_btn2" href="https://github.com/speechbrain/speechbrain">GitHub</a>
 							</div>
@@ -90,7 +90,7 @@
         	<div class="container">
         		<div class="main_title">
         			<h2>Key Features</h2>
-        			<p>SpeechBrain is an open-source and all-in-one speech toolkit. It is designed to be a simple, extremely flexible and user-friendly.</p>
+        			<p>SpeechBrain is an open-source and all-in-one speech toolkit. It is designed to be simple, extremely flexible, and user-friendly.</p>
         		</div>
         		<div class="work_inner row">
         			<div class="col-lg-4">
@@ -98,7 +98,7 @@
         					<i class="lnr lnr-mic"></i>
         					<a href="#"><h4>Speech Recognition</h4></a>
                   <p>SpeechBrain supports state-of-the-art methods for end-to-end
-                    speech recognition, including models based on CTC, CTC+Attention, transducers, Transformers,
+                    speech recognition, including models based on CTC, CTC+attention, transducers, transformers,
                     and neural language models relying on recurrent neural networks and transformers.</p>
         				</div>
         			</div>
@@ -116,14 +116,14 @@
         					<i class="lnr lnr-magic-wand"></i>
         					<a href="#"><h4>Speech Enhancement</h4></a>
                   <p>Spectral masking, spectral mapping, and time-domain enhancement are different methods already available within SpeechBrain.
-                    Separation methods such as ConvTasnet, DualPath RNN, and SepFormer are implemented as well.</p>
+                    Separation methods such as Conv-TasNet, DualPath RNN, and SepFormer are implemented as well.</p>
         				</div>
         			</div>
               <div class="col-lg-4">
         				<div class="work_item">
         					<i class="lnr lnr-mic"></i>
         					<a href="#"><h4>Speech Processing</h4></a>
-                  <p>Speechbrain provides efficient and GPU-friendly speech augmentation pipelines and acoustic features extraction, normalisation
+                  <p>SpeechBrain provides efficient and GPU-friendly speech augmentation pipelines and acoustic features extraction, normalisation
                     that can be used on-the-fly during your experiment.
                   </p>
         				</div>
@@ -239,7 +239,7 @@
 class ASR_Brain(sb.Brain):
   def compute_forward(self, batch, stage):
 
-    # Compute features (mfcc, fbansk, others) on the fly
+    # Compute features (mfcc, fbank, others) on the fly
     feats = self.hparams.compute_feats(batch.wavs)
 
     # Insert augmentation
@@ -267,7 +267,7 @@ class ASR_Brain(sb.Brain):
         	<div class="container">
             <div class="main_title">
         			<h2>Sponsors</h2>
-        			<p>Speechbrain thanks its generous sponsors. Sponsoring allows us to expand the team and further extend the functionalities of the toolkit.</p>
+        			<p>SpeechBrain thanks its generous sponsors. Sponsoring allows us to expand the team and further extend the functionalities of the toolkit.</p>
         		</div>
             <div class="work_inner row">
               <div class="col-lg-4">
@@ -381,8 +381,8 @@ class ASR_Brain(sb.Brain):
         					<div class="f_title">
         						<h3>About Us</h3>
         					</div>
-        					<p style="text-align:justify">SpeechBrain isn't a company nor an association.
-                    It is an open-source toolkit and a community created by Dr. Ravanelli Mirco and co-created by Dr. Parcollet Titouan.
+        					<p style="text-align:justify">SpeechBrain isn't a company or an association.
+                    It is an open-source toolkit and a community created by Dr. Mirco Ravanelli and co-created by Dr. Titouan Parcollet.
                     We aim at making speech technologies more accessible for the community. </p>
         					<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
