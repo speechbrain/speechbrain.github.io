@@ -210,9 +210,13 @@
 								<div class="col-lg-6">
 									<div class="chart_img">
 										<pre><code class="bash">
+  cd recipes/{dataset}/{task}/train
 
-                      cd recipes/{dataset}/{task}/
-                      python experiment.py params.yaml
+  # Train the model using the default recipe
+  python train.py hparams/train.yaml
+
+  # Train the model with a hyperparameter tweak
+  python train.py hparams/train.yaml --learning_rate=0.1
 
                     </code></pre>
 									</div>
@@ -236,17 +240,17 @@
   								<div class="col-lg-6">
   									<div class="chart_img">
   										<pre><code class="python">
-class ASR_Brain(sb.Brain):
-  def compute_forward(self, batch, stage):
+  class ASR_Brain(sb.Brain):
+    def compute_forward(self, batch, stage):
 
-    # Compute features (mfcc, fbank, others) on the fly
-    feats = self.hparams.compute_feats(batch.wavs)
+      # Compute features (mfcc, fbanks, etc.) on the fly
+      feats = self.hparams.compute_feats(batch.wavs)
 
-    # Insert augmentation
-    feats = self.hparams.augment(feats)
+      # Improve robustness with pre-built augmentations
+      feats = self.hparams.augment(feats)
 
-    # Apply your custom model
-    return self.modules.myCustomModel(feats)
+      # Apply your custom model
+      return self.modules.myCustomModel(feats)
                       </code></pre>
   									</div>
   								</div>
