@@ -1,7 +1,0 @@
-speechbrain.nnet.complex\_networks.complex\_linear module
-=========================================================
-
-.. automodule:: speechbrain.nnet.complex_networks.complex_linear
-   :members:
-   :undoc-members:
-   :show-inheritance:

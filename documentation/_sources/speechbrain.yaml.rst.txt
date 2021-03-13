@@ -1,7 +1,0 @@
-speechbrain.yaml module
-=======================
-
-.. automodule:: speechbrain.yaml
-    :members:
-    :undoc-members:
-    :show-inheritance:

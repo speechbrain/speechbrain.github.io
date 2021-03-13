@@ -1,7 +1,0 @@
-speechbrain.utils.convert_model module
-======================================
-
-.. automodule:: speechbrain.utils.convert_model
-    :members:
-    :undoc-members:
-    :show-inheritance:

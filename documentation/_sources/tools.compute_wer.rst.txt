@@ -1,8 +1,0 @@
-
-tools.compute\_wer
-==================
-
-.. automodule:: tools.compute_wer
-   :members:
-   :undoc-members:
-   :show-inheritance:

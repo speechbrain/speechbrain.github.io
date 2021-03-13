@@ -1,7 +1,0 @@
-speechbrain.nnet.loss.transducer_loss module
-============================================
-
-.. automodule:: speechbrain.nnet.loss.transducer_loss
-    :members:
-    :undoc-members:
-    :show-inheritance:

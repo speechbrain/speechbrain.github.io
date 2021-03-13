@@ -1,8 +1,0 @@
-
-speechbrain.nnet.complex\_networks.train
-========================================
-
-.. automodule:: speechbrain.nnet.complex_networks.train
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,8 +1,0 @@
-
-speechbrain.nnet.quaternion\_networks.quaternion\_normalization
-===============================================================
-
-.. automodule:: speechbrain.nnet.quaternion_networks.quaternion_normalization
-   :members:
-   :undoc-members:
-   :show-inheritance:

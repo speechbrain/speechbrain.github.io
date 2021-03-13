@@ -1,8 +1,0 @@
-
-speechbrain.nnet.quaternion\_networks.quaternion\_linear
-========================================================
-
-.. automodule:: speechbrain.nnet.quaternion_networks.quaternion_linear
-   :members:
-   :undoc-members:
-   :show-inheritance:
