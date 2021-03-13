@@ -1,0 +1,1006 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.dataio.dataset &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.dataio.dataset</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.dataio.dataset</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Dataset examples for loading individual data points</span>
+
+<span class="sd">Authors</span>
+<span class="sd">  * Aku Rouhe 2020</span>
+<span class="sd">  * Samuele Cornell 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="k">import</span> <span class="n">MethodType</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="k">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">speechbrain.utils.data_pipeline</span> <span class="k">import</span> <span class="n">DataPipeline</span>
+<span class="kn">from</span> <span class="nn">speechbrain.dataio.dataio</span> <span class="k">import</span> <span class="n">load_data_json</span><span class="p">,</span> <span class="n">load_data_csv</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DynamicItemDataset"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset">[docs]</a><span class="k">class</span> <span class="nc">DynamicItemDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Dataset that reads, wrangles, and produces dicts.</span>
+
+<span class="sd">    Each data point dict provides some items (by key), for example, a path to a</span>
+<span class="sd">    wavefile with the key &quot;wav_file&quot;. When a data point is fetched from this</span>
+<span class="sd">    Dataset, more items are produced dynamically, based on pre-existing items</span>
+<span class="sd">    and other dynamic created items. For example, a dynamic item could take the</span>
+<span class="sd">    wavfile path and load the audio from the disk.</span>
+
+<span class="sd">    The dynamic items can depend on other dynamic items: a suitable evaluation</span>
+<span class="sd">    order is used automatically,  as long as there are no circular dependencies.</span>
+
+<span class="sd">    A specified list of keys is collected in the output dict. These can be items</span>
+<span class="sd">    in the original data or dynamic items. If some dynamic items are not</span>
+<span class="sd">    requested, nor depended on by other requested items, they won&#39;t be computed.</span>
+<span class="sd">    So for example if a user simply wants to iterate over the text, the</span>
+<span class="sd">    time-consuming audio loading can be skipped.</span>
+
+<span class="sd">    About the format:</span>
+<span class="sd">    Takes a dict of dicts as the collection of data points to read/wrangle.</span>
+<span class="sd">    The top level keys are data point IDs.</span>
+<span class="sd">    Each data point (example) dict should have the same keys, corresponding to</span>
+<span class="sd">    different items in that data point.</span>
+
+<span class="sd">    Altogether the data collection could look like this:</span>
+
+<span class="sd">    &gt;&gt;&gt; data = {</span>
+<span class="sd">    ...  &quot;spk1utt1&quot;: {</span>
+<span class="sd">    ...      &quot;wav_file&quot;: &quot;/path/to/spk1utt1.wav&quot;,</span>
+<span class="sd">    ...      &quot;text&quot;: &quot;hello world&quot;,</span>
+<span class="sd">    ...      &quot;speaker&quot;: &quot;spk1&quot;,</span>
+<span class="sd">    ...      },</span>
+<span class="sd">    ...  &quot;spk1utt2&quot;: {</span>
+<span class="sd">    ...      &quot;wav_file&quot;: &quot;/path/to/spk1utt2.wav&quot;,</span>
+<span class="sd">    ...      &quot;text&quot;: &quot;how are you world&quot;,</span>
+<span class="sd">    ...      &quot;speaker&quot;: &quot;spk1&quot;,</span>
+<span class="sd">    ...      }</span>
+<span class="sd">    ... }</span>
+
+<span class="sd">    NOTE</span>
+<span class="sd">    ----</span>
+<span class="sd">        The top-level key, the data point id, is implicitly added as an item</span>
+<span class="sd">        in the data point, with the key &quot;id&quot;</span>
+
+<span class="sd">    Each dynamic item is configured by three things: a key, a func, and a list</span>
+<span class="sd">    of argkeys. The key should be unique among all the items (dynamic or not) in</span>
+<span class="sd">    each data point. The func is any callable, and it returns the dynamic item&#39;s</span>
+<span class="sd">    value. The callable is called with the values of other items as specified</span>
+<span class="sd">    by the argkeys list (as positional args, passed in the order specified by</span>
+<span class="sd">    argkeys).</span>
+
+<span class="sd">    The dynamic_items configuration could look like this:</span>
+
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; dynamic_items = [</span>
+<span class="sd">    ...     {&quot;func&quot;: lambda l: torch.Tensor(l),</span>
+<span class="sd">    ...     &quot;takes&quot;: [&quot;wav_loaded&quot;],</span>
+<span class="sd">    ...     &quot;provides&quot;: &quot;wav&quot;},</span>
+<span class="sd">    ...     {&quot;func&quot;: lambda path: [ord(c)/100 for c in path],  # Fake &quot;loading&quot;</span>
+<span class="sd">    ...     &quot;takes&quot;: [&quot;wav_file&quot;],</span>
+<span class="sd">    ...     &quot;provides&quot;: &quot;wav_loaded&quot;},</span>
+<span class="sd">    ...     {&quot;func&quot;: lambda t: t.split(),</span>
+<span class="sd">    ...     &quot;takes&quot;: [&quot;text&quot;],</span>
+<span class="sd">    ...     &quot;provides&quot;: &quot;words&quot;}]</span>
+
+<span class="sd">    With these, different views of the data can be loaded:</span>
+
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.dataloader import SaveableDataLoader</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.batch import PaddedBatch</span>
+<span class="sd">    &gt;&gt;&gt; dataset = DynamicItemDataset(data, dynamic_items)</span>
+<span class="sd">    &gt;&gt;&gt; dataloader = SaveableDataLoader(dataset, collate_fn=PaddedBatch,</span>
+<span class="sd">    ...     batch_size=2)</span>
+<span class="sd">    &gt;&gt;&gt; # First, create encoding for words:</span>
+<span class="sd">    &gt;&gt;&gt; dataset.set_output_keys([&quot;words&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; encoding = {}</span>
+<span class="sd">    &gt;&gt;&gt; next_id = 1</span>
+<span class="sd">    &gt;&gt;&gt; for batch in dataloader:</span>
+<span class="sd">    ...     for sent in batch.words:</span>
+<span class="sd">    ...         for word in sent:</span>
+<span class="sd">    ...             if word not in encoding:</span>
+<span class="sd">    ...                 encoding[word] = next_id</span>
+<span class="sd">    ...                 next_id += 1</span>
+<span class="sd">    &gt;&gt;&gt; # Next, add an encoded words_tensor dynamic item:</span>
+<span class="sd">    &gt;&gt;&gt; dataset.add_dynamic_item(</span>
+<span class="sd">    ...     func = lambda ws: torch.tensor([encoding[w] for w in ws],</span>
+<span class="sd">    ...             dtype=torch.long),</span>
+<span class="sd">    ...     takes = [&quot;words&quot;],</span>
+<span class="sd">    ...     provides = &quot;words_encoded&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Now we can get word and audio tensors:</span>
+<span class="sd">    &gt;&gt;&gt; dataset.set_output_keys([&quot;id&quot;, &quot;wav&quot;, &quot;words_encoded&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; batch = next(iter(dataloader))</span>
+<span class="sd">    &gt;&gt;&gt; batch.id</span>
+<span class="sd">    [&#39;spk1utt1&#39;, &#39;spk1utt2&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; batch.wav  # +ELLIPSIS</span>
+<span class="sd">    PaddedData(data=tensor([[0.4700, 1.1200, ...</span>
+<span class="sd">    &gt;&gt;&gt; batch.words_encoded</span>
+<span class="sd">    PaddedData(data=tensor([[1, 2, 0, 0],</span>
+<span class="sd">            [3, 4, 5, 2]]), lengths=tensor([0.5000, 1.0000]))</span>
+
+<span class="sd">    Output keys can also be a map:</span>
+
+<span class="sd">    &gt;&gt;&gt; dataset.set_output_keys({&quot;id&quot;:&quot;id&quot;, &quot;signal&quot;: &quot;wav&quot;, &quot;words&quot;: &quot;words_encoded&quot;})</span>
+<span class="sd">    &gt;&gt;&gt; batch = next(iter(dataloader))</span>
+<span class="sd">    &gt;&gt;&gt; batch.words</span>
+<span class="sd">    PaddedData(data=tensor([[1, 2, 0, 0],</span>
+<span class="sd">            [3, 4, 5, 2]]), lengths=tensor([0.5000, 1.0000]))</span>
+
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    data : dict</span>
+<span class="sd">        Dictionary containing single data points (e.g. utterances).</span>
+<span class="sd">    dynamic_items : list, optional</span>
+<span class="sd">        Configuration for the dynamic items produced when fetching an example.</span>
+<span class="sd">        List of DynamicItems or dicts with the format::</span>
+<span class="sd">            func: &lt;callable&gt; # To be called</span>
+<span class="sd">            takes: &lt;list&gt; # key or list of keys of args this takes</span>
+<span class="sd">            provides: key # key or list of keys that this provides</span>
+<span class="sd">    output_keys : dict, list, optional</span>
+<span class="sd">        List of keys (either directly available in data or dynamic items)</span>
+<span class="sd">        to include in the output dict when data points are fetched.</span>
+
+<span class="sd">        If a dict is given; it is used to map internal keys to output keys.</span>
+<span class="sd">        From the output_keys dict key:value pairs the key appears outside,</span>
+<span class="sd">        and value is the internal key.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dynamic_items</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">static_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">static_keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The key &#39;id&#39; is reserved for the data point id.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">static_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">DataPipeline</span><span class="p">(</span><span class="n">static_keys</span><span class="p">,</span> <span class="n">dynamic_items</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output_keys</span><span class="p">(</span><span class="n">output_keys</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">data_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span>
+        <span class="n">data_point</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_id</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">compute_outputs</span><span class="p">(</span><span class="n">data_point</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DynamicItemDataset.add_dynamic_item"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.add_dynamic_item">[docs]</a>    <span class="k">def</span> <span class="nf">add_dynamic_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">takes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provides</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Makes a new dynamic item available on the dataset.</span>
+
+<span class="sd">        Two calling conventions. For DynamicItem objects, just use:</span>
+<span class="sd">        add_dynamic_item(dynamic_item).</span>
+<span class="sd">        But otherwise, should use:</span>
+<span class="sd">        add_dynamic_item(func, takes, provides).</span>
+
+<span class="sd">        See `speechbrain.utils.data_pipeline`.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        func : callable, DynamicItem</span>
+<span class="sd">            If a DynamicItem is given, adds that directly. Otherwise a</span>
+<span class="sd">            DynamicItem is created, and this specifies the callable to use. If</span>
+<span class="sd">            a generator function is given, then create a GeneratorDynamicItem.</span>
+<span class="sd">            Otherwise creates a normal DynamicItem.</span>
+<span class="sd">        takes : list, str</span>
+<span class="sd">            List of keys. When func is called, each key is resolved to</span>
+<span class="sd">            either an entry in the data or the output of another dynamic_item.</span>
+<span class="sd">            The func is then called with these as positional arguments,</span>
+<span class="sd">            in the same order as specified here.</span>
+<span class="sd">            A single arg can be given directly.</span>
+<span class="sd">        provides : str</span>
+<span class="sd">            Unique key or keys that this provides.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">add_dynamic_item</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">takes</span><span class="p">,</span> <span class="n">provides</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DynamicItemDataset.set_output_keys"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.set_output_keys">[docs]</a>    <span class="k">def</span> <span class="nf">set_output_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Use this to change the output keys.</span>
+
+<span class="sd">        These are the keys that are actually evaluated when a data point</span>
+<span class="sd">        is fetched from the dataset.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        keys : dict, list</span>
+<span class="sd">            List of keys (str) to produce in output.</span>
+
+<span class="sd">            If a dict is given; it is used to map internal keys to output keys.</span>
+<span class="sd">            From the output_keys dict key:value pairs the key appears outside,</span>
+<span class="sd">            and value is the internal key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">set_output_keys</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DynamicItemDataset.output_keys_as"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.output_keys_as">[docs]</a>    <span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+    <span class="k">def</span> <span class="nf">output_keys_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Context manager to temporarily set output keys.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; dataset = DynamicItemDataset({&quot;a&quot;:{&quot;x&quot;:1,&quot;y&quot;:2},&quot;b&quot;:{&quot;x&quot;:3,&quot;y&quot;:4}},</span>
+<span class="sd">        ...     output_keys = [&quot;x&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; with dataset.output_keys_as([&quot;y&quot;]):</span>
+<span class="sd">        ...     print(dataset[0])</span>
+<span class="sd">        {&#39;y&#39;: 2}</span>
+<span class="sd">        &gt;&gt;&gt; print(dataset[0])</span>
+<span class="sd">        {&#39;x&#39;: 1}</span>
+
+<span class="sd">        NOTE</span>
+<span class="sd">        ----</span>
+<span class="sd">        Not thread-safe. While in this context manager, the output keys</span>
+<span class="sd">        are affected for any call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">saved_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">output_mapping</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">set_output_keys</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">set_output_keys</span><span class="p">(</span><span class="n">saved_output</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DynamicItemDataset.filtered_sorted"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.filtered_sorted">[docs]</a>    <span class="k">def</span> <span class="nf">filtered_sorted</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">key_min_value</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">key_max_value</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">key_test</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">sort_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">select_n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a filtered and/or sorted version of this, shares static data.</span>
+
+<span class="sd">        The reason to implement these operations in the same method is that</span>
+<span class="sd">        computing some dynamic items may be expensive, and this way the</span>
+<span class="sd">        filtering and sorting steps don&#39;t need to compute the dynamic items</span>
+<span class="sd">        twice.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        key_min_value : dict</span>
+<span class="sd">            Map from key (in data or in dynamic items) to limit, will only keep</span>
+<span class="sd">            data_point if data_point[key] &gt;= limit</span>
+<span class="sd">        key_max_value : dict</span>
+<span class="sd">            Map from key (in data or in dynamic items) to limit, will only keep</span>
+<span class="sd">            data_point if data_point[key] &lt;= limit</span>
+<span class="sd">        key_test : dict</span>
+<span class="sd">            Map from key (in data or in dynamic items) to func, will only keep</span>
+<span class="sd">            data_point if bool(func(data_point[key])) == True</span>
+<span class="sd">        sort_key : None, str</span>
+<span class="sd">            If not None, sort by data_point[sort_key]. Default is ascending</span>
+<span class="sd">            order.</span>
+<span class="sd">        reverse : bool</span>
+<span class="sd">            If True, sort in descending order.</span>
+<span class="sd">        select_n : None, int</span>
+<span class="sd">            If not None, only keep (at most) the first n filtered data_points.</span>
+<span class="sd">            The possible sorting is applied, but only on the first n data</span>
+<span class="sd">            points found. Meant for debugging.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        FilteredSortedDynamicItemDataset</span>
+<span class="sd">            Shares the static data, but has its own output keys and</span>
+<span class="sd">            dynamic items (initially deep copied from this, so they have the</span>
+<span class="sd">            same dynamic items available)</span>
+
+<span class="sd">        NOTE</span>
+<span class="sd">        ----</span>
+<span class="sd">        Temporarily changes the output keys!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filtered_sorted_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filtered_sorted_ids</span><span class="p">(</span>
+            <span class="n">key_min_value</span><span class="p">,</span> <span class="n">key_max_value</span><span class="p">,</span> <span class="n">key_test</span><span class="p">,</span> <span class="n">sort_key</span><span class="p">,</span> <span class="n">reverse</span><span class="p">,</span> <span class="n">select_n</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">FilteredSortedDynamicItemDataset</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">filtered_sorted_ids</span>
+        <span class="p">)</span>  <span class="c1"># NOTE: defined below</span></div>
+
+    <span class="k">def</span> <span class="nf">_filtered_sorted_ids</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">key_min_value</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">key_max_value</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">key_test</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">sort_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">select_n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of data ids, fulfilling the sorting and filtering.&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">combined_filter</span><span class="p">(</span><span class="n">computed</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">limit</span> <span class="ow">in</span> <span class="n">key_min_value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># NOTE: docstring promises &gt;= so using that.</span>
+                <span class="c1"># Mathematically could also use &lt; for nicer syntax, but</span>
+                <span class="c1"># maybe with some super special weird edge case some one can</span>
+                <span class="c1"># depend on the &gt;= operator</span>
+                <span class="k">if</span> <span class="n">computed</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">limit</span> <span class="ow">in</span> <span class="n">key_max_value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">computed</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">key_test</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">computed</span><span class="p">[</span><span class="n">key</span><span class="p">])):</span>
+                    <span class="k">continue</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">temp_keys</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">set</span><span class="p">(</span><span class="n">key_min_value</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">key_max_value</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">key_test</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="o">|</span> <span class="nb">set</span><span class="p">([]</span> <span class="k">if</span> <span class="n">sort_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">sort_key</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">filtered_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_keys_as</span><span class="p">(</span><span class="n">temp_keys</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">select_n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_ids</span><span class="p">)</span> <span class="o">==</span> <span class="n">select_n</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">data_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span>
+                <span class="n">data_point</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_id</span>
+                <span class="n">computed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">compute_outputs</span><span class="p">(</span><span class="n">data_point</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">combined_filter</span><span class="p">(</span><span class="n">computed</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">sort_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="c1"># Add (main sorting index, current index, data_id)</span>
+                        <span class="c1"># So that we maintain current sorting and don&#39;t compare</span>
+                        <span class="c1"># data_id values ever.</span>
+                        <span class="n">filtered_ids</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">computed</span><span class="p">[</span><span class="n">sort_key</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">data_id</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">filtered_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sort_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">filtered_sorted_ids</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">filtered_ids</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filtered_sorted_ids</span> <span class="o">=</span> <span class="n">filtered_ids</span>
+        <span class="k">return</span> <span class="n">filtered_sorted_ids</span>
+
+<div class="viewcode-block" id="DynamicItemDataset.from_json"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.from_json">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span>
+        <span class="n">cls</span><span class="p">,</span> <span class="n">json_path</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{},</span> <span class="n">dynamic_items</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a data prep JSON file and create a Dataset based on it.&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">load_data_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">,</span> <span class="n">replacements</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dynamic_items</span><span class="p">,</span> <span class="n">output_keys</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DynamicItemDataset.from_csv"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.from_csv">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span>
+        <span class="n">cls</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{},</span> <span class="n">dynamic_items</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a data prep CSV file and create a Dataset based on it.&quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">load_data_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">replacements</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dynamic_items</span><span class="p">,</span> <span class="n">output_keys</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DynamicItemDataset.from_arrow_dataset"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset.from_arrow_dataset">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_arrow_dataset</span><span class="p">(</span>
+        <span class="n">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{},</span> <span class="n">dynamic_items</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[]</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loading a prepared huggingface dataset&quot;&quot;&quot;</span>
+        <span class="c1"># define an unbound method to generate puesdo keys</span>
+        <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">__len__</span><span class="p">())]</span>
+
+        <span class="c1"># bind this method to arrow dataset</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">keys</span> <span class="o">=</span> <span class="n">MethodType</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">dynamic_items</span><span class="p">,</span> <span class="n">output_keys</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="FilteredSortedDynamicItemDataset"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.FilteredSortedDynamicItemDataset">[docs]</a><span class="k">class</span> <span class="nc">FilteredSortedDynamicItemDataset</span><span class="p">(</span><span class="n">DynamicItemDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Possibly filtered, possibly sorted DynamicItemDataset.</span>
+
+<span class="sd">    Shares the static data (reference).</span>
+<span class="sd">    Has its own dynamic_items and output_keys (deepcopy).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_dataset</span><span class="p">,</span> <span class="n">data_ids</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">from_dataset</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span> <span class="o">=</span> <span class="n">data_ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">from_dataset</span><span class="o">.</span><span class="n">pipeline</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FilteredSortedDynamicItemDataset.from_json"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.FilteredSortedDynamicItemDataset.from_json">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span>
+        <span class="n">cls</span><span class="p">,</span> <span class="n">json_path</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{},</span> <span class="n">dynamic_items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_keys</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot create SubsetDynamicItemDataset directly!&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FilteredSortedDynamicItemDataset.from_csv"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.FilteredSortedDynamicItemDataset.from_csv">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_csv</span><span class="p">(</span>
+        <span class="n">cls</span><span class="p">,</span> <span class="n">csv_path</span><span class="p">,</span> <span class="n">replacements</span><span class="o">=</span><span class="p">{},</span> <span class="n">dynamic_items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_keys</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Cannot create SubsetDynamicItemDataset directly!&quot;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="add_dynamic_item"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.add_dynamic_item">[docs]</a><span class="k">def</span> <span class="nf">add_dynamic_item</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">takes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provides</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper for adding the same item to multiple datasets.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">add_dynamic_item</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">takes</span><span class="p">,</span> <span class="n">provides</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="set_output_keys"><a class="viewcode-back" href="../../../speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.set_output_keys">[docs]</a><span class="k">def</span> <span class="nf">set_output_keys</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">output_keys</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper for setting the same item to multiple datasets.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+        <span class="n">dataset</span><span class="o">.</span><span class="n">set_output_keys</span><span class="p">(</span><span class="n">output_keys</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

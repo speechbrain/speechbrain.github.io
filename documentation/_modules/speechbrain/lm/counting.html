@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.lm.counting &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.lm.counting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.lm.counting</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">N-gram counting, discounting, interpolation, and backoff</span>
+
+<span class="sd">Authors</span>
+<span class="sd"> * Aku Rouhe 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<span class="c1"># The following functions are essentially copying the NLTK ngram counting</span>
+<span class="c1"># pipeline with minor differences. Written from scratch, but with enough</span>
+<span class="c1"># inspiration that I feel I want to mention the inspiration source:</span>
+<span class="c1"># NLTK is licenced under the Apache 2.0 Licence, same as SpeechBrain</span>
+<span class="c1"># See https://github.com/nltk/nltk</span>
+<span class="c1"># The NLTK implementation is highly focused on getting lazy evaluation.</span>
+<div class="viewcode-block" id="pad_ends"><a class="viewcode-back" href="../../../speechbrain.lm.counting.html#speechbrain.lm.counting.pad_ends">[docs]</a><span class="k">def</span> <span class="nf">pad_ends</span><span class="p">(</span>
+    <span class="n">sequence</span><span class="p">,</span> <span class="n">pad_left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left_pad_symbol</span><span class="o">=</span><span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">,</span> <span class="n">right_pad_symbol</span><span class="o">=</span><span class="s2">&quot;&lt;/s&gt;&quot;</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pad sentence ends with start- and end-of-sentence tokens</span>
+
+<span class="sd">    In speech recognition, it is important to predict the end of sentence</span>
+<span class="sd">    and use the start of sentence to condition predictions. Typically this</span>
+<span class="sd">    is done by adding special tokens (usually &lt;s&gt; and &lt;/s&gt;) at the ends of</span>
+<span class="sd">    each sentence. The &lt;s&gt; token should not be predicted, so some special</span>
+<span class="sd">    care needs to be taken for unigrams.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    sequence : iterator</span>
+<span class="sd">        The sequence (any iterable type) to pad.</span>
+<span class="sd">    pad_left : bool</span>
+<span class="sd">        Whether to pad on the left side as well. True by default.</span>
+<span class="sd">    left_pad_symbol : any</span>
+<span class="sd">        The token to use for left side padding. &quot;&lt;s&gt;&quot; by default.</span>
+<span class="sd">    right_pad_symbol : any</span>
+<span class="sd">        The token to use for right side padding. &quot;&lt;/s&gt;&quot; by deault.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    generator</span>
+<span class="sd">        A generator that yields the padded sequence.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; for token in pad_ends([&quot;Speech&quot;, &quot;Brain&quot;]):</span>
+<span class="sd">    ...     print(token)</span>
+<span class="sd">    &lt;s&gt;</span>
+<span class="sd">    Speech</span>
+<span class="sd">    Brain</span>
+<span class="sd">    &lt;/s&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pad_left</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">left_pad_symbol</span><span class="p">,),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">sequence</span><span class="p">),</span> <span class="p">(</span><span class="n">right_pad_symbol</span><span class="p">,)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">sequence</span><span class="p">),</span> <span class="p">(</span><span class="n">right_pad_symbol</span><span class="p">,))</span></div>
+
+
+<div class="viewcode-block" id="ngrams"><a class="viewcode-back" href="../../../speechbrain.lm.counting.html#speechbrain.lm.counting.ngrams">[docs]</a><span class="k">def</span> <span class="nf">ngrams</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produce all Nth order N-grams from the sequence.</span>
+
+<span class="sd">    This will generally be used in an N-gram counting pipeline.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    sequence : iterator</span>
+<span class="sd">        The sequence from which to produce N-grams.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        The order of N-grams to produce</span>
+
+<span class="sd">    Yields</span>
+<span class="sd">    ------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        Yields each ngram as a tuple.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; for ngram in ngrams(&quot;Brain&quot;, 3):</span>
+<span class="sd">    ...     print(ngram)</span>
+<span class="sd">    (&#39;B&#39;, &#39;r&#39;, &#39;a&#39;)</span>
+<span class="sd">    (&#39;r&#39;, &#39;a&#39;, &#39;i&#39;)</span>
+<span class="sd">    (&#39;a&#39;, &#39;i&#39;, &#39;n&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;N must be &gt;=1&quot;</span><span class="p">)</span>
+    <span class="c1"># Handle the unigram case specially:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">token</span><span class="p">,)</span>
+        <span class="k">return</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">hist_length</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">iterator</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hist_length</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># For-else is obscure but fits here perfectly</span>
+        <span class="k">return</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">history</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">token</span><span class="p">,)</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">history</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="ngrams_for_evaluation"><a class="viewcode-back" href="../../../speechbrain.lm.counting.html#speechbrain.lm.counting.ngrams_for_evaluation">[docs]</a><span class="k">def</span> <span class="nf">ngrams_for_evaluation</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">max_n</span><span class="p">,</span> <span class="n">predict_first</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Produce each token with the appropriate context.</span>
+
+<span class="sd">    The function produces as large N-grams as possible, so growing from</span>
+<span class="sd">    unigrams/bigrams to max_n.</span>
+
+<span class="sd">    E.G. when your model is a trigram model, you&#39;ll still only have one token</span>
+<span class="sd">    of context (the start of sentence) for the first token.</span>
+
+<span class="sd">    In general this is useful when evaluating an N-gram model.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    sequence : iterator</span>
+<span class="sd">        The sequence to produce tokens and context from.</span>
+<span class="sd">    max_n : int</span>
+<span class="sd">        The maximum N-gram length to produce.</span>
+<span class="sd">    predict_first : bool</span>
+<span class="sd">        To produce the first token in the sequence to predict (without</span>
+<span class="sd">        context) or not. Essentially this should be False when the start of</span>
+<span class="sd">        sentence symbol is the first in the sequence.</span>
+
+<span class="sd">    Yields</span>
+<span class="sd">    ------</span>
+<span class="sd">    Any</span>
+<span class="sd">        The token to predict</span>
+<span class="sd">    tuple</span>
+<span class="sd">        The context to predict conditional on.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; for token, context in ngrams_for_evaluation(&quot;Brain&quot;, 3, True):</span>
+<span class="sd">    ...     print(f&quot;p( {token} |{&#39; &#39; if context else &#39;&#39;}{&#39; &#39;.join(context)} )&quot;)</span>
+<span class="sd">    p( B | )</span>
+<span class="sd">    p( r | B )</span>
+<span class="sd">    p( a | B r )</span>
+<span class="sd">    p( i | r a )</span>
+<span class="sd">    p( n | a i )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">max_n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Max N must be &gt;=1&quot;</span><span class="p">)</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">predict_first</span><span class="p">:</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">history</span><span class="p">)</span> <span class="o">==</span> <span class="n">max_n</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">history</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">yield</span> <span class="n">token</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+    <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

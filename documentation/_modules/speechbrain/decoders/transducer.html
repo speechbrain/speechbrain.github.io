@@ -1,0 +1,1118 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.decoders.transducer &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.decoders.transducer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.decoders.transducer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Decoders and output normalization for Transducer sequence.</span>
+
+<span class="sd">Author:</span>
+<span class="sd">    Abdelwahab HEBA 2020</span>
+<span class="sd">    Sung-Lin Yeh 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+
+<div class="viewcode-block" id="TransducerBeamSearcher"><a class="viewcode-back" href="../../../speechbrain.decoders.transducer.html#speechbrain.decoders.transducer.TransducerBeamSearcher">[docs]</a><span class="k">class</span> <span class="nc">TransducerBeamSearcher</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class implements the beam-search algorithm for the transducer model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    decode_network_lst : list</span>
+<span class="sd">        List of prediction network (PN) layers.</span>
+<span class="sd">    tjoint: transducer_joint module</span>
+<span class="sd">        This module perform the joint between TN and PN.</span>
+<span class="sd">    classifier_network : list</span>
+<span class="sd">        List of output layers (after performing joint between TN and PN)</span>
+<span class="sd">        exp: (TN,PN) =&gt; joint =&gt; classifier_network_list [DNN bloc, Linear..] =&gt; chars prob</span>
+<span class="sd">    blank_id : int</span>
+<span class="sd">        The blank symbol/index.</span>
+<span class="sd">    beam : int</span>
+<span class="sd">        The width of beam. Greedy Search is used when beam = 1.</span>
+<span class="sd">    nbest : int</span>
+<span class="sd">        Number of hypotheses to keep.</span>
+<span class="sd">    lm_module : torch.nn.ModuleList</span>
+<span class="sd">        Neural networks modules for LM.</span>
+<span class="sd">    lm_weight : float</span>
+<span class="sd">        The weight of LM when performing beam search (λ).</span>
+<span class="sd">        log P(y|x) + λ log P_LM(y). (default: 0.3)</span>
+<span class="sd">    state_beam : float</span>
+<span class="sd">        The threshold coefficient in log space to decide if hyps in A (process_hyps)</span>
+<span class="sd">        is likely to compete with hyps in B (beam_hyps), if not, end the while loop.</span>
+<span class="sd">        Reference: https://arxiv.org/pdf/1911.01629.pdf</span>
+<span class="sd">    expand_beam : float</span>
+<span class="sd">        The threshold coefficient to limit the number of expanded hypotheses</span>
+<span class="sd">        that are added in A (process_hyp).</span>
+<span class="sd">        Reference: https://arxiv.org/pdf/1911.01629.pdf</span>
+<span class="sd">        Reference: https://github.com/kaldi-asr/kaldi/blob/master/src/decoder/simple-decoder.cc (See PruneToks)</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    searcher = TransducerBeamSearcher(</span>
+<span class="sd">        decode_network_lst=[hparams[&quot;emb&quot;], hparams[&quot;dec&quot;]],</span>
+<span class="sd">        tjoint=hparams[&quot;Tjoint&quot;],</span>
+<span class="sd">        classifier_network=[hparams[&quot;transducer_lin&quot;]],</span>
+<span class="sd">        blank_id=0,</span>
+<span class="sd">        beam_size=hparams[&quot;beam_size&quot;],</span>
+<span class="sd">        nbest=hparams[&quot;nbest&quot;],</span>
+<span class="sd">        lm_module=hparams[&quot;lm_model&quot;],</span>
+<span class="sd">        lm_weight=hparams[&quot;lm_weight&quot;],</span>
+<span class="sd">        state_beam=2.3,</span>
+<span class="sd">        expand_beam=2.3,</span>
+<span class="sd">    )</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.nnet.transducer.transducer_joint import Transducer_joint</span>
+<span class="sd">    &gt;&gt;&gt; import speechbrain as sb</span>
+<span class="sd">    &gt;&gt;&gt; emb = sb.nnet.embedding.Embedding(</span>
+<span class="sd">    ...     num_embeddings=35,</span>
+<span class="sd">    ...     embedding_dim=3,</span>
+<span class="sd">    ...     consider_as_one_hot=True,</span>
+<span class="sd">    ...     blank_id=0</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; dec = sb.nnet.RNN.GRU(</span>
+<span class="sd">    ...     hidden_size=5, input_shape=(1, 40, 34), bidirectional=True</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; lin = sb.nnet.linear.Linear(input_shape=(1, 40, 10), n_neurons=35)</span>
+<span class="sd">    &gt;&gt;&gt; joint_network= sb.nnet.linear.Linear(input_shape=(1, 1, 40, 35), n_neurons=35)</span>
+<span class="sd">    &gt;&gt;&gt; tjoint = Transducer_joint(joint_network, joint=&quot;sum&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; searcher = TransducerBeamSearcher(</span>
+<span class="sd">    ...     decode_network_lst=[emb, dec],</span>
+<span class="sd">    ...     tjoint=tjoint,</span>
+<span class="sd">    ...     classifier_network=[lin],</span>
+<span class="sd">    ...     blank_id=0,</span>
+<span class="sd">    ...     beam_size=1,</span>
+<span class="sd">    ...     nbest=1,</span>
+<span class="sd">    ...     lm_module=None,</span>
+<span class="sd">    ...     lm_weight=0.0,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; enc = torch.rand([1, 20, 10])</span>
+<span class="sd">    &gt;&gt;&gt; hyps, scores, _, _ = searcher(enc)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">decode_network_lst</span><span class="p">,</span>
+        <span class="n">tjoint</span><span class="p">,</span>
+        <span class="n">classifier_network</span><span class="p">,</span>
+        <span class="n">blank_id</span><span class="p">,</span>
+        <span class="n">beam_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">nbest</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">lm_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">lm_weight</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">state_beam</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span>
+        <span class="n">expand_beam</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TransducerBeamSearcher</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decode_network_lst</span> <span class="o">=</span> <span class="n">decode_network_lst</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tjoint</span> <span class="o">=</span> <span class="n">tjoint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier_network</span> <span class="o">=</span> <span class="n">classifier_network</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span> <span class="o">=</span> <span class="n">blank_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beam_size</span> <span class="o">=</span> <span class="n">beam_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nbest</span> <span class="o">=</span> <span class="n">nbest</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lm</span> <span class="o">=</span> <span class="n">lm_module</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lm_weight</span> <span class="o">=</span> <span class="n">lm_weight</span>
+
+        <span class="k">if</span> <span class="n">lm_module</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">lm_weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Language model is not provided.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_beam</span> <span class="o">=</span> <span class="n">state_beam</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expand_beam</span> <span class="o">=</span> <span class="n">expand_beam</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">beam_size</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">searcher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer_greedy_decode</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">searcher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transducer_beam_search_decode</span>
+
+<div class="viewcode-block" id="TransducerBeamSearcher.forward"><a class="viewcode-back" href="../../../speechbrain.decoders.transducer.html#speechbrain.decoders.transducer.TransducerBeamSearcher.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tn_output</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tn_output : torch.tensor</span>
+<span class="sd">            Output from transcription network with shape</span>
+<span class="sd">            [batch, time_len, hiddens].</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Topk hypotheses</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">hyps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">searcher</span><span class="p">(</span><span class="n">tn_output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hyps</span></div>
+
+<div class="viewcode-block" id="TransducerBeamSearcher.transducer_greedy_decode"><a class="viewcode-back" href="../../../speechbrain.decoders.transducer.html#speechbrain.decoders.transducer.TransducerBeamSearcher.transducer_greedy_decode">[docs]</a>    <span class="k">def</span> <span class="nf">transducer_greedy_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tn_output</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transducer greedy decoder is a greedy decoder over batch which apply Transducer rules:</span>
+<span class="sd">            1- for each time step in the Transcription Network (TN) output:</span>
+<span class="sd">                -&gt; Update the ith utterance only if</span>
+<span class="sd">                    the previous target != the new one (we save the hiddens and the target)</span>
+<span class="sd">                -&gt; otherwise:</span>
+<span class="sd">                ---&gt; keep the previous target prediction from the decoder</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tn_output : torch.tensor</span>
+<span class="sd">            Output from transcription network with shape</span>
+<span class="sd">            [batch, time_len, hiddens].</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        torch.tensor</span>
+<span class="sd">            Outputs a logits tensor [B,T,1,Output_Dim]; padding</span>
+<span class="sd">            has not been removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hyp</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tn_output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))],</span>
+            <span class="s2">&quot;logp_scores&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tn_output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))],</span>
+        <span class="p">}</span>
+        <span class="c1"># prepare BOS = Blank for the Prediction Network (PN)</span>
+        <span class="n">hidden</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">input_PN</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">tn_output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="n">device</span><span class="o">=</span><span class="n">tn_output</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span>
+        <span class="p">)</span>
+        <span class="c1"># First forward-pass on PN</span>
+        <span class="n">out_PN</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_PN</span><span class="p">(</span><span class="n">input_PN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_network_lst</span><span class="p">)</span>
+        <span class="c1"># For each time step</span>
+        <span class="k">for</span> <span class="n">t_step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tn_output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="c1"># do unsqueeze over since tjoint must be have a 4 dim [B,T,U,Hidden]</span>
+            <span class="n">log_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joint_forward_step</span><span class="p">(</span>
+                <span class="n">tn_output</span><span class="p">[:,</span> <span class="n">t_step</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">out_PN</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="c1"># Sort outputs at time</span>
+            <span class="n">logp_targets</span><span class="p">,</span> <span class="n">positions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">log_probs</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="c1"># Batch hidden update</span>
+            <span class="n">have_update_hyp</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">positions</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)):</span>
+                <span class="c1"># Update hiddens only if</span>
+                <span class="c1"># 1- current prediction is non blank</span>
+                <span class="k">if</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span><span class="p">:</span>
+                    <span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+                    <span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;logp_scores&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">logp_targets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">input_PN</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">have_update_hyp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">have_update_hyp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># Select sentence to update</span>
+                <span class="c1"># And do a forward steps + generated hidden</span>
+                <span class="p">(</span>
+                    <span class="n">selected_input_PN</span><span class="p">,</span>
+                    <span class="n">selected_hidden</span><span class="p">,</span>
+                <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sentence_to_update</span><span class="p">(</span>
+                    <span class="n">have_update_hyp</span><span class="p">,</span> <span class="n">input_PN</span><span class="p">,</span> <span class="n">hidden</span>
+                <span class="p">)</span>
+                <span class="n">selected_out_PN</span><span class="p">,</span> <span class="n">selected_hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_PN</span><span class="p">(</span>
+                    <span class="n">selected_input_PN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode_network_lst</span><span class="p">,</span> <span class="n">selected_hidden</span>
+                <span class="p">)</span>
+                <span class="c1"># update hiddens and out_PN</span>
+                <span class="n">out_PN</span><span class="p">[</span><span class="n">have_update_hyp</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_out_PN</span>
+                <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_hiddens</span><span class="p">(</span>
+                    <span class="n">have_update_hyp</span><span class="p">,</span> <span class="n">selected_hidden</span><span class="p">,</span> <span class="n">hidden</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">],</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;logp_scores&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TransducerBeamSearcher.transducer_beam_search_decode"><a class="viewcode-back" href="../../../speechbrain.decoders.transducer.html#speechbrain.decoders.transducer.TransducerBeamSearcher.transducer_beam_search_decode">[docs]</a>    <span class="k">def</span> <span class="nf">transducer_beam_search_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tn_output</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transducer beam search decoder is a beam search decoder over batch which apply Transducer rules:</span>
+<span class="sd">            1- for each utterance:</span>
+<span class="sd">                2- for each time steps in the Transcription Network (TN) output:</span>
+<span class="sd">                    -&gt; Do forward on PN and Joint network</span>
+<span class="sd">                    -&gt; Select topK &lt;= beam</span>
+<span class="sd">                    -&gt; Do a while loop extending the hyps until we reach blank</span>
+<span class="sd">                        -&gt; otherwise:</span>
+<span class="sd">                        --&gt; extend hyp by the new token</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tn_output : torch.tensor</span>
+<span class="sd">            Output from transcription network with shape</span>
+<span class="sd">            [batch, time_len, hiddens].</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        torch.tensor</span>
+<span class="sd">            Outputs a logits tensor [B,T,1,Output_Dim]; padding</span>
+<span class="sd">            has not been removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># min between beam and max_target_lent</span>
+        <span class="n">nbest_batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">nbest_batch_score</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i_batch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tn_output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)):</span>
+            <span class="c1"># if we use RNN LM keep there hiddens</span>
+            <span class="c1"># prepare BOS = Blank for the Prediction Network (PN)</span>
+            <span class="c1"># Prepare Blank prediction</span>
+            <span class="n">blank</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tn_output</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span>
+            <span class="p">)</span>
+            <span class="n">input_PN</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tn_output</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span>
+            <span class="p">)</span>
+            <span class="c1"># First forward-pass on PN</span>
+            <span class="n">hyp</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span><span class="p">],</span>
+                <span class="s2">&quot;logp_score&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="s2">&quot;hidden_dec&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lm_weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">lm_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;hidden_lm&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+                <span class="n">hyp</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">lm_dict</span><span class="p">)</span>
+            <span class="n">beam_hyps</span> <span class="o">=</span> <span class="p">[</span><span class="n">hyp</span><span class="p">]</span>
+
+            <span class="c1"># For each time step</span>
+            <span class="k">for</span> <span class="n">t_step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tn_output</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
+                <span class="c1"># get hyps for extension</span>
+                <span class="n">process_hyps</span> <span class="o">=</span> <span class="n">beam_hyps</span>
+                <span class="n">beam_hyps</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">beam_hyps</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beam_size</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="c1"># Add norm score</span>
+                    <span class="n">a_best_hyp</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                        <span class="n">process_hyps</span><span class="p">,</span>
+                        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]),</span>
+                    <span class="p">)</span>
+
+                    <span class="c1"># Break if best_hyp in A is worse by more than state_beam than best_hyp in B</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">beam_hyps</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">b_best_hyp</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                            <span class="n">beam_hyps</span><span class="p">,</span>
+                            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span>
+                            <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]),</span>
+                        <span class="p">)</span>
+                        <span class="n">a_best_prob</span> <span class="o">=</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span>
+                        <span class="n">b_best_prob</span> <span class="o">=</span> <span class="n">b_best_hyp</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">b_best_prob</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_beam</span> <span class="o">+</span> <span class="n">a_best_prob</span><span class="p">:</span>
+                            <span class="k">break</span>
+
+                    <span class="c1"># remove best hyp from process_hyps</span>
+                    <span class="n">process_hyps</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">a_best_hyp</span><span class="p">)</span>
+
+                    <span class="c1"># forward PN</span>
+                    <span class="n">input_PN</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">out_PN</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_PN</span><span class="p">(</span>
+                        <span class="n">input_PN</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">decode_network_lst</span><span class="p">,</span>
+                        <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_dec&quot;</span><span class="p">],</span>
+                    <span class="p">)</span>
+                    <span class="c1"># do unsqueeze over since tjoint must be have a 4 dim [B,T,U,Hidden]</span>
+                    <span class="n">log_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joint_forward_step</span><span class="p">(</span>
+                        <span class="n">tn_output</span><span class="p">[</span><span class="n">i_batch</span><span class="p">,</span> <span class="n">t_step</span><span class="p">,</span> <span class="p">:]</span>
+                        <span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                        <span class="n">out_PN</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                    <span class="p">)</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lm_weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">log_probs_lm</span><span class="p">,</span> <span class="n">hidden_lm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lm_forward_step</span><span class="p">(</span>
+                            <span class="n">input_PN</span><span class="p">,</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_lm&quot;</span><span class="p">]</span>
+                        <span class="p">)</span>
+
+                    <span class="c1"># Sort outputs at time</span>
+                    <span class="n">logp_targets</span><span class="p">,</span> <span class="n">positions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span>
+                        <span class="n">log_probs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beam_size</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span>
+                    <span class="p">)</span>
+                    <span class="n">best_logp</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">logp_targets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">blank</span>
+                        <span class="k">else</span> <span class="n">logp_targets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">)</span>
+
+                    <span class="c1"># Extend hyp by  selection</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">logp_targets</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)):</span>
+
+                        <span class="c1"># hyp</span>
+                        <span class="n">topk_hyp</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s2">&quot;prediction&quot;</span><span class="p">:</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">][:],</span>
+                            <span class="s2">&quot;logp_score&quot;</span><span class="p">:</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span>
+                            <span class="o">+</span> <span class="n">logp_targets</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                            <span class="s2">&quot;hidden_dec&quot;</span><span class="p">:</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_dec&quot;</span><span class="p">],</span>
+                        <span class="p">}</span>
+
+                        <span class="k">if</span> <span class="n">positions</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">blank_id</span><span class="p">:</span>
+                            <span class="n">beam_hyps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topk_hyp</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lm_weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">topk_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_lm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_best_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_lm&quot;</span><span class="p">]</span>
+                            <span class="k">continue</span>
+
+                        <span class="k">if</span> <span class="n">logp_targets</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">best_logp</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand_beam</span><span class="p">:</span>
+                            <span class="n">topk_hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+                            <span class="n">topk_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_dec&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hidden</span>
+                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lm_weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                                <span class="n">topk_hyp</span><span class="p">[</span><span class="s2">&quot;hidden_lm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hidden_lm</span>
+                                <span class="n">topk_hyp</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">lm_weight</span>
+                                    <span class="o">*</span> <span class="n">log_probs_lm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">positions</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+                                <span class="p">)</span>
+                            <span class="n">process_hyps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topk_hyp</span><span class="p">)</span>
+            <span class="c1"># Add norm score</span>
+            <span class="n">nbest_hyps</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+                <span class="n">beam_hyps</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]),</span>
+                <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbest</span><span class="p">]</span>
+            <span class="n">all_predictions</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">all_scores</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">hyp</span> <span class="ow">in</span> <span class="n">nbest_hyps</span><span class="p">:</span>
+                <span class="n">all_predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
+                <span class="n">all_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;logp_score&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">hyp</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]))</span>
+            <span class="n">nbest_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">all_predictions</span><span class="p">)</span>
+            <span class="n">nbest_batch_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">all_scores</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">[</span><span class="n">nbest_utt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">nbest_utt</span> <span class="ow">in</span> <span class="n">nbest_batch</span><span class="p">],</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">nbest_utt_score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">nbest_utt_score</span> <span class="ow">in</span> <span class="n">nbest_batch_score</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="n">nbest_batch</span><span class="p">,</span>
+            <span class="n">nbest_batch_score</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_joint_forward_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h_i</span><span class="p">,</span> <span class="n">out_PN</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Join predictions (TN &amp; PN).&quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="c1"># the output would be a tensor of [B,T,U, oneof[sum,concat](Hidden_TN,Hidden_PN)]</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tjoint</span><span class="p">(</span><span class="n">h_i</span><span class="p">,</span> <span class="n">out_PN</span><span class="p">,)</span>
+            <span class="c1"># forward the output layers + activation + save logits</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_after_joint</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier_network</span><span class="p">)</span>
+            <span class="n">log_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log_probs</span>
+
+    <span class="k">def</span> <span class="nf">_lm_forward_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inp_tokens</span><span class="p">,</span> <span class="n">memory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method should implement one step of</span>
+<span class="sd">        forwarding operation for language model.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        inp_tokens : torch.Tensor</span>
+<span class="sd">            The input tensor of the current timestep.</span>
+<span class="sd">        memory : No limit</span>
+<span class="sd">            The memory variables input for this timestep.</span>
+<span class="sd">            (e.g., RNN hidden states).</span>
+
+<span class="sd">        Return</span>
+<span class="sd">        ------</span>
+<span class="sd">        log_probs : torch.Tensor</span>
+<span class="sd">            Log-probabilities of the current timestep output.</span>
+<span class="sd">        hs : No limit</span>
+<span class="sd">            The memory variables are generated in this timestep.</span>
+<span class="sd">            (e.g., RNN hidden states).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">logits</span><span class="p">,</span> <span class="n">hs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lm</span><span class="p">(</span><span class="n">inp_tokens</span><span class="p">,</span> <span class="n">hx</span><span class="o">=</span><span class="n">memory</span><span class="p">)</span>
+            <span class="n">log_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log_probs</span><span class="p">,</span> <span class="n">hs</span>
+
+    <span class="k">def</span> <span class="nf">_get_sentence_to_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="n">output_PN</span><span class="p">,</span> <span class="n">hidden</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select and return the updated hiddens and output</span>
+<span class="sd">        from the Prediction Network.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        selected_sentences : list</span>
+<span class="sd">            List of updated sentences (indexes).</span>
+<span class="sd">        output_PN: torch.tensor</span>
+<span class="sd">            Output tensor from prediction network (PN).</span>
+<span class="sd">        hidden : torch.tensor</span>
+<span class="sd">            Optional: None, hidden tensor to be used for</span>
+<span class="sd">            recurrent layers in the prediction network.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        selected_output_PN: torch.tensor</span>
+<span class="sd">            Outputs a logits tensor [B_selected,U, hiddens].</span>
+<span class="sd">        hidden_update_hyp: torch.tensor</span>
+<span class="sd">            Selected hiddens tensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">selected_output_PN</span> <span class="o">=</span> <span class="n">output_PN</span><span class="p">[</span><span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="c1"># for LSTM hiddens (hn, hc)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">hidden0_update_hyp</span> <span class="o">=</span> <span class="n">hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">hidden1_update_hyp</span> <span class="o">=</span> <span class="n">hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">hidden_update_hyp</span> <span class="o">=</span> <span class="p">(</span><span class="n">hidden0_update_hyp</span><span class="p">,</span> <span class="n">hidden1_update_hyp</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hidden_update_hyp</span> <span class="o">=</span> <span class="n">hidden</span><span class="p">[:,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">return</span> <span class="n">selected_output_PN</span><span class="p">,</span> <span class="n">hidden_update_hyp</span>
+
+    <span class="k">def</span> <span class="nf">_update_hiddens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="n">updated_hidden</span><span class="p">,</span> <span class="n">hidden</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update hidden tensor by a subset of hidden tensor (updated ones).</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        selected_sentences : list</span>
+<span class="sd">            List of index to be updated.</span>
+<span class="sd">        updated_hidden : torch.tensor</span>
+<span class="sd">            Hidden tensor of the selected sentences for update.</span>
+<span class="sd">        hidden : torch.tensor</span>
+<span class="sd">            Hidden tensor to be updated.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        torch.tensor</span>
+<span class="sd">            Updated hidden tensor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">updated_hidden</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">updated_hidden</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hidden</span><span class="p">[:,</span> <span class="n">selected_sentences</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">updated_hidden</span>
+        <span class="k">return</span> <span class="n">hidden</span>
+
+    <span class="k">def</span> <span class="nf">_forward_PN</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_PN</span><span class="p">,</span> <span class="n">decode_network_lst</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute forward-pass through a list of prediction network (PN) layers.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        out_PN : torch.tensor</span>
+<span class="sd">            Input sequence from prediction network with shape</span>
+<span class="sd">            [batch, target_seq_lens].</span>
+<span class="sd">        decode_network_lst: list</span>
+<span class="sd">            List of prediction netowrk (PN) layers.</span>
+<span class="sd">        hinne : torch.tensor</span>
+<span class="sd">            Optional: None, hidden tensor to be used for</span>
+<span class="sd">                recurrent layers in the prediction network</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out_PN : torch.tensor</span>
+<span class="sd">            Outputs a logits tensor [B,U, hiddens].</span>
+<span class="sd">        hidden : torch.tensor</span>
+<span class="sd">            Hidden tensor to be used for the next step</span>
+<span class="sd">            by recurrent layers in prediction network.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">decode_network_lst</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="s2">&quot;RNN&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;LSTM&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;GRU&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;LiGRU&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;LiGRU_Layer&quot;</span><span class="p">,</span>
+            <span class="p">]:</span>
+                <span class="n">out_PN</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">out_PN</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">out_PN</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">out_PN</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out_PN</span><span class="p">,</span> <span class="n">hidden</span>
+
+    <span class="k">def</span> <span class="nf">_forward_after_joint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">classifier_network</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute forward-pass through a list of classifier neural network.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ----------</span>
+<span class="sd">        out : torch.tensor</span>
+<span class="sd">            Output from joint network with shape</span>
+<span class="sd">            [batch, target_len, time_len, hiddens]</span>
+<span class="sd">        classifier_network : list</span>
+<span class="sd">            List of output layers (after performing joint between TN and PN)</span>
+<span class="sd">            exp: (TN,PN) =&gt; joint =&gt; classifier_network_list [DNN bloc, Linear..] =&gt; chars prob</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        torch.tensor</span>
+<span class="sd">            Outputs a logits tensor [B, U,T, Output_Dim];</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">classifier_network</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

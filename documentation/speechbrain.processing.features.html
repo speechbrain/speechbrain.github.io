@@ -1,0 +1,1154 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.processing.features module &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="speechbrain.processing.multi_mic module" href="speechbrain.processing.multi_mic.html" />
+    <link rel="prev" title="speechbrain.processing.diarization module" href="speechbrain.processing.diarization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="speechbrain.html">Core library (speechbrain)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechbrain.processing.html">speechbrain.processing</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="speechbrain.html">speechbrain</a> &raquo;</li>
+        
+          <li><a href="speechbrain.processing.html">speechbrain.processing</a> &raquo;</li>
+        
+      <li>speechbrain.processing.features module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/speechbrain.processing.features.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-speechbrain.processing.features">
+<span id="speechbrain-processing-features-module"></span><h1>speechbrain.processing.features module<a class="headerlink" href="#module-speechbrain.processing.features" title="Permalink to this headline">¶</a></h1>
+<p>Low-level feature pipeline components</p>
+<p>This library gathers functions that compute popular speech  features over
+batches of data. All the classes are of type nn.Module. This gives the
+possibility to have end-to-end  differentiability and to backpropagate the
+gradient through them. Our functions are a modified version the ones
+in torch audio toolkit (<a class="reference external" href="https://github.com/pytorch/audio">https://github.com/pytorch/audio</a>).</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.dataio</span> <span class="k">import</span> <span class="n">read_audio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal</span> <span class="o">=</span><span class="n">read_audio</span><span class="p">(</span><span class="s1">&#39;samples/audio_samples/example1.wav&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_STFT</span> <span class="o">=</span> <span class="n">STFT</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">sample_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">400</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_STFT</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">spectral_magnitude</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_fbanks</span> <span class="o">=</span> <span class="n">Filterbank</span><span class="p">(</span><span class="n">n_mels</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_fbanks</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_mfccs</span> <span class="o">=</span> <span class="n">DCT</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">n_out</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_mfccs</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_deltas</span> <span class="o">=</span> <span class="n">Deltas</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta1</span> <span class="o">=</span> <span class="n">compute_deltas</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta2</span> <span class="o">=</span> <span class="n">compute_deltas</span><span class="p">(</span><span class="n">delta1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">features</span><span class="p">,</span> <span class="n">delta1</span><span class="p">,</span> <span class="n">delta2</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_cw</span> <span class="o">=</span> <span class="n">ContextWindow</span><span class="p">(</span><span class="n">left_frames</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">right_frames</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span>  <span class="o">=</span> <span class="n">compute_cw</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span> <span class="o">=</span> <span class="n">InputNormalization</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Authors</dt><dd><ul class="simple">
+<li>Mirco Ravanelli 2020</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Classes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.processing.features.ContextWindow" title="speechbrain.processing.features.ContextWindow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ContextWindow</span></code></a></td>
+<td>Computes the context window.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.processing.features.DCT" title="speechbrain.processing.features.DCT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DCT</span></code></a></td>
+<td>Computes the discrete cosine transform.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.processing.features.Deltas" title="speechbrain.processing.features.Deltas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Deltas</span></code></a></td>
+<td>Computes delta coefficients (time derivatives).</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.processing.features.Filterbank" title="speechbrain.processing.features.Filterbank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filterbank</span></code></a></td>
+<td>computes filter bank (FBANK) features given spectral magnitudes.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.processing.features.ISTFT" title="speechbrain.processing.features.ISTFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ISTFT</span></code></a></td>
+<td>Computes the Inverse Short-Term Fourier Transform (ISTFT)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.processing.features.InputNormalization" title="speechbrain.processing.features.InputNormalization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InputNormalization</span></code></a></td>
+<td>Performs mean and variance normalization of the input tensor.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.processing.features.STFT" title="speechbrain.processing.features.STFT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STFT</span></code></a></td>
+<td>computes the Short-Term Fourier Transform (STFT).</td>
+</tr>
+</tbody>
+</table>
+<p>Functions:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.processing.features.spectral_magnitude" title="speechbrain.processing.features.spectral_magnitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral_magnitude</span></code></a></td>
+<td>Returns the magnitude of a complex spectrogram.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="speechbrain.processing.features.STFT">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">STFT</code><span class="sig-paren">(</span><em>sample_rate</em>, <em>win_length=25</em>, <em>hop_length=10</em>, <em>n_fft=400</em>, <em>window_fn=&lt;built-in method hamming_window of type object&gt;</em>, <em>normalized_stft=False</em>, <em>center=True</em>, <em>pad_mode='constant'</em>, <em>onesided=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#STFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.STFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>computes the Short-Term Fourier Transform (STFT).</p>
+<p>This class computes the Short-Term Fourier Transform of an audio signal.
+It supports multi-channel audio inputs (batch, time, channels).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sample rate of the input audio signal (e.g 16000).</li>
+<li><strong>win_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Length (in ms) of the sliding window used to compute the STFT.</li>
+<li><strong>hop_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Length (in ms) of the hope of the sliding window used to compute
+the STFT.</li>
+<li><strong>n_fft</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of fft point of the STFT. It defines the frequency resolution
+(n_fft should be &lt;= than win_len).</li>
+<li><strong>window_fn</strong> (<em>function</em>) – A function that takes an integer (number of samples) and outputs a
+tensor to be multiplied with each window before fft.</li>
+<li><strong>normalized_stft</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, the function returns the  normalized STFT results,
+i.e., multiplied by win_length^-0.5 (default is False).</li>
+<li><strong>center</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True (default), the input will be padded on both sides so that the
+t-th frame is centered at time t×hop_length. Otherwise, the t-th frame
+begins at time t×hop_length.</li>
+<li><strong>pad_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – It can be ‘constant’,’reflect’,’replicate’, ‘circular’, ‘reflect’
+(default). ‘constant’ pads the input tensor boundaries with a
+constant value. ‘reflect’ pads the input tensor using the reflection
+of the input boundary. ‘replicate’ pads the input tensor using
+replication of the input boundary. ‘circular’ pads using  circular
+replication.</li>
+<li><strong>onesided</strong> (<em>True</em>) – If True (default) only returns nfft/2 values. Note that the other
+samples are redundant due to the Fourier transform conjugate symmetry.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_STFT</span> <span class="o">=</span> <span class="n">STFT</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">sample_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">400</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">16000</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_STFT</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">torch.Size([10, 101, 201, 2])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.processing.features.STFT.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#STFT.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.STFT.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the STFT generated from the input waveforms.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>tensor</em>) – A batch of audio signals to transform.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.STFT.training">
+<code class="descname">training</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><a class="headerlink" href="#speechbrain.processing.features.STFT.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.processing.features.ISTFT">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">ISTFT</code><span class="sig-paren">(</span><em>sample_rate</em>, <em>n_fft=None</em>, <em>win_length=25</em>, <em>hop_length=10</em>, <em>window_fn=&lt;built-in method hamming_window of type object&gt;</em>, <em>normalized_stft=False</em>, <em>center=True</em>, <em>onesided=True</em>, <em>epsilon=1e-12</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#ISTFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.ISTFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Computes the Inverse Short-Term Fourier Transform (ISTFT)</p>
+<p>This class computes the Inverse Short-Term Fourier Transform of
+an audio signal. It supports multi-channel audio inputs
+(batch, time_step, n_fft, 2, n_channels [optional]).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sample rate of the input audio signal (e.g. 16000).</li>
+<li><strong>win_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Length (in ms) of the sliding window used when computing the STFT.</li>
+<li><strong>hop_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Length (in ms) of the hope of the sliding window used when computing
+the STFT.</li>
+<li><strong>window_fn</strong> (<em>function</em>) – A function that takes an integer (number of samples) and outputs a
+tensor to be used as a window for ifft.</li>
+<li><strong>normalized_stft</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, the function assumes that it’s working with the normalized
+STFT results. (default is False)</li>
+<li><strong>center</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True (default), the function assumes that the STFT result was padded
+on both sides.</li>
+<li><strong>onesided</strong> (<em>True</em>) – If True (default), the function assumes that there are n_fft/2 values
+for each time frame of the STFT.</li>
+<li><strong>epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – A small value to avoid division by 0 when normalizing by the sum of the
+squared window. Playing with it can fix some abnormalities at the
+beginning and at the end of the reconstructed signal. The default value
+of epsilon is 1e-12.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_STFT</span> <span class="o">=</span> <span class="n">STFT</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">sample_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">400</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_ISTFT</span> <span class="o">=</span> <span class="n">ISTFT</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">sample_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">win_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="mi">10</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">16000</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">compute_ISTFT</span><span class="p">(</span><span class="n">compute_STFT</span><span class="p">(</span><span class="n">inputs</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">torch.Size([10, 16000])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.processing.features.ISTFT.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">sig_length</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#ISTFT.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.ISTFT.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ISTFT generated from the input signal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>tensor</em>) – A batch of audio signals in the frequency domain to transform.</li>
+<li><strong>sig_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The length of the output signal in number of samples. If not
+specified will be equal to: (time_step - 1) * hop_length + n_fft</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.ISTFT.training">
+<code class="descname">training</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><a class="headerlink" href="#speechbrain.processing.features.ISTFT.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.processing.features.spectral_magnitude">
+<code class="descclassname">speechbrain.processing.features.</code><code class="descname">spectral_magnitude</code><span class="sig-paren">(</span><em><span class="n">stft</span></em>, <em><span class="n">power</span><span class="o">=</span><span class="default_value">1</span></em>, <em><span class="n">log</span><span class="o">=</span><span class="default_value">False</span></em>, <em><span class="n">eps</span><span class="o">=</span><span class="default_value">1e-14</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#spectral_magnitude"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.spectral_magnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the magnitude of a complex spectrogram.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stft</strong> (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.Tensor</em></a>) – A tensor, output from the stft function.</li>
+<li><strong>power</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – What power to use in computing the magnitude.
+Use power=1 for the power spectrogram.
+Use power=0.5 for the magnitude spectrogram.</li>
+<li><strong>log</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to apply log to the spectral features.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spectral_magnitude</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">tensor([5.])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.processing.features.Filterbank">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">Filterbank</code><span class="sig-paren">(</span><em><span class="n">n_mels</span><span class="o">=</span><span class="default_value">40</span></em>, <em><span class="n">log_mel</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">filter_shape</span><span class="o">=</span><span class="default_value">'triangular'</span></em>, <em><span class="n">f_min</span><span class="o">=</span><span class="default_value">0</span></em>, <em><span class="n">f_max</span><span class="o">=</span><span class="default_value">8000</span></em>, <em><span class="n">n_fft</span><span class="o">=</span><span class="default_value">400</span></em>, <em><span class="n">sample_rate</span><span class="o">=</span><span class="default_value">16000</span></em>, <em><span class="n">power_spectrogram</span><span class="o">=</span><span class="default_value">2</span></em>, <em><span class="n">amin</span><span class="o">=</span><span class="default_value">1e-10</span></em>, <em><span class="n">ref_value</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em><span class="n">top_db</span><span class="o">=</span><span class="default_value">80.0</span></em>, <em><span class="n">param_change_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em><span class="n">param_rand_factor</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em><span class="n">freeze</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#Filterbank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.Filterbank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>computes filter bank (FBANK) features given spectral magnitudes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Number of Mel filters used to average the spectrogram.</li>
+<li><strong>log_mel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, it computes the log of the FBANKs.</li>
+<li><strong>filter_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Shape of the filters (‘triangular’, ‘rectangular’, ‘gaussian’).</li>
+<li><strong>f_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Lowest frequency for the Mel filters.</li>
+<li><strong>f_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Highest frequency for the Mel filters.</li>
+<li><strong>n_fft</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of fft points of the STFT. It defines the frequency resolution
+(n_fft should be&lt;= than win_len).</li>
+<li><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sample rate of the input audio signal (e.g, 16000)</li>
+<li><strong>power_spectrogram</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Exponent used for spectrogram computation.</li>
+<li><strong>amin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Minimum amplitude (used for numerical stability).</li>
+<li><strong>ref_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Reference value used for the dB scale.</li>
+<li><strong>top_db</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Top dB valu used for log-mels.</li>
+<li><strong>freeze</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If False, it the central frequency and the band of each filter are
+added into nn.parameters. If True, the standard frozen features
+are computed.</li>
+<li><strong>param_change_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If freeze=False, this parameter affects the speed at which the filter
+parameters (i.e., central_freqs and bands) can be changed.  When high
+(e.g., param_change_factor=1) the filters change a lot during training.
+When low (e.g. param_change_factor=0.1) the filter parameters are more
+stable during training</li>
+<li><strong>param_rand_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – This parameter can be used to randomly change the filter parameters
+(i.e, central frequencies and bands) during training.  It is thus a
+sort of regularization. param_rand_factor=0 does not affect, while
+param_rand_factor=0.15 allows random variations within +-15% of the
+standard values of the filter parameters (e.g., if the central freq
+is 100 Hz, we can randomly change it from 85 Hz to 115 Hz).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_fbanks</span> <span class="o">=</span> <span class="n">Filterbank</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">201</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_fbanks</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">torch.Size([10, 101, 40])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.processing.features.Filterbank.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">spectrogram</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#Filterbank.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.Filterbank.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the FBANks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>tensor</em>) – A batch of spectrogram tensors.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.Filterbank.training">
+<code class="descname">training</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><a class="headerlink" href="#speechbrain.processing.features.Filterbank.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.processing.features.DCT">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">DCT</code><span class="sig-paren">(</span><em><span class="n">input_size</span></em>, <em><span class="n">n_out</span><span class="o">=</span><span class="default_value">20</span></em>, <em><span class="n">ortho_norm</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#DCT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.DCT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Computes the discrete cosine transform.</p>
+<p>This class is primarily used to compute MFCC features of an audio signal
+given a set of FBANK features as input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Expected size of the last dimension in the input.</li>
+<li><strong>n_out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of output coefficients.</li>
+<li><strong>ortho_norm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to use orthogonal norm.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_mfccs</span> <span class="o">=</span> <span class="n">DCT</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_mfccs</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">torch.Size([10, 101, 20])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.processing.features.DCT.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#DCT.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.DCT.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DCT of the input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>tensor</em>) – A batch of tensors to transform, usually fbank features.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.DCT.training">
+<code class="descname">training</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><a class="headerlink" href="#speechbrain.processing.features.DCT.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.processing.features.Deltas">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">Deltas</code><span class="sig-paren">(</span><em><span class="n">input_size</span></em>, <em><span class="n">window_length</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#Deltas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.Deltas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Computes delta coefficients (time derivatives).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>win_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Length of the window used to compute the time derivatives.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_deltas</span> <span class="o">=</span> <span class="n">Deltas</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_deltas</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">torch.Size([10, 101, 20])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.processing.features.Deltas.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#Deltas.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.Deltas.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the delta coefficients.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>tensor</em>) – A batch of tensors.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.Deltas.training">
+<code class="descname">training</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><a class="headerlink" href="#speechbrain.processing.features.Deltas.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.processing.features.ContextWindow">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">ContextWindow</code><span class="sig-paren">(</span><em><span class="n">left_frames</span><span class="o">=</span><span class="default_value">0</span></em>, <em><span class="n">right_frames</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#ContextWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.ContextWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Computes the context window.</p>
+<p>This class applies a context window by gathering multiple time steps
+in a single feature vector. The operation is performed with a
+convolutional layer based on a fixed kernel designed for that.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>left_frames</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of left frames (i.e, past frames) to collect.</li>
+<li><strong>right_frames</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of right frames (i.e, future frames) to collect.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">compute_cw</span> <span class="o">=</span> <span class="n">ContextWindow</span><span class="p">(</span><span class="n">left_frames</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">right_frames</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">compute_cw</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">torch.Size([10, 101, 220])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.processing.features.ContextWindow.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#ContextWindow.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.ContextWindow.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tensor with the surrounding context.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>tensor</em>) – A batch of tensors.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.ContextWindow.training">
+<code class="descname">training</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></em><a class="headerlink" href="#speechbrain.processing.features.ContextWindow.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.processing.features.InputNormalization">
+<em class="property">class </em><code class="descclassname">speechbrain.processing.features.</code><code class="descname">InputNormalization</code><span class="sig-paren">(</span><em><span class="n">mean_norm</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">std_norm</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">norm_type</span><span class="o">=</span><span class="default_value">'global'</span></em>, <em><span class="n">avg_factor</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">requires_grad</span><span class="o">=</span><span class="default_value">False</span></em>, <em><span class="n">update_until_epoch</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#InputNormalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.InputNormalization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Performs mean and variance normalization of the input tensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mean_norm</strong> (<em>True</em>) – If True, the mean will be normalized.</li>
+<li><strong>std_norm</strong> (<em>True</em>) – If True, the standard deviation will be normalized.</li>
+<li><strong>norm_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – It defines how the statistics are computed (‘sentence’ computes them
+at sentence level, ‘batch’ at batch level, ‘speaker’ at speaker
+level, while global computes a single normalization vector for all
+the sentences in the dataset). Speaker and global statistics are
+computed with a moving average approach.</li>
+<li><strong>avg_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – It can be used to manually set the weighting factor between
+current statistics and accumulated ones.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span> <span class="o">=</span> <span class="n">InputNormalization</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inp_len</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">inp_len</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.InputNormalization.Dict">
+<code class="descname">Dict</code><a class="headerlink" href="#speechbrain.processing.features.InputNormalization.Dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of Dict</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.InputNormalization.spk_dict_mean">
+<code class="descname">spk_dict_mean</code><em class="property">: <a class="reference internal" href="#speechbrain.processing.features.InputNormalization.Dict" title="speechbrain.processing.features.InputNormalization.Dict">Dict</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))">torch.Tensor</a><span class="p">]</span></em><a class="headerlink" href="#speechbrain.processing.features.InputNormalization.spk_dict_mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.InputNormalization.spk_dict_std">
+<code class="descname">spk_dict_std</code><em class="property">: <a class="reference internal" href="#speechbrain.processing.features.InputNormalization.Dict" title="speechbrain.processing.features.InputNormalization.Dict">Dict</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))">torch.Tensor</a><span class="p">]</span></em><a class="headerlink" href="#speechbrain.processing.features.InputNormalization.spk_dict_std" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.processing.features.InputNormalization.spk_dict_count">
+<code class="descname">spk_dict_count</code><em class="property">: <a class="reference internal" href="#speechbrain.processing.features.InputNormalization.Dict" title="speechbrain.processing.features.InputNormalization.Dict">Dict</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a><span class="p">]</span></em><a class="headerlink" href="#speechbrain.processing.features.InputNormalization.spk_dict_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.processing.features.InputNormalization.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">lengths</span></em>, <em><span class="n">spk_ids</span><span class="o">=</span><span class="default_value">tensor([])</span></em>, <em><span class="n">epoch</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/processing/features.html#InputNormalization.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.processing.features.InputNormalization.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tensor with the surrounding context.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> (<em>tensor</em>) – A batch of tensors.</li>
+<li><strong>lengths</strong> (<em>tensor</em>) – A batch of tensors containing the relative length of each
+sentence (e.g, [0.7, 0.9, 1.0]). It is used to avoid
+computing stats on zero-padded steps.</li>
+<li><strong>spk_ids</strong> (<em>tensor containing the ids of each speaker</em><em> (</em><em>e.g</em><em>, </em><em>[</em><em>0 10 6</em><em>]</em><em>)</em><em></em>) – It is used to perform per-speaker normalization when
+norm_type=’speaker’.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speechbrain.processing.multi_mic.html" class="btn btn-neutral float-right" title="speechbrain.processing.multi_mic module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speechbrain.processing.diarization.html" class="btn btn-neutral float-left" title="speechbrain.processing.diarization module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

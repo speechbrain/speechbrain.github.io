@@ -1,0 +1,7 @@
+speechbrain.nnet.complex\_networks.complex\_RNN module
+======================================================
+
+.. automodule:: speechbrain.nnet.complex_networks.complex_RNN
+   :members:
+   :undoc-members:
+   :show-inheritance:

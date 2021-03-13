@@ -1,0 +1,1077 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.utils.edit_distance module &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="speechbrain.utils.epoch_loop module" href="speechbrain.utils.epoch_loop.html" />
+    <link rel="prev" title="speechbrain.utils.distributed module" href="speechbrain.utils.distributed.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="speechbrain.html">Core library (speechbrain)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechbrain.utils.html">speechbrain.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="speechbrain.html">speechbrain</a> &raquo;</li>
+        
+          <li><a href="speechbrain.utils.html">speechbrain.utils</a> &raquo;</li>
+        
+      <li>speechbrain.utils.edit_distance module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/speechbrain.utils.edit_distance.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-speechbrain.utils.edit_distance">
+<span id="speechbrain-utils-edit-distance-module"></span><h1>speechbrain.utils.edit_distance module<a class="headerlink" href="#module-speechbrain.utils.edit_distance" title="Permalink to this headline">¶</a></h1>
+<p>Edit distance and WER computation.</p>
+<dl class="docutils">
+<dt>Authors</dt><dd><ul class="simple">
+<li>Aku Rouhe 2020</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Functions:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.accumulatable_wer_stats" title="speechbrain.utils.edit_distance.accumulatable_wer_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accumulatable_wer_stats</span></code></a></td>
+<td>Computes word error rate and the related counts for a batch.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.alignment" title="speechbrain.utils.edit_distance.alignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alignment</span></code></a></td>
+<td>Get the edit distance alignment from an edit op table.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.count_ops" title="speechbrain.utils.edit_distance.count_ops"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_ops</span></code></a></td>
+<td>Count the edit operations in the shortest edit path in edit op table.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.op_table" title="speechbrain.utils.edit_distance.op_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">op_table</span></code></a></td>
+<td>Table of edit operations between a and b.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.top_wer_spks" title="speechbrain.utils.edit_distance.top_wer_spks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_wer_spks</span></code></a></td>
+<td>Finds the K speakers with the highest word error rates.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.top_wer_utts" title="speechbrain.utils.edit_distance.top_wer_utts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_wer_utts</span></code></a></td>
+<td>Finds the k utterances with highest word error rates.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.wer_details_by_speaker" title="speechbrain.utils.edit_distance.wer_details_by_speaker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wer_details_by_speaker</span></code></a></td>
+<td>Compute word error rate and another salient info grouping by speakers.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.wer_details_by_utterance" title="speechbrain.utils.edit_distance.wer_details_by_utterance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wer_details_by_utterance</span></code></a></td>
+<td>Computes a wealth WER info about each single utterance.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.wer_details_for_batch" title="speechbrain.utils.edit_distance.wer_details_for_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wer_details_for_batch</span></code></a></td>
+<td>Convenient batch interface for <code class="docutils literal notranslate"><span class="pre">wer_details_by_utterance</span></code>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.edit_distance.wer_summary" title="speechbrain.utils.edit_distance.wer_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wer_summary</span></code></a></td>
+<td>Computes summary stats from the output of details_by_utterance</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.accumulatable_wer_stats">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">accumulatable_wer_stats</code><span class="sig-paren">(</span><em><span class="n">refs</span></em>, <em><span class="n">hyps</span></em>, <em><span class="n">stats</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#accumulatable_wer_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.accumulatable_wer_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes word error rate and the related counts for a batch.</p>
+<p>Can also be used to accumulate the counts over many batches, by passing
+the output back to the function in the call for the next batch.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ref</strong> (<em>iterable</em>) – Batch of reference sequences.</li>
+<li><strong>hyp</strong> (<em>iterable</em>) – Batch of hypothesis sequences.</li>
+<li><strong>stats</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.9)"><em>collections.Counter</em></a>) – The running statistics.
+Pass the output of this function back as this parameter
+to accumulate the counts. It may be cleanest to initialize
+the stats yourself; then an empty collections.Counter() should
+be used.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>The updated running statistics, with keys:</p>
+<ul class="simple">
+<li>”WER” - word error rate</li>
+<li>”insertions” - number of insertions</li>
+<li>”deletions” - number of deletions</li>
+<li>”substitutions” - number of substitutions</li>
+<li>”num_ref_tokens” - number of reference tokens</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.9)">collections.Counter</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">batches</span> <span class="o">=</span> <span class="p">[[[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]],</span>
+<span class="gp">... </span>            <span class="p">[[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">]],</span>     <span class="p">[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span>  <span class="p">[</span><span class="mi">10</span><span class="p">]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stats</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batches</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">refs</span><span class="p">,</span> <span class="n">hyps</span> <span class="o">=</span> <span class="n">batch</span>
+<span class="gp">... </span>    <span class="n">stats</span> <span class="o">=</span> <span class="n">accumulatable_wer_stats</span><span class="p">(</span><span class="n">refs</span><span class="p">,</span> <span class="n">hyps</span><span class="p">,</span> <span class="n">stats</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;%WER </span><span class="si">{WER:.2f}</span><span class="s2">, </span><span class="si">{num_ref_tokens}</span><span class="s2"> ref tokens&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">stats</span><span class="p">))</span>
+<span class="go">%WER 33.33, 9 ref tokens</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.op_table">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">op_table</code><span class="sig-paren">(</span><em><span class="n">a</span></em>, <em><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#op_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.op_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Table of edit operations between a and b.</p>
+<p>Solves for the table of edit operations, which is mainly used to
+compute word error rate. The table is of size <code class="docutils literal notranslate"><span class="pre">[|a|+1,</span> <span class="pre">|b|+1]</span></code>,
+and each point <code class="docutils literal notranslate"><span class="pre">(i,</span> <span class="pre">j)</span></code> in the table has an edit operation. The
+edit operations can be deterministically followed backwards to
+find the shortest edit path to from <code class="docutils literal notranslate"><span class="pre">a[:i-1]</span> <span class="pre">to</span> <span class="pre">b[:j-1]</span></code>. Indexes
+of zero (<code class="docutils literal notranslate"><span class="pre">i=0</span></code> or <code class="docutils literal notranslate"><span class="pre">j=0</span></code>) correspond to an empty sequence.</p>
+<p>The algorithm itself is well known, see</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a></p>
+<p>Note that in some cases there are multiple valid edit operation
+paths which lead to the same edit distance minimum.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<em>iterable</em>) – Sequence for which the edit operations are solved.</li>
+<li><strong>b</strong> (<em>iterable</em>) – Sequence for which the edit operations are solved.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of lists, Matrix, Table of edit operations.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ref</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hyp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">op_table</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span> <span class="n">hyp</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="go">[&#39;=&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;]</span>
+<span class="go">[&#39;D&#39;, &#39;=&#39;, &#39;I&#39;, &#39;I&#39;]</span>
+<span class="go">[&#39;D&#39;, &#39;D&#39;, &#39;=&#39;, &#39;I&#39;]</span>
+<span class="go">[&#39;D&#39;, &#39;D&#39;, &#39;D&#39;, &#39;S&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.alignment">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">alignment</code><span class="sig-paren">(</span><em><span class="n">table</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#alignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.alignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the edit distance alignment from an edit op table.</p>
+<p>Walks back an edit operations table, produced by calling <code class="docutils literal notranslate"><span class="pre">table(a,</span> <span class="pre">b)</span></code>,
+and collects the edit distance alignment of a to b. The alignment
+shows which token in a corresponds to which token in b. Note that the
+alignment is monotonic, one-to-zero-or-one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Edit operations table from <code class="docutils literal notranslate"><span class="pre">op_table(a,</span> <span class="pre">b)</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Schema: <code class="docutils literal notranslate"><span class="pre">[(str</span> <span class="pre">&lt;edit-op&gt;,</span> <span class="pre">int-or-None</span> <span class="pre">&lt;i&gt;,</span> <span class="pre">int-or-None</span> <span class="pre">&lt;j&gt;),]</span></code>
+List of edit operations, and the corresponding indices to a and b.
+See the EDIT_SYMBOLS dict for the edit-ops.
+The i indexes a, j indexes b, and the indices can be None, which means
+aligning to nothing.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># table for a=[1,2,3], b=[1,2,4]:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+<span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+<span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+<span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">alignment</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="go">[(&#39;=&#39;, 0, 0), (&#39;=&#39;, 1, 1), (&#39;S&#39;, 2, 2)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.count_ops">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">count_ops</code><span class="sig-paren">(</span><em><span class="n">table</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#count_ops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.count_ops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the edit operations in the shortest edit path in edit op table.</p>
+<p>Walks back an edit operations table produced by table(a, b) and
+counts the number of insertions, deletions, and substitutions in the
+shortest edit path. This information is typically used in speech
+recognition to report the number of different error types separately.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Edit operations table from <code class="docutils literal notranslate"><span class="pre">op_table(a,</span> <span class="pre">b)</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The counts of the edit operations, with keys:<ul class="simple">
+<li>”insertions”</li>
+<li>”deletions”</li>
+<li>”substitutions”</li>
+</ul>
+<p>NOTE: not all of the keys might appear explicitly in the output,
+but for the missing keys collections. The counter will return 0.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.9)">collections.Counter</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+<span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+<span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">],</span>
+<span class="gp">... </span>         <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">count_ops</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+<span class="go">Counter({&#39;substitutions&#39;: 1})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.wer_details_for_batch">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">wer_details_for_batch</code><span class="sig-paren">(</span><em><span class="n">ids</span></em>, <em><span class="n">refs</span></em>, <em><span class="n">hyps</span></em>, <em><span class="n">compute_alignments</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#wer_details_for_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.wer_details_for_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenient batch interface for <code class="docutils literal notranslate"><span class="pre">wer_details_by_utterance</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">wer_details_by_utterance</span></code> can handle missing hypotheses, but
+sometimes (e.g. CTC training with greedy decoding) they are not needed,
+and this is a convenient interface in that case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>torch.tensor</em>) – Utterance ids for the batch.</li>
+<li><strong>refs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>torch.tensor</em>) – Reference sequences.</li>
+<li><strong>hyps</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>torch.tensor</em>) – Hypothesis sequences.</li>
+<li><strong>compute_alignments</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to compute alignments or not. If computed, the details
+will also store the refs and hyps. (default: False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">See <code class="docutils literal notranslate"><span class="pre">wer_details_by_utterance</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ids</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;utt1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;utt2&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]],</span> <span class="p">[[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hyps</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">]],</span> <span class="p">[[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wer_details</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">ids_batch</span><span class="p">,</span> <span class="n">refs_batch</span><span class="p">,</span> <span class="n">hyps_batch</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">refs</span><span class="p">,</span> <span class="n">hyps</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">details</span> <span class="o">=</span> <span class="n">wer_details_for_batch</span><span class="p">(</span><span class="n">ids_batch</span><span class="p">,</span> <span class="n">refs_batch</span><span class="p">,</span> <span class="n">hyps_batch</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">wer_details</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">details</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">wer_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;key&#39;</span><span class="p">],</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wer_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;WER&#39;</span><span class="p">]))</span>
+<span class="go">utt1 : 33.33</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.wer_details_by_utterance">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">wer_details_by_utterance</code><span class="sig-paren">(</span><em><span class="n">ref_dict</span></em>, <em><span class="n">hyp_dict</span></em>, <em><span class="n">compute_alignments</span><span class="o">=</span><span class="default_value">False</span></em>, <em><span class="n">scoring_mode</span><span class="o">=</span><span class="default_value">'strict'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#wer_details_by_utterance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.wer_details_by_utterance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a wealth WER info about each single utterance.</p>
+<p>This info can then be used to compute summary details (WER, SER).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ref_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Should be indexable by utterance ids, and return the reference tokens
+for each utterance id as iterable</li>
+<li><strong>hyp_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Should be indexable by utterance ids, and return
+the hypothesis tokens for each utterance id as iterable</li>
+<li><strong>compute_alignments</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether alignments should also be saved.
+This also saves the tokens themselves, as they are probably
+required for printing the alignments.</li>
+<li><strong>scoring_mode</strong> (<em>{'strict'</em><em>, </em><em>'all'</em><em>, </em><em>'present'}</em>) – <p>How to deal with missing hypotheses (reference utterance id
+not found in hyp_dict).</p>
+<ul>
+<li>’strict’: Raise error for missing hypotheses.</li>
+<li>’all’: Score missing hypotheses as empty.</li>
+<li>’present’: Only score existing hypotheses.</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>A list with one entry for every reference utterance. Each entry is a
+dict with keys:</p>
+<ul class="simple">
+<li>”key”: utterance id</li>
+<li>”scored”: (bool) Whether utterance was scored.</li>
+<li>”hyp_absent”: (bool) True if a hypothesis was NOT found.</li>
+<li>”hyp_empty”: (bool) True if hypothesis was considered empty
+(either because it was empty, or not found and mode ‘all’).</li>
+<li>”num_edits”: (int) Number of edits in total.</li>
+<li>”num_ref_tokens”: (int) Number of tokens in the reference.</li>
+<li>”WER”: (float) Word error rate of the utterance.</li>
+<li>”insertions”: (int) Number of insertions.</li>
+<li>”deletions”: (int) Number of deletions.</li>
+<li>”substitutions”: (int) Number of substitutions.</li>
+<li>”alignment”: If compute_alignments is True, alignment as list,
+see <code class="docutils literal notranslate"><span class="pre">speechbrain.utils.edit_distance.alignment</span></code>.
+If compute_alignments is False, this is None.</li>
+<li>”ref_tokens”: (iterable) The reference tokens
+only saved if alignments were computed, else None.</li>
+<li>”hyp_tokens”: (iterable) the hypothesis tokens,
+only saved if alignments were computed, else None.</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.9)"><strong>KeyError</strong></a> – If scoring mode is ‘strict’ and a hypothesis is not found.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.wer_summary">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">wer_summary</code><span class="sig-paren">(</span><em><span class="n">details_by_utterance</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#wer_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.wer_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes summary stats from the output of details_by_utterance</p>
+<p>Summary stats like WER</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>details_by_utterance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – See the output of wer_details_by_utterance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Dictionary with keys:<ul class="simple">
+<li>”WER”: (float) Word Error Rate.</li>
+<li>”SER”: (float) Sentence Error Rate (percentage of utterances
+which had at least one error).</li>
+<li>”num_edits”: (int) Total number of edits.</li>
+<li>”num_scored_tokens”: (int) Total number of tokens in scored
+reference utterances (a missing hypothesis might still
+have been scored with ‘all’ scoring mode).</li>
+<li>”num_erraneous_sents”: (int) Total number of utterances
+which had at least one error.</li>
+<li>”num_scored_sents”: (int) Total number of utterances
+which were scored.</li>
+<li>”num_absent_sents”: (int) Hypotheses which were not found.</li>
+<li>”num_ref_sents”: (int) Number of all reference utterances.</li>
+<li>”insertions”: (int) Total number of insertions.</li>
+<li>”deletions”: (int) Total number of deletions.</li>
+<li>”substitutions”: (int) Total number of substitutions.</li>
+</ul>
+<p>NOTE: Some cases lead to ambiguity over number of
+insertions, deletions and substitutions. We
+aim to replicate Kaldi compute_wer numbers.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.wer_details_by_speaker">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">wer_details_by_speaker</code><span class="sig-paren">(</span><em><span class="n">details_by_utterance</span></em>, <em><span class="n">utt2spk</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#wer_details_by_speaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.wer_details_by_speaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute word error rate and another salient info grouping by speakers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>details_by_utterance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – See the output of wer_details_by_utterance</li>
+<li><strong>utt2spk</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Map from utterance id to speaker id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>Maps speaker id to a dictionary of the statistics, with keys:</p>
+<ul class="simple">
+<li>”speaker”: Speaker id,</li>
+<li>”num_edits”: (int) Number of edits in total by this speaker.</li>
+<li>”insertions”: (int) Number insertions by this speaker.</li>
+<li>”dels”: (int) Number of deletions by this speaker.</li>
+<li>”subs”: (int) Number of substitutions by this speaker.</li>
+<li>”num_scored_tokens”: (int) Number of scored reference
+tokens by this speaker (a missing hypothesis might still
+have been scored with ‘all’ scoring mode).</li>
+<li>”num_scored_sents”: (int) number of scored utterances
+by this speaker.</li>
+<li>”num_erraneous_sents”: (int) number of utterance with at least
+one error, by this speaker.</li>
+<li>”num_absent_sents”: (int) number of utterances for which no
+hypotheses was found, by this speaker.</li>
+<li>”num_ref_sents”: (int) number of utterances by this speaker
+in total.</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.top_wer_utts">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">top_wer_utts</code><span class="sig-paren">(</span><em><span class="n">details_by_utterance</span></em>, <em><span class="n">top_k</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#top_wer_utts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.top_wer_utts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the k utterances with highest word error rates.</p>
+<p>Useful for diagnostic purposes, to see where the system
+is making the most mistakes.
+Returns results utterances which were not empty
+i.e. had to have been present in the hypotheses, with output produced</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>details_by_utterance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – See output of wer_details_by_utterance.</li>
+<li><strong>top_k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of utterances to return.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of at most K utterances,
+with the highest word error rates, which were not empty.
+The utterance dict has the same keys as
+details_by_utterance.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.edit_distance.top_wer_spks">
+<code class="descclassname">speechbrain.utils.edit_distance.</code><code class="descname">top_wer_spks</code><span class="sig-paren">(</span><em><span class="n">details_by_speaker</span></em>, <em><span class="n">top_k</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/edit_distance.html#top_wer_spks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.edit_distance.top_wer_spks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the K speakers with the highest word error rates.</p>
+<p>Useful for diagnostic purposes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>details_by_speaker</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – See output of wer_details_by_speaker.</li>
+<li><strong>top_k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of seakers to return.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of at most K dicts (with the same keys as details_by_speaker)
+of speakers sorted by WER.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speechbrain.utils.epoch_loop.html" class="btn btn-neutral float-right" title="speechbrain.utils.epoch_loop module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speechbrain.utils.distributed.html" class="btn btn-neutral float-left" title="speechbrain.utils.distributed module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

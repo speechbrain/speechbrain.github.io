@@ -1,0 +1,1179 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.dataio.sampler &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.dataio.sampler</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.dataio.sampler</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;PyTorch compatible samplers.</span>
+
+<span class="sd">These determine the order of iteration through a dataset.</span>
+
+<span class="sd">Authors:</span>
+<span class="sd">  * Aku Rouhe 2020</span>
+<span class="sd">  * Samuele Cornell 2020</span>
+<span class="sd">  * Ralf Leibold 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="k">import</span> <span class="n">itemgetter</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">RandomSampler</span><span class="p">,</span>
+    <span class="n">WeightedRandomSampler</span><span class="p">,</span>
+    <span class="n">DistributedSampler</span><span class="p">,</span>
+    <span class="n">Sampler</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">speechbrain.dataio.dataset</span> <span class="k">import</span> <span class="n">DynamicItemDataset</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ReproducibleRandomSampler"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.ReproducibleRandomSampler">[docs]</a><span class="k">class</span> <span class="nc">ReproducibleRandomSampler</span><span class="p">(</span><span class="n">RandomSampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A modification of RandomSampler which always returns the same values.</span>
+
+<span class="sd">    Also look at `torch.utils.data.RandomSampler`. This has mostly</span>
+<span class="sd">    the same behaviour and arguments, except for adding &#39;seed&#39; and &#39;epoch&#39; and</span>
+<span class="sd">    not supporting &#39;generator&#39;.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Call `set_epoch` before every epoch. Otherwise, the sampler will produce the</span>
+<span class="sd">    same sequence of indices every epoch.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    data_source : Dataset</span>
+<span class="sd">        The data source to sample indices for.</span>
+<span class="sd">    seed : int</span>
+<span class="sd">        The base seed to use for the random number generator. It is recommended</span>
+<span class="sd">        to use a value which has a good mix of 0 and 1 bits.</span>
+<span class="sd">    epoch : int</span>
+<span class="sd">        The epoch to start at.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.utils.checkpoints import Checkpointer</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.dataloader import SaveableDataLoader</span>
+<span class="sd">    &gt;&gt;&gt; # An example &quot;dataset&quot;</span>
+<span class="sd">    &gt;&gt;&gt; dataset = torch.arange(10).unsqueeze(1)</span>
+<span class="sd">    &gt;&gt;&gt; # Create the random sampler:</span>
+<span class="sd">    &gt;&gt;&gt; sampler = ReproducibleRandomSampler(dataset)</span>
+<span class="sd">    &gt;&gt;&gt; dataloader = SaveableDataLoader(dataset, sampler = sampler,</span>
+<span class="sd">    ...     num_workers = 3)</span>
+<span class="sd">    &gt;&gt;&gt; # Setup the checkpointer.</span>
+<span class="sd">    &gt;&gt;&gt; # Note that the sampler doesn&#39;t need to be saved itself.</span>
+<span class="sd">    &gt;&gt;&gt; tmpdir = getfixture(&#39;tmpdir&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; checkpointer = Checkpointer(tmpdir, {&quot;dataloader&quot;: dataloader})</span>
+<span class="sd">    &gt;&gt;&gt; # Iterate:</span>
+<span class="sd">    &gt;&gt;&gt; subset = []</span>
+<span class="sd">    &gt;&gt;&gt; for i, data_point in enumerate(dataloader):</span>
+<span class="sd">    ...     # Say you save a checkpoint on the fourth batch:</span>
+<span class="sd">    ...     if i == 3:</span>
+<span class="sd">    ...         _ = checkpointer.save_checkpoint(end_of_epoch = False)</span>
+<span class="sd">    ...     # So let&#39;s save the numbers you would get if you continue</span>
+<span class="sd">    ...     if i &gt;= 4:</span>
+<span class="sd">    ...         subset.append(data_point.item())</span>
+<span class="sd">    &gt;&gt;&gt; # What if instead you had to restart the experiment?</span>
+<span class="sd">    &gt;&gt;&gt; new_sampler = ReproducibleRandomSampler(dataset)</span>
+<span class="sd">    &gt;&gt;&gt; new_dataloader = SaveableDataLoader(dataset, sampler = new_sampler,</span>
+<span class="sd">    ...        num_workers = 3)</span>
+<span class="sd">    &gt;&gt;&gt; new_checkpointer = Checkpointer(tmpdir, {&quot;dataloader&quot;: new_dataloader})</span>
+<span class="sd">    &gt;&gt;&gt; _ = new_checkpointer.recover_if_possible()</span>
+<span class="sd">    &gt;&gt;&gt; # You&#39;ll get the same random order again:</span>
+<span class="sd">    &gt;&gt;&gt; new_subset = [data_point.item() for data_point in new_dataloader]</span>
+<span class="sd">    &gt;&gt;&gt; assert subset == new_subset</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_source</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">563375142</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;generator&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">MSG</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;Cannot give a separate generator when using &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;ReproducibleRandomSampler&quot;</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">data_source</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ReproducibleRandomSampler.set_epoch"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.ReproducibleRandomSampler.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        You can also just access self.epoch, but we maintain this interface</span>
+<span class="sd">        to mirror torch.utils.data.distributed.DistributedSampler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ReproducibleWeightedRandomSampler"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.ReproducibleWeightedRandomSampler">[docs]</a><span class="k">class</span> <span class="nc">ReproducibleWeightedRandomSampler</span><span class="p">(</span><span class="n">WeightedRandomSampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A reproducible modification of WeightedRandomSampler.</span>
+
+<span class="sd">    Also look at `torch.utils.data.WeightedRandomSampler`. This has the</span>
+<span class="sd">    the same behaviour and arguments, except for adding &#39;seed&#39; and &#39;epoch&#39; and</span>
+<span class="sd">    not supporting &#39;generator&#39;.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Call `set_epoch` before every epoch. Otherwise, the sampler will produce the</span>
+<span class="sd">    same sequence of indices every epoch.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    weights : sequence of float</span>
+<span class="sd">        Weights for each index. Doesn&#39;t need to sum to one.</span>
+<span class="sd">    num_samples : int</span>
+<span class="sd">        Number of samples to draw</span>
+<span class="sd">    replacement : bool</span>
+<span class="sd">        To draw with replacement or not (within an epoch of num_samples).</span>
+<span class="sd">    seed : int</span>
+<span class="sd">        The base seed to use for the random number generator. It is recommended</span>
+<span class="sd">        to use a value which has a good mix of 0 and 1 bits.</span>
+<span class="sd">    epoch : int</span>
+<span class="sd">        The epoch to start at.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; a = ReproducibleWeightedRandomSampler([0.1, 0.9, 0.4, 0.7, 3.0, 0.6], 5, replacement=True)</span>
+<span class="sd">    &gt;&gt;&gt; b = ReproducibleWeightedRandomSampler([0.1, 0.9, 0.4, 0.7, 3.0, 0.6], 5, replacement=True)</span>
+<span class="sd">    &gt;&gt;&gt; list(a)</span>
+<span class="sd">    [3, 1, 4, 4, 4]</span>
+<span class="sd">    &gt;&gt;&gt; list(b)</span>
+<span class="sd">    [3, 1, 4, 4, 4]</span>
+<span class="sd">    &gt;&gt;&gt; a.set_epoch(1)</span>
+<span class="sd">    &gt;&gt;&gt; list(a)</span>
+<span class="sd">    [4, 5, 4, 4, 3]</span>
+<span class="sd">    &gt;&gt;&gt; b.set_epoch(1)</span>
+<span class="sd">    &gt;&gt;&gt; list(b)</span>
+<span class="sd">    [4, 5, 4, 4, 3]</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">weights</span><span class="p">,</span>
+        <span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">replacement</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="mi">129491412</span><span class="p">,</span>
+        <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;generator&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">MSG</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;Cannot give a separate generator when using &quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;ReproducibleRandomSampler&quot;</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">,</span> <span class="n">replacement</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ReproducibleWeightedRandomSampler.set_epoch"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.ReproducibleWeightedRandomSampler.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        You can also just access self.epoch, but we maintain this interface</span>
+<span class="sd">        to mirror torch.utils.data.distributed.DistributedSampler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ConcatDatasetBatchSampler"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.ConcatDatasetBatchSampler">[docs]</a><span class="k">class</span> <span class="nc">ConcatDatasetBatchSampler</span><span class="p">(</span><span class="n">Sampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This sampler is built to work with a standard Pytorch ConcatDataset.</span>
+
+<span class="sd">    It is used to retrieve elements from the different concatenated datasets placing them in the same batch</span>
+<span class="sd">    with proportion specified by batch_sizes, e.g 8, 16 means each batch will</span>
+<span class="sd">    be of 24 elements with the first 8 belonging to the first dataset in ConcatDataset</span>
+<span class="sd">    object and the last 16 to the second.</span>
+<span class="sd">    More than two datasets are supported, in that case you need to provide 3 batch</span>
+<span class="sd">    sizes.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Batched are drawn from the datasets till the one with smallest length is exhausted.</span>
+<span class="sd">    Thus number of examples in your training epoch is dictated by the dataset</span>
+<span class="sd">    whose length is the smallest.</span>
+
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    samplers : int</span>
+<span class="sd">        The base seed to use for the random number generator. It is recommended</span>
+<span class="sd">        to use a value which has a good mix of 0 and 1 bits.</span>
+<span class="sd">    batch_sizes: list</span>
+<span class="sd">        Batch sizes.</span>
+<span class="sd">    epoch : int</span>
+<span class="sd">        The epoch to start at.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.sampler import ConcatDatasetBatchSampler, ReproducibleRandomSampler</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.sampler import ReproducibleRandomSampler</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.dataloader import SaveableDataLoader</span>
+<span class="sd">    &gt;&gt;&gt; # example &quot;datasets&quot;</span>
+<span class="sd">    &gt;&gt;&gt; dataset1 = torch.arange(0, 10).unsqueeze(1)</span>
+<span class="sd">    &gt;&gt;&gt; dataset2 = torch.arange(20, 40).unsqueeze(1)</span>
+<span class="sd">    &gt;&gt;&gt; tot_dataset = torch.utils.data.ConcatDataset([dataset1, dataset2])</span>
+<span class="sd">    &gt;&gt;&gt; sampler1 = ReproducibleRandomSampler(dataset1)</span>
+<span class="sd">    &gt;&gt;&gt; sampler2 = ReproducibleRandomSampler(dataset2)</span>
+<span class="sd">    &gt;&gt;&gt; tot_sampler = ConcatDatasetBatchSampler([sampler1, sampler2], [2, 4])</span>
+<span class="sd">    &gt;&gt;&gt; dataloader = SaveableDataLoader(tot_dataset, batch_sampler = tot_sampler,</span>
+<span class="sd">    ...     num_workers = 3)</span>
+<span class="sd">    &gt;&gt;&gt; for data_point in dataloader:</span>
+<span class="sd">    ...      assert len(data_point) == 6</span>
+<span class="sd">    ...      for i in range(2):</span>
+<span class="sd">    ...         assert data_point[i] in [x for x in range(0, 10)]</span>
+<span class="sd">    ...      for i in range(2, 4):</span>
+<span class="sd">    ...         assert data_point[i] in [x for x in range(10, 40)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samplers</span><span class="p">,</span> <span class="n">batch_sizes</span><span class="p">:</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">samplers</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;samplers should be a list or tuple of Pytorch Samplers, &quot;</span>
+                <span class="s2">&quot;but got samplers=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">batch_sizes</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">batch_sizes</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;batch_sizes should be a list or tuple of integers, &quot;</span>
+                <span class="s2">&quot;but got batch_sizes=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">batch_sizes</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_sizes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">samplers</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;batch_sizes and samplers should be have same length&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span> <span class="o">=</span> <span class="n">batch_sizes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samplers</span> <span class="o">=</span> <span class="n">samplers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">samplers</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_iter_one_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c_batch_size</span><span class="p">,</span> <span class="n">c_sampler</span><span class="p">,</span> <span class="n">c_offset</span><span class="p">):</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">c_sampler</span><span class="p">:</span>
+            <span class="n">batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c_offset</span> <span class="o">+</span> <span class="n">idx</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span> <span class="o">==</span> <span class="n">c_batch_size</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">batch</span>
+
+<div class="viewcode-block" id="ConcatDatasetBatchSampler.set_epoch"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.ConcatDatasetBatchSampler.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;You can also just access self.epoch, but we maintain this interface</span>
+<span class="sd">        to mirror ``torch.utils.data.distributed.DistributedSampler``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samplers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;epoch&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">samplers</span><span class="p">:</span>
+                <span class="n">s</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">iterators</span> <span class="o">=</span> <span class="p">[</span><span class="nb">iter</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">samplers</span><span class="p">]</span>
+        <span class="n">tot_batch</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">b_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">samp_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samplers</span><span class="p">)):</span>
+                <span class="n">c_batch</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">c_batch</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span><span class="p">[</span><span class="n">samp_idx</span><span class="p">]:</span>
+                    <span class="n">c_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">offsets</span><span class="p">[</span><span class="n">samp_idx</span><span class="p">]</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterators</span><span class="p">[</span><span class="n">samp_idx</span><span class="p">])</span>
+                    <span class="p">)</span>
+                <span class="n">tot_batch</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">c_batch</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">tot_batch</span>
+            <span class="n">tot_batch</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">min_len</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sampler</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">samplers</span><span class="p">):</span>
+            <span class="n">c_len</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">sampler</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+            <span class="n">min_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">c_len</span><span class="p">,</span> <span class="n">min_len</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">min_len</span></div>
+
+
+<div class="viewcode-block" id="DynamicBatchSampler"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.DynamicBatchSampler">[docs]</a><span class="k">class</span> <span class="nc">DynamicBatchSampler</span><span class="p">(</span><span class="n">Sampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This BatchSampler batches examples together by grouping them by their length.</span>
+
+<span class="sd">    Every example in the batch have approximatively the same length and</span>
+<span class="sd">    thus padding is minimized.</span>
+<span class="sd">    This enables faster training on datasets</span>
+<span class="sd">    where length of examples can vary significantly (e.g Librispeech).</span>
+<span class="sd">    Inspired by: https://www.tensorflow.org/api_docs/python/tf/data/experimental/bucket_by_sequence_length</span>
+
+<span class="sd">    Dynamic batching is performed by specifying a max_batch_length which is the</span>
+<span class="sd">    upper limit for the sum of the length of examples in a batch:</span>
+<span class="sd">    e.g., if ex1 has length 4, ex2 length 5 andn if max_batch_length is set to 6</span>
+<span class="sd">    ex1 and ex2 will be placed, alone, in two distinct batches.</span>
+
+<span class="sd">    Length for each example can be obtained in two manners.</span>
+<span class="sd">    If the input dataset is a DynamicItemDataset it can be obtained by specifying a</span>
+<span class="sd">    length_func. Default assumes a &quot;duration&quot; entry is in the annotation.</span>
+<span class="sd">    Length for each example can also be passed to this class upon instantiation</span>
+<span class="sd">    by specifying a list containing the length for each example and passing it to</span>
+<span class="sd">    lengths_list.</span>
+
+<span class="sd">    Examples are grouped together by defining a set of possible discrete intervals</span>
+<span class="sd">    (buckets) multiple of a left_bucket_length.</span>
+<span class="sd">    A bucket_length_multiplier is used to specify the number of possible buckets.</span>
+<span class="sd">    E.g., if max_batch_length = 32 and left_bucket_length = 10, bucket_length_multiplier = 2</span>
+<span class="sd">    there will be 3 buckets: [0, 10), [10, 20), [20, 40).</span>
+<span class="sd">    A common choice would be setting left_bucket_length to approximatively the length</span>
+<span class="sd">    of your shortest example in the dataset.</span>
+<span class="sd">    Decreasing bucket_length_multiplier creates more buckets in the whole interval</span>
+<span class="sd">    of [left_bucket_length, max_batch_size]: e.g. if max_batch_length = 32 and left_bucket_length = 10,</span>
+<span class="sd">    bucket_length_multiplier = 1.5 the number of buckets increases to 8.</span>
+<span class="sd">    With right boundaries: [10 12 14 17 21 25 30 36].</span>
+<span class="sd">    Thus examples with length less than 10 are all grouped together but more buckets</span>
+<span class="sd">    are created for longer examples.</span>
+<span class="sd">    Note that the bucket boundary grows exponentially using the multiplier.</span>
+
+<span class="sd">    The buckets can also be specified by passing a list to the bucket_boundaries</span>
+<span class="sd">    argument instead of specifying a left_bucket_length and a bucket_length_multiplier.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; import speechbrain as sb</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.sampler import DynamicBatchSampler</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.dataset import DynamicItemDataset</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.dataloader import SaveableDataLoader</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.dataio.batch import PaddedBatch</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; item_lengths = sorted([np.random.randint(10, 100) for x in range(20)])</span>
+<span class="sd">    &gt;&gt;&gt; dataset = {&quot;ex_{}&quot;.format(x) : {&quot;wav&quot; :torch.randn(x)} for x in item_lengths}</span>
+<span class="sd">    &gt;&gt;&gt; dataset = DynamicItemDataset(dataset)</span>
+<span class="sd">    &gt;&gt;&gt; dataset.set_output_keys([&quot;wav&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; length_func = lambda x : len(x) # trivial in this example</span>
+<span class="sd">    &gt;&gt;&gt; bsampler = DynamicBatchSampler(dataset, 20, 10, 1.1, length_func, shuffle=False)</span>
+<span class="sd">    &gt;&gt;&gt; dataloader = SaveableDataLoader(dataset, batch_sampler=bsampler, collate_fn=PaddedBatch)</span>
+<span class="sd">    &gt;&gt;&gt; for i, b in enumerate(dataloader):</span>
+<span class="sd">    ...     data, length = b[&quot;wav&quot;]</span>
+<span class="sd">    &gt;&gt;&gt; assert data.shape[-1] == max(item_lengths)</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    dataset : torch.utils.data.Dataset</span>
+<span class="sd">        Pytorch Dataset from which elements will be sampled.</span>
+<span class="sd">    max_batch_length : int</span>
+<span class="sd">        Upper limit for the sum of the length of examples in a batch.</span>
+<span class="sd">        Should be chosen based on your GPU memory.</span>
+<span class="sd">    left_bucket_length : int</span>
+<span class="sd">        Minimum length of a bucket. Specifies resolution of buckets and thus this sampler</span>
+<span class="sd">        stochasticity. A common choice is to set this to length of your</span>
+<span class="sd">        shortest example.</span>
+<span class="sd">    bucket_length_multiplier : float</span>
+<span class="sd">        Multiplier for bucket length, specifies number of buckets from left_bucket_length to</span>
+<span class="sd">        max_batch_length.</span>
+<span class="sd">    length_func : callable</span>
+<span class="sd">        Function used to get length of each example from the dataset.</span>
+<span class="sd">        This argument can be used only when the dataset is a Speechbrain DynamicItemDataset object.</span>
+<span class="sd">        Can be anything: e.g. lambda x: x[&quot;duration&quot;]*16000 returns number of samples</span>
+<span class="sd">        if duration key in the annotation is in seconds and the file has 16kHz sampling freq.</span>
+<span class="sd">    shuffle : bool</span>
+<span class="sd">        Whether or not shuffle examples between each epoch.</span>
+<span class="sd">    bucket_boundaries : list</span>
+<span class="sd">        Overrides bucket_length_multiplier and left_bucket_length by specifying manually</span>
+<span class="sd">        the buckets right boundaries.</span>
+<span class="sd">    lengths_list: list</span>
+<span class="sd">        Overrides length_func by passing a list containing the length of each example</span>
+<span class="sd">        in the dataset. This argument must be set when the dataset is a plain</span>
+<span class="sd">        Pytorch Dataset object and not a DynamicItemDataset object as length_func</span>
+<span class="sd">        cannot be used on Pytorch Datasets.</span>
+<span class="sd">    epoch : int</span>
+<span class="sd">        The epoch to start at.</span>
+<span class="sd">    drop_last : bool</span>
+<span class="sd">         If ``True``, the sampler will drop the last examples which</span>
+<span class="sd">         have not been grouped.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset</span><span class="p">,</span>
+        <span class="n">max_batch_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">left_bucket_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">bucket_length_multiplier</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span>
+        <span class="n">length_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">],</span>
+        <span class="n">shuffle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">bucket_boundaries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">lengths_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="n">epoch</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">drop_last</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ex_lengths</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ex_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">data_ids</span>
+
+        <span class="k">if</span> <span class="n">lengths_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># take length of examples from this argument and bypass length_key</span>
+            <span class="k">for</span> <span class="n">indx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lengths_list</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ex_lengths</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">indx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">lengths_list</span><span class="p">[</span><span class="n">indx</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># use length func</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">DynamicItemDataset</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="s2">&quot;Dataset should be a Speechbrain DynamicItemDataset when using length function&quot;</span>
+                <span class="p">)</span>
+            <span class="k">for</span> <span class="n">indx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ex_lengths</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">indx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">length_func</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ex_ids</span><span class="p">[</span><span class="n">indx</span><span class="p">]]</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">bucket_boundaries</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bucket_boundaries</span><span class="p">]):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;All elements in bucket boundaries should be &gt;= 1.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">bucket_boundaries</span><span class="p">))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bucket_boundaries</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Bucket_boundaries should not contain duplicates.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_data_boundaries</span><span class="p">(</span>
+                <span class="n">max_batch_length</span><span class="o">=</span><span class="n">max_batch_length</span><span class="p">,</span>
+                <span class="n">bucket_boundaries</span><span class="o">=</span><span class="n">bucket_boundaries</span><span class="p">,</span>
+                <span class="n">left_bucket_length</span><span class="o">=</span><span class="n">left_bucket_length</span><span class="p">,</span>
+                <span class="n">bucket_length_multiplier</span><span class="o">=</span><span class="n">bucket_length_multiplier</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_batch_length</span> <span class="o">=</span> <span class="n">max_batch_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shuffle</span> <span class="o">=</span> <span class="n">shuffle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seed</span> <span class="o">=</span> <span class="n">seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_drop_last</span> <span class="o">=</span> <span class="n">drop_last</span>
+        <span class="c1"># Calculate bucket lengths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_lens</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_batch_length</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span><span class="p">))</span>
+        <span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_batches</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_data_boundaries</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">max_batch_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">bucket_boundaries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">left_bucket_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">bucket_length_multiplier</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bucket_boundaries</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">left_bucket_length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;left_bucket_length must be &gt;0 if no bucket_boundaries set&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">bucket_length_multiplier</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;bucket_length_multiplier must be &gt;1.0 if no bucket_boundaries set&quot;</span>
+                <span class="p">)</span>
+            <span class="n">bucket_boundaries</span> <span class="o">=</span> <span class="p">{</span><span class="n">left_bucket_length</span><span class="p">}</span>
+            <span class="n">bucket_boundary</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">left_bucket_length</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">bucket_boundary</span> <span class="o">*=</span> <span class="n">bucket_length_multiplier</span>
+                <span class="k">if</span> <span class="n">bucket_boundary</span> <span class="o">&gt;=</span> <span class="n">max_batch_length</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">bucket_boundaries</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bucket_boundary</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">bucket_boundaries</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_generate_batches</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;DynamicBatchSampler: Generating dynamic batches&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shuffle</span><span class="p">:</span>
+            <span class="c1"># deterministically shuffle based on epoch and seed</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">()</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_seed</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_epoch</span><span class="p">)</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">),</span> <span class="n">generator</span><span class="o">=</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sampler</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_batches</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">bucket_batches</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_lens</span><span class="p">]</span>
+        <span class="n">bucket_stats</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_lens</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">sampler</span><span class="p">:</span>
+            <span class="n">item_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ex_lengths</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span>
+            <span class="n">bucket_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span><span class="p">,</span> <span class="n">item_len</span><span class="p">)</span>
+            <span class="n">bucket_batches</span><span class="p">[</span><span class="n">bucket_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+            <span class="n">bucket_stats</span><span class="p">[</span><span class="n">bucket_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bucket_batches</span><span class="p">[</span><span class="n">bucket_id</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_lens</span><span class="p">[</span><span class="n">bucket_id</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_batches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bucket_batches</span><span class="p">[</span><span class="n">bucket_id</span><span class="p">])</span>
+                <span class="n">bucket_batches</span><span class="p">[</span><span class="n">bucket_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Dump remaining batches - we might even want to shuffle those</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drop_last</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">bucket_batches</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">batch</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_batches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># only log at first epoch</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;DynamicBatchSampler: Created </span><span class="si">{}</span><span class="s2"> batches, </span><span class="si">{}</span><span class="s2"> buckets used.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_batches</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">boundaries</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bucket_boundaries</span><span class="p">)):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;DynamicBatchSampler: Bucket </span><span class="si">{}</span><span class="s2"> with boundary </span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2"> and batch_size </span><span class="si">{}</span><span class="s2"> has </span><span class="si">{}</span><span class="s2"> examples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">i</span><span class="p">,</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">boundaries</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">boundaries</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_bucket_lens</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">bucket_stats</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_batches</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">batch</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shuffle</span><span class="p">:</span>  <span class="c1"># re-generate batches only if shuffling</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_batches</span><span class="p">()</span>
+
+<div class="viewcode-block" id="DynamicBatchSampler.set_epoch"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.DynamicBatchSampler.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        You can also just access self.epoch, but we maintain this interface</span>
+<span class="sd">        to mirror torch.utils.data.distributed.DistributedSampler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_batches</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_batches</span><span class="p">)</span></div>
+
+
+<span class="c1"># Heavily inspired by Catalyst, which is under Apache 2.0 licence.</span>
+<span class="c1"># https://github.com/catalyst-team/catalyst/blob/51428d7756e62b9b8ee5379f38e9fd576eeb36e5/catalyst/data/sampler.py#L522</span>
+<div class="viewcode-block" id="DistributedSamplerWrapper"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.DistributedSamplerWrapper">[docs]</a><span class="k">class</span> <span class="nc">DistributedSamplerWrapper</span><span class="p">(</span><span class="n">DistributedSampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This wrapper allows using any sampler with Distributed Data Parallel (DDP) correctly.</span>
+
+<span class="sd">    Passing blindly the sampler to each DDP process will cause to have access</span>
+<span class="sd">    within each process to all the data in the dataset instead of only a subset</span>
+<span class="sd">    of it which is unique to each process.  This wrapper prevents this and</span>
+<span class="sd">    allows to use only a subset of the original data for each process.</span>
+
+<span class="sd">    NOTE</span>
+<span class="sd">    ----</span>
+<span class="sd">    This is is automatically applied to any sampler in the Brain class when DDP</span>
+<span class="sd">    training is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sampler</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># DistributedSampler only calls len() on dataset</span>
+        <span class="c1"># so a sampler is fine to pass there, as well.</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span> <span class="o">=</span> <span class="n">sampler</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># It is easiest to use a random access interface to the wrapped</span>
+        <span class="c1"># sampler&#39;s indices, so we just fetch all indices from the wrapped</span>
+        <span class="c1"># sampler</span>
+        <span class="n">sampler_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">__iter__</span><span class="p">())</span>
+        <span class="n">indices_of_indices</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span>
+        <span class="c1"># Itemgetter fetches the wrapped sampler indices from the positions</span>
+        <span class="c1"># pointed to by DistributedSampler</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="n">indices_of_indices</span><span class="p">)(</span><span class="n">sampler_indices</span><span class="p">))</span>
+
+<div class="viewcode-block" id="DistributedSamplerWrapper.set_epoch"><a class="viewcode-back" href="../../../speechbrain.dataio.sampler.html#speechbrain.dataio.sampler.DistributedSamplerWrapper.set_epoch">[docs]</a>    <span class="k">def</span> <span class="nf">set_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pass set_epoch() through to DistributedSampler and the wrapper one&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="p">,</span> <span class="s2">&quot;set_epoch&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+speechbrain.nnet.complex\_networks.complex\_normalization module
+================================================================
+
+.. automodule:: speechbrain.nnet.complex_networks.complex_normalization
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,1170 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.core module &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="speechbrain.yaml module" href="speechbrain.yaml.html" />
+    <link rel="prev" title="speechbrain" href="speechbrain.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="speechbrain.html">Core library (speechbrain)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="speechbrain.html">speechbrain</a> &raquo;</li>
+        
+      <li>speechbrain.core module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/speechbrain.core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-speechbrain.core">
+<span id="speechbrain-core-module"></span><h1>speechbrain.core module<a class="headerlink" href="#module-speechbrain.core" title="Permalink to this headline">¶</a></h1>
+<p>Core SpeechBrain code for running experiments.</p>
+<dl class="docutils">
+<dt>Authors</dt><dd><ul class="simple">
+<li>Peter Plantinga 2020</li>
+<li>Abdel Heba 2020</li>
+<li>Mirco Ravanelli 2020</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Classes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.core.Brain" title="speechbrain.core.Brain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Brain</span></code></a></td>
+<td>Brain class abstracts away the details of data loops.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stage</span></code></a></td>
+<td>Simple enum to track stage of experiments.</td>
+</tr>
+</tbody>
+</table>
+<p>Functions:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.core.create_experiment_directory" title="speechbrain.core.create_experiment_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_experiment_directory</span></code></a></td>
+<td>Create the output folder and relevant experimental files.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.core.parse_arguments" title="speechbrain.core.parse_arguments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_arguments</span></code></a></td>
+<td>Parse command-line arguments to the experiment.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="speechbrain.core.create_experiment_directory">
+<code class="descclassname">speechbrain.core.</code><code class="descname">create_experiment_directory</code><span class="sig-paren">(</span><em><span class="n">experiment_directory</span></em>, <em><span class="n">hyperparams_to_save</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">overrides</span><span class="o">=</span><span class="default_value">{}</span></em>, <em><span class="n">log_config</span><span class="o">=</span><span class="default_value">'/Users/titlet/CloudStation/work/speechbrain/workspace/speechbrain_fork/speechbrain/log-config.yaml'</span></em>, <em><span class="n">save_env_desc</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#create_experiment_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.create_experiment_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the output folder and relevant experimental files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>experiment_directory</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The place where the experiment directory should be created.</li>
+<li><strong>hyperparams_to_save</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – A filename of a yaml file representing the parameters for this
+experiment. If passed, references are resolved, and the result is
+written to a file in the experiment directory called “hyperparams.yaml”.</li>
+<li><strong>overrides</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – A mapping of replacements made in the yaml file, to save in yaml.</li>
+<li><strong>log_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – A yaml filename containing configuration options for the logger.</li>
+<li><strong>save_env_desc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, an environment state description is saved to the experiment
+directory, in a file called env.log in the experiment directory.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.core.parse_arguments">
+<code class="descclassname">speechbrain.core.</code><code class="descname">parse_arguments</code><span class="sig-paren">(</span><em><span class="n">arg_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#parse_arguments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.parse_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse command-line arguments to the experiment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>arg_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – A list of arguments to parse, most often from <cite>sys.argv[1:]</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>param_file</strong> (<em>str</em>) – The location of the parameters file.</li>
+<li><strong>run_opts</strong> (<em>dict</em>) – Run options, such as distributed, device, etc.</li>
+<li><strong>overrides</strong> (<em>dict</em>) – The overrides to pass to <code class="docutils literal notranslate"><span class="pre">load_hyperpyyaml</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hyperparams.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;--device&#39;</span><span class="p">,</span> <span class="s1">&#39;cuda:1&#39;</span><span class="p">,</span> <span class="s1">&#39;--seed&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span><span class="p">,</span> <span class="n">run_opts</span><span class="p">,</span> <span class="n">overrides</span> <span class="o">=</span> <span class="n">parse_arguments</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span>
+<span class="go">&#39;hyperparams.yaml&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">run_opts</span><span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">]</span>
+<span class="go">&#39;cuda:1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">overrides</span>
+<span class="go">&#39;seed: 10&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.core.Stage">
+<em class="property">class </em><code class="descclassname">speechbrain.core.</code><code class="descname">Stage</code><span class="sig-paren">(</span><em><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Stage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Stage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>Simple enum to track stage of experiments.</p>
+<dl class="py attribute">
+<dt id="speechbrain.core.Stage.TRAIN">
+<code class="descname">TRAIN</code><em class="property"> = 1</em><a class="headerlink" href="#speechbrain.core.Stage.TRAIN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.core.Stage.VALID">
+<code class="descname">VALID</code><em class="property"> = 2</em><a class="headerlink" href="#speechbrain.core.Stage.VALID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.core.Stage.TEST">
+<code class="descname">TEST</code><em class="property"> = 3</em><a class="headerlink" href="#speechbrain.core.Stage.TEST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.core.Brain">
+<em class="property">class </em><code class="descclassname">speechbrain.core.</code><code class="descname">Brain</code><span class="sig-paren">(</span><em><span class="n">modules</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">opt_class</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">hparams</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">run_opts</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">checkpointer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Brain class abstracts away the details of data loops.</p>
+<p>The primary purpose of the <cite>Brain</cite> class is the implementation of
+the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method, which iterates epochs and datasets for the
+purpose of “fitting” a set of modules to a set of data.</p>
+<p>In order to use the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method, one should sub-class the <code class="docutils literal notranslate"><span class="pre">Brain</span></code>
+class and override any methods for which the default behavior does not
+match the use case. For a simple use case (e.g., training a single model
+with a single dataset) the only methods that need to be overridden are:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">compute_forward()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">compute_objectives()</span></code></li>
+</ul>
+<p>The example below illustrates how overriding these two methods is done.</p>
+<p>For more complicated use cases, such as multiple modules that need to
+be updated, the following methods can be overridden:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">fit_batch()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">evaluate_batch()</span></code></li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>modules</strong> (<em>dict of str:torch.nn.Module pairs</em>) – These modules are passed to the optimizer by default if they have
+trainable parameters, and will have <code class="docutils literal notranslate"><span class="pre">train()</span></code>/<code class="docutils literal notranslate"><span class="pre">eval()</span></code> called on them.</li>
+<li><strong>opt_class</strong> (<em>torch.optim class</em>) – A torch optimizer constructor that has takes only the list of
+parameters (e.g. a lambda or partial function definition). By default,
+this will be passed all modules in <code class="docutils literal notranslate"><span class="pre">modules</span></code> at the
+beginning of the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method. This behavior can be changed
+by overriding the <code class="docutils literal notranslate"><span class="pre">configure_optimizers()</span></code> method.</li>
+<li><strong>hparams</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Each key:value pair should consist of a string key and a hyperparameter
+that is used within the overridden methods. These will
+be accessible via an <code class="docutils literal notranslate"><span class="pre">hparams</span></code> attribute, using “dot” notation:
+e.g., self.hparams.model(x).</li>
+<li><strong>run_opts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – <p>A set of options to change the runtime environment, including</p>
+<dl class="docutils">
+<dt>debug (bool)</dt><dd>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, this will only iterate a few batches for all
+datasets, to ensure code runs without crashing.</dd>
+<dt>debug_batches (int)</dt><dd>Number of batches to run in debug mode, Default <code class="docutils literal notranslate"><span class="pre">2</span></code>.</dd>
+<dt>debug_epochs (int)</dt><dd>Number of epochs to run in debug mode, Default <code class="docutils literal notranslate"><span class="pre">2</span></code>.
+If a non-positive number is passed, all epochs are run.</dd>
+<dt>jit_module_keys (list of str)</dt><dd>List of keys in <code class="docutils literal notranslate"><span class="pre">modules</span></code> that should be jit compiled.</dd>
+<dt>distributed_count (int)</dt><dd>Number of devices to run on.</dd>
+<dt>distributed_backend (str)</dt><dd>One of <code class="docutils literal notranslate"><span class="pre">ddp_nccl</span></code>, <code class="docutils literal notranslate"><span class="pre">ddp_gloo</span></code>, <code class="docutils literal notranslate"><span class="pre">ddp_mpi</span></code>, <code class="docutils literal notranslate"><span class="pre">data_parallel</span></code>.</dd>
+<dt>device (str)</dt><dd>The location for performing computations.</dd>
+<dt>auto_mix_prec (bool)</dt><dd>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, automatic mixed-precision is used.
+Activate it only with cuda.</dd>
+<dt>max_grad_norm (float)</dt><dd>Default implementation of <code class="docutils literal notranslate"><span class="pre">fit_batch()</span></code> uses
+<code class="docutils literal notranslate"><span class="pre">clip_grad_norm_</span></code> with this value. Default: <code class="docutils literal notranslate"><span class="pre">5</span></code>.</dd>
+<dt>nonfinite_patience (int)</dt><dd>Number of times to ignore non-finite losses before stopping.
+Default: <code class="docutils literal notranslate"><span class="pre">3</span></code>.</dd>
+<dt>progressbar (bool)</dt><dd>Whether to display a progressbar when training. Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</dd>
+<dt>ckpt_interval_minutes (float)</dt><dd>Amount of time between saving intra-epoch checkpoints,
+in minutes, default: <code class="docutils literal notranslate"><span class="pre">15.0</span></code>. If non-positive, these are not saved.</dd>
+</dl>
+</li>
+<li><strong>checkpointer</strong> (<em>speechbrain.Checkpointer</em>) – By default, this will be used to load checkpoints, and will have the
+optimizer added to continue training if interrupted.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">torch.optim</span> <span class="k">import</span> <span class="n">SGD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SimpleBrain</span><span class="p">(</span><span class="n">Brain</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">compute_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">stage</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">compute_objectives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">stage</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">l1_loss</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">brain</span> <span class="o">=</span> <span class="n">SimpleBrain</span><span class="p">({</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">},</span> <span class="n">opt_class</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">SGD</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">brain</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)],))</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.core.Brain.compute_forward">
+<code class="descname">compute_forward</code><span class="sig-paren">(</span><em><span class="n">batch</span></em>, <em><span class="n">stage</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.compute_forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.compute_forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward pass, to be overridden by sub-classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>batch</strong> (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.Tensor</em></a><em> or </em><em>tensors</em>) – An element from the dataloader, including inputs for processing.</li>
+<li><strong>stage</strong> (<a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><em>Stage</em></a>) – The stage of the experiment: Stage.TRAIN, Stage.VALID, Stage.TEST</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The outputs after all processing is complete.
+Directly passed to <code class="docutils literal notranslate"><span class="pre">compute_objectives()</span></code>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))">torch.Tensor</a> or Tensors</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.compute_objectives">
+<code class="descname">compute_objectives</code><span class="sig-paren">(</span><em><span class="n">predictions</span></em>, <em><span class="n">batch</span></em>, <em><span class="n">stage</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.compute_objectives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.compute_objectives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute loss, to be overridden by sub-classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>predictions</strong> (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.Tensor</em></a><em> or </em><em>Tensors</em>) – The output tensor or tensors to evaluate.
+Comes directly from <code class="docutils literal notranslate"><span class="pre">compute_forward()</span></code>.</li>
+<li><strong>batch</strong> (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.Tensor</em></a><em> or </em><em>tensors</em>) – An element from the dataloader, including targets for comparison.</li>
+<li><strong>stage</strong> (<a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><em>Stage</em></a>) – The stage of the experiment: Stage.TRAIN, Stage.VALID, Stage.TEST</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>loss</strong> – A tensor with the computed loss.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))">torch.Tensor</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.on_stage_start">
+<code class="descname">on_stage_start</code><span class="sig-paren">(</span><em><span class="n">stage</span></em>, <em><span class="n">epoch</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.on_stage_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.on_stage_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets called when a stage starts.</p>
+<p>Useful for defining class variables used during the stage.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stage</strong> (<a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><em>Stage</em></a>) – The stage of the experiment: Stage.TRAIN, Stage.VALID, Stage.TEST</li>
+<li><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The current epoch count.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.on_stage_end">
+<code class="descname">on_stage_end</code><span class="sig-paren">(</span><em><span class="n">stage</span></em>, <em><span class="n">stage_loss</span></em>, <em><span class="n">epoch</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.on_stage_end"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.on_stage_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets called at the end of a stage.</p>
+<p>Useful for computing stage statistics, saving checkpoints, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stage</strong> (<a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><em>Stage</em></a>) – The stage of the experiment: Stage.TRAIN, Stage.VALID, Stage.TEST</li>
+<li><strong>stage_loss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The average loss over the completed stage.</li>
+<li><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The current epoch count.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.make_dataloader">
+<code class="descname">make_dataloader</code><span class="sig-paren">(</span><em><span class="n">dataset</span></em>, <em><span class="n">stage</span></em>, <em><span class="n">ckpt_prefix</span><span class="o">=</span><span class="default_value">'dataloader-'</span></em>, <em><span class="o">**</span><span class="n">loader_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.make_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.make_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates DataLoaders for Datasets.</p>
+<p>This is used by <code class="docutils literal notranslate"><span class="pre">fit()</span></code> and <code class="docutils literal notranslate"><span class="pre">evaluate()</span></code> if they just receive
+Datasets.</p>
+<p>Alternatively, this can be called from outside the Brain subclass.
+In that case, the DataLoader should be passed to <code class="docutils literal notranslate"><span class="pre">fit()</span></code> in place
+of the dataset.</p>
+<p>The Stage.TRAIN DataLoader is handled specially. It has extra args for
+shuffle and drop_last. In DDP a DistributedSampler is created (unless
+the dataset is an IterableDataset).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some important DataLoader arguments are passed via <a href="#id1"><span class="problematic" id="id2">**</span></a>loader_kwargs,
+e.g., batch_size, num_workers, pin_memory.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, <code class="docutils literal notranslate"><span class="pre">evaluate()</span></code> specifies ckpt_prefix=None to stop the test
+DataLoader being added to the checkpointer. If you need to add a
+recoverable after saving checkpoints (e.g., at test time, after
+checkpointing the training), and still be able to recover reasonably,
+you should probably specify <code class="docutils literal notranslate"><span class="pre">allow_partial_load=True</span></code>.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dataset</strong> (<em>Dataset</em>) – A set of data to use to create data loader. If the Dataset is a
+DynamicItemDataset, PaddedBatch is used as the default collate_fn,
+unless specified in loader_kwargs.</li>
+<li><strong>stage</strong> (<a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><em>Stage</em></a>) – The stage of the experiment: Stage.TRAIN, Stage.VALID, Stage.TEST</li>
+<li><strong>ckpt_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – Prefix to use for SaveableDataLoader Checkpoint name. The Stage
+name is added to this to create the full key. Set to None to not
+save the DataLoader.</li>
+<li><strong>**loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Additional keyword arguments to the DataLoader.
+E.g., batch_size, num_workers, pin_memory.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.on_fit_start">
+<code class="descname">on_fit_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.on_fit_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.on_fit_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets called at the beginning of <code class="docutils literal notranslate"><span class="pre">fit()</span></code>, on multiple processes
+if <code class="docutils literal notranslate"><span class="pre">distributed_count</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> and backend is ddp.</p>
+<p>Default implementation compiles the jit modules, initializes
+optimizers, and loads the latest checkpoint to resume training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.init_optimizers">
+<code class="descname">init_optimizers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.init_optimizers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.init_optimizers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called during <code class="docutils literal notranslate"><span class="pre">on_fit_start()</span></code>, initialize optimizers
+after parameters are fully configured (e.g. DDP, jit).</p>
+<p>The default implementation of this method depends on an optimizer
+class being passed at initialization that takes only a list
+of parameters (e.g., a lambda or a partial function definition).
+This creates a single optimizer that optimizes all trainable params.</p>
+<p>Override this class if there are multiple optimizers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.on_evaluate_start">
+<code class="descname">on_evaluate_start</code><span class="sig-paren">(</span><em><span class="n">max_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_key</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.on_evaluate_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.on_evaluate_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets called at the beginning of <code class="docutils literal notranslate"><span class="pre">evaluate()</span></code></p>
+<p>Default implementation loads the best-performing checkpoint for
+evaluation, based on stored metrics.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>max_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Key to use for finding best checkpoint (higher is better).
+By default, passed to <code class="docutils literal notranslate"><span class="pre">self.checkpointer.recover_if_possible()</span></code>.</li>
+<li><strong>min_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Key to use for finding best checkpoint (lower is better).
+By default, passed to <code class="docutils literal notranslate"><span class="pre">self.checkpointer.recover_if_possible()</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.fit_batch">
+<code class="descname">fit_batch</code><span class="sig-paren">(</span><em><span class="n">batch</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.fit_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.fit_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit one batch, override to do multiple updates.</p>
+<p>The default implementation depends on a few methods being defined
+with a particular behavior:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">compute_forward()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">compute_objectives()</span></code></li>
+</ul>
+<p>Also depends on having optimizers passed at initialization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>batch</strong> (<em>list of torch.Tensors</em>) – Batch of data to use for training. Default implementation assumes
+this batch has two elements: inputs and targets.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">detached loss</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.check_gradients">
+<code class="descname">check_gradients</code><span class="sig-paren">(</span><em><span class="n">loss</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.check_gradients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.check_gradients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if gradients are finite and not too large.</p>
+<p>Automatically clips large gradients.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>loss</strong> (<em>tensor</em>) – The loss tensor after <code class="docutils literal notranslate"><span class="pre">backward()</span></code> has been called but
+before the optimizers <code class="docutils literal notranslate"><span class="pre">step()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether or not the optimizer step should be carried out.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.evaluate_batch">
+<code class="descname">evaluate_batch</code><span class="sig-paren">(</span><em><span class="n">batch</span></em>, <em><span class="n">stage</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.evaluate_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.evaluate_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate one batch, override for different procedure than train.</p>
+<p>The default implementation depends on two methods being defined
+with a particular behavior:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">compute_forward()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">compute_objectives()</span></code></li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>batch</strong> (<em>list of torch.Tensors</em>) – Batch of data to use for evaluation. Default implementation assumes
+this batch has two elements: inputs and targets.</li>
+<li><strong>stage</strong> (<a class="reference internal" href="#speechbrain.core.Stage" title="speechbrain.core.Stage"><em>Stage</em></a>) – The stage of the experiment: Stage.VALID, Stage.TEST</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">detached loss</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em><span class="n">epoch_counter</span></em>, <em><span class="n">train_set</span></em>, <em><span class="n">valid_set</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">progressbar</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">train_loader_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em>, <em><span class="n">valid_loader_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate epochs and datasets to improve objective.</p>
+<p>Relies on the existence of multiple functions that can (or should) be
+overridden. The following methods are used and expected to have a
+certain behavior:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">fit_batch()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">evaluate_batch()</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">update_average()</span></code></li>
+</ul>
+<p>If the initialization was done with distributed_count &gt; 0 and the
+distributed_backend is ddp, this will generally handle multiprocess
+logic, like splitting the training data into subsets for each device and
+only saving a checkpoint on the main process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>epoch_counter</strong> (<em>iterable</em>) – Each call should return an integer indicating the epoch count.</li>
+<li><strong>train_set</strong> (<em>Dataset</em><em>, </em><em>DataLoader</em>) – A set of data to use for training. If a Dataset is given, a
+DataLoader is automatically created. If a DataLoader is given, it is
+used directly.</li>
+<li><strong>valid_set</strong> (<em>Dataset</em><em>, </em><em>DataLoader</em>) – A set of data to use for validation. If a Dataset is given, a
+DataLoader is automatically created. If a DataLoader is given, it is
+used directly.</li>
+<li><strong>train_loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Kwargs passed to <cite>make_dataloader()</cite> for making the train_loader
+(if train_set is a Dataset, not DataLoader).
+E.G. batch_size, num_workers.
+DataLoader kwargs are all valid.</li>
+<li><strong>valid_loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Kwargs passed to <cite>make_dataloader()</cite> for making the valid_loader
+(if valid_set is a Dataset, not DataLoader).
+E.g., batch_size, num_workers.
+DataLoader kwargs are all valid.</li>
+<li><strong>progressbar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to display the progress of each epoch in a progressbar.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em><span class="n">test_set</span></em>, <em><span class="n">max_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">progressbar</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">test_loader_kwargs</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate test_set and evaluate brain performance. By default, loads
+the best-performing checkpoint (as recorded using the checkpointer).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>test_set</strong> (<em>Dataset</em><em>, </em><em>DataLoader</em>) – If a DataLoader is given, it is iterated directly. Otherwise passed
+to <code class="docutils literal notranslate"><span class="pre">self.make_dataloader()</span></code>.</li>
+<li><strong>max_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Key to use for finding best checkpoint, passed to
+<code class="docutils literal notranslate"><span class="pre">on_evaluate_start()</span></code>.</li>
+<li><strong>min_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Key to use for finding best checkpoint, passed to
+<code class="docutils literal notranslate"><span class="pre">on_evaluate_start()</span></code>.</li>
+<li><strong>progressbar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to display the progress in a progressbar.</li>
+<li><strong>test_loader_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Kwargs passed to <code class="docutils literal notranslate"><span class="pre">make_dataloader()</span></code> if <code class="docutils literal notranslate"><span class="pre">test_set</span></code> is not a
+DataLoader. NOTE: <code class="docutils literal notranslate"><span class="pre">loader_kwargs[&quot;ckpt_prefix&quot;]</span></code> gets
+automatically overwritten to <code class="docutils literal notranslate"><span class="pre">None</span></code> (so that the test DataLoader
+is not added to the checkpointer).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">average test loss</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.core.Brain.update_average">
+<code class="descname">update_average</code><span class="sig-paren">(</span><em><span class="n">loss</span></em>, <em><span class="n">avg_loss</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/core.html#Brain.update_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.core.Brain.update_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update running average of the loss.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>loss</strong> (<em>torch.tensor</em>) – detached loss, a single float value.</li>
+<li><strong>avg_loss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – current running average.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>avg_loss</strong> – The average loss.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speechbrain.yaml.html" class="btn btn-neutral float-right" title="speechbrain.yaml module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speechbrain.html" class="btn btn-neutral float-left" title="speechbrain" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

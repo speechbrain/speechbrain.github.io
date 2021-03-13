@@ -122,6 +122,13 @@ button:focus {
     font-weight: bold;
     margin-bottom: 15px;
     text-transform: uppercase; }
+    .main_title h3 {
+      font-family: "Lato", sans-serif;
+      font-size: 24px;
+      color: #222222;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-top: 20px;}
   .main_title p {
     font-size: 16px;
     font-family: "Lato", sans-serif;
@@ -165,6 +172,16 @@ button:focus {
   .main_title.white p {
     color: #fff;
     opacity: .6; }
+
+.discourse{
+
+}
+.discourse img{
+  width:40px;
+}
+.discourse p{
+  max-width: 800px;
+}
 
 /* End Main Title Area css
 ============================================================================================ */
@@ -2636,6 +2653,27 @@ h6 {
 
 .banner_btn2 {
   display: inline-block;
+  background: rgba(255, 255, 255, 0.5);
+  color: white;
+  font-family: "Lato", sans-serif;
+  width: 134px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  line-height: 48px;
+  border-radius: 3px;
+  outline: none !important;
+  box-shadow: none !important;
+  text-align: center;
+  cursor: pointer;
+  transition: all 300ms linear 0s; }
+  .banner_btn2:hover {
+    background: #fff;
+    color: #222222;
+    border-color: #fff; }
+
+.banner_btn3 {
+  display: inline-block;
   background: white;
   color: #222222;
   font-family: "Lato", sans-serif;
@@ -2650,10 +2688,32 @@ h6 {
   text-align: center;
   cursor: pointer;
   transition: all 300ms linear 0s; }
-  .banner_btn2:hover {
+  .banner_btn3:hover {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     border-color: #fff; }
+
+.banner_btn4 {
+  display: inline-block;
+  background: white;
+  color: #222222;
+  font-family: "Lato", sans-serif;
+  width: 70px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  line-height: 70px;
+  border-radius: 70px;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-left:10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 300ms linear 0s; }
+  .banner_btn4:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: #fff; }”
 
 .white_bg_btn {
   background: #fff;

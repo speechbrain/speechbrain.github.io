@@ -1,0 +1,8 @@
+
+speechbrain.data\_io.dataloader
+===============================
+
+.. automodule:: speechbrain.data_io.dataloader
+   :members:
+   :undoc-members:
+   :show-inheritance:

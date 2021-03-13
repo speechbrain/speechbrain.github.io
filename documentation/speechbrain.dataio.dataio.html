@@ -1,0 +1,1578 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.dataio.dataio module &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="speechbrain.dataio.dataloader module" href="speechbrain.dataio.dataloader.html" />
+    <link rel="prev" title="speechbrain.dataio.batch module" href="speechbrain.dataio.batch.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="speechbrain.html">Core library (speechbrain)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechbrain.dataio.html">speechbrain.dataio</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="speechbrain.html">speechbrain</a> &raquo;</li>
+        
+          <li><a href="speechbrain.dataio.html">speechbrain.dataio</a> &raquo;</li>
+        
+      <li>speechbrain.dataio.dataio module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/speechbrain.dataio.dataio.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-speechbrain.dataio.dataio">
+<span id="speechbrain-dataio-dataio-module"></span><h1>speechbrain.dataio.dataio module<a class="headerlink" href="#module-speechbrain.dataio.dataio" title="Permalink to this headline">¶</a></h1>
+<p>Data reading and writing.</p>
+<dl class="docutils">
+<dt>Authors</dt><dd><ul class="simple">
+<li>Mirco Ravanelli 2020</li>
+<li>Aku Rouhe 2020</li>
+<li>Ju-Chieh Chou 2020</li>
+<li>Samuele Cornell 2020</li>
+<li>Abdel HEBA 2020</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Classes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.IterativeCSVWriter" title="speechbrain.dataio.dataio.IterativeCSVWriter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IterativeCSVWriter</span></code></a></td>
+<td>Write CSV files a line at a time.</td>
+</tr>
+</tbody>
+</table>
+<p>Functions:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.append_eos_token" title="speechbrain.dataio.dataio.append_eos_token"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_eos_token</span></code></a></td>
+<td>Create labels with &lt;eos&gt; token appended.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.convert_index_to_lab" title="speechbrain.dataio.dataio.convert_index_to_lab"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_index_to_lab</span></code></a></td>
+<td>Convert a batch of integer IDs to string labels.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.get_md5" title="speechbrain.dataio.dataio.get_md5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_md5</span></code></a></td>
+<td>Get the md5 checksum of an input file.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.length_to_mask" title="speechbrain.dataio.dataio.length_to_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length_to_mask</span></code></a></td>
+<td>Creates a binary mask for each sequence.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.load_data_csv" title="speechbrain.dataio.dataio.load_data_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_data_csv</span></code></a></td>
+<td>Loads CSV and formats string values.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.load_data_json" title="speechbrain.dataio.dataio.load_data_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_data_json</span></code></a></td>
+<td>Loads JSON and recursively formats string values.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.load_pickle" title="speechbrain.dataio.dataio.load_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_pickle</span></code></a></td>
+<td>Utility function for loading .pkl pickle files.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.load_pkl" title="speechbrain.dataio.dataio.load_pkl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_pkl</span></code></a></td>
+<td>Loads a pkl file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.merge_char" title="speechbrain.dataio.dataio.merge_char"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_char</span></code></a></td>
+<td>Merge characters sequences into word sequences.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.merge_csvs" title="speechbrain.dataio.dataio.merge_csvs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_csvs</span></code></a></td>
+<td>Merging several csv files into one file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.prepend_bos_token" title="speechbrain.dataio.dataio.prepend_bos_token"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepend_bos_token</span></code></a></td>
+<td>Create labels with &lt;bos&gt; token at the beginning.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.read_audio" title="speechbrain.dataio.dataio.read_audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_audio</span></code></a></td>
+<td>General audio loading, based on a custom notation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.read_audio_multichannel" title="speechbrain.dataio.dataio.read_audio_multichannel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_audio_multichannel</span></code></a></td>
+<td>General audio loading, based on a custom notation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.read_kaldi_lab" title="speechbrain.dataio.dataio.read_kaldi_lab"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_kaldi_lab</span></code></a></td>
+<td>Read labels in kaldi format.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.relative_time_to_absolute" title="speechbrain.dataio.dataio.relative_time_to_absolute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">relative_time_to_absolute</span></code></a></td>
+<td>Converts SpeechBrain style relative length to the absolute duration.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.save_md5" title="speechbrain.dataio.dataio.save_md5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_md5</span></code></a></td>
+<td>Saves the md5 of a list of input files as a pickled dict into a file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.save_pkl" title="speechbrain.dataio.dataio.save_pkl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_pkl</span></code></a></td>
+<td>Save an object in pkl format.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.split_word" title="speechbrain.dataio.dataio.split_word"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_word</span></code></a></td>
+<td>Split word sequences into character sequences.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.to_doubleTensor" title="speechbrain.dataio.dataio.to_doubleTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_doubleTensor</span></code></a></td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param x:</th><td class="field-body">Input data to be converted to torch double.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.to_floatTensor" title="speechbrain.dataio.dataio.to_floatTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_floatTensor</span></code></a></td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param x:</th><td class="field-body">Input data to be converted to torch float.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.to_longTensor" title="speechbrain.dataio.dataio.to_longTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_longTensor</span></code></a></td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param x:</th><td class="field-body">Input data to be converted to torch long.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.write_audio" title="speechbrain.dataio.dataio.write_audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_audio</span></code></a></td>
+<td>Write audio on disk.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.dataio.write_stdout" title="speechbrain.dataio.dataio.write_stdout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_stdout</span></code></a></td>
+<td>Write data to standard output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.dataio.write_txt_file" title="speechbrain.dataio.dataio.write_txt_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_txt_file</span></code></a></td>
+<td>Write data in text format.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.load_data_json">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">load_data_json</code><span class="sig-paren">(</span><em><span class="n">json_path</span></em>, <em><span class="n">replacements</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#load_data_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.load_data_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads JSON and recursively formats string values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>json_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to CSV file.</li>
+<li><strong>replacements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – (Optional dict), e.g., {“data_folder”: “/home/speechbrain/data”}.
+This is used to recursively format all string values in the data.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">JSON data with replacements applied.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">json_spec</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;{</span>
+<span class="gp">... </span><span class="s1">  &quot;ex1&quot;: {&quot;files&quot;: [&quot;</span><span class="si">{ROOT}</span><span class="s1">/mic1/ex1.wav&quot;, &quot;</span><span class="si">{ROOT}</span><span class="s1">/mic2/ex1.wav&quot;], &quot;id&quot;: 1},</span>
+<span class="gp">... </span><span class="s1">  &quot;ex2&quot;: {&quot;files&quot;: [{&quot;spk1&quot;: &quot;</span><span class="si">{ROOT}</span><span class="s1">/ex2.wav&quot;}, {&quot;spk2&quot;: &quot;</span><span class="si">{ROOT}</span><span class="s1">/ex2.wav&quot;}], &quot;id&quot;: 2}</span>
+<span class="gp">... </span><span class="s1">}</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tmpfile</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;test.json&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json_spec</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">load_data_json</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ROOT&quot;</span><span class="p">:</span> <span class="s2">&quot;/home&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;ex1&quot;</span><span class="p">][</span><span class="s2">&quot;files&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;/home/mic1/ex1.wav&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;ex2&quot;</span><span class="p">][</span><span class="s2">&quot;files&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;spk2&quot;</span><span class="p">]</span>
+<span class="go">&#39;/home/ex2.wav&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.load_data_csv">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">load_data_csv</code><span class="sig-paren">(</span><em><span class="n">csv_path</span></em>, <em><span class="n">replacements</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#load_data_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.load_data_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads CSV and formats string values.</p>
+<p>Uses the SpeechBrain legacy CSV data format, where the CSV must have an
+‘ID’ field.
+If there is a field called duration, it is interpreted as a float.
+The rest of the fields are left as they are (legacy _format and _opts fields
+are not used to load the data in any special way).</p>
+<p>Bash-like string replacements with $to_replace are supported.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>csv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to CSV file.</li>
+<li><strong>replacements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – (Optional dict), e.g., {“data_folder”: “/home/speechbrain/data”}
+This is used to recursively format all string values in the data.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">CSV data with replacements applied.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csv_spec</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;ID,duration,wav_path</span>
+<span class="gp">... </span><span class="s1">utt1,1.45,$data_folder/utt1.wav</span>
+<span class="gp">... </span><span class="s1">utt2,2.0,$data_folder/utt2.wav</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tmpfile</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s2">&quot;tmpdir&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;test.csv&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">csv_spec</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">load_data_csv</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;data_folder&quot;</span><span class="p">:</span> <span class="s2">&quot;/home&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;utt1&quot;</span><span class="p">][</span><span class="s2">&quot;wav_path&quot;</span><span class="p">]</span>
+<span class="go">&#39;/home/utt1.wav&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.read_audio">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">read_audio</code><span class="sig-paren">(</span><em><span class="n">waveforms_obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#read_audio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.read_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>General audio loading, based on a custom notation.</p>
+<p>Expected use case is in conjunction with Datasets
+specified by JSON.</p>
+<p>The custom notation:</p>
+<p>The annotation can be just a path to a file:
+“/path/to/wav1.wav”</p>
+<p>Or can specify more options in a dict:
+{“file”: “/path/to/wav2.wav”,
+“start”: 8000,
+“stop”: 16000
+}</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>waveforms_obj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Audio reading annotation, see above for format.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Audio tensor with shape: (samples, ).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))">torch.Tensor</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dummywav</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tmpfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)),</span>  <span class="s2">&quot;wave.wav&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_audio</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="n">dummywav</span><span class="p">,</span> <span class="mi">16000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asr_example</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;wav&quot;</span><span class="p">:</span> <span class="n">tmpfile</span><span class="p">,</span> <span class="s2">&quot;spk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;words&quot;</span><span class="p">:</span> <span class="s2">&quot;foo bar&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded</span> <span class="o">=</span> <span class="n">read_audio</span><span class="p">(</span><span class="n">asr_example</span><span class="p">[</span><span class="s2">&quot;wav&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dummywav</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">atol</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># replace with eq with sox_io backend</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.read_audio_multichannel">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">read_audio_multichannel</code><span class="sig-paren">(</span><em><span class="n">waveforms_obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#read_audio_multichannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.read_audio_multichannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>General audio loading, based on a custom notation.</p>
+<p>Expected use case is in conjunction with Datasets
+specified by JSON.</p>
+<p>The custom notation:</p>
+<p>The annotation can be just a path to a file:
+“/path/to/wav1.wav”</p>
+<p>Multiple (possibly multi-channel) files can be specified, as long as they
+have the same length:
+{“files”: [</p>
+<blockquote>
+<div>“/path/to/wav1.wav”,
+“/path/to/wav2.wav”
+]</div></blockquote>
+<p>}</p>
+<p>Or you can specify a single file more succinctly:
+{“files”: “/path/to/wav2.wav”}</p>
+<p>Offset number samples and stop number samples also can be specified to read
+only a segment within the files.
+{“files”: [</p>
+<blockquote>
+<div>“/path/to/wav1.wav”,
+“/path/to/wav2.wav”
+]</div></blockquote>
+<p>“start”: 8000
+“stop”: 16000
+}</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>waveforms_obj</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Audio reading annotation, see above for format.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Audio tensor with shape: (samples, ).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))">torch.Tensor</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dummywav</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tmpfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)),</span>  <span class="s2">&quot;wave.wav&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_audio</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="n">dummywav</span><span class="p">,</span> <span class="mi">16000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asr_example</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;wav&quot;</span><span class="p">:</span> <span class="n">tmpfile</span><span class="p">,</span> <span class="s2">&quot;spk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;words&quot;</span><span class="p">:</span> <span class="s2">&quot;foo bar&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded</span> <span class="o">=</span> <span class="n">read_audio</span><span class="p">(</span><span class="n">asr_example</span><span class="p">[</span><span class="s2">&quot;wav&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dummywav</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">atol</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># replace with eq with sox_io backend</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.write_audio">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">write_audio</code><span class="sig-paren">(</span><em><span class="n">filepath</span></em>, <em><span class="n">audio</span></em>, <em><span class="n">samplerate</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#write_audio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.write_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write audio on disk. It is basically a wrapper to support saving
+audio signals in the speechbrain format (audio, channels).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filepath</strong> (<em>path</em>) – Path where to save the audio file.</li>
+<li><strong>audio</strong> (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.Tensor</em></a>) – Audio file in the expected speechbrain format (signal, channels).</li>
+<li><strong>samplerate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sample rate (e.g., 16000).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tmpfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)),</span>  <span class="s2">&quot;wave.wav&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dummywav</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_audio</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">,</span> <span class="n">dummywav</span><span class="p">,</span> <span class="mi">16000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded</span> <span class="o">=</span> <span class="n">read_audio</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dummywav</span><span class="p">,</span><span class="n">atol</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># replace with eq with sox_io backend</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.load_pickle">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">load_pickle</code><span class="sig-paren">(</span><em><span class="n">pickle_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#load_pickle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.load_pickle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function for loading .pkl pickle files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pickle_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to pickle file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>out</strong> – Python object loaded from pickle.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)">object</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.to_floatTensor">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">to_floatTensor</code><span class="sig-paren">(</span><em>x: (&lt;class 'list'&gt;</em>, <em>&lt;class 'tuple'&gt;</em>, <em>&lt;class 'numpy.ndarray'&gt;)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#to_floatTensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.to_floatTensor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>np.ndarray</em><em>)</em>) – Input data to be converted to torch float.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>tensor</strong> – Data now in torch.tensor float datatype.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">torch.tensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.to_doubleTensor">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">to_doubleTensor</code><span class="sig-paren">(</span><em>x: (&lt;class 'list'&gt;</em>, <em>&lt;class 'tuple'&gt;</em>, <em>&lt;class 'numpy.ndarray'&gt;)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#to_doubleTensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.to_doubleTensor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>np.ndarray</em><em>)</em>) – Input data to be converted to torch double.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>tensor</strong> – Data now in torch.tensor double datatype.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">torch.tensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.to_longTensor">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">to_longTensor</code><span class="sig-paren">(</span><em>x: (&lt;class 'list'&gt;</em>, <em>&lt;class 'tuple'&gt;</em>, <em>&lt;class 'numpy.ndarray'&gt;)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#to_longTensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.to_longTensor" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>np.ndarray</em><em>)</em>) – Input data to be converted to torch long.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>tensor</strong> – Data now in torch.tensor long datatype.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">torch.tensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.convert_index_to_lab">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">convert_index_to_lab</code><span class="sig-paren">(</span><em><span class="n">batch</span></em>, <em><span class="n">ind2lab</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#convert_index_to_lab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.convert_index_to_lab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a batch of integer IDs to string labels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>batch</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of lists, a batch of sequences.</li>
+<li><strong>ind2lab</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Mapping from integer IDs to labels.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of lists, same size as batch, with labels from ind2lab.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind2lab</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;o&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span> <span class="o">=</span> <span class="n">convert_index_to_lab</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]],</span> <span class="n">ind2lab</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+<span class="go">oh</span>
+<span class="go">hello</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.relative_time_to_absolute">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">relative_time_to_absolute</code><span class="sig-paren">(</span><em><span class="n">batch</span></em>, <em><span class="n">relative_lens</span></em>, <em><span class="n">rate</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#relative_time_to_absolute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.relative_time_to_absolute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts SpeechBrain style relative length to the absolute duration.</p>
+<p>Operates on batch level.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>batch</strong> (<em>torch.tensor</em>) – Sequences to determine the duration for.</li>
+<li><strong>relative_lens</strong> (<em>torch.tensor</em>) – The relative length of each sequence in batch. The longest sequence in
+the batch needs to have relative length 1.0.</li>
+<li><strong>rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The rate at which sequence elements occur in real-world time. Sample
+rate, if batch is raw wavs (recommended) or 1/frame_shift if batch is
+features. This has to have 1/s as the unit.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Duration of each sequence in seconds.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">torch.tensor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">relative_lens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.</span><span class="o">/</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rate</span> <span class="o">=</span> <span class="mi">16000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">relative_time_to_absolute</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">relative_lens</span><span class="p">,</span> <span class="n">rate</span><span class="p">))</span>
+<span class="go">tensor([0.7500, 1.0000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.dataio.dataio.IterativeCSVWriter">
+<em class="property">class </em><code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">IterativeCSVWriter</code><span class="sig-paren">(</span><em><span class="n">outstream</span></em>, <em><span class="n">data_fields</span></em>, <em><span class="n">defaults</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#IterativeCSVWriter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.IterativeCSVWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Write CSV files a line at a time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>outstream</strong> (<em>file-object</em>) – A writeable stream</li>
+<li><strong>data_fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of the optional keys to write. Each key will be expanded to the
+SpeechBrain format, producing three fields: key, key_format, key_opts.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">io</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writer</span> <span class="o">=</span> <span class="n">IterativeCSVWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;phn&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<span class="go">ID,duration,phn,phn_format,phn_opts</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;UTT1&quot;</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="s2">&quot;sil hh ee ll ll oo sil&quot;</span><span class="p">,</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<span class="go">ID,duration,phn,phn_format,phn_opts</span>
+<span class="go">UTT1,2.5,sil hh ee ll ll oo sil,string,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ID</span><span class="o">=</span><span class="s2">&quot;UTT2&quot;</span><span class="p">,</span><span class="n">phn</span><span class="o">=</span><span class="s2">&quot;sil ww oo rr ll dd sil&quot;</span><span class="p">,</span><span class="n">phn_format</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<span class="go">ID,duration,phn,phn_format,phn_opts</span>
+<span class="go">UTT1,2.5,sil hh ee ll ll oo sil,string,</span>
+<span class="go">UTT2,,sil ww oo rr ll dd sil,string,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writer</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="s1">&#39;phn_format&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writer</span><span class="o">.</span><span class="n">write_batch</span><span class="p">(</span><span class="n">ID</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;UTT3&quot;</span><span class="p">,</span><span class="s2">&quot;UTT4&quot;</span><span class="p">],</span><span class="n">phn</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ff oo oo&quot;</span><span class="p">,</span> <span class="s2">&quot;bb aa rr&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<span class="go">ID,duration,phn,phn_format,phn_opts</span>
+<span class="go">UTT1,2.5,sil hh ee ll ll oo sil,string,</span>
+<span class="go">UTT2,,sil ww oo rr ll dd sil,string,</span>
+<span class="go">UTT3,,ff oo oo,string,</span>
+<span class="go">UTT4,,bb aa rr,string,</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.dataio.dataio.IterativeCSVWriter.set_default">
+<code class="descname">set_default</code><span class="sig-paren">(</span><em><span class="n">field</span></em>, <em><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#IterativeCSVWriter.set_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.IterativeCSVWriter.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a default value for the given CSV field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – A field in the CSV.</li>
+<li><strong>value</strong> – The default value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.dataio.IterativeCSVWriter.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em><span class="o">*</span><span class="n">args</span></em>, <em><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#IterativeCSVWriter.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.IterativeCSVWriter.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes one data line into the CSV.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> – Supply every field with a value in positional form OR.</li>
+<li><strong>**kwargs</strong> – Supply certain fields by key. The ID field is mandatory for all
+lines, but others can be left empty.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.dataio.IterativeCSVWriter.write_batch">
+<code class="descname">write_batch</code><span class="sig-paren">(</span><em><span class="o">*</span><span class="n">args</span></em>, <em><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#IterativeCSVWriter.write_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.IterativeCSVWriter.write_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a batch of lines into the CSV.</p>
+<p>Here each argument should be a list with the same length.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> – Supply every field with a value in positional form OR.</li>
+<li><strong>**kwargs</strong> – Supply certain fields by key. The ID field is mandatory for all
+lines, but others can be left empty.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.write_txt_file">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">write_txt_file</code><span class="sig-paren">(</span><em><span class="n">data</span></em>, <em><span class="n">filename</span></em>, <em><span class="n">sampling_rate</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#write_txt_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.write_txt_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write data in text format.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>torch.tensor</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><em>numpy.ndarray</em></a>) – The data to write in the text file.</li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to file where to write the data.</li>
+<li><strong>sampling_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – Not used, just here for interface compatibility.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_txt_file</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="s1">&#39;example.txt&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.write_stdout">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">write_stdout</code><span class="sig-paren">(</span><em><span class="n">data</span></em>, <em><span class="n">filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">sampling_rate</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#write_stdout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.write_stdout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write data to standard output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>torch.tensor</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><em>numpy.ndarray</em></a>) – The data to write in the text file.</li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – Not used, just here for compatibility.</li>
+<li><strong>sampling_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – Not used, just here for compatibility.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_stdout</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">tmpdir</span> <span class="o">+</span> <span class="s1">&#39;/example.txt&#39;</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.length_to_mask">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">length_to_mask</code><span class="sig-paren">(</span><em><span class="n">length</span></em>, <em><span class="n">max_len</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">device</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#length_to_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.length_to_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a binary mask for each sequence.</p>
+<p>Reference: <a class="reference external" href="https://discuss.pytorch.org/t/how-to-generate-variable-length-mask/23397/3">https://discuss.pytorch.org/t/how-to-generate-variable-length-mask/23397/3</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>length</strong> (<em>torch.LongTensor</em>) – Containing the length of each sequence in the batch. Must be 1D.</li>
+<li><strong>max_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Max length for the mask, also the size of the second dimension.</li>
+<li><strong>dtype</strong> (<em>torch.dtype</em><em>, </em><em>default: None</em>) – The dtype of the generated mask.</li>
+<li><strong>device</strong> (<em>torch.device</em><em>, </em><em>default: None</em>) – The device to put the mask variable.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>mask</strong> – The binary mask.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tensor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span><span class="o">=</span><span class="n">length_to_mask</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span>
+<span class="go">tensor([[1., 0., 0.],</span>
+<span class="go">        [1., 1., 0.],</span>
+<span class="go">        [1., 1., 1.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.read_kaldi_lab">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">read_kaldi_lab</code><span class="sig-paren">(</span><em><span class="n">kaldi_ali</span></em>, <em><span class="n">kaldi_lab_opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#read_kaldi_lab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.read_kaldi_lab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read labels in kaldi format.</p>
+<p>Uses kaldi IO.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kaldi_ali</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to directory where kaldi alignents are stored.</li>
+<li><strong>kaldi_lab_opts</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – A string that contains the options for reading the kaldi alignments.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>lab</strong> – A dictionary contaning the labels.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This depends on kaldi-io-for-python. Install it separately.
+See: <a class="reference external" href="https://github.com/vesis84/kaldi-io-for-python">https://github.com/vesis84/kaldi-io-for-python</a></p>
+</div>
+<p class="rubric">Example</p>
+<p>This example requires kaldi files.
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">lab_folder</span> <span class="pre">=</span> <span class="pre">'/home/kaldi/egs/TIMIT/s5/exp/dnn4_pretrain-dbn_dnn_ali'</span>
+<span class="pre">read_kaldi_lab(lab_folder,</span> <span class="pre">'ali-to-pdf')</span>
+<span class="pre">`</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.get_md5">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">get_md5</code><span class="sig-paren">(</span><em><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#get_md5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.get_md5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the md5 checksum of an input file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to file for which compute the checksum.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Checksum for the given filepath.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">md5</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_md5</span><span class="p">(</span><span class="s1">&#39;samples/audio_samples/example1.wav&#39;</span><span class="p">)</span>
+<span class="go">&#39;c482d0081ca35302d30d12f1136c34e5&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.save_md5">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">save_md5</code><span class="sig-paren">(</span><em><span class="n">files</span></em>, <em><span class="n">out_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#save_md5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.save_md5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the md5 of a list of input files as a pickled dict into a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>files</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of input files from which we will compute the md5.</li>
+<li><strong>outfile</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path where to store the output pkl file.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>None</em></li>
+<li><em>Example</em></li>
+<li><em>&gt;&gt;&gt; files = [‘samples/audio_samples/example1.wav’]</em></li>
+<li><em>&gt;&gt;&gt; tmpdir = getfixture(‘tmpdir’)</em></li>
+<li><em>&gt;&gt;&gt; save_md5(files, os.path.join(tmpdir, “md5.pkl”))</em></li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.save_pkl">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">save_pkl</code><span class="sig-paren">(</span><em><span class="n">obj</span></em>, <em><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#save_pkl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.save_pkl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save an object in pkl format.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>obj</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><em>object</em></a>) – Object to save in pkl format</li>
+<li><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to the output file</li>
+<li><strong>sampling_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sampling rate of the audio file, TODO: this is not used?</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tmpfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">),</span> <span class="s2">&quot;example.pkl&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_pkl</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">tmpfile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">load_pkl</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.load_pkl">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">load_pkl</code><span class="sig-paren">(</span><em><span class="n">file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#load_pkl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.load_pkl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a pkl file.</p>
+<p>For an example, see <cite>save_pkl</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to the input pkl file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">The loaded object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.prepend_bos_token">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">prepend_bos_token</code><span class="sig-paren">(</span><em><span class="n">label</span></em>, <em><span class="n">bos_index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#prepend_bos_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.prepend_bos_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create labels with &lt;bos&gt; token at the beginning.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>label</strong> (<em>torch.IntTensor</em>) – Containing the original labels. Must be of size: [batch_size, max_length].</li>
+<li><strong>bos_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The index for &lt;bos&gt; token.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>new_label</strong> – The new label with &lt;bos&gt; at the beginning.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tensor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">label</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_label</span><span class="o">=</span><span class="n">prepend_bos_token</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">bos_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_label</span>
+<span class="go">tensor([[7, 1, 0, 0],</span>
+<span class="go">        [7, 2, 3, 0],</span>
+<span class="go">        [7, 4, 5, 6]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.append_eos_token">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">append_eos_token</code><span class="sig-paren">(</span><em><span class="n">label</span></em>, <em><span class="n">length</span></em>, <em><span class="n">eos_index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#append_eos_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.append_eos_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create labels with &lt;eos&gt; token appended.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>label</strong> (<em>torch.IntTensor</em>) – Containing the original labels. Must be of size: [batch_size, max_length]</li>
+<li><strong>length</strong> (<em>torch.LongTensor</em>) – Cotaining the original length of each label sequences. Must be 1D.</li>
+<li><strong>eos_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The index for &lt;eos&gt; token.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>new_label</strong> – The new label with &lt;eos&gt; appended.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tensor</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">label</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">IntTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_label</span><span class="o">=</span><span class="n">append_eos_token</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">eos_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_label</span>
+<span class="go">tensor([[1, 7, 0, 0],</span>
+<span class="go">        [2, 3, 7, 0],</span>
+<span class="go">        [4, 5, 6, 7]], dtype=torch.int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.merge_char">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">merge_char</code><span class="sig-paren">(</span><em><span class="n">sequences</span></em>, <em><span class="n">space</span><span class="o">=</span><span class="default_value">'_'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#merge_char"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.merge_char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge characters sequences into word sequences.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sequences</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Each item contains a list, and this list contains a character sequence.</li>
+<li><strong>space</strong> (<em>string</em>) – The token represents space. Default: _</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">The list contains word sequences for each sentence.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">merge_char</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span>
+<span class="go">[[&#39;ab&#39;, &#39;c&#39;, &#39;de&#39;], [&#39;efg&#39;, &#39;hi&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.merge_csvs">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">merge_csvs</code><span class="sig-paren">(</span><em><span class="n">data_folder</span></em>, <em><span class="n">csv_lst</span></em>, <em><span class="n">merged_csv</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#merge_csvs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.merge_csvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merging several csv files into one file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data_folder</strong> (<em>string</em>) – The folder to store csv files to be merged and after merging.</li>
+<li><strong>csv_lst</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Filenames of csv file to be merged.</li>
+<li><strong>merged_csv</strong> (<em>string</em>) – The filename to write the merged csv file.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">merge_csvs</span><span class="p">(</span><span class="s2">&quot;samples/audio_samples/&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">[</span><span class="s2">&quot;csv_example.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;csv_example2.csv&quot;</span><span class="p">],</span>
+<span class="gp">... </span><span class="s2">&quot;test_csv_merge.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.dataio.dataio.split_word">
+<code class="descclassname">speechbrain.dataio.dataio.</code><code class="descname">split_word</code><span class="sig-paren">(</span><em><span class="n">sequences</span></em>, <em><span class="n">space</span><span class="o">=</span><span class="default_value">'_'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/dataio.html#split_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.dataio.split_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split word sequences into character sequences.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sequences</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Each item contains a list, and this list contains a words sequence.</li>
+<li><strong>space</strong> (<em>string</em>) – The token represents space. Default: _</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">The list contains word sequences for each sentence.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;de&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;efg&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">split_word</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span>
+<span class="go">[[&#39;a&#39;, &#39;b&#39;, &#39;_&#39;, &#39;c&#39;, &#39;_&#39;, &#39;d&#39;, &#39;e&#39;], [&#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;_&#39;, &#39;h&#39;, &#39;i&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speechbrain.dataio.dataloader.html" class="btn btn-neutral float-right" title="speechbrain.dataio.dataloader module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speechbrain.dataio.batch.html" class="btn btn-neutral float-left" title="speechbrain.dataio.batch module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

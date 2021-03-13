@@ -1,0 +1,1307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.nnet.schedulers &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.nnet.schedulers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.nnet.schedulers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Schedulers for updating hyperparameters (such as learning rate).</span>
+
+<span class="sd">Authors</span>
+<span class="sd"> * Mirco Ravanelli 2020</span>
+<span class="sd"> * Peter Plantinga 2020</span>
+<span class="sd"> * Loren Lugosch 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">speechbrain.utils</span> <span class="k">import</span> <span class="n">checkpoints</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="update_learning_rate"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.update_learning_rate">[docs]</a><span class="k">def</span> <span class="nf">update_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">new_lr</span><span class="p">,</span> <span class="n">param_group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change the learning rate value within an optimizer.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    optimizer : torch.optim object</span>
+<span class="sd">        Updates the learning rate for this optimizer.</span>
+<span class="sd">    new_lr : float</span>
+<span class="sd">        The new value to use for the learning rate.</span>
+<span class="sd">    param_group : list of int</span>
+<span class="sd">        The param group indices to update. If not provided, all groups updated.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from torch.optim import SGD</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.nnet.linear import Linear</span>
+<span class="sd">    &gt;&gt;&gt; model = Linear(n_neurons=10, input_size=10)</span>
+<span class="sd">    &gt;&gt;&gt; optimizer = SGD(model.parameters(), lr=0.1)</span>
+<span class="sd">    &gt;&gt;&gt; update_learning_rate(optimizer, 0.2)</span>
+<span class="sd">    &gt;&gt;&gt; optimizer.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Iterate all groups if none is provided</span>
+    <span class="k">if</span> <span class="n">param_group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="n">old_lr</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Change learning rate if new value is different from old.</span>
+        <span class="k">if</span> <span class="n">new_lr</span> <span class="o">!=</span> <span class="n">old_lr</span><span class="p">:</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_lr</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;prev_lr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_lr</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Changing lr from </span><span class="si">%.2g</span><span class="s2"> to </span><span class="si">%.2g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">old_lr</span><span class="p">,</span> <span class="n">new_lr</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="NewBobScheduler"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NewBobScheduler">[docs]</a><span class="nd">@checkpoints</span><span class="o">.</span><span class="n">register_checkpoint_hooks</span>
+<span class="k">class</span> <span class="nc">NewBobScheduler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Scheduler with new-bob technique, used for LR annealing.</span>
+
+<span class="sd">    The learning rate is annealed based on the validation performance.</span>
+<span class="sd">    In particular: if (past_loss-current_loss)/past_loss&lt; impr_threshold:</span>
+<span class="sd">    lr=lr * annealing_factor.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    initial_value : float</span>
+<span class="sd">        The initial hyperparameter value.</span>
+<span class="sd">    annealing_factor : float</span>
+<span class="sd">        It is annealing factor used in new_bob strategy.</span>
+<span class="sd">    improvement_threshold : float</span>
+<span class="sd">        It is the improvement rate between losses used to perform learning</span>
+<span class="sd">        annealing in new_bob strategy.</span>
+<span class="sd">    patient : int</span>
+<span class="sd">        When the annealing condition is violated patient times,</span>
+<span class="sd">        the learning rate is finally reduced.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; scheduler = NewBobScheduler(initial_value=1.0)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(metric_value=10.0)</span>
+<span class="sd">    (1.0, 1.0)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(metric_value=2.0)</span>
+<span class="sd">    (1.0, 1.0)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(metric_value=2.5)</span>
+<span class="sd">    (1.0, 0.5)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_value</span><span class="p">,</span>
+        <span class="n">annealing_factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">improvement_threshold</span><span class="o">=</span><span class="mf">0.0025</span><span class="p">,</span>
+        <span class="n">patient</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyperparam_value</span> <span class="o">=</span> <span class="n">initial_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annealing_factor</span> <span class="o">=</span> <span class="n">annealing_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">improvement_threshold</span> <span class="o">=</span> <span class="n">improvement_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patient</span> <span class="o">=</span> <span class="n">patient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_patient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patient</span>
+
+<div class="viewcode-block" id="NewBobScheduler.__call__"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NewBobScheduler.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current and new value for the hyperparameter.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        metric_value : int</span>
+<span class="sd">            A number for determining whether to change the hyperparameter value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">old_value</span> <span class="o">=</span> <span class="n">new_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyperparam_value</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">prev_metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="c1"># Update value if improvement too small and patience is 0</span>
+            <span class="k">if</span> <span class="n">prev_metric</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Prevent division by zero</span>
+                <span class="n">improvement</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">improvement</span> <span class="o">=</span> <span class="p">(</span><span class="n">prev_metric</span> <span class="o">-</span> <span class="n">metric_value</span><span class="p">)</span> <span class="o">/</span> <span class="n">prev_metric</span>
+            <span class="k">if</span> <span class="n">improvement</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">improvement_threshold</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_patient</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">new_value</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">annealing_factor</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">current_patient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patient</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">current_patient</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="c1"># Store relevant info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metric_value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyperparam_value</span> <span class="o">=</span> <span class="n">new_value</span>
+
+        <span class="k">return</span> <span class="n">old_value</span><span class="p">,</span> <span class="n">new_value</span></div>
+
+<div class="viewcode-block" id="NewBobScheduler.save"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NewBobScheduler.save">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_saver</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;hyperparam_value&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hyperparam_value</span><span class="p">,</span>
+            <span class="s2">&quot;metric_values&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_values</span><span class="p">,</span>
+            <span class="s2">&quot;current_patient&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_patient</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NewBobScheduler.load"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NewBobScheduler.load">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_loader</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused in this class</span>
+        <span class="k">del</span> <span class="n">device</span>  <span class="c1"># Unused in here</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyperparam_value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;hyperparam_value&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_values</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;metric_values&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_patient</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;current_patient&quot;</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="LinearScheduler"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.LinearScheduler">[docs]</a><span class="k">class</span> <span class="nc">LinearScheduler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Scheduler with linear annealing technique.</span>
+
+<span class="sd">    The learning rate linearly decays over the specified number of epochs.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    initial_value : float</span>
+<span class="sd">        The value upon initialization.</span>
+<span class="sd">    final_value : float</span>
+<span class="sd">        The value used when the epoch count reaches ``epoch_count - 1``.</span>
+<span class="sd">    epoch_count : int</span>
+<span class="sd">        Number of epochs.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; scheduler = LinearScheduler(1.0, 0.0, 4)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=1)</span>
+<span class="sd">    (1.0, 0.666...)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=2)</span>
+<span class="sd">    (0.666..., 0.333...)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=3)</span>
+<span class="sd">    (0.333..., 0.0)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=4)</span>
+<span class="sd">    (0.0, 0.0)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">,</span> <span class="n">final_value</span><span class="p">,</span> <span class="n">epoch_count</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_at_epoch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+            <span class="n">initial_value</span><span class="p">,</span> <span class="n">final_value</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">epoch_count</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LinearScheduler.__call__"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.LinearScheduler.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current and new value for the hyperparameter.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        current_epoch : int</span>
+<span class="sd">            Number of times the dataset has been iterated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">old_index</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">current_epoch</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">current_epoch</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value_at_epoch</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_at_epoch</span><span class="p">[</span><span class="n">old_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_at_epoch</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="StepScheduler"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.StepScheduler">[docs]</a><span class="k">class</span> <span class="nc">StepScheduler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Learning rate scheduler with step annealing technique.</span>
+
+<span class="sd">    The hyperparameter&#39;s value decays over the epochs with the</span>
+<span class="sd">    selected ``epoch_decay`` factor.</span>
+
+<span class="sd">    ``value = init_value * decay_factor ^ floor((1 + epoch) / decay_drop)``</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    initial_value : float</span>
+<span class="sd">        Initial value for the hyperparameter being updated.</span>
+<span class="sd">    decay_factor : float</span>
+<span class="sd">        Factor multiplied with the initial_value</span>
+<span class="sd">    decay_drop : float</span>
+<span class="sd">        Annealing factor (the decay of the hyperparameter value is faster</span>
+<span class="sd">        with higher ``decay_drop`` values).</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; scheduler = StepScheduler(initial_value=1.0)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=1)</span>
+<span class="sd">    (1.0, 0.5)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=2)</span>
+<span class="sd">    (0.5, 0.5)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler(current_epoch=3)</span>
+<span class="sd">    (0.5, 0.25)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">initial_value</span><span class="p">,</span> <span class="n">decay_factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">decay_drop</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">=</span> <span class="n">initial_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_factor</span> <span class="o">=</span> <span class="n">decay_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_drop</span> <span class="o">=</span> <span class="n">decay_drop</span>
+
+<div class="viewcode-block" id="StepScheduler.__call__"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.StepScheduler.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_epoch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns current and new hyperparameter value.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        current_epoch : int</span>
+<span class="sd">            Number of times the dataset has been iterated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_value</span><span class="p">(</span><span class="n">current_epoch</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_value</span><span class="p">(</span><span class="n">current_epoch</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">current_value</span><span class="p">,</span> <span class="n">next_value</span></div>
+
+    <span class="k">def</span> <span class="nf">_compute_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_epoch</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_value</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decay_factor</span><span class="p">,</span>
+            <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">current_epoch</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_drop</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NoamScheduler"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NoamScheduler">[docs]</a><span class="nd">@checkpoints</span><span class="o">.</span><span class="n">register_checkpoint_hooks</span>
+<span class="k">class</span> <span class="nc">NoamScheduler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The is an implementation of the transformer&#39;s learning rate scheduler with warmup.</span>
+<span class="sd">    Reference: https://arxiv.org/abs/1706.03762</span>
+
+<span class="sd">    Note: this scheduler anneals the lr at each update of the model&#39;s weight,</span>
+<span class="sd">    and n_steps must be saved for restarting.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    lr_initial : float</span>
+<span class="sd">        Initial learning rate (i.e. the lr used at epoch 0).</span>
+<span class="sd">    n_warmup_steps : int</span>
+<span class="sd">        numer of warm-up steps</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.nnet.linear import Linear</span>
+<span class="sd">    &gt;&gt;&gt; inp_tensor = torch.rand([1,660,3])</span>
+<span class="sd">    &gt;&gt;&gt; model = Linear(input_size=3, n_neurons=4)</span>
+<span class="sd">    &gt;&gt;&gt; optim = torch.optim.Adam(model.parameters(), lr=1)</span>
+<span class="sd">    &gt;&gt;&gt; output = model(inp_tensor)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler =NoamScheduler(optim.param_groups[0][&quot;lr&quot;], 3)</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.33333333333333337</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.6666666666666667</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    1.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lr_initial</span><span class="p">,</span> <span class="n">n_warmup_steps</span><span class="p">,</span> <span class="n">model_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr_initial</span> <span class="o">=</span> <span class="n">lr_initial</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_warmup_steps</span> <span class="o">=</span> <span class="n">n_warmup_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span> <span class="o">=</span> <span class="n">lr_initial</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_warmup_steps</span> <span class="o">*</span> <span class="n">n_warmup_steps</span> <span class="o">**</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">model_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">=</span> <span class="n">model_size</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NoamScheduler.__call__"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NoamScheduler.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        opt : optimizer</span>
+<span class="sd">            The optimizer to update using this scheduler.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        current_lr : float</span>
+<span class="sd">            The learning rate before the update.</span>
+<span class="sd">        lr : float</span>
+<span class="sd">            The learning rate after the update.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">current_lr</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span>
+
+        <span class="n">lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_initial</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lr_scale</span><span class="p">()</span>
+
+        <span class="c1"># Changing the learning rate within the optimizer</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span> <span class="o">=</span> <span class="n">current_lr</span>
+        <span class="k">return</span> <span class="n">current_lr</span><span class="p">,</span> <span class="n">lr</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_lr_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">n_steps</span><span class="p">,</span> <span class="n">n_warmup_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_warmup_steps</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span>
+            <span class="n">n_steps</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">n_steps</span> <span class="o">*</span> <span class="n">n_warmup_steps</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="NoamScheduler.save"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NoamScheduler.save">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_saver</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;losses&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">,</span> <span class="s2">&quot;n_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">}</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NoamScheduler.load"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.NoamScheduler.load">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_loader</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused in this class</span>
+        <span class="k">del</span> <span class="n">device</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;losses&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;n_steps&quot;</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="CyclicCosineScheduler"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicCosineScheduler">[docs]</a><span class="nd">@checkpoints</span><span class="o">.</span><span class="n">register_checkpoint_hooks</span>
+<span class="k">class</span> <span class="nc">CyclicCosineScheduler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The is an implementation of the Cyclic-Cosine learning rate scheduler with warmup.</span>
+
+<span class="sd">    Reference:  https://openreview.net/pdf?id=BJYwwY9ll</span>
+
+<span class="sd">    Note: this scheduler anneals the lr at each update of the model&#39;s weight,</span>
+<span class="sd">    and n_steps must be saved for restarting.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    lr_initial : float</span>
+<span class="sd">        Initial learning rate (i.e. the lr used at epoch 0).</span>
+<span class="sd">    n_warmup_steps : int</span>
+<span class="sd">        Number of warm up steps.</span>
+<span class="sd">    total_steps : int</span>
+<span class="sd">        Total number of updating steps.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.nnet.linear import Linear</span>
+<span class="sd">    &gt;&gt;&gt; inp_tensor = torch.rand([1,660,3])</span>
+<span class="sd">    &gt;&gt;&gt; model = Linear(input_size=3, n_neurons=4)</span>
+<span class="sd">    &gt;&gt;&gt; optim = torch.optim.Adam(model.parameters(), lr=1)</span>
+<span class="sd">    &gt;&gt;&gt; output = model(inp_tensor)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler =CyclicCosineScheduler(3, optim.param_groups[0][&quot;lr&quot;])</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.9999999990130395</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.9999999997532598</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    1.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_warmup_steps</span><span class="p">,</span> <span class="n">lr_initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">total_steps</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_warmup_steps</span> <span class="o">=</span> <span class="n">n_warmup_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_lr</span> <span class="o">=</span> <span class="n">lr_initial</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span> <span class="o">=</span> <span class="n">lr_initial</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">total_steps</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_warmup_steps</span> <span class="o">*</span> <span class="n">n_warmup_steps</span> <span class="o">**</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CyclicCosineScheduler.__call__"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicCosineScheduler.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        opt : list of optimizers</span>
+<span class="sd">            The optimizers to update using this scheduler.</span>
+<span class="sd">        current_epoch : int</span>
+<span class="sd">            Number of times the dataset has been iterated.</span>
+<span class="sd">        current_loss : int</span>
+<span class="sd">            A number for determining whether to change the learning rate.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        current_lr : float</span>
+<span class="sd">            The learning rate before the update.</span>
+<span class="sd">        lr : float</span>
+<span class="sd">            The learning rate after the update.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_lr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">current_lr</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">current_lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span>
+
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">current_lr</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lr_scale</span><span class="p">()</span>
+
+        <span class="c1"># Changing the learning rate within the optimizer</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span> <span class="o">=</span> <span class="n">current_lr</span>
+        <span class="k">return</span> <span class="n">current_lr</span><span class="p">,</span> <span class="n">lr</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_lr_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">n_steps</span><span class="p">,</span> <span class="n">n_warmup_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_warmup_steps</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_steps</span> <span class="o">-</span> <span class="n">n_warmup_steps</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="CyclicCosineScheduler.save"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicCosineScheduler.save">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_saver</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;losses&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">,</span> <span class="s2">&quot;n_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">}</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CyclicCosineScheduler.load"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicCosineScheduler.load">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_loader</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused in this class</span>
+        <span class="k">del</span> <span class="n">device</span>  <span class="c1"># Unused here</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;losses&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;n_steps&quot;</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="ReduceLROnPlateau"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.ReduceLROnPlateau">[docs]</a><span class="nd">@checkpoints</span><span class="o">.</span><span class="n">register_checkpoint_hooks</span>
+<span class="k">class</span> <span class="nc">ReduceLROnPlateau</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Learning rate scheduler which decreases the learning rate if the loss</span>
+<span class="sd">    function of interest gets stuck on a plateau, or starts to increase.</span>
+<span class="sd">    The difference from NewBobLRScheduler is that, this one keeps a memory of</span>
+<span class="sd">    the last step where do not observe improvement, and compares against that</span>
+<span class="sd">    particular loss value as opposed to the most recent loss.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    lr_min : float</span>
+<span class="sd">        The minimum allowable learning rate.</span>
+<span class="sd">    factor : float</span>
+<span class="sd">        Factor with which to reduce the learning rate.</span>
+<span class="sd">    patience : int</span>
+<span class="sd">        How many epochs to wait before reducing the learning rate.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from torch.optim import Adam</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.nnet.linear import Linear</span>
+<span class="sd">    &gt;&gt;&gt; inp_tensor = torch.rand([1,660,3])</span>
+<span class="sd">    &gt;&gt;&gt; model = Linear(n_neurons=10, input_size=3)</span>
+<span class="sd">    &gt;&gt;&gt; optim = Adam(lr=1.0, params=model.parameters())</span>
+<span class="sd">    &gt;&gt;&gt; output = model(inp_tensor)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler = ReduceLROnPlateau(0.25, 0.5, 2, 1)</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler([optim],current_epoch=1, current_loss=10.0)</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler([optim],current_epoch=2, current_loss=11.0)</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler([optim],current_epoch=3, current_loss=13.0)</span>
+<span class="sd">    &gt;&gt;&gt; curr_lr,next_lr=scheduler([optim],current_epoch=4, current_loss=14.0)</span>
+<span class="sd">    &gt;&gt;&gt; next_lr</span>
+<span class="sd">    0.5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">lr_min</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dont_halve_until_epoch</span><span class="o">=</span><span class="mi">65</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr_min</span> <span class="o">=</span> <span class="n">lr_min</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patience</span> <span class="o">=</span> <span class="n">patience</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dont_halve_until_epoch</span> <span class="o">=</span> <span class="n">dont_halve_until_epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="mi">99999</span>
+
+<div class="viewcode-block" id="ReduceLROnPlateau.__call__"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.ReduceLROnPlateau.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optim_list</span><span class="p">,</span> <span class="n">current_epoch</span><span class="p">,</span> <span class="n">current_loss</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        optim_list : list of optimizers</span>
+<span class="sd">            The optimizers to update using this scheduler.</span>
+<span class="sd">        current_epoch : int</span>
+<span class="sd">            Number of times the dataset has been iterated.</span>
+<span class="sd">        current_loss : int</span>
+<span class="sd">            A number for determining whether to change the learning rate.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        current_lr : float</span>
+<span class="sd">            The learning rate before the update.</span>
+<span class="sd">        next_lr : float</span>
+<span class="sd">            The learning rate after the update.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">optim_list</span><span class="p">:</span>
+            <span class="n">current_lr</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">current_epoch</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dont_halve_until_epoch</span><span class="p">:</span>
+                <span class="n">next_lr</span> <span class="o">=</span> <span class="n">current_lr</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">current_loss</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">current_loss</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">next_lr</span> <span class="o">=</span> <span class="n">current_lr</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">current_loss</span>
+                <span class="k">elif</span> <span class="p">(</span>
+                    <span class="n">current_loss</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience</span>
+                <span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="n">next_lr</span> <span class="o">=</span> <span class="n">current_lr</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">next_lr</span> <span class="o">=</span> <span class="n">current_lr</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="c1"># impose the lower bound</span>
+            <span class="n">next_lr</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">next_lr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_min</span><span class="p">)</span>
+
+        <span class="c1"># Updating current loss</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_loss</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">current_lr</span><span class="p">,</span> <span class="n">next_lr</span></div>
+
+<div class="viewcode-block" id="ReduceLROnPlateau.save"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.ReduceLROnPlateau.save">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_saver</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;losses&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">,</span>
+            <span class="s2">&quot;anchor&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span><span class="p">,</span>
+            <span class="s2">&quot;patience_counter&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ReduceLROnPlateau.load"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.ReduceLROnPlateau.load">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_loader</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused in this class</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;losses&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;anchor&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patience_counter</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;patience_counter&quot;</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="CyclicLRScheduler"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicLRScheduler">[docs]</a><span class="k">class</span> <span class="nc">CyclicLRScheduler</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;This implements a cyclical learning rate policy (CLR).</span>
+<span class="sd">    The method cycles the learning rate between two boundaries with</span>
+<span class="sd">    some constant frequency, as detailed in this paper (https://arxiv.org/abs/1506.01186).</span>
+<span class="sd">    The amplitude of the cycle can be scaled on a per-iteration or</span>
+<span class="sd">    per-cycle basis.</span>
+
+<span class="sd">    This class has three built-in policies, as put forth in the paper.</span>
+<span class="sd">    &quot;triangular&quot;:</span>
+<span class="sd">        A basic triangular cycle w/ no amplitude scaling.</span>
+<span class="sd">    &quot;triangular2&quot;:</span>
+<span class="sd">        A basic triangular cycle that scales initial amplitude by half each cycle.</span>
+<span class="sd">    &quot;exp_range&quot;:</span>
+<span class="sd">        A cycle that scales initial amplitude by gamma**(cycle iterations) at each</span>
+<span class="sd">        cycle iteration.</span>
+<span class="sd">    For more detail, please see the reference paper.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    base_lr : float</span>
+<span class="sd">        initial learning rate which is the</span>
+<span class="sd">        lower boundary in the cycle.</span>
+<span class="sd">    max_lr : float</span>
+<span class="sd">        upper boundary in the cycle. Functionally,</span>
+<span class="sd">        it defines the cycle amplitude (max_lr - base_lr).</span>
+<span class="sd">        The lr at any cycle is the sum of base_lr</span>
+<span class="sd">        and some scaling of the amplitude; therefore</span>
+<span class="sd">        max_lr may not actually be reached depending on</span>
+<span class="sd">        scalling function.</span>
+<span class="sd">    step_size : int</span>
+<span class="sd">        number of training iterations per</span>
+<span class="sd">        half cycle. The authors suggest setting step_size</span>
+<span class="sd">        2-8 x training iterations in epoch.</span>
+<span class="sd">    mode : str</span>
+<span class="sd">        one of {triangular, triangular2, exp_range}.</span>
+<span class="sd">        Default &#39;triangular&#39;.</span>
+<span class="sd">        Values correspond to policies detailed above.</span>
+<span class="sd">        If scale_fn is not None, this argument is ignored.</span>
+<span class="sd">    gamma : float</span>
+<span class="sd">        constant in &#39;exp_range&#39; scaling function:</span>
+<span class="sd">        gamma**(cycle iterations)</span>
+<span class="sd">    scale_fn : lambda function</span>
+<span class="sd">        Custom scaling policy defined by a single</span>
+<span class="sd">        argument lambda function, where</span>
+<span class="sd">        0 &lt;= scale_fn(x) &lt;= 1 for all x &gt;= 0.</span>
+<span class="sd">        mode paramater is ignored</span>
+<span class="sd">    scale_mode : str</span>
+<span class="sd">        {&#39;cycle&#39;, &#39;iterations&#39;}.</span>
+<span class="sd">        Defines whether scale_fn is evaluated on</span>
+<span class="sd">        cycle number or cycle iterations (training</span>
+<span class="sd">        iterations since start of cycle). Default is &#39;cycle&#39;.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.nnet.linear import Linear</span>
+<span class="sd">    &gt;&gt;&gt; inp_tensor = torch.rand([1,660,3])</span>
+<span class="sd">    &gt;&gt;&gt; model = Linear(input_size=3, n_neurons=4)</span>
+<span class="sd">    &gt;&gt;&gt; optim = torch.optim.Adam(model.parameters(), lr=1)</span>
+<span class="sd">    &gt;&gt;&gt; output = model(inp_tensor)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler = CyclicLRScheduler(base_lr=0.1, max_lr=0.3, step_size=2)</span>
+<span class="sd">    &gt;&gt;&gt; scheduler.on_batch_end(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.2</span>
+<span class="sd">    &gt;&gt;&gt; scheduler.on_batch_end(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.3</span>
+<span class="sd">    &gt;&gt;&gt; scheduler.on_batch_end(optim)</span>
+<span class="sd">    &gt;&gt;&gt; optim.param_groups[0][&quot;lr&quot;]</span>
+<span class="sd">    0.2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">base_lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">max_lr</span><span class="o">=</span><span class="mf">0.006</span><span class="p">,</span>
+        <span class="n">step_size</span><span class="o">=</span><span class="mf">2000.0</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;triangular&quot;</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">scale_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">scale_mode</span><span class="o">=</span><span class="s2">&quot;cycle&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CyclicLRScheduler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_lr</span> <span class="o">=</span> <span class="n">base_lr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_lr</span> <span class="o">=</span> <span class="n">max_lr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">=</span> <span class="n">step_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+        <span class="k">if</span> <span class="n">scale_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;triangular&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_mode</span> <span class="o">=</span> <span class="s2">&quot;cycle&quot;</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;triangular2&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_mode</span> <span class="o">=</span> <span class="s2">&quot;cycle&quot;</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;exp_range&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">gamma</span> <span class="o">**</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scale_mode</span> <span class="o">=</span> <span class="s2">&quot;iterations&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_fn</span> <span class="o">=</span> <span class="n">scale_fn</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_mode</span> <span class="o">=</span> <span class="n">scale_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_base_lr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_max_lr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_step_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resets cycle iterations.</span>
+<span class="sd">        Optional boundary/step size adjustment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">new_base_lr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">base_lr</span> <span class="o">=</span> <span class="n">new_base_lr</span>
+        <span class="k">if</span> <span class="n">new_max_lr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_lr</span> <span class="o">=</span> <span class="n">new_max_lr</span>
+        <span class="k">if</span> <span class="n">new_step_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">=</span> <span class="n">new_step_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="n">old_lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span>
+        <span class="n">new_lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">old_lr</span><span class="p">,</span> <span class="n">new_lr</span>
+
+<div class="viewcode-block" id="CyclicLRScheduler.clr"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicLRScheduler.clr">[docs]</a>    <span class="k">def</span> <span class="nf">clr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clr_iterations</span><span class="p">):</span>
+        <span class="n">cycle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">clr_iterations</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">clr_iterations</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cycle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_mode</span> <span class="o">==</span> <span class="s2">&quot;cycle&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_lr</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_lr</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_lr</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_fn</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_lr</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_lr</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_lr</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_fn</span><span class="p">(</span><span class="n">clr_iterations</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CyclicLRScheduler.on_batch_end"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicLRScheduler.on_batch_end">[docs]</a>    <span class="k">def</span> <span class="nf">on_batch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        opt : optimizers</span>
+<span class="sd">            The optimizers to update using this scheduler.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span><span class="p">)</span>
+        <span class="n">current_lr</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Changing the learning rate within the optimizer</span>
+        <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">opt</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">param_group</span><span class="p">[</span><span class="s2">&quot;lr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_lr</span> <span class="o">=</span> <span class="n">current_lr</span></div>
+
+<div class="viewcode-block" id="CyclicLRScheduler.save"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicLRScheduler.save">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_saver</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;losses&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">,</span> <span class="s2">&quot;clr_iterations&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span><span class="p">}</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CyclicLRScheduler.load"><a class="viewcode-back" href="../../../speechbrain.nnet.schedulers.html#speechbrain.nnet.schedulers.CyclicLRScheduler.load">[docs]</a>    <span class="nd">@checkpoints</span><span class="o">.</span><span class="n">mark_as_loader</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused in this class</span>
+        <span class="k">del</span> <span class="n">device</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;losses&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clr_iterations</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;clr_iterations&quot;</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

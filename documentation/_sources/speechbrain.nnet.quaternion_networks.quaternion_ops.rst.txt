@@ -1,0 +1,8 @@
+
+speechbrain.nnet.quaternion\_networks.quaternion\_ops
+=====================================================
+
+.. automodule:: speechbrain.nnet.quaternion_networks.quaternion_ops
+   :members:
+   :undoc-members:
+   :show-inheritance:

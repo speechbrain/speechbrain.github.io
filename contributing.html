@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- BLOCK INDEX -->
+        <meta name="robots" content="noindex">
+        <!-- BLOCK INDEX -->
+        <link rel="icon" href="img/favicon.png" type="image/png">
+        <title>SpeechBrain</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="vendors/linericon/style.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="vendors/animate-css/animate.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+    </head>
+    <body>
+
+        <!--================Header Menu Area =================-->
+        <header class="header_area">
+            <div class="main_menu">
+            	<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container box_1620">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<a class="navbar-brand logo_h" href="index.html"><img src="img/logo_line_big.png" width="175px" alt=""></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+							<ul class="nav navbar-nav menu_nav justify-content-center">
+								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+								<li class="nav-item"><a class="nav-link" href="about.html">About SpeechBrain</a>
+                  <li class="nav-item"><a class="nav-link" href="contributing.html">Contributing</a>
+                <li class="nav-item"><a class="nav-link" href="documentation/index.html">Documentation</a>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutorials</a>
+									<ul class="dropdown-menu">
+                    <li class="nav-item"><a class="nav-link" href="tutorial_basics.html">SpeechBrain Basics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutorial_advanced.html">SpeechBrain Advanced</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutorial_nn.html">Neural Architectures</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tutorial_processing.html">Speech Processing</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+            	</nav>
+            </div>
+        </header>
+        <!--================Header Menu Area =================-->
+
+        <!--================Home Banner Area =================-->
+        <section class="home_banner_area blog_banner">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="blog_b_text text-center">
+						<h2>Contributing</h2>
+						<h3>Everyone is welcome</h3>
+
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+
+        <!--================Work Area =================-->
+        <section class="work_area p_120">
+          <div class="container">
+            <div class="main_title discourse">
+        			<p> <img src="img/logo_discourse.png"/> Join our official <a href="https://speechbrain.discourse.group">Discourse</a> to discuss with SpeechBrain users coming from all around the world! <img src="img/logo_discourse.png"/></p>
+        		</div>
+            <div class="main_title">
+              <h2>Contributing to the code of SpeechBrain</h2>
+              <p class="justified large"> The goal is to write a set of libraries that process audio and speech in several ways.
+                It is crucial to write a set of homogeneous libraries that are all compliant to a set of guidelines all described
+                in our <a href="documentation/contributing.html"> documentation </a>.
+              </p>
+              <h3> Zen of SpeechBrain </h3>
+              <p class="justified large"> SpeechBrain could be used for research, academic, commercial, non-commercial purposes.
+              Ideally, the code should have the following features: <p> <br/>
+
+              <p class="justified large"> <b> Simple: </b> the code must be easy to understand even by students or by users that are not professional programmers or speech researchers.
+                Try to design your code such that it can be easily read. Given alternatives with the same level of performance, code the simplest one (i.e the most explicit manner is preferred). <br/><br/>
+                <b>Readable: </b> SpeechBrain mostly adopts the code style conventions of PEP8. The code written by the users must be compliant with that.  <br/><br/>
+                <b>Efficient:</b> The code should be as efficient as possible. Contributors should maximize the use of pytorch native operations. Test the code carefully with your favorite profiler (e.g, torch.utils.bottleneck https://pytorch.org/docs/stable/bottleneck.html ) to make sure there are no bottlenecks in your code. Since we are not working in c++ directly, the speed can be an issue. <br/><br/>
+                <b>Modular:</b> Write your code such that it is very modular and fits well with the other functionalities of the toolkit. The idea is to develop a bunch of models that can be naturally interconnected with each other. <br/><br/>
+                <b>Well documented:</b> Given the goals of SpeechBrain, writing rich and good documentation is a crucial step.
+              </p>
+              <h3> How to get my code into SpeechBrain? </h3>
+              <p class="justified large"> SpeechBrain is hosted via <a href="https://github.com/speechbrain/speechbrain"> GitHub </a>. Hence, the process of integrating your code
+                to the toolkit will be done via this plateform. Then, three steps can be followed: <br/><br/>
+                <b>1.</b> Fork, clone the <a href="https://github.com/speechbrain/speechbrain">repository</a> and install our test suite as detailled in <a href="documentation/contributing.html"> the documentation </a>. <br/>
+                <b>2.</b> Add your code and make sure that the tests still run properly. Commit your changes to your fork with our pre-commit tests to ensure the normalisation of your code.
+                Then open a pull request on the official repository.<br/>
+                <b>3.</b> Participate in the review process. Each pull request is reviewed by one or two reviewers.
+                Please integrate their feedbacks into your code. Once reviewers are happy with your pull request, they will merge it into the official code. <br/><br/>
+                <b>Details about this process (i.e including steps for installating the tests) are given in <a href="documentation/contributing.html"> the documentation </a>.</b>
+              </p>
+              <h3> How can I help? </h3>
+              <p class="justified large"> Interractions between speech technologies and deep learning are various and numerous.
+                Therefore, we do not provide any official development directions. Instead, we believe that the toolkit will evolve accordingly to the needs
+                of the different research fields and industry. Examples of contributions include new recipes, better models for higher performance,
+                new external functionalities, or even core changes and extensions. While we do not provide any instructions on the potential interesting applications,
+                feel free to jump into our <a href="https://speechbrain.discourse.group">Discourse</a> or <a href="https://github.com/speechbrain/speechbrain">GitHub</a> to see if any existing issue remains unsolved!
+              </p>
+            </div>
+
+            <div class="main_title">
+              <h2>Contributors</h2>
+              <p class="justified large"> In this section we thanks all the peoples that contributed to SpeechBrain. </p>
+            </div>
+            <ul class="contributors-list">
+              <li>Mirco Ravanelli, Mila, Montréal (CA)</li>
+              <li>Titouan Parcollet, Avignon Université (LIA, FR)</li>
+              <li>Aku Rouhe, Aalto University (FI)</li>
+              <li>Peter Plantinga, Ohio State University (USA)</li>
+              <li>Elena Rastorgueva</li>
+              <li>Loren Lugosch, Mila, McGill University (CA)</li>
+              <li>Nauman Dawalatabad, Indian Institute of Technology Madras (IN)</li>
+              <li>Ju-Chieh Chou, National Taiwan University (TW)</li>
+              <li>Abdel Heba, University of Toulouse (IRIT, FR)</li>
+              <li>Francois Grondin, University of Sherbrooke (CA)</li>
+              <li>William Aris, University of Sherbrooke (CA)</li>
+              <li>Chien-Feng Liao, National Taiwan University (TW)</li>
+              <li>Samuele Cornell, Università Politecnica delle Marche (IT)</li>
+              <li>Sung-Lin Yeh, National Tsing Hua University (TW)</li>
+              <li>Hwidong Na, Visiting Researcher Samsung SAIL (CA)</li>
+              <li>Yan Gao, University of Cambridge (UK)</li>
+              <li>Szu-Wei Fu, Academia Sinica (TW)</li>
+              <li>Cem Subakan, Mila, University of Montréal (CA)</li>
+              <li>Jianyuan Zhong, University of Rochester (USA)<li>
+              <li>Brecht Desplanques, Ghent University (BE)<li>
+              <li>Jenthe Thienpondt, Ghent University (BE)<li>
+              <li>Renato De Mori, University of McGill (CA), Avignon University (LIA, FR)</li>
+              <li>Yoshua Bengio, Mila, University of Montréal (CA)</li>
+            </ul>
+          </div>
+        </section>
+        <!--================End Work Area =================-->
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="vendors/isotope/isotope-min.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+        <script src="vendors/counter-up/jquery.counterup.min.js"></script>
+        <script src="js/theme.js"></script>
+
+        <link rel="stylesheet" href="js/styles/monokai-sublime.css">
+        <script src="js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

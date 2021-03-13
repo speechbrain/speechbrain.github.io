@@ -1,0 +1,7 @@
+speechbrain.nnet.complex\_networks.complex\_ops module
+======================================================
+
+.. automodule:: speechbrain.nnet.complex_networks.complex_ops
+   :members:
+   :undoc-members:
+   :show-inheritance:

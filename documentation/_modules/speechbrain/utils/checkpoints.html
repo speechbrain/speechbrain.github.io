@@ -1,0 +1,1655 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.utils.checkpoints &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.utils.checkpoints</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.utils.checkpoints</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This module implements a checkpoint saver and loader.</span>
+
+<span class="sd">A checkpoint in an experiment usually needs to save the state of many different</span>
+<span class="sd">things: the model parameters, optimizer parameters, what epoch is this, etc.</span>
+<span class="sd">The save format for a checkpoint is a directory, where each of these separate</span>
+<span class="sd">saveable things gets its own file. Additionally, a special file holds meta</span>
+<span class="sd">information about the checkpoint (by default just time of creation, but you</span>
+<span class="sd">can specify anything else you may wish, e.g. validation loss).</span>
+
+<span class="sd">The interface for the checkpoint system requires you to specify what things to</span>
+<span class="sd">save. This approach is flexible and agnostic of how your experiment is actually</span>
+<span class="sd">run.</span>
+
+<span class="sd">The interface requires you to specify names for each thing to save. This name</span>
+<span class="sd">is used to give the right parameter file to the right object when recovering.</span>
+
+<span class="sd">Default saving and loading methods are only added for torch.nn.Modules (and</span>
+<span class="sd">their subclasses), and torch.optim.Optimizers. If those methods do not work for</span>
+<span class="sd">your object, you can specify your own saving and/or loading methods, either for</span>
+<span class="sd">a particular instance or a for a class.</span>
+
+<span class="sd">Example</span>
+<span class="sd">-------</span>
+<span class="sd">&gt;&gt;&gt; # Toy example Module:</span>
+<span class="sd">&gt;&gt;&gt; class Recoverable(torch.nn.Module):</span>
+<span class="sd">...     def __init__(self, param):</span>
+<span class="sd">...         super().__init__()</span>
+<span class="sd">...         self.param = torch.nn.Parameter(torch.tensor([param]))</span>
+<span class="sd">...     def forward(self, x):</span>
+<span class="sd">...         return x * self.param</span>
+<span class="sd">&gt;&gt;&gt; model = Recoverable(1.)</span>
+<span class="sd">&gt;&gt;&gt; tempdir = getfixture(&#39;tmpdir&#39;)</span>
+<span class="sd">&gt;&gt;&gt; # In simple cases, the module aims to have a terse syntax,</span>
+<span class="sd">&gt;&gt;&gt; # consisting of three steps.</span>
+<span class="sd">&gt;&gt;&gt; # 1. Specifying where to save checkpoints and what is included in a</span>
+<span class="sd">&gt;&gt;&gt; # checkpoint:</span>
+<span class="sd">&gt;&gt;&gt; checkpointer = Checkpointer(tempdir, {&quot;network&quot;: model})</span>
+<span class="sd">&gt;&gt;&gt; # 2. Recover from the latest checkpoint, if one is found:</span>
+<span class="sd">&gt;&gt;&gt; checkpointer.recover_if_possible()</span>
+<span class="sd">&gt;&gt;&gt; # Run your experiment:</span>
+<span class="sd">&gt;&gt;&gt; data = [(0.1, 0.9), (0.3, 0.8)]</span>
+<span class="sd">&gt;&gt;&gt; for example, target in data:</span>
+<span class="sd">...     loss = (model(example) - target)**2</span>
+<span class="sd">...     # 3. Save checkpoints, and keep by default just one, the newest:</span>
+<span class="sd">...     ckpt = checkpointer.save_and_keep_only()</span>
+
+<span class="sd">Authors</span>
+<span class="sd"> * Aku Rouhe 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">collections.abc</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">CKPT_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;CKPT&quot;</span>
+<span class="n">METAFNAME</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{CKPT_PREFIX}</span><span class="s2">.yaml&quot;</span>  <span class="c1"># Important that this is not .ckpt</span>
+<span class="n">PARAMFILE_EXT</span> <span class="o">=</span> <span class="s2">&quot;.ckpt&quot;</span>  <span class="c1"># ...because these files will be</span>
+
+
+<div class="viewcode-block" id="torch_recovery"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.torch_recovery">[docs]</a><span class="k">def</span> <span class="nf">torch_recovery</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loads a torch.nn.Module state_dict from the given path instantly.</span>
+
+<span class="sd">    This can be made the default for torch.nn.Modules with:</span>
+<span class="sd">    &gt;&gt;&gt; DEFAULT_LOAD_HOOKS[torch.nn.Module] = torch_recovery</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    obj : torch.nn.Module</span>
+<span class="sd">        Instance for which to load the parameters.</span>
+<span class="sd">    path : str, pathlib.Path</span>
+<span class="sd">        Path where to load from.</span>
+<span class="sd">    end_of_epoch : bool</span>
+<span class="sd">        Whether the recovery comes from an end of epoch checkpoint.</span>
+<span class="sd">    device : str</span>
+<span class="sd">        Torch device, where to map the loaded parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        Given object is modified in place.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="torch_save"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.torch_save">[docs]</a><span class="k">def</span> <span class="nf">torch_save</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Saves the obj&#39;s parameters to path.</span>
+
+<span class="sd">    Default save hook for torch.nn.Modules</span>
+<span class="sd">    For saving torch.nn.Module state_dicts.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    obj : torch.nn.Module</span>
+<span class="sd">        Instance to save.</span>
+<span class="sd">    path : str, pathlib.Path</span>
+<span class="sd">        Path where to save to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        State dict is written to disk.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">state_dict</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state_dict</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Saving an empty state_dict for </span><span class="si">{obj}</span><span class="s2"> in </span><span class="si">{path}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div>
+
+
+<span class="c1"># These dicts are indexed by class and hold the default checkpoints methods</span>
+<span class="n">DEFAULT_LOAD_HOOKS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span> <span class="n">torch_recovery</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">:</span> <span class="n">torch_recovery</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">DEFAULT_SAVE_HOOKS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span> <span class="n">torch_save</span><span class="p">,</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">:</span> <span class="n">torch_save</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="mark_as_saver"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.mark_as_saver">[docs]</a><span class="k">def</span> <span class="nf">mark_as_saver</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Method decorator which marks given method as the checkpoint saving hook.</span>
+
+<span class="sd">    See register_checkpoint_hooks for example.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    method : callable</span>
+<span class="sd">        Method of the class to decorate. Must be callable with</span>
+<span class="sd">        signature (instance, path) using positional arguments. This is</span>
+<span class="sd">        satisfied by for example: def saver(self, path):</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    This will not add the hook (not possible via a method decorator),</span>
+<span class="sd">    you must also decorate the class with @register_checkpoint_hooks</span>
+<span class="sd">    Only one method can be added as the hook.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="nb">object</span><span class="p">(),</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;testpath&quot;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Checkpoint saver must match signature (instance, path)&quot;</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+    <span class="n">method</span><span class="o">.</span><span class="n">_speechbrain_saver</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">method</span></div>
+
+
+<div class="viewcode-block" id="mark_as_loader"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.mark_as_loader">[docs]</a><span class="k">def</span> <span class="nf">mark_as_loader</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Method decorator which marks given method as checkpoint loading hook.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    method : callable</span>
+<span class="sd">        Method of the class to decorate. Must be callable with</span>
+<span class="sd">        signature (instance, path, end_of_epoch) using positional</span>
+<span class="sd">        arguments. This is satisfied by for example:</span>
+<span class="sd">        `def loader(self, path, end_of_epoch):`</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    This will not add the hook (not possible via a method decorator),</span>
+<span class="sd">    you must also decorate the class with @register_checkpoint_hooks</span>
+<span class="sd">    Only one method can be added as the hook.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sig</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="nb">object</span><span class="p">(),</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;testpath&quot;</span><span class="p">),</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Checkpoint loader must have signature (self, path, end_of_epoch, device)&quot;</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+    <span class="n">method</span><span class="o">.</span><span class="n">_speechbrain_loader</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">method</span></div>
+
+
+<div class="viewcode-block" id="register_checkpoint_hooks"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.register_checkpoint_hooks">[docs]</a><span class="k">def</span> <span class="nf">register_checkpoint_hooks</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class decorator which registers the recover load and save hooks.</span>
+
+<span class="sd">    The hooks must have been marked with mark_as_loader and mark_as_saver.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    cls : class</span>
+<span class="sd">        Class to decorate</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; @register_checkpoint_hooks</span>
+<span class="sd">    ... class CustomRecoverable:</span>
+<span class="sd">    ...     def __init__(self, param):</span>
+<span class="sd">    ...         self.param = int(param)</span>
+<span class="sd">    ...</span>
+<span class="sd">    ...     @mark_as_saver</span>
+<span class="sd">    ...     def save(self, path):</span>
+<span class="sd">    ...         with open(path, &quot;w&quot;) as fo:</span>
+<span class="sd">    ...             fo.write(str(self.param))</span>
+<span class="sd">    ...</span>
+<span class="sd">    ...     @mark_as_loader</span>
+<span class="sd">    ...     def load(self, path, end_of_epoch, device=None):</span>
+<span class="sd">    ...         del end_of_epoch  # Unused here</span>
+<span class="sd">    ...         with open(path) as fi:</span>
+<span class="sd">    ...             self.param = int(fi.read())</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">DEFAULT_LOAD_HOOKS</span>
+    <span class="k">global</span> <span class="n">DEFAULT_SAVE_HOOKS</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s2">&quot;_speechbrain_saver&quot;</span><span class="p">):</span>
+            <span class="n">DEFAULT_SAVE_HOOKS</span><span class="p">[</span><span class="n">cls</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Registered checkpoint save hook for </span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s2">&quot;_speechbrain_loader&quot;</span><span class="p">):</span>
+            <span class="n">DEFAULT_LOAD_HOOKS</span><span class="p">[</span><span class="n">cls</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Registered checkpoint load hook for </span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cls</span></div>
+
+
+<div class="viewcode-block" id="get_default_hook"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.get_default_hook">[docs]</a><span class="k">def</span> <span class="nf">get_default_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default_hooks</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Finds the default save/load hook to use with the given object.</span>
+
+<span class="sd">    Follows the Method Resolution Order, i.e., if no hook is registered for</span>
+<span class="sd">    the class of the object itself, also searches classes which the object</span>
+<span class="sd">    inherits from.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    obj : instance</span>
+<span class="sd">        Instance of a class.</span>
+<span class="sd">    default_hooks : dict</span>
+<span class="sd">        Mapping from classes to (checkpointing hook) functions.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    The correct method or None if no method is registered.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; a = torch.nn.Module()</span>
+<span class="sd">    &gt;&gt;&gt; get_default_hook(a, DEFAULT_SAVE_HOOKS) == torch_save</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mro</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmro</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">cls</span> <span class="ow">in</span> <span class="n">mro</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cls</span> <span class="ow">in</span> <span class="n">default_hooks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">default_hooks</span><span class="p">[</span><span class="n">cls</span><span class="p">]</span>
+    <span class="c1"># If we got here, no hook found</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<span class="n">Checkpoint</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s2">&quot;Checkpoint&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="s2">&quot;meta&quot;</span><span class="p">,</span> <span class="s2">&quot;paramfiles&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">Checkpoint</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;NamedTuple describing one saved checkpoint</span>
+
+<span class="s2">To select a checkpoint to load from many checkpoint,</span>
+<span class="s2">Checkpoints are first filtered and sorted based on this namedtuple.</span>
+<span class="s2">Checkpointers put pathlib.Path in path and a dict in meta.</span>
+<span class="s2">You can essentially add any info you want to meta when saving a checkpoint.</span>
+<span class="s2">The only default key in meta is &quot;unixtime&quot;.</span>
+<span class="s2">Checkpoint.paramfiles is a dict from recoverable name to parameter filepath.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="c1"># Creating a hash allows making checkpoint sets</span>
+<span class="n">Checkpoint</span><span class="o">.</span><span class="n">__hash__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ckpt_recency"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.ckpt_recency">[docs]</a><span class="k">def</span> <span class="nf">ckpt_recency</span><span class="p">(</span><span class="n">ckpt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recency as Checkpoint importance metric.</span>
+
+<span class="sd">    This function can also act as an example of how to make checkpoint</span>
+<span class="sd">    importance keyfuncs. This is a named function, but as you can see</span>
+<span class="sd">    it could be easily implemented as a lambda in a pinch.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;unixtime&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Checkpointer"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer">[docs]</a><span class="k">class</span> <span class="nc">Checkpointer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Saves checkpoints and recovers from them.</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    checkpoints_dir : str, pathlib.Path</span>
+<span class="sd">        Path to directory where to save checkpoints.</span>
+<span class="sd">    recoverables : mapping, optional</span>
+<span class="sd">        Objects to to recover. They need a (unique) name: this is used</span>
+<span class="sd">        to connect the parameters in a checkpoint to the correct recoverable.</span>
+<span class="sd">        The name is also used in the filename of the</span>
+<span class="sd">        savefile for the objects parameters. These can also be added with</span>
+<span class="sd">        add_recoverable or add_recoverables or just modifying</span>
+<span class="sd">        checkpointer.recoverables directly.</span>
+<span class="sd">    custom_load_hooks : mapping, optional</span>
+<span class="sd">        A mapping from name [same as in recoverables] to function or method.</span>
+<span class="sd">        Sets a custom loading hook for a particular object. The</span>
+<span class="sd">        function/method must be callable with signature (instance, path)</span>
+<span class="sd">        using positional arguments. This is satisfied by for example:</span>
+<span class="sd">        `def loader(self, path)`.</span>
+<span class="sd">    custom_save_hooks : mapping, optional</span>
+<span class="sd">        Mapping from name [same as in recoverables] to function or method.</span>
+<span class="sd">        Sets a custom saving hook for a particular object. The</span>
+<span class="sd">        function/method must be callable with</span>
+<span class="sd">        signature (instance, path) using positional arguments. This is</span>
+<span class="sd">        satisfied by for example: def saver(self, path):</span>
+<span class="sd">    allow_partial_load : bool, optional</span>
+<span class="sd">        If True, allows loading a checkpoint where a savefile is not found</span>
+<span class="sd">        for every registered recoverable. In that case, only the found</span>
+<span class="sd">        savefiles are loaded. When False, loading such a save will raise</span>
+<span class="sd">        RuntimeError. (default: False)</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; #SETUP:</span>
+<span class="sd">    &gt;&gt;&gt; tempdir = getfixture(&#39;tmpdir&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; class Recoverable(torch.nn.Module):</span>
+<span class="sd">    ...     def __init__(self, param):</span>
+<span class="sd">    ...         super().__init__()</span>
+<span class="sd">    ...         self.param = torch.nn.Parameter(torch.tensor([param]))</span>
+<span class="sd">    ...     def forward(self, x):</span>
+<span class="sd">    ...         return x * self.param</span>
+<span class="sd">    &gt;&gt;&gt; recoverable = Recoverable(1.)</span>
+<span class="sd">    &gt;&gt;&gt; recoverables = {&#39;recoverable&#39;: recoverable}</span>
+<span class="sd">    &gt;&gt;&gt; # SETUP DONE.</span>
+<span class="sd">    &gt;&gt;&gt; checkpointer = Checkpointer(tempdir, recoverables)</span>
+<span class="sd">    &gt;&gt;&gt; first_ckpt = checkpointer.save_checkpoint()</span>
+<span class="sd">    &gt;&gt;&gt; recoverable.param.data = torch.tensor([2.])</span>
+<span class="sd">    &gt;&gt;&gt; loaded_ckpt = checkpointer.recover_if_possible()</span>
+<span class="sd">    &gt;&gt;&gt; # Parameter has been loaded:</span>
+<span class="sd">    &gt;&gt;&gt; assert recoverable.param.data == torch.tensor([1.])</span>
+<span class="sd">    &gt;&gt;&gt; # With this call, by default, oldest checkpoints are deleted:</span>
+<span class="sd">    &gt;&gt;&gt; checkpointer.save_and_keep_only()</span>
+<span class="sd">    &gt;&gt;&gt; assert first_ckpt not in checkpointer.list_checkpoints()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">checkpoints_dir</span><span class="p">,</span>
+        <span class="n">recoverables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">custom_load_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">custom_save_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">allow_partial_load</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkpoints_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">checkpoints_dir</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">checkpoints_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recoverables</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">recoverables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_recoverables</span><span class="p">(</span><span class="n">recoverables</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_load_hooks</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">custom_load_hooks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">custom_load_hooks</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">custom_load_hooks</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_save_hooks</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">custom_save_hooks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">custom_save_hooks</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">custom_save_hooks</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_partial_load</span> <span class="o">=</span> <span class="n">allow_partial_load</span>
+
+<div class="viewcode-block" id="Checkpointer.add_recoverable"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.add_recoverable">[docs]</a>    <span class="k">def</span> <span class="nf">add_recoverable</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">custom_load_hook</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">custom_save_hook</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register a recoverable with possible custom hooks.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            Unique name for recoverable. Used to map savefiles to objects.</span>
+<span class="sd">        obj : instance</span>
+<span class="sd">            The object to recover.</span>
+<span class="sd">        custom_load_hook : callable</span>
+<span class="sd">            Called to load the object&#39;s savefile. The function/method must be</span>
+<span class="sd">            callable with signature (instance, path) using positional</span>
+<span class="sd">            arguments. This is satisfied by for example: def load(self, path):</span>
+<span class="sd">        custom_save_hook : callable</span>
+<span class="sd">            Called to save the object&#39;s parameters. The function/method must</span>
+<span class="sd">            be callable with signature (instance, path) using positional</span>
+<span class="sd">            arguments. This is satisfied by for example: def saver(self, path):</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recoverables</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span>
+        <span class="k">if</span> <span class="n">custom_load_hook</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">custom_load_hooks</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_load_hook</span>
+        <span class="k">if</span> <span class="n">custom_save_hook</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">custom_save_hooks</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">custom_save_hook</span></div>
+
+<div class="viewcode-block" id="Checkpointer.add_recoverables"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.add_recoverables">[docs]</a>    <span class="k">def</span> <span class="nf">add_recoverables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recoverables</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the recoverables dict from the given mapping.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        recoverables : mapping</span>
+<span class="sd">            Objects to recover.</span>
+<span class="sd">            They need a (unique) name: this is used to</span>
+<span class="sd">            connect the parameters in a checkpoint to the correct</span>
+<span class="sd">            recoverable. The name is also used in the filename of the</span>
+<span class="sd">            savefile for the objects parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">recoverables</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recoverables</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">recoverables</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">recoverables</span><span class="p">)</span>  <span class="c1"># noqa: F841, rec is used in MSG</span>
+            <span class="n">MSG</span> <span class="o">=</span> <span class="s2">&quot;Checkpointer needs a mapping (e.g. dict), </span><span class="se">\</span>
+<span class="s2">                    got </span><span class="si">{rec}</span><span class="s2"> instead.&quot;</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Checkpointer.save_checkpoint"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.save_checkpoint">[docs]</a>    <span class="k">def</span> <span class="nf">save_checkpoint</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="p">{},</span> <span class="n">end_of_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves a checkpoint.</span>
+
+<span class="sd">        The whole checkpoint becomes a directory.</span>
+<span class="sd">        Saves each registered object&#39;s parameters in a separate file.</span>
+<span class="sd">        Also a meta file is added. The meta file by default has just the</span>
+<span class="sd">        unixtime (seconds since unix epoch), but you can add anything</span>
+<span class="sd">        relevant yourself. The meta information is later used to pick the</span>
+<span class="sd">        checkpoint to load.</span>
+
+<span class="sd">        The value of end_of_epoch is saved in the meta. This can affect how</span>
+<span class="sd">        epoch counters and dataset iterators load their state.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        meta : mapping, optional</span>
+<span class="sd">            A mapping which is added to the meta file in the checkpoint. The</span>
+<span class="sd">            key &quot;unixtime&quot; is included by default.</span>
+<span class="sd">        end_of_epoch : bool, optional</span>
+<span class="sd">            Whether the checkpoint is at the end of an epoch. True by default.</span>
+<span class="sd">            May affect loading.</span>
+<span class="sd">        name : str, optional</span>
+<span class="sd">            Specify a custom name for your checkpoint.</span>
+<span class="sd">            The name will still have a prefix added. If no name is given,</span>
+<span class="sd">            a name is created from a timestamp and a random unique id.</span>
+<span class="sd">        verbosity : logging level</span>
+<span class="sd">            Set logging level this save.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Checkpoint</span>
+<span class="sd">            namedtuple [see above], the saved checkpoint.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ckpt_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_checkpoint_dirpath</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ckpt_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_custom_checkpoint_dirpath</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ckpt_dir</span><span class="p">)</span>  <span class="c1"># May raise FileExistsError, let it.</span>
+        <span class="n">saved_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_checkpoint_metafile</span><span class="p">(</span>
+            <span class="n">ckpt_dir</span> <span class="o">/</span> <span class="n">METAFNAME</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">end_of_epoch</span>
+        <span class="p">)</span>
+        <span class="n">saved_paramfiles</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">recoverables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">objfname</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{name}</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">PARAMFILE_EXT</span>
+            <span class="n">savepath</span> <span class="o">=</span> <span class="n">ckpt_dir</span> <span class="o">/</span> <span class="n">objfname</span>
+            <span class="n">saved_paramfiles</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">savepath</span>
+            <span class="c1"># First see if object has custom load hook:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_save_hooks</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">custom_save_hooks</span><span class="p">[</span><span class="n">name</span><span class="p">](</span><span class="n">obj</span><span class="p">,</span> <span class="n">savepath</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="c1"># Otherwise find the default saver for that type:</span>
+            <span class="n">default_hook</span> <span class="o">=</span> <span class="n">get_default_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">DEFAULT_SAVE_HOOKS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">default_hook</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">default_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">savepath</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="c1"># If we got here, no custom hook or registered default hook</span>
+            <span class="n">MSG</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Don&#39;t know how to save {type(obj)}. Register default hook </span><span class="se">\</span>
+<span class="s2">                    or add custom hook for this object.&quot;</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+        <span class="n">ckpt_type</span> <span class="o">=</span> <span class="s2">&quot;end-of-epoch&quot;</span> <span class="k">if</span> <span class="n">end_of_epoch</span> <span class="k">else</span> <span class="s2">&quot;intra-epoch&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">verbosity</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;Saved an </span><span class="si">{ckpt_type}</span><span class="s2"> checkpoint in </span><span class="si">{ckpt_dir}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Checkpoint</span><span class="p">(</span><span class="n">ckpt_dir</span><span class="p">,</span> <span class="n">saved_meta</span><span class="p">,</span> <span class="n">saved_paramfiles</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Checkpointer.save_and_keep_only"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.save_and_keep_only">[docs]</a>    <span class="k">def</span> <span class="nf">save_and_keep_only</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">meta</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">end_of_epoch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">num_to_keep</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">keep_recent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">importance_keys</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">max_keys</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">min_keys</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">ckpt_predicate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves a checkpoint, then deletes the least important checkpoints.</span>
+
+<span class="sd">        Essentially this combines ``save_checkpoint()`` and</span>
+<span class="sd">        ``delete_checkpoints()`` in one call, providing short syntax.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        meta : mapping, optional</span>
+<span class="sd">            A mapping which is added to the meta file in the checkpoint. The</span>
+<span class="sd">            key &quot;unixtime&quot; is included by default.</span>
+<span class="sd">        end_of_epoch : bool, optional</span>
+<span class="sd">            Whether the checkpoint is at the end of an epoch. True by default.</span>
+<span class="sd">            May affect loading.</span>
+<span class="sd">        name : str, optional</span>
+<span class="sd">            Specify a custom name for your checkpoint.</span>
+<span class="sd">            The name will still have a prefix added. If no name is given,</span>
+<span class="sd">            a name is created from a timestamp and a random unique id.</span>
+<span class="sd">        num_to_keep : int, optional</span>
+<span class="sd">            Number of checkpoints to keep. Defaults to 1. This deletes all</span>
+<span class="sd">            checkpoints remaining after filtering. Must be &gt;=0.</span>
+<span class="sd">        keep_recent : bool, optional</span>
+<span class="sd">            Whether to keep the most recent ``num_to_keep`` checkpoints.</span>
+<span class="sd">        importance_keys : list, optional</span>
+<span class="sd">            A list of key functions used in sorting (see the sorted built-in).</span>
+<span class="sd">            Each callable defines a sort order and num_to_keep checkpoints are</span>
+<span class="sd">            kept for callable. The checkpoint with the highest keys are kept.</span>
+<span class="sd">            The functions are passed Checkpoint namedtuples (see above).</span>
+<span class="sd">        max_keys : list, optional</span>
+<span class="sd">            A list of keys for which the *highest* value will be kept.</span>
+<span class="sd">        min_keys : list, optional</span>
+<span class="sd">            A list of keys for which the *lowest* value will be kept.</span>
+<span class="sd">        ckpt_predicate : callable, optional</span>
+<span class="sd">            Use this to exclude some checkpoints from deletion. Before any</span>
+<span class="sd">            sorting, the list of checkpoints is filtered with this predicate.</span>
+<span class="sd">            Only the checkpoints for which ckpt_predicate is True can be</span>
+<span class="sd">            deleted. The function is called with Checkpoint namedtuples</span>
+<span class="sd">            (see above).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">            Unlike save_checkpoint, this does not return anything, since</span>
+<span class="sd">            we cannot guarantee that the saved checkpoint actually survives</span>
+<span class="sd">            deletion.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">(</span>
+            <span class="n">meta</span><span class="o">=</span><span class="n">meta</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="o">=</span><span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">keep_recent</span><span class="p">:</span>
+            <span class="n">importance_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ckpt_recency</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete_checkpoints</span><span class="p">(</span>
+            <span class="n">num_to_keep</span><span class="o">=</span><span class="n">num_to_keep</span><span class="p">,</span>
+            <span class="n">max_keys</span><span class="o">=</span><span class="n">max_keys</span><span class="p">,</span>
+            <span class="n">min_keys</span><span class="o">=</span><span class="n">min_keys</span><span class="p">,</span>
+            <span class="n">importance_keys</span><span class="o">=</span><span class="n">importance_keys</span><span class="p">,</span>
+            <span class="n">ckpt_predicate</span><span class="o">=</span><span class="n">ckpt_predicate</span><span class="p">,</span>
+            <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Checkpointer.find_checkpoint"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.find_checkpoint">[docs]</a>    <span class="k">def</span> <span class="nf">find_checkpoint</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">importance_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ckpt_predicate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Picks a particular checkpoint from all available checkpoints.</span>
+
+<span class="sd">        If none of ``importance_key``, ``max_key``, and ``min_key`` is</span>
+<span class="sd">        used, then most recent checkpoint will be returned. No more than</span>
+<span class="sd">        one of them may be used.</span>
+
+<span class="sd">        Most functionality is actually implemented in ``find_checkpoints()``</span>
+<span class="sd">        but this is kept as a useful interface.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        importance_key : callable, optional</span>
+<span class="sd">            The key function used in sorting.</span>
+<span class="sd">            The checkpoint with the highest returned value is picked.</span>
+<span class="sd">            The function is called with Checkpoint namedtuples.</span>
+<span class="sd">        max_key : str, optional</span>
+<span class="sd">            The checkpoint with the highest value for this key will</span>
+<span class="sd">            be returned. Only checkpoints with this key will be considered!</span>
+<span class="sd">        min_key : str, optional</span>
+<span class="sd">            The checkpoint with the lowest value for this key will</span>
+<span class="sd">            be returned. Only checkpoints with this key will be considered!</span>
+<span class="sd">        ckpt_predicate : callable, optional</span>
+<span class="sd">            Before sorting, the list of</span>
+<span class="sd">            checkpoints is filtered with this predicate.</span>
+<span class="sd">            See the filter builtin.</span>
+<span class="sd">            The function is called with Checkpoint namedtuples (see above).</span>
+<span class="sd">            By default, all checkpoints are considered.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Checkpoint</span>
+<span class="sd">            If found.</span>
+<span class="sd">        None</span>
+<span class="sd">            If no Checkpoints exist/remain after filtering.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ckpts_found</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_checkpoints</span><span class="p">(</span>
+            <span class="n">importance_key</span><span class="o">=</span><span class="n">importance_key</span><span class="p">,</span>
+            <span class="n">max_key</span><span class="o">=</span><span class="n">max_key</span><span class="p">,</span>
+            <span class="n">min_key</span><span class="o">=</span><span class="n">min_key</span><span class="p">,</span>
+            <span class="n">ckpt_predicate</span><span class="o">=</span><span class="n">ckpt_predicate</span><span class="p">,</span>
+            <span class="n">max_num_checkpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">ckpts_found</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ckpts_found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Checkpointer.find_checkpoints"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.find_checkpoints">[docs]</a>    <span class="k">def</span> <span class="nf">find_checkpoints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">importance_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ckpt_predicate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_num_checkpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Picks multiple checkpoints.</span>
+
+<span class="sd">        If none of ``importance_key``, ``max_key``, and ``min_key`` is</span>
+<span class="sd">        used, then the most recent checkpoints will be returned. No more than</span>
+<span class="sd">        one of these may be used.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        importance_key : callable, optional</span>
+<span class="sd">            The key function used in sorting.</span>
+<span class="sd">            The checkpoint with the highest returned value is picked.</span>
+<span class="sd">            The function is called with Checkpoint namedtuples.</span>
+<span class="sd">        max_key : str, optional</span>
+<span class="sd">            The checkpoint with the highest value for this key will</span>
+<span class="sd">            be returned. Only checkpoints with this key will be considered!</span>
+<span class="sd">        min_key : str, optional</span>
+<span class="sd">            The checkpoint with the lowest value for this key will</span>
+<span class="sd">            be returned. Only checkpoints with this key will be considered!</span>
+<span class="sd">        ckpt_predicate : callable, optional</span>
+<span class="sd">            Before sorting, the list of</span>
+<span class="sd">            checkpoints is filtered with this predicate.</span>
+<span class="sd">            See the filter builtin.</span>
+<span class="sd">            The function is called with Checkpoint namedtuples (see above).</span>
+<span class="sd">            By default, all checkpoints are considered.</span>
+<span class="sd">        max_num_checkpoints : int, None</span>
+<span class="sd">            The maximum number of checkpoints to return, or None to return all</span>
+<span class="sd">            found checkpoints.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            List containing at most the max specified number of Checkpoints.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">importance_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">min_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">importance_key</span> <span class="o">=</span> <span class="n">ckpt_recency</span>
+
+        <span class="k">if</span> <span class="n">max_key</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">importance_key</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">importance_key</span><span class="p">(</span><span class="n">ckpt</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">max_key</span><span class="p">]</span>
+
+            <span class="k">def</span> <span class="nf">ckpt_predicate</span><span class="p">(</span><span class="n">ckpt</span><span class="p">,</span> <span class="n">old_predicate</span><span class="o">=</span><span class="n">ckpt_predicate</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">old_predicate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">max_key</span> <span class="ow">in</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span> <span class="ow">and</span> <span class="n">old_predicate</span><span class="p">(</span><span class="n">ckpt</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">max_key</span> <span class="ow">in</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span>
+
+        <span class="k">elif</span> <span class="n">min_key</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">importance_key</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">importance_key</span><span class="p">(</span><span class="n">ckpt</span><span class="p">):</span>
+                <span class="k">return</span> <span class="o">-</span><span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="n">min_key</span><span class="p">]</span>
+
+            <span class="k">def</span> <span class="nf">ckpt_predicate</span><span class="p">(</span><span class="n">ckpt</span><span class="p">,</span> <span class="n">old_predicate</span><span class="o">=</span><span class="n">ckpt_predicate</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">old_predicate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">min_key</span> <span class="ow">in</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span> <span class="ow">and</span> <span class="n">old_predicate</span><span class="p">(</span><span class="n">ckpt</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">min_key</span> <span class="ow">in</span> <span class="n">ckpt</span><span class="o">.</span><span class="n">meta</span>
+
+        <span class="k">elif</span> <span class="n">min_key</span> <span class="ow">or</span> <span class="n">max_key</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Must specify only one of &#39;importance_key&#39;, &#39;max_key&#39;, &quot;</span>
+                <span class="s2">&quot;and &#39;min_key&#39;.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">ckpts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_checkpoints</span><span class="p">()</span>
+        <span class="n">ckpts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">ckpt_predicate</span><span class="p">,</span> <span class="n">ckpts</span><span class="p">))</span>
+        <span class="c1"># First sort by recency, so that importance being equal,</span>
+        <span class="c1"># the most checkpoints are returned</span>
+        <span class="n">ckpts</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ckpts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">ckpt_recency</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ckpts</span><span class="p">:</span>
+            <span class="n">ranked_ckpts</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ckpts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">importance_key</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># NOTE: apparently, you can also slice [:None],</span>
+            <span class="c1"># and this is the same as [:], so the following if-else is not</span>
+            <span class="c1"># strictly speaking needed. However, this feature does not seem to</span>
+            <span class="c1"># be documented Python so I don&#39;t want to trust it.</span>
+            <span class="k">if</span> <span class="n">max_num_checkpoints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ranked_ckpts</span><span class="p">[:</span><span class="n">max_num_checkpoints</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># No max number -&gt; return all ckpts, but just sorted</span>
+                <span class="k">return</span> <span class="n">ranked_ckpts</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># Be explicit :)</span></div>
+
+<div class="viewcode-block" id="Checkpointer.recover_if_possible"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.recover_if_possible">[docs]</a>    <span class="k">def</span> <span class="nf">recover_if_possible</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">importance_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ckpt_predicate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Picks a checkpoint and recovers from that, if one is found.</span>
+
+<span class="sd">        If a checkpoint is not found, no recovery is run.</span>
+
+<span class="sd">        If none of ``importance_key``, ``max_key``, and ``min_key`` is</span>
+<span class="sd">        used, then most recent checkpoint will be returned. No more than</span>
+<span class="sd">        one of them may be used.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        importance_key : callable, optional</span>
+<span class="sd">            The key function used in sorting.</span>
+<span class="sd">            The checkpoint with the highest returned value is loaded.</span>
+<span class="sd">            The function is called with Checkpoint namedtuples.</span>
+<span class="sd">        max_key : str, optional</span>
+<span class="sd">            The checkpoint with the highest value for this key will be loaded.</span>
+<span class="sd">            Only checkpoints with this key will be considered!</span>
+<span class="sd">        min_key : str, optional</span>
+<span class="sd">            The checkpoint with the lowest value for this key will be loaded.</span>
+<span class="sd">            Only checkpoints with this key will be considered!</span>
+<span class="sd">        ckpt_predicate : callable, optional</span>
+<span class="sd">            Before sorting, the list of</span>
+<span class="sd">            checkpoints is filtered with this predicate.</span>
+<span class="sd">            See the filter builtin.</span>
+<span class="sd">            The function is called with Checkpoint namedtuples (see above).</span>
+<span class="sd">            By default, all checkpoints are considered.</span>
+<span class="sd">        device : torch.device</span>
+<span class="sd">            Device to load models to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Checkpoint</span>
+<span class="sd">            If found.</span>
+<span class="sd">        None</span>
+<span class="sd">            If no Checkpoints exist/remain after filtering.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chosen_ckpt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_checkpoint</span><span class="p">(</span>
+            <span class="n">importance_key</span><span class="p">,</span> <span class="n">max_key</span><span class="p">,</span> <span class="n">min_key</span><span class="p">,</span> <span class="n">ckpt_predicate</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">chosen_ckpt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_checkpoint</span><span class="p">(</span><span class="n">chosen_ckpt</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Would load a checkpoint here, but none found yet.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chosen_ckpt</span></div>
+
+<div class="viewcode-block" id="Checkpointer.load_checkpoint"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.load_checkpoint">[docs]</a>    <span class="k">def</span> <span class="nf">load_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loads the specified checkpoint.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        checkpoint : Checkpoint</span>
+<span class="sd">            Checkpoint to load.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_call_load_hooks</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Checkpointer.list_checkpoints"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.list_checkpoints">[docs]</a>    <span class="k">def</span> <span class="nf">list_checkpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List all checkpoints in the checkpoints directory.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            List of Checkpoint namedtuple (see above).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_construct_checkpoint_objects</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_list_checkpoint_dirs</span><span class="p">())</span></div>
+
+    <span class="c1"># NOTE: * in arglist -&gt; keyword only arguments</span>
+<div class="viewcode-block" id="Checkpointer.delete_checkpoints"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.Checkpointer.delete_checkpoints">[docs]</a>    <span class="k">def</span> <span class="nf">delete_checkpoints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">num_to_keep</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">min_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">importance_keys</span><span class="o">=</span><span class="p">[</span><span class="n">ckpt_recency</span><span class="p">],</span>
+        <span class="n">ckpt_predicate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbosity</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deletes least important checkpoints.</span>
+
+<span class="sd">        Since there can be many ways to define importance (e.g. lowest WER,</span>
+<span class="sd">        lowest loss), the user should provide a list of sort key functions,</span>
+<span class="sd">        each defining a particular importance order. In essence, each</span>
+<span class="sd">        importance key function extracts one importance metric (higher is more</span>
+<span class="sd">        important). For each of these orders, num_to_keep checkpoints are kept.</span>
+<span class="sd">        However if there is overlap between each orders&#39; preserved checkpoints,</span>
+<span class="sd">        the additional checkpoints are not preserved, so the total number of</span>
+<span class="sd">        preserved checkpoints can be less than::</span>
+
+<span class="sd">            num_to_keep * len(importance_keys)</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        num_to_keep : int, optional</span>
+<span class="sd">            Number of checkpoints to keep.</span>
+<span class="sd">            Defaults to 10. You choose to keep 0. This deletes all</span>
+<span class="sd">            checkpoints remaining after filtering. Must be &gt;=0</span>
+<span class="sd">        min_keys : list, optional</span>
+<span class="sd">            List of strings representing keys in the meta. The lowest of</span>
+<span class="sd">            these values will be kept, up to num_to_keep.</span>
+<span class="sd">        max_keys : list, optional</span>
+<span class="sd">            List of strings representing keys in the meta. The highest of</span>
+<span class="sd">            these values will be kept, up to num_to_keep.</span>
+<span class="sd">        importance_keys : list, optional</span>
+<span class="sd">            A list of key functions used in sorting (see the sorted built-in).</span>
+<span class="sd">            Each callable defines a sort order and num_to_keep checkpoints are</span>
+<span class="sd">            kept for  callable. To be clear, those with the highest key are</span>
+<span class="sd">            kept.</span>
+<span class="sd">            The functions are called with Checkpoint namedtuples</span>
+<span class="sd">            (see above). See also the default (ckpt_recency,</span>
+<span class="sd">            above). The default deletes all but the latest checkpoint.</span>
+<span class="sd">        ckpt_predicate : callable, optional</span>
+<span class="sd">            Use this to exclude some checkpoints from deletion. Before any</span>
+<span class="sd">            sorting, the list of checkpoints is filtered with this predicate.</span>
+<span class="sd">            Only the checkpoints for which ckpt_predicate is True can be</span>
+<span class="sd">            deleted. The function is called with Checkpoint namedtuples</span>
+<span class="sd">            (see above).</span>
+<span class="sd">        verbosity : logging level</span>
+<span class="sd">            Set logging level for this deletion.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        Must be called with keyword arguments, as a signoff that you</span>
+<span class="sd">        know what you are doing. Deletion is permanent.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">num_to_keep</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of checkpoints to keep must be positive.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Build a list of potential deletions and protected checkpoints</span>
+        <span class="n">potential_deletions</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">protected_checkpoints</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;min_key&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">}</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">min_keys</span> <span class="ow">or</span> <span class="p">[]]</span>
+        <span class="n">keys</span><span class="o">.</span><span class="n">extend</span><span class="p">([{</span><span class="s2">&quot;max_key&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">}</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">max_keys</span> <span class="ow">or</span> <span class="p">[]])</span>
+        <span class="n">keys</span><span class="o">.</span><span class="n">extend</span><span class="p">([{</span><span class="s2">&quot;importance_key&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">}</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">importance_keys</span><span class="p">])</span>
+
+        <span class="c1"># Don&#39;t consider checkpoints for deletion that don&#39;t have a listed key</span>
+        <span class="k">for</span> <span class="n">key_kwargs</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="n">key_kwargs</span><span class="p">[</span><span class="s2">&quot;ckpt_predicate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ckpt_predicate</span>
+            <span class="n">potential_deletions</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_checkpoints</span><span class="p">(</span><span class="o">**</span><span class="n">key_kwargs</span><span class="p">))</span>
+            <span class="n">protected_checkpoints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">find_checkpoints</span><span class="p">(</span>
+                    <span class="n">max_num_checkpoints</span><span class="o">=</span><span class="n">num_to_keep</span><span class="p">,</span> <span class="o">**</span><span class="n">key_kwargs</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Delete unprotected checkpoints</span>
+        <span class="k">for</span> <span class="n">ckpt</span> <span class="ow">in</span> <span class="n">potential_deletions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ckpt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">protected_checkpoints</span><span class="p">:</span>
+                <span class="n">Checkpointer</span><span class="o">.</span><span class="n">_delete_checkpoint</span><span class="p">(</span><span class="n">ckpt</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">verbosity</span><span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_delete_checkpoint</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">Checkpointer</span><span class="o">.</span><span class="n">_is_checkpoint_dir</span><span class="p">(</span><span class="n">checkpoint</span><span class="o">.</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Checkpoint does not appear valid for deletion.&quot;</span><span class="p">)</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">checkpoint</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">verbosity</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;Deleted checkpoint in </span><span class="si">{checkpoint.path}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_call_load_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># This internal function finds the correct hook to call for every</span>
+        <span class="c1"># recoverable, and calls it.</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Loading a checkpoint from </span><span class="si">{checkpoint.path}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">end_of_epoch</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;end-of-epoch&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">recoverables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># NOTE: We want the checkpoint namedtuple to have the paramfile</span>
+            <span class="c1"># paths for each recoverable.</span>
+            <span class="c1"># In some rare case, the user can e.g. add a path there manually.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">loadpath</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">paramfiles</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_partial_load</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="s2">&quot;dataloader&quot;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                    <span class="n">MSG</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Loading checkpoint from </span><span class="si">{checkpoint.path}</span><span class="s2">, </span><span class="se">\</span>
+<span class="s2">                            but missing a load path for </span><span class="si">{name}</span><span class="s2">&quot;</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">MSG</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">MSG</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Loading checkpoint from </span><span class="si">{checkpoint.path}</span><span class="s2">, </span><span class="se">\</span>
+<span class="s2">                            but missing a load path for </span><span class="si">{name}</span><span class="s2">&quot;</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+
+            <span class="c1"># First see if object has custom load hook:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_load_hooks</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">custom_load_hooks</span><span class="p">[</span><span class="n">name</span><span class="p">](</span>
+                    <span class="n">obj</span><span class="p">,</span> <span class="n">loadpath</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span>
+                <span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="c1"># Otherwise find the default saver for that type:</span>
+            <span class="n">default_hook</span> <span class="o">=</span> <span class="n">get_default_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">DEFAULT_LOAD_HOOKS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">default_hook</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">default_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">loadpath</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="c1"># If we got here, no custom hook or registered default hook exists</span>
+            <span class="n">MSG</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Don&#39;t know how to load {type(obj)}. Register default hook </span><span class="se">\</span>
+<span class="s2">                    or add custom hook for this object.&quot;</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_list_checkpoint_dirs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This internal method returns a list of individual checkpoint</span>
+        <span class="c1"># directory paths in the top checkpoint directory</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">x</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkpoints_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">Checkpointer</span><span class="o">.</span><span class="n">_is_checkpoint_dir</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_construct_checkpoint_objects</span><span class="p">(</span><span class="n">checkpoint_dirs</span><span class="p">):</span>
+        <span class="c1"># This internal method takes a list of individual checkpoint</span>
+        <span class="c1"># directory paths (as produced by _list_checkpoint_dirs)</span>
+        <span class="n">checkpoints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ckpt_dir</span> <span class="ow">in</span> <span class="n">checkpoint_dirs</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ckpt_dir</span> <span class="o">/</span> <span class="n">METAFNAME</span><span class="p">)</span> <span class="k">as</span> <span class="n">fi</span><span class="p">:</span>
+                <span class="n">meta</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fi</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">Loader</span><span class="p">)</span>
+            <span class="n">paramfiles</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">ckptfile</span> <span class="ow">in</span> <span class="n">ckpt_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">ckptfile</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="n">PARAMFILE_EXT</span><span class="p">:</span>
+                    <span class="n">paramfiles</span><span class="p">[</span><span class="n">ckptfile</span><span class="o">.</span><span class="n">stem</span><span class="p">]</span> <span class="o">=</span> <span class="n">ckptfile</span>
+            <span class="n">checkpoints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Checkpoint</span><span class="p">(</span><span class="n">ckpt_dir</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">paramfiles</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">checkpoints</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_is_checkpoint_dir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="c1"># This internal method verifies whether a given path points to a</span>
+        <span class="c1"># directory that holds a checkpoint.</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">CKPT_PREFIX</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="n">METAFNAME</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_new_checkpoint_dirpath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This internal method creates a checkpoint name and returns a path</span>
+        <span class="c1"># to that directory (but does not create the directory!)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">stamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">+%H-%M-%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        <span class="n">suffix_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">checkpoints_dir</span> <span class="o">/</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{CKPT_PREFIX}</span><span class="s2">+</span><span class="si">{stamp}</span><span class="s2">+</span><span class="si">{suffix_num:02d}</span><span class="s2">&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">suffix_num</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkpoints_dir</span> <span class="o">/</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{CKPT_PREFIX}</span><span class="s2">+</span><span class="si">{stamp}</span><span class="s2">+</span><span class="si">{suffix_num:02d}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_custom_checkpoint_dirpath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="c1"># This internal method creates a checkpoint name based on a given</span>
+        <span class="c1"># custom name and returns a path to that directory (but does not</span>
+        <span class="c1"># create the directory!)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkpoints_dir</span> <span class="o">/</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{CKPT_PREFIX}</span><span class="s2">+</span><span class="si">{name}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_save_checkpoint_metafile</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">fpath</span><span class="p">,</span> <span class="n">meta_to_include</span><span class="o">=</span><span class="p">{},</span> <span class="n">end_of_epoch</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
+        <span class="c1"># This internal method saves the meta information in the given path</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;unixtime&quot;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(),</span> <span class="s2">&quot;end-of-epoch&quot;</span><span class="p">:</span> <span class="n">end_of_epoch</span><span class="p">}</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">meta_to_include</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+            <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# yamllint disable</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">meta</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">meta</span></div>
+
+
+<div class="viewcode-block" id="average_state_dicts"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.average_state_dicts">[docs]</a><span class="k">def</span> <span class="nf">average_state_dicts</span><span class="p">(</span><span class="n">state_dicts</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Produces an average state_dict from an iterator over state_dicts.</span>
+
+<span class="sd">    Note that at one time, this keeps two of the state_dicts in memory, which</span>
+<span class="sd">    is the minimum memory requirement.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    state_dicts : iterator, list</span>
+<span class="sd">        The state_dicts to average.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    state_dict</span>
+<span class="sd">        The averaged state_dict.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">state_dicts</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">running_sum</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No state dicts to average.&quot;</span><span class="p">)</span>
+    <span class="n">num_dicts</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="c1"># First sum all state_dicts together:</span>
+        <span class="k">for</span> <span class="n">state_dict</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">pname</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">running_sum</span><span class="p">[</span><span class="n">pname</span><span class="p">]</span> <span class="o">+=</span> <span class="n">param</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">num_dicts</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># Finally, divide by number of dicts:</span>
+        <span class="k">for</span> <span class="n">pname</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">running_sum</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">running_sum</span><span class="p">[</span><span class="n">pname</span><span class="p">]</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_dicts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">running_sum</span></div>
+
+
+<div class="viewcode-block" id="average_checkpoints"><a class="viewcode-back" href="../../../speechbrain.utils.checkpoints.html#speechbrain.utils.checkpoints.average_checkpoints">[docs]</a><span class="k">def</span> <span class="nf">average_checkpoints</span><span class="p">(</span>
+    <span class="n">checkpoint_list</span><span class="p">,</span>
+    <span class="n">recoverable_name</span><span class="p">,</span>
+    <span class="n">parameter_loader</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">,</span>
+    <span class="n">averager</span><span class="o">=</span><span class="n">average_state_dicts</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Average parameters from multiple checkpoints.</span>
+
+<span class="sd">    Use Checkpointer.find_checkpoints() to get the list of checkpoints to</span>
+<span class="sd">    average over.</span>
+<span class="sd">    Averaging parameters from some of the last checkpoints in training has been</span>
+<span class="sd">    shown to sometimes improve performance.</span>
+
+<span class="sd">    The default loader and averager work for standard PyTorch modules.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    checkpoint_list : list</span>
+<span class="sd">        List of checkpoints to average.</span>
+<span class="sd">    recoverable_name : str</span>
+<span class="sd">        The name of the recoverable, the parameters of which are loaded and</span>
+<span class="sd">        averaged.</span>
+<span class="sd">    parameter_loader : function</span>
+<span class="sd">        A function which takes a single argument, the path to a parameter file,</span>
+<span class="sd">        and loads the parameters from that file. By default, torch.load,</span>
+<span class="sd">        which produces state_dict dictionaries.</span>
+<span class="sd">    averager : function</span>
+<span class="sd">        A function which takes an iterator over the parameters from each</span>
+<span class="sd">        checkpoint, as loaded by parameter_loader, and produces their average.</span>
+<span class="sd">        Note that the function is called with an iterator, so the length is</span>
+<span class="sd">        initially unknown; the implementation should simply count the number of</span>
+<span class="sd">        different parameter sets as they are yielded. See average_state_dicts</span>
+<span class="sd">        above for an example. It is the default averager, and averages</span>
+<span class="sd">        state_dicts.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Any</span>
+<span class="sd">        The output of the averager function.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; # Consider this toy Module again:</span>
+<span class="sd">    &gt;&gt;&gt; class Recoverable(torch.nn.Module):</span>
+<span class="sd">    ...     def __init__(self, param):</span>
+<span class="sd">    ...         super().__init__()</span>
+<span class="sd">    ...         self.param = torch.nn.Parameter(torch.tensor([param]))</span>
+<span class="sd">    ...     def forward(self, x):</span>
+<span class="sd">    ...         return x * self.param</span>
+<span class="sd">    &gt;&gt;&gt; # Now let&#39;s make some checkpoints:</span>
+<span class="sd">    &gt;&gt;&gt; model = Recoverable(1.)</span>
+<span class="sd">    &gt;&gt;&gt; tempdir = getfixture(&#39;tmpdir&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; checkpointer = Checkpointer(tempdir, {&quot;model&quot;: model})</span>
+<span class="sd">    &gt;&gt;&gt; for new_param in range(10):</span>
+<span class="sd">    ...     model.param.data = torch.tensor([float(new_param)])</span>
+<span class="sd">    ...     _ = checkpointer.save_checkpoint()  # Suppress output with assignment</span>
+<span class="sd">    &gt;&gt;&gt; # Let&#39;s average the 3 latest checkpoints</span>
+<span class="sd">    &gt;&gt;&gt; # (parameter values 7, 8, 9 -&gt; avg=8)</span>
+<span class="sd">    &gt;&gt;&gt; ckpt_list = checkpointer.find_checkpoints(max_num_checkpoints = 3)</span>
+<span class="sd">    &gt;&gt;&gt; averaged_state = average_checkpoints(ckpt_list, &quot;model&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; # Now load that state in the normal way:</span>
+<span class="sd">    &gt;&gt;&gt; _ = model.load_state_dict(averaged_state)  # Suppress output</span>
+<span class="sd">    &gt;&gt;&gt; model.param.data</span>
+<span class="sd">    tensor([8.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">parameter_iterator</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">parameter_loader</span><span class="p">(</span><span class="n">ckpt</span><span class="o">.</span><span class="n">paramfiles</span><span class="p">[</span><span class="n">recoverable_name</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">ckpt</span> <span class="ow">in</span> <span class="n">checkpoint_list</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">averager</span><span class="p">(</span><span class="n">parameter_iterator</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

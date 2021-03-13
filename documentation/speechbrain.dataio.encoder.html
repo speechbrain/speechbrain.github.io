@@ -1,0 +1,1421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.dataio.encoder module &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="speechbrain.dataio.legacy module" href="speechbrain.dataio.legacy.html" />
+    <link rel="prev" title="speechbrain.dataio.dataset module" href="speechbrain.dataio.dataset.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="speechbrain.html">Core library (speechbrain)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechbrain.dataio.html">speechbrain.dataio</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="speechbrain.html">speechbrain</a> &raquo;</li>
+        
+          <li><a href="speechbrain.dataio.html">speechbrain.dataio</a> &raquo;</li>
+        
+      <li>speechbrain.dataio.encoder module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/speechbrain.dataio.encoder.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-speechbrain.dataio.encoder">
+<span id="speechbrain-dataio-encoder-module"></span><h1>speechbrain.dataio.encoder module<a class="headerlink" href="#module-speechbrain.dataio.encoder" title="Permalink to this headline">¶</a></h1>
+<p>Encoding categorical data as integers</p>
+<dl class="docutils">
+<dt>Authors</dt><dd><ul class="simple">
+<li>Samuele Cornell 2020</li>
+<li>Aku Rouhe 2020</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Classes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.encoder.CTCTextEncoder" title="speechbrain.dataio.encoder.CTCTextEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CTCTextEncoder</span></code></a></td>
+<td>Subclass of TextEncoder which also provides methods to handle CTC blank token.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.dataio.encoder.CategoricalEncoder" title="speechbrain.dataio.encoder.CategoricalEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalEncoder</span></code></a></td>
+<td>Encode labels of a discrete set.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.dataio.encoder.TextEncoder" title="speechbrain.dataio.encoder.TextEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextEncoder</span></code></a></td>
+<td>CategoricalEncoder subclass which offers specific methods for encoding text and handle special tokens for training of sequence to sequence models.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder">
+<em class="property">class </em><code class="descclassname">speechbrain.dataio.encoder.</code><code class="descname">CategoricalEncoder</code><span class="sig-paren">(</span><em><span class="n">starting_index</span><span class="o">=</span><span class="default_value">0</span></em>, <em><span class="o">**</span><span class="n">special_labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Encode labels of a discrete set.</p>
+<p>Used for encoding, e.g., speaker identities in speaker recognition.
+Given a collection of hashables (e.g a strings) it encodes
+every unique item to an integer value: [“spk0”, “spk1”] –&gt; [0, 1]
+Internally the correspondence between each label to its index is handled by
+two dictionaries: lab2ind and ind2lab.</p>
+<p>The label integer encoding can be generated automatically from a SpeechBrain
+DynamicItemDataset by specifying the desired entry (e.g., spkid) in the annotation
+and calling update_from_didataset method:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.encoder</span> <span class="k">import</span> <span class="n">CategoricalEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.dataset</span> <span class="k">import</span> <span class="n">DynamicItemDataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ex_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span> <span class="p">{</span><span class="s2">&quot;spkid&quot;</span> <span class="p">:</span> <span class="s2">&quot;spk</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)}</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">DynamicItemDataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">CategoricalEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_didataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;spkid&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoder</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="c1"># different speaker for each utterance</span>
+</pre></div>
+</div>
+<p>However can also be updated from an iterable:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.encoder</span> <span class="k">import</span> <span class="n">CategoricalEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.dataset</span> <span class="k">import</span> <span class="n">DynamicItemDataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;spk</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">CategoricalEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoder</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In both methods it can be specified it the single element in the iterable
+or in the dataset should be treated as a sequence or not (default False).
+If it is a sequence each element in the sequence will be encoded.</p>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.encoder</span> <span class="k">import</span> <span class="n">CategoricalEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.dataset</span> <span class="k">import</span> <span class="n">DynamicItemDataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">CategoricalEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">sequence_input</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoder</span><span class="p">)</span> <span class="o">==</span> <span class="mi">21</span> <span class="c1"># there are only 21 unique elements 1-21</span>
+</pre></div>
+</div>
+<p>This class offers 4 different methods to explicitly add a label in the internal
+dicts: add_label, ensure_label, insert_label, enforce_label.
+add_label and insert_label will raise an error if it is already present in the
+internal dicts. insert_label, enforce_label allow also to specify the integer value
+to which the desired label is encoded.</p>
+<p>Encoding can be performed using 4 different methods:
+encode_label, encode_sequence, encode_label_torch and encode_sequence_torch.
+encode_label operate on single labels and simply returns the corresponding
+integer encoding:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.encoder</span> <span class="k">import</span> <span class="n">CategoricalEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.dataset</span> <span class="k">import</span> <span class="n">DynamicItemDataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;spk</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">22</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">encode_sequence on sequences of labels:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encode_sequence</span><span class="p">([</span><span class="s2">&quot;spk1&quot;</span><span class="p">,</span> <span class="s2">&quot;spk19&quot;</span><span class="p">])</span>
+<span class="go">[22, 40]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">encode_label_torch and encode_sequence_torch return torch tensors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encode_sequence_torch</span><span class="p">([</span><span class="s2">&quot;spk1&quot;</span><span class="p">,</span> <span class="s2">&quot;spk19&quot;</span><span class="p">])</span>
+<span class="go">tensor([22, 40])</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">Decoding can be performed using decode_torch and decode_ndim methods.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode_sequence_torch</span><span class="p">([</span><span class="s2">&quot;spk1&quot;</span><span class="p">,</span> <span class="s2">&quot;spk19&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">decode_torch</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="go">[&#39;spk1&#39;, &#39;spk19&#39;]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">decode_ndim is used for multidimensional list or pytorch tensors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded</span> <span class="o">=</span> <span class="n">encoded</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">decode_torch</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="go">[[&#39;spk1&#39;, &#39;spk19&#39;], [&#39;spk1&#39;, &#39;spk19&#39;], [&#39;spk1&#39;, &#39;spk19&#39;]]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>In some applications, it can happen that during testing a label which has not
+been encountered during training is encountered. To handle this out-of-vocabulary
+problem add_unk can be used. Every out-of-vocab label is mapped to this special
+&lt;unk&gt; label and its corresponding integer encoding.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">encoder</span><span class="o">.</span><span class="n">encode_label</span><span class="p">(</span><span class="s2">&quot;spk42&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="gp">... </span>       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spk42 is not in the encoder this raises an error!&quot;</span><span class="p">)</span>
+<span class="go">spk42 is not in the encoder this raises an error!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">add_unk</span><span class="p">()</span>
+<span class="go">41</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encode_label</span><span class="p">(</span><span class="s2">&quot;spk42&quot;</span><span class="p">)</span>
+<span class="go">41</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">returns the &lt;unk&gt; encoding</span>
+</pre></div>
+</div>
+<p>This class offers also methods to save and load the internal mappings between
+labels and tokens using: save and load methods as well as load_or_create.</p>
+<dl class="py attribute">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.VALUE_SEPARATOR">
+<code class="descname">VALUE_SEPARATOR</code><em class="property"> = ' =&gt; '</em><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.VALUE_SEPARATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.EXTRAS_SEPARATOR">
+<code class="descname">EXTRAS_SEPARATOR</code><em class="property"> = '================\n'</em><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.EXTRAS_SEPARATOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.handle_special_labels">
+<code class="descname">handle_special_labels</code><span class="sig-paren">(</span><em><span class="n">special_labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.handle_special_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.handle_special_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.from_saved">
+<em class="property">classmethod </em><code class="descname">from_saved</code><span class="sig-paren">(</span><em><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.from_saved"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.from_saved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recreate a previously saved encoder directly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.update_from_iterable">
+<code class="descname">update_from_iterable</code><span class="sig-paren">(</span><em><span class="n">iterable</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.update_from_iterable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.update_from_iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update from iterator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>iterable</strong> (<em>iterable</em>) – Input sequence on which to operate.</li>
+<li><strong>sequence_input</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether iterable yields sequences of labels or individual labels
+directly. (default False)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.update_from_didataset">
+<code class="descname">update_from_didataset</code><span class="sig-paren">(</span><em><span class="n">didataset</span></em>, <em><span class="n">output_key</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.update_from_didataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.update_from_didataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update from DynamicItemDataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>didataset</strong> (<a class="reference internal" href="speechbrain.dataio.dataset.html#speechbrain.dataio.dataset.DynamicItemDataset" title="speechbrain.dataio.dataset.DynamicItemDataset"><em>DynamicItemDataset</em></a>) – Dataset on which to operate.</li>
+<li><strong>output_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Key in the dataset (in data or a dynamic item) to encode.</li>
+<li><strong>sequence_input</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether the data yielded with the specified key consists of
+sequences of labels or individual labels directly.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.limited_labelset_from_iterable">
+<code class="descname">limited_labelset_from_iterable</code><span class="sig-paren">(</span><em><span class="n">iterable</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">False</span></em>, <em><span class="n">n_most_common</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_count</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.limited_labelset_from_iterable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.limited_labelset_from_iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce label mapping from iterable based on label counts</p>
+<p>Used to limit label set size.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>iterable</strong> (<em>iterable</em>) – Input sequence on which to operate.</li>
+<li><strong>sequence_input</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether iterable yields sequences of labels or individual labels
+directly. False by default.</li>
+<li><strong>n_most_common</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – Take at most this many labels as the label set, keeping the most
+common ones. If None (as by default), take all.</li>
+<li><strong>min_count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Don’t take labels if they appear less than this many times.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The counts of the different labels (unfiltered).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.Counter" title="(in Python v3.9)">collections.Counter</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.load_or_create">
+<code class="descname">load_or_create</code><span class="sig-paren">(</span><em><span class="n">path</span></em>, <em><span class="n">from_iterables</span><span class="o">=</span><span class="default_value">[]</span></em>, <em><span class="n">from_didatasets</span><span class="o">=</span><span class="default_value">[]</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">False</span></em>, <em><span class="n">output_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">special_labels</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.load_or_create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.load_or_create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenient syntax for creating the encoder conditionally</p>
+<p>This pattern would be repeated in so many experiments that
+we decided to add a convenient shortcut for it here. The
+current version is multi-gpu (DDP) safe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.add_label">
+<code class="descname">add_label</code><span class="sig-paren">(</span><em><span class="n">label</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.add_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.add_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new label to the encoder, at the next free position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> (<em>hashable</em>) – Most often labels are str, but anything that can act as dict key is
+supported. Note that default save/load only supports Python
+literals.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The index that was used to encode this label.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.ensure_label">
+<code class="descname">ensure_label</code><span class="sig-paren">(</span><em><span class="n">label</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.ensure_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.ensure_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a label if it is not already present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> (<em>hashable</em>) – Most often labels are str, but anything that can act as dict key is
+supported. Note that default save/load only supports Python
+literals.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The index that was used to encode this label.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.insert_label">
+<code class="descname">insert_label</code><span class="sig-paren">(</span><em><span class="n">label</span></em>, <em><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.insert_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.insert_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new label, forcing its index to a specific value.</p>
+<p>If a label already has the specified index, it is moved to the end
+of the mapping.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>label</strong> (<em>hashable</em>) – Most often labels are str, but anything that can act as dict key is
+supported. Note that default save/load only supports Python
+literals.</li>
+<li><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The specific index to use.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.enforce_label">
+<code class="descname">enforce_label</code><span class="sig-paren">(</span><em><span class="n">label</span></em>, <em><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.enforce_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.enforce_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make sure label is present and encoded to a particular index.</p>
+<p>If the label is present but encoded to some other index, it is
+moved to the given index.</p>
+<p>If there is already another label at the
+given index, that label is moved to the next free position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.add_unk">
+<code class="descname">add_unk</code><span class="sig-paren">(</span><em><span class="n">unk_label</span><span class="o">=</span><span class="default_value">'&lt;unk&gt;'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.add_unk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.add_unk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add label for unknown tokens (out-of-vocab).</p>
+<p>When asked to encode unknown labels, they can be mapped to this.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> (<em>hashable</em><em>, </em><em>optional</em>) – Most often labels are str, but anything that can act as dict key is
+supported. Note that default save/load only supports Python
+literals. Default: &lt;unk&gt;. This can be None, as well!</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The index that was used to encode this.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.is_continuous">
+<code class="descname">is_continuous</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.is_continuous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.is_continuous" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the set of indices doesn’t have gaps</p>
+<p>For example:
+If starting index = 1
+Continuous: [1,2,3,4]
+Continuous: [0,1,2]
+Non-continuous: [2,3,4]
+Non-continuous: [1,2,4]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if continuous.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.encode_label">
+<code class="descname">encode_label</code><span class="sig-paren">(</span><em><span class="n">label</span></em>, <em><span class="n">allow_unk</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.encode_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.encode_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode label to int</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>label</strong> (<em>hashable</em>) – Label to encode, must exist in the mapping.</li>
+<li><strong>allow_unk</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If given, that label is not in the label set
+AND unk_label has been added with add_unk(),
+allows encoding to unk_label’s index.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Corresponding encoded int value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.encode_label_torch">
+<code class="descname">encode_label_torch</code><span class="sig-paren">(</span><em><span class="n">label</span></em>, <em><span class="n">allow_unk</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.encode_label_torch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.encode_label_torch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode label to torch.LongTensor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>label</strong> (<em>hashable</em>) – Label to encode, must exist in the mapping.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding encoded int value.
+Tensor shape [1].</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">torch.LongTensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.encode_sequence">
+<code class="descname">encode_sequence</code><span class="sig-paren">(</span><em><span class="n">sequence</span></em>, <em><span class="n">allow_unk</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.encode_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.encode_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode a sequence of labels to list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>iterable</em>) – Labels to encode, must exist in the mapping.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding integer labels.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.encode_sequence_torch">
+<code class="descname">encode_sequence_torch</code><span class="sig-paren">(</span><em><span class="n">sequence</span></em>, <em><span class="n">allow_unk</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.encode_sequence_torch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.encode_sequence_torch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode a sequence of labels to torch.LongTensor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>iterable</em>) – Labels to encode, must exist in the mapping.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Corresponding integer labels.
+Tensor shape [len(sequence)].</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">torch.LongTensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.decode_torch">
+<code class="descname">decode_torch</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.decode_torch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.decode_torch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes an arbitrarily nested torch.Tensor to a list of labels.</p>
+<p>Provided separately because Torch provides clearer introspection,
+and so doesn’t require try-except.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.Tensor</em></a>) – Torch tensor of some integer dtype (Long, int) and any shape to
+decode.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of original labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.decode_ndim">
+<code class="descname">decode_ndim</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.decode_ndim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.decode_ndim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes an arbitrarily nested iterable to a list of labels.</p>
+<p>This works for essentially any pythonic iterable (including torch), and
+also single elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>Any</em>) – Python list or other iterable or torch.Tensor or a single integer element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ndim list of original labels, or if input was single element,
+output will be, too.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>, Any</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the categorical encoding for later use and recovery</p>
+<p>Saving uses a Python literal format, which supports things like
+tuple labels, but is considered safe to load (unlike e.g. pickle).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Path</em>) – Where to save. Will overwrite.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads from the given path.</p>
+<p>CategoricalEncoder uses a Python literal format, which supports things
+like tuple labels, but is considered safe to load (unlike e.g. pickle).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Path</em>) – Where to load from.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CategoricalEncoder.load_if_possible">
+<code class="descname">load_if_possible</code><span class="sig-paren">(</span><em><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CategoricalEncoder.load_if_possible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CategoricalEncoder.load_if_possible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads if possible, returns a bool indicating if loaded or not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>Path</em>) – Where to load from.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">If load was successful.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoding_file</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;encoding.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">CategoricalEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The idea is in an experiment script to have something like this:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">encoder</span><span class="o">.</span><span class="n">load_if_possible</span><span class="p">(</span><span class="n">encoding_file</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="s2">&quot;abcd&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">encoder</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">encoding_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># So the first time you run the experiment, the encoding is created.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># However, later, the encoding exists:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">CategoricalEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="ow">not</span> <span class="n">encoder</span><span class="o">.</span><span class="n">load_if_possible</span><span class="p">(</span><span class="n">encoding_file</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">assert</span> <span class="kc">False</span>  <span class="c1"># We won&#39;t get here!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">decode_ndim</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.dataio.encoder.TextEncoder">
+<em class="property">class </em><code class="descclassname">speechbrain.dataio.encoder.</code><code class="descname">TextEncoder</code><span class="sig-paren">(</span><em><span class="n">starting_index</span><span class="o">=</span><span class="default_value">0</span></em>, <em><span class="o">**</span><span class="n">special_labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechbrain.dataio.encoder.CategoricalEncoder" title="speechbrain.dataio.encoder.CategoricalEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">speechbrain.dataio.encoder.CategoricalEncoder</span></code></a></p>
+<p>CategoricalEncoder subclass which offers specific methods for encoding text and handle
+special tokens for training of sequence to sequence models.
+In detail, aside special &lt;unk&gt; token already present in CategoricalEncoder
+for handling out-of-vocab tokens here special methods to handle
+&lt;bos&gt; beginning of sequence and &lt;eos&gt; tokens are defined.</p>
+<p>Note: update_from_iterable and update_from_didataset here have as default
+sequence_input=True because it is assumed that this encoder is used on
+iterables of strings: e.g.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.encoder</span> <span class="k">import</span> <span class="n">TextEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;encode&quot;</span><span class="p">,</span> <span class="s2">&quot;this&quot;</span><span class="p">,</span> <span class="s2">&quot;textencoder&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">TextEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encode_label</span><span class="p">(</span><span class="s2">&quot;this&quot;</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">add_unk</span><span class="p">()</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encode_sequence</span><span class="p">([</span><span class="s2">&quot;this&quot;</span><span class="p">,</span> <span class="s2">&quot;out-of-vocab&quot;</span><span class="p">])</span>
+<span class="go">[1, 5]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Two methods can be used to add &lt;bos&gt; and &lt;eos&gt; to the internal dicts:
+insert_bos_eos, add_bos_eos.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">add_bos_eos</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">lab2ind</span><span class="p">[</span><span class="n">encoder</span><span class="o">.</span><span class="n">eos_label</span><span class="p">]</span>
+<span class="go">7</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">add_bos_eos adds the special tokens at the end of the dict indexes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">TextEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">insert_bos_eos</span><span class="p">(</span><span class="n">bos_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">eos_index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">lab2ind</span><span class="p">[</span><span class="n">encoder</span><span class="o">.</span><span class="n">eos_label</span><span class="p">]</span>
+<span class="go">1</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">insert_bos_eos allows to specify whose index will correspond to each of them.</span>
+<span class="go">Note that you can also specify the same integer encoding for both.</span>
+</pre></div>
+</div>
+<p>Four methods can be used to prepend &lt;bos&gt; and append &lt;eos&gt;.
+prepend_bos_label and append_eos_label add respectively the &lt;bos&gt; and &lt;eos&gt;
+string tokens to the input sequence</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">prepend_bos_label</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="go">[&#39;&lt;bos&gt;&#39;, &#39;foo&#39;, &#39;bar&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">append_eos_label</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="go">[&#39;foo&#39;, &#39;bar&#39;, &#39;&lt;eos&gt;&#39;]</span>
+</pre></div>
+</div>
+<p>prepend_bos_index and append_eos_index add respectively the &lt;bos&gt; and &lt;eos&gt;
+indexes to the input encoded sequence.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode_sequence</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">prepend_bos_index</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="go">[0, 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">append_eos_index</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="go">[3, 4, 1]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.handle_special_labels">
+<code class="descname">handle_special_labels</code><span class="sig-paren">(</span><em><span class="n">special_labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.handle_special_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.handle_special_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.update_from_iterable">
+<code class="descname">update_from_iterable</code><span class="sig-paren">(</span><em><span class="n">iterable</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.update_from_iterable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.update_from_iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change default for sequence_input to True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.update_from_didataset">
+<code class="descname">update_from_didataset</code><span class="sig-paren">(</span><em><span class="n">didataset</span></em>, <em><span class="n">output_key</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.update_from_didataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.update_from_didataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change default for sequence_input to True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.limited_labelset_from_iterable">
+<code class="descname">limited_labelset_from_iterable</code><span class="sig-paren">(</span><em><span class="n">iterable</span></em>, <em><span class="n">sequence_input</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">n_most_common</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_count</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.limited_labelset_from_iterable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.limited_labelset_from_iterable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change default for sequence_input to True.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.add_bos_eos">
+<code class="descname">add_bos_eos</code><span class="sig-paren">(</span><em><span class="n">bos_label</span><span class="o">=</span><span class="default_value">'&lt;bos&gt;'</span></em>, <em><span class="n">eos_label</span><span class="o">=</span><span class="default_value">'&lt;eos&gt;'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.add_bos_eos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.add_bos_eos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add sentence boundary markers in the label set.</p>
+<p>If the beginning-of-sentence and end-of-sentence markers
+are the same, will just use one sentence-boundary label.</p>
+<p>This method adds to the end of the index, rather than at the beginning,
+like insert_bos_eos.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bos_label</strong> (<em>hashable</em>) – Beginning-of-sentence label, any label.</li>
+<li><strong>eos_label</strong> (<em>hashable</em>) – End-of-sentence label, any label. If set to the same label as
+bos_label, will just use one sentence-boundary label.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.insert_bos_eos">
+<code class="descname">insert_bos_eos</code><span class="sig-paren">(</span><em><span class="n">bos_label</span><span class="o">=</span><span class="default_value">'&lt;bos&gt;'</span></em>, <em><span class="n">eos_label</span><span class="o">=</span><span class="default_value">'&lt;eos&gt;'</span></em>, <em><span class="n">bos_index</span><span class="o">=</span><span class="default_value">0</span></em>, <em><span class="n">eos_index</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.insert_bos_eos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.insert_bos_eos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert sentence boundary markers in the label set.</p>
+<p>If the beginning-of-sentence and end-of-sentence markers
+are the same, will just use one sentence-boundary label.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bos_label</strong> (<em>hashable</em>) – Beginning-of-sentence label, any label</li>
+<li><strong>eos_label</strong> (<em>hashable</em>) – End-of-sentence label, any label. If set to the same label as
+bos_label, will just use one sentence-boundary label.</li>
+<li><strong>bos_index</strong> (<em>optional</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Where to insert bos_label. eos_index = bos_index + 1</li>
+<li><strong>bos_index</strong> – Where to insert eos_label. Default: eos_index = bos_index + 1</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.get_bos_index">
+<code class="descname">get_bos_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.get_bos_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.get_bos_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index to which blank encodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.get_eos_index">
+<code class="descname">get_eos_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.get_eos_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.get_eos_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index to which blank encodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.prepend_bos_label">
+<code class="descname">prepend_bos_label</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.prepend_bos_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.prepend_bos_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list version of x, with BOS prepended</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.prepend_bos_index">
+<code class="descname">prepend_bos_index</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.prepend_bos_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.prepend_bos_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list version of x, with BOS index prepended.
+If the input is a tensor, a tensor is returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.append_eos_label">
+<code class="descname">append_eos_label</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.append_eos_label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.append_eos_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list version of x, with EOS appended.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.TextEncoder.append_eos_index">
+<code class="descname">append_eos_index</code><span class="sig-paren">(</span><em><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#TextEncoder.append_eos_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.TextEncoder.append_eos_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list version of x, with EOS index appended.
+If the input is a tensor, a tensor is returned.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder">
+<em class="property">class </em><code class="descclassname">speechbrain.dataio.encoder.</code><code class="descname">CTCTextEncoder</code><span class="sig-paren">(</span><em><span class="n">starting_index</span><span class="o">=</span><span class="default_value">0</span></em>, <em><span class="o">**</span><span class="n">special_labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechbrain.dataio.encoder.TextEncoder" title="speechbrain.dataio.encoder.TextEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">speechbrain.dataio.encoder.TextEncoder</span></code></a></p>
+<p>Subclass of TextEncoder which also provides methods to handle CTC blank token.</p>
+<p>add_blank and insert_blank can be used to add &lt;blank&gt; special token to the encoder
+state.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">speechbrain.dataio.encoder</span> <span class="k">import</span> <span class="n">CTCTextEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">CTCTextEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">update_from_iterable</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">add_blank</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encode_sequence</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">get_blank_index</span><span class="p">()</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">decode_ndim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;&lt;blank&gt;&#39;]</span>
+</pre></div>
+</div>
+<p>collapse_labels and collapse_indices_ndim can be used to apply CTC collapsing
+rules:
+&gt;&gt;&gt; encoder.collapse_labels([“a”, “a”, “b”, “c”, “d”])
+[‘a’, ‘b’, ‘c’, ‘d’]
+&gt;&gt;&gt; encoder.collapse_indices_ndim([4, 4, 0, 1, 2, 3, 4, 4]) # 4 is &lt;blank&gt;
+[0, 1, 2, 3]</p>
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder.handle_special_labels">
+<code class="descname">handle_special_labels</code><span class="sig-paren">(</span><em><span class="n">special_labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder.handle_special_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder.handle_special_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder.add_blank">
+<code class="descname">add_blank</code><span class="sig-paren">(</span><em><span class="n">blank_label</span><span class="o">=</span><span class="default_value">'&lt;blank&gt;'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder.add_blank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder.add_blank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add blank symbol to labelset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder.insert_blank">
+<code class="descname">insert_blank</code><span class="sig-paren">(</span><em><span class="n">blank_label</span><span class="o">=</span><span class="default_value">'&lt;blank&gt;'</span></em>, <em><span class="n">index</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder.insert_blank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder.insert_blank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert blank symbol at a given labelset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder.get_blank_index">
+<code class="descname">get_blank_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder.get_blank_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder.get_blank_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index to which blank encodes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder.collapse_labels">
+<code class="descname">collapse_labels</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">merge_repeats</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder.collapse_labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder.collapse_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the CTC collapsing rules on one label sequence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>iterable</em>) – Label sequence on which to operate.</li>
+<li><strong>merge_repeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to merge repeated labels before removing blanks.
+In the basic CTC label topology, repeated labels are merged.
+However, in RNN-T, they are not.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of labels with collapsing rules applied.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.dataio.encoder.CTCTextEncoder.collapse_indices_ndim">
+<code class="descname">collapse_indices_ndim</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">merge_repeats</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/dataio/encoder.html#CTCTextEncoder.collapse_indices_ndim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.dataio.encoder.CTCTextEncoder.collapse_indices_ndim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the CTC collapsing rules on arbitrarily label sequence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>iterable</em>) – Label sequence on which to operate.</li>
+<li><strong>merge_repeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether to merge repeated labels before removing blanks.
+In the basic CTC label topology, repeated labels are merged.
+However, in RNN-T, they are not.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of labels with collapsing rules applied.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speechbrain.dataio.legacy.html" class="btn btn-neutral float-right" title="speechbrain.dataio.legacy module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speechbrain.dataio.dataset.html" class="btn btn-neutral float-left" title="speechbrain.dataio.dataset module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

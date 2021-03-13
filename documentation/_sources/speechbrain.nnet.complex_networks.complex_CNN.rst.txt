@@ -1,0 +1,7 @@
+speechbrain.nnet.complex\_networks.complex\_CNN module
+======================================================
+
+.. automodule:: speechbrain.nnet.complex_networks.complex_CNN
+   :members:
+   :undoc-members:
+   :show-inheritance:

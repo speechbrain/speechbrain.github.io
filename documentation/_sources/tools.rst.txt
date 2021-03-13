@@ -1,0 +1,16 @@
+
+
+tools
+=====
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 4
+
+   tools.compute_wer
+
+.. autosummary::
+
+
+   tools.compute_wer

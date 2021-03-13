@@ -1,0 +1,8 @@
+
+speechbrain.data\_io.batch
+==========================
+
+.. automodule:: speechbrain.data_io.batch
+   :members:
+   :undoc-members:
+   :show-inheritance:

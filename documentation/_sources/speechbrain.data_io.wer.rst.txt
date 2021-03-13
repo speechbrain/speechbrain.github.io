@@ -1,0 +1,8 @@
+
+speechbrain.data\_io.wer
+========================
+
+.. automodule:: speechbrain.data_io.wer
+   :members:
+   :undoc-members:
+   :show-inheritance:

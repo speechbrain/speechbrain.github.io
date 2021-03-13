@@ -1,0 +1,8 @@
+
+speechbrain.data\_io.legacy
+===========================
+
+.. automodule:: speechbrain.data_io.legacy
+   :members:
+   :undoc-members:
+   :show-inheritance:

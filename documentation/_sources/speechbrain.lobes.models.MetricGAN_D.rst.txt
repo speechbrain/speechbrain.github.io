@@ -1,0 +1,7 @@
+speechbrain.lobes.models.MetricGAN_D module
+===========================================
+
+.. automodule:: speechbrain.lobes.models.MetricGAN_D
+    :members:
+    :undoc-members:
+    :show-inheritance:

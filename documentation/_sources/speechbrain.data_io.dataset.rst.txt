@@ -1,0 +1,8 @@
+
+speechbrain.data\_io.dataset
+============================
+
+.. automodule:: speechbrain.data_io.dataset
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,1387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.utils.checkpoints module &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="speechbrain.utils.convert_model module" href="speechbrain.utils.convert_model.html" />
+    <link rel="prev" title="speechbrain.utils.DER module" href="speechbrain.utils.DER.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="speechbrain.html">Core library (speechbrain)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechbrain.utils.html">speechbrain.utils</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="speechbrain.html">speechbrain</a> &raquo;</li>
+        
+          <li><a href="speechbrain.utils.html">speechbrain.utils</a> &raquo;</li>
+        
+      <li>speechbrain.utils.checkpoints module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/speechbrain.utils.checkpoints.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-speechbrain.utils.checkpoints">
+<span id="speechbrain-utils-checkpoints-module"></span><h1>speechbrain.utils.checkpoints module<a class="headerlink" href="#module-speechbrain.utils.checkpoints" title="Permalink to this headline">¶</a></h1>
+<p>This module implements a checkpoint saver and loader.</p>
+<p>A checkpoint in an experiment usually needs to save the state of many different
+things: the model parameters, optimizer parameters, what epoch is this, etc.
+The save format for a checkpoint is a directory, where each of these separate
+saveable things gets its own file. Additionally, a special file holds meta
+information about the checkpoint (by default just time of creation, but you
+can specify anything else you may wish, e.g. validation loss).</p>
+<p>The interface for the checkpoint system requires you to specify what things to
+save. This approach is flexible and agnostic of how your experiment is actually
+run.</p>
+<p>The interface requires you to specify names for each thing to save. This name
+is used to give the right parameter file to the right object when recovering.</p>
+<p>Default saving and loading methods are only added for torch.nn.Modules (and
+their subclasses), and torch.optim.Optimizers. If those methods do not work for
+your object, you can specify your own saving and/or loading methods, either for
+a particular instance or a for a class.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Toy example Module:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Recoverable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">param</span><span class="p">]))</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Recoverable</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempdir</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># In simple cases, the module aims to have a terse syntax,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># consisting of three steps.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 1. Specifying where to save checkpoints and what is included in a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># checkpoint:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkpointer</span> <span class="o">=</span> <span class="n">Checkpointer</span><span class="p">(</span><span class="n">tempdir</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;network&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 2. Recover from the latest checkpoint, if one is found:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkpointer</span><span class="o">.</span><span class="n">recover_if_possible</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Run your experiment:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">example</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">example</span><span class="p">)</span> <span class="o">-</span> <span class="n">target</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="gp">... </span>    <span class="c1"># 3. Save checkpoints, and keep by default just one, the newest:</span>
+<span class="gp">... </span>    <span class="n">ckpt</span> <span class="o">=</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">save_and_keep_only</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Authors</dt><dd><ul class="simple">
+<li>Aku Rouhe 2020</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Classes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.Checkpoint" title="speechbrain.utils.checkpoints.Checkpoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Checkpoint</span></code></a></td>
+<td>NamedTuple describing one saved checkpoint</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.Checkpointer" title="speechbrain.utils.checkpoints.Checkpointer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Checkpointer</span></code></a></td>
+<td>Saves checkpoints and recovers from them.</td>
+</tr>
+</tbody>
+</table>
+<p>Functions:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.average_checkpoints" title="speechbrain.utils.checkpoints.average_checkpoints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_checkpoints</span></code></a></td>
+<td>Average parameters from multiple checkpoints.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.average_state_dicts" title="speechbrain.utils.checkpoints.average_state_dicts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">average_state_dicts</span></code></a></td>
+<td>Produces an average state_dict from an iterator over state_dicts.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.ckpt_recency" title="speechbrain.utils.checkpoints.ckpt_recency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ckpt_recency</span></code></a></td>
+<td>Recency as Checkpoint importance metric.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.get_default_hook" title="speechbrain.utils.checkpoints.get_default_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_default_hook</span></code></a></td>
+<td>Finds the default save/load hook to use with the given object.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.mark_as_loader" title="speechbrain.utils.checkpoints.mark_as_loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_as_loader</span></code></a></td>
+<td>Method decorator which marks given method as checkpoint loading hook.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.mark_as_saver" title="speechbrain.utils.checkpoints.mark_as_saver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mark_as_saver</span></code></a></td>
+<td>Method decorator which marks given method as the checkpoint saving hook.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.register_checkpoint_hooks" title="speechbrain.utils.checkpoints.register_checkpoint_hooks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_checkpoint_hooks</span></code></a></td>
+<td>Class decorator which registers the recover load and save hooks.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.torch_recovery" title="speechbrain.utils.checkpoints.torch_recovery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_recovery</span></code></a></td>
+<td>Loads a torch.nn.Module state_dict from the given path instantly.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#speechbrain.utils.checkpoints.torch_save" title="speechbrain.utils.checkpoints.torch_save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_save</span></code></a></td>
+<td>Saves the obj’s parameters to path.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.torch_recovery">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">torch_recovery</code><span class="sig-paren">(</span><em><span class="n">obj</span></em>, <em><span class="n">path</span></em>, <em><span class="n">end_of_epoch</span></em>, <em><span class="n">device</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#torch_recovery"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.torch_recovery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a torch.nn.Module state_dict from the given path instantly.</p>
+<p>This can be made the default for torch.nn.Modules with:
+&gt;&gt;&gt; DEFAULT_LOAD_HOOKS[torch.nn.Module] = torch_recovery</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj</strong> (<a class="reference external" href="https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.nn.Module</em></a>) – Instance for which to load the parameters.</li>
+<li><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><em>pathlib.Path</em></a>) – Path where to load from.</li>
+<li><strong>end_of_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether the recovery comes from an end of epoch checkpoint.</li>
+<li><strong>device</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Torch device, where to map the loaded parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Given object is modified in place.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.torch_save">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">torch_save</code><span class="sig-paren">(</span><em><span class="n">obj</span></em>, <em><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#torch_save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.torch_save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the obj’s parameters to path.</p>
+<p>Default save hook for torch.nn.Modules
+For saving torch.nn.Module state_dicts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj</strong> (<a class="reference external" href="https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module" title="(in PyTorch vmaster (1.9.0a0+a9f9377 ))"><em>torch.nn.Module</em></a>) – Instance to save.</li>
+<li><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><em>pathlib.Path</em></a>) – Path where to save to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">State dict is written to disk.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.mark_as_saver">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">mark_as_saver</code><span class="sig-paren">(</span><em><span class="n">method</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#mark_as_saver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.mark_as_saver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method decorator which marks given method as the checkpoint saving hook.</p>
+<p>See register_checkpoint_hooks for example.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>method</strong> (<em>callable</em>) – Method of the class to decorate. Must be callable with
+signature (instance, path) using positional arguments. This is
+satisfied by for example: def saver(self, path):</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This will not add the hook (not possible via a method decorator),
+you must also decorate the class with &#64;register_checkpoint_hooks
+Only one method can be added as the hook.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.mark_as_loader">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">mark_as_loader</code><span class="sig-paren">(</span><em><span class="n">method</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#mark_as_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.mark_as_loader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method decorator which marks given method as checkpoint loading hook.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>method</strong> (<em>callable</em>) – Method of the class to decorate. Must be callable with
+signature (instance, path, end_of_epoch) using positional
+arguments. This is satisfied by for example:
+<cite>def loader(self, path, end_of_epoch):</cite></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This will not add the hook (not possible via a method decorator),
+you must also decorate the class with &#64;register_checkpoint_hooks
+Only one method can be added as the hook.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.register_checkpoint_hooks">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">register_checkpoint_hooks</code><span class="sig-paren">(</span><em><span class="n">cls</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#register_checkpoint_hooks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.register_checkpoint_hooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class decorator which registers the recover load and save hooks.</p>
+<p>The hooks must have been marked with mark_as_loader and mark_as_saver.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cls</strong> (<em>class</em>) – Class to decorate</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@register_checkpoint_hooks</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">CustomRecoverable</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="nd">@mark_as_saver</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="nd">@mark_as_loader</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">end_of_epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">del</span> <span class="n">end_of_epoch</span>  <span class="c1"># Unused here</span>
+<span class="gp">... </span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fi</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fi</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.get_default_hook">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">get_default_hook</code><span class="sig-paren">(</span><em><span class="n">obj</span></em>, <em><span class="n">default_hooks</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#get_default_hook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.get_default_hook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the default save/load hook to use with the given object.</p>
+<p>Follows the Method Resolution Order, i.e., if no hook is registered for
+the class of the object itself, also searches classes which the object
+inherits from.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj</strong> (<em>instance</em>) – Instance of a class.</li>
+<li><strong>default_hooks</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – Mapping from classes to (checkpointing hook) functions.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">The correct method or None if no method is registered.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_default_hook</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">DEFAULT_SAVE_HOOKS</span><span class="p">)</span> <span class="o">==</span> <span class="n">torch_save</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.utils.checkpoints.Checkpoint">
+<em class="property">class </em><code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">Checkpoint</code><span class="sig-paren">(</span><em><span class="n">path</span></em>, <em><span class="n">meta</span></em>, <em><span class="n">paramfiles</span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a></p>
+<p>NamedTuple describing one saved checkpoint</p>
+<p>To select a checkpoint to load from many checkpoint,
+Checkpoints are first filtered and sorted based on this namedtuple.
+Checkpointers put pathlib.Path in path and a dict in meta.
+You can essentially add any info you want to meta when saving a checkpoint.
+The only default key in meta is “unixtime”.
+Checkpoint.paramfiles is a dict from recoverable name to parameter filepath.</p>
+<dl class="py attribute">
+<dt id="speechbrain.utils.checkpoints.Checkpoint.meta">
+<code class="descname">meta</code><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpoint.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.utils.checkpoints.Checkpoint.paramfiles">
+<code class="descname">paramfiles</code><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpoint.paramfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="speechbrain.utils.checkpoints.Checkpoint.path">
+<code class="descname">path</code><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpoint.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.ckpt_recency">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">ckpt_recency</code><span class="sig-paren">(</span><em><span class="n">ckpt</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#ckpt_recency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.ckpt_recency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recency as Checkpoint importance metric.</p>
+<p>This function can also act as an example of how to make checkpoint
+importance keyfuncs. This is a named function, but as you can see
+it could be easily implemented as a lambda in a pinch.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="speechbrain.utils.checkpoints.Checkpointer">
+<em class="property">class </em><code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">Checkpointer</code><span class="sig-paren">(</span><em><span class="n">checkpoints_dir</span></em>, <em><span class="n">recoverables</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">custom_load_hooks</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">custom_save_hooks</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">allow_partial_load</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Saves checkpoints and recovers from them.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>checkpoints_dir<span class="classifier">str, pathlib.Path</span></dt><dd>Path to directory where to save checkpoints.</dd>
+<dt>recoverables<span class="classifier">mapping, optional</span></dt><dd>Objects to to recover. They need a (unique) name: this is used
+to connect the parameters in a checkpoint to the correct recoverable.
+The name is also used in the filename of the
+savefile for the objects parameters. These can also be added with
+add_recoverable or add_recoverables or just modifying
+checkpointer.recoverables directly.</dd>
+<dt>custom_load_hooks<span class="classifier">mapping, optional</span></dt><dd>A mapping from name [same as in recoverables] to function or method.
+Sets a custom loading hook for a particular object. The
+function/method must be callable with signature (instance, path)
+using positional arguments. This is satisfied by for example:
+<cite>def loader(self, path)</cite>.</dd>
+<dt>custom_save_hooks<span class="classifier">mapping, optional</span></dt><dd>Mapping from name [same as in recoverables] to function or method.
+Sets a custom saving hook for a particular object. The
+function/method must be callable with
+signature (instance, path) using positional arguments. This is
+satisfied by for example: def saver(self, path):</dd>
+<dt>allow_partial_load<span class="classifier">bool, optional</span></dt><dd>If True, allows loading a checkpoint where a savefile is not found
+for every registered recoverable. In that case, only the found
+savefiles are loaded. When False, loading such a save will raise
+RuntimeError. (default: False)</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#SETUP:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempdir</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Recoverable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">param</span><span class="p">]))</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recoverable</span> <span class="o">=</span> <span class="n">Recoverable</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recoverables</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;recoverable&#39;</span><span class="p">:</span> <span class="n">recoverable</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># SETUP DONE.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkpointer</span> <span class="o">=</span> <span class="n">Checkpointer</span><span class="p">(</span><span class="n">tempdir</span><span class="p">,</span> <span class="n">recoverables</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first_ckpt</span> <span class="o">=</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">recoverable</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">2.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loaded_ckpt</span> <span class="o">=</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">recover_if_possible</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Parameter has been loaded:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">recoverable</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># With this call, by default, oldest checkpoints are deleted:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkpointer</span><span class="o">.</span><span class="n">save_and_keep_only</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">first_ckpt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">list_checkpoints</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.add_recoverable">
+<code class="descname">add_recoverable</code><span class="sig-paren">(</span><em><span class="n">name</span></em>, <em><span class="n">obj</span></em>, <em><span class="n">custom_load_hook</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">custom_save_hook</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.add_recoverable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.add_recoverable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a recoverable with possible custom hooks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Unique name for recoverable. Used to map savefiles to objects.</li>
+<li><strong>obj</strong> (<em>instance</em>) – The object to recover.</li>
+<li><strong>custom_load_hook</strong> (<em>callable</em>) – Called to load the object’s savefile. The function/method must be
+callable with signature (instance, path) using positional
+arguments. This is satisfied by for example: def load(self, path):</li>
+<li><strong>custom_save_hook</strong> (<em>callable</em>) – Called to save the object’s parameters. The function/method must
+be callable with signature (instance, path) using positional
+arguments. This is satisfied by for example: def saver(self, path):</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.add_recoverables">
+<code class="descname">add_recoverables</code><span class="sig-paren">(</span><em><span class="n">recoverables</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.add_recoverables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.add_recoverables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the recoverables dict from the given mapping.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>recoverables</strong> (<em>mapping</em>) – Objects to recover.
+They need a (unique) name: this is used to
+connect the parameters in a checkpoint to the correct
+recoverable. The name is also used in the filename of the
+savefile for the objects parameters.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.save_checkpoint">
+<code class="descname">save_checkpoint</code><span class="sig-paren">(</span><em><span class="n">meta</span><span class="o">=</span><span class="default_value">{}</span></em>, <em><span class="n">end_of_epoch</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">verbosity</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.save_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.save_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a checkpoint.</p>
+<p>The whole checkpoint becomes a directory.
+Saves each registered object’s parameters in a separate file.
+Also a meta file is added. The meta file by default has just the
+unixtime (seconds since unix epoch), but you can add anything
+relevant yourself. The meta information is later used to pick the
+checkpoint to load.</p>
+<p>The value of end_of_epoch is saved in the meta. This can affect how
+epoch counters and dataset iterators load their state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>meta</strong> (<em>mapping</em><em>, </em><em>optional</em>) – A mapping which is added to the meta file in the checkpoint. The
+key “unixtime” is included by default.</li>
+<li><strong>end_of_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether the checkpoint is at the end of an epoch. True by default.
+May affect loading.</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Specify a custom name for your checkpoint.
+The name will still have a prefix added. If no name is given,
+a name is created from a timestamp and a random unique id.</li>
+<li><strong>verbosity</strong> (<em>logging level</em>) – Set logging level this save.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">namedtuple [see above], the saved checkpoint.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#speechbrain.utils.checkpoints.Checkpoint" title="speechbrain.utils.checkpoints.Checkpoint">Checkpoint</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.save_and_keep_only">
+<code class="descname">save_and_keep_only</code><span class="sig-paren">(</span><em><span class="n">meta</span><span class="o">=</span><span class="default_value">{}</span></em>, <em><span class="n">end_of_epoch</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">num_to_keep</span><span class="o">=</span><span class="default_value">1</span></em>, <em><span class="n">keep_recent</span><span class="o">=</span><span class="default_value">True</span></em>, <em><span class="n">importance_keys</span><span class="o">=</span><span class="default_value">[]</span></em>, <em><span class="n">max_keys</span><span class="o">=</span><span class="default_value">[]</span></em>, <em><span class="n">min_keys</span><span class="o">=</span><span class="default_value">[]</span></em>, <em><span class="n">ckpt_predicate</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">verbosity</span><span class="o">=</span><span class="default_value">20</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.save_and_keep_only"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.save_and_keep_only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a checkpoint, then deletes the least important checkpoints.</p>
+<p>Essentially this combines <code class="docutils literal notranslate"><span class="pre">save_checkpoint()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">delete_checkpoints()</span></code> in one call, providing short syntax.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>meta</strong> (<em>mapping</em><em>, </em><em>optional</em>) – A mapping which is added to the meta file in the checkpoint. The
+key “unixtime” is included by default.</li>
+<li><strong>end_of_epoch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether the checkpoint is at the end of an epoch. True by default.
+May affect loading.</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – Specify a custom name for your checkpoint.
+The name will still have a prefix added. If no name is given,
+a name is created from a timestamp and a random unique id.</li>
+<li><strong>num_to_keep</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Number of checkpoints to keep. Defaults to 1. This deletes all
+checkpoints remaining after filtering. Must be &gt;=0.</li>
+<li><strong>keep_recent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to keep the most recent <code class="docutils literal notranslate"><span class="pre">num_to_keep</span></code> checkpoints.</li>
+<li><strong>importance_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – A list of key functions used in sorting (see the sorted built-in).
+Each callable defines a sort order and num_to_keep checkpoints are
+kept for callable. The checkpoint with the highest keys are kept.
+The functions are passed Checkpoint namedtuples (see above).</li>
+<li><strong>max_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – A list of keys for which the <em>highest</em> value will be kept.</li>
+<li><strong>min_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – A list of keys for which the <em>lowest</em> value will be kept.</li>
+<li><strong>ckpt_predicate</strong> (<em>callable</em><em>, </em><em>optional</em>) – Use this to exclude some checkpoints from deletion. Before any
+sorting, the list of checkpoints is filtered with this predicate.
+Only the checkpoints for which ckpt_predicate is True can be
+deleted. The function is called with Checkpoint namedtuples
+(see above).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Unlike save_checkpoint, this does not return anything, since
+we cannot guarantee that the saved checkpoint actually survives
+deletion.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.find_checkpoint">
+<code class="descname">find_checkpoint</code><span class="sig-paren">(</span><em><span class="n">importance_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">max_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">ckpt_predicate</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.find_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.find_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Picks a particular checkpoint from all available checkpoints.</p>
+<p>If none of <code class="docutils literal notranslate"><span class="pre">importance_key</span></code>, <code class="docutils literal notranslate"><span class="pre">max_key</span></code>, and <code class="docutils literal notranslate"><span class="pre">min_key</span></code> is
+used, then most recent checkpoint will be returned. No more than
+one of them may be used.</p>
+<p>Most functionality is actually implemented in <code class="docutils literal notranslate"><span class="pre">find_checkpoints()</span></code>
+but this is kept as a useful interface.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>importance_key</strong> (<em>callable</em><em>, </em><em>optional</em>) – The key function used in sorting.
+The checkpoint with the highest returned value is picked.
+The function is called with Checkpoint namedtuples.</li>
+<li><strong>max_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The checkpoint with the highest value for this key will
+be returned. Only checkpoints with this key will be considered!</li>
+<li><strong>min_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The checkpoint with the lowest value for this key will
+be returned. Only checkpoints with this key will be considered!</li>
+<li><strong>ckpt_predicate</strong> (<em>callable</em><em>, </em><em>optional</em>) – Before sorting, the list of
+checkpoints is filtered with this predicate.
+See the filter builtin.
+The function is called with Checkpoint namedtuples (see above).
+By default, all checkpoints are considered.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>Checkpoint</em> – If found.</li>
+<li><em>None</em> – If no Checkpoints exist/remain after filtering.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.find_checkpoints">
+<code class="descname">find_checkpoints</code><span class="sig-paren">(</span><em><span class="n">importance_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">max_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">ckpt_predicate</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">max_num_checkpoints</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.find_checkpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.find_checkpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Picks multiple checkpoints.</p>
+<p>If none of <code class="docutils literal notranslate"><span class="pre">importance_key</span></code>, <code class="docutils literal notranslate"><span class="pre">max_key</span></code>, and <code class="docutils literal notranslate"><span class="pre">min_key</span></code> is
+used, then the most recent checkpoints will be returned. No more than
+one of these may be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>importance_key</strong> (<em>callable</em><em>, </em><em>optional</em>) – The key function used in sorting.
+The checkpoint with the highest returned value is picked.
+The function is called with Checkpoint namedtuples.</li>
+<li><strong>max_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The checkpoint with the highest value for this key will
+be returned. Only checkpoints with this key will be considered!</li>
+<li><strong>min_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The checkpoint with the lowest value for this key will
+be returned. Only checkpoints with this key will be considered!</li>
+<li><strong>ckpt_predicate</strong> (<em>callable</em><em>, </em><em>optional</em>) – Before sorting, the list of
+checkpoints is filtered with this predicate.
+See the filter builtin.
+The function is called with Checkpoint namedtuples (see above).
+By default, all checkpoints are considered.</li>
+<li><strong>max_num_checkpoints</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – The maximum number of checkpoints to return, or None to return all
+found checkpoints.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List containing at most the max specified number of Checkpoints.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.recover_if_possible">
+<code class="descname">recover_if_possible</code><span class="sig-paren">(</span><em><span class="n">importance_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">max_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">min_key</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">ckpt_predicate</span><span class="o">=</span><span class="default_value">None</span></em>, <em><span class="n">device</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.recover_if_possible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.recover_if_possible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Picks a checkpoint and recovers from that, if one is found.</p>
+<p>If a checkpoint is not found, no recovery is run.</p>
+<p>If none of <code class="docutils literal notranslate"><span class="pre">importance_key</span></code>, <code class="docutils literal notranslate"><span class="pre">max_key</span></code>, and <code class="docutils literal notranslate"><span class="pre">min_key</span></code> is
+used, then most recent checkpoint will be returned. No more than
+one of them may be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>importance_key</strong> (<em>callable</em><em>, </em><em>optional</em>) – The key function used in sorting.
+The checkpoint with the highest returned value is loaded.
+The function is called with Checkpoint namedtuples.</li>
+<li><strong>max_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The checkpoint with the highest value for this key will be loaded.
+Only checkpoints with this key will be considered!</li>
+<li><strong>min_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – The checkpoint with the lowest value for this key will be loaded.
+Only checkpoints with this key will be considered!</li>
+<li><strong>ckpt_predicate</strong> (<em>callable</em><em>, </em><em>optional</em>) – Before sorting, the list of
+checkpoints is filtered with this predicate.
+See the filter builtin.
+The function is called with Checkpoint namedtuples (see above).
+By default, all checkpoints are considered.</li>
+<li><strong>device</strong> (<em>torch.device</em>) – Device to load models to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>Checkpoint</em> – If found.</li>
+<li><em>None</em> – If no Checkpoints exist/remain after filtering.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.load_checkpoint">
+<code class="descname">load_checkpoint</code><span class="sig-paren">(</span><em><span class="n">checkpoint</span></em>, <em><span class="n">device</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.load_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.load_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the specified checkpoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>checkpoint</strong> (<a class="reference internal" href="#speechbrain.utils.checkpoints.Checkpoint" title="speechbrain.utils.checkpoints.Checkpoint"><em>Checkpoint</em></a>) – Checkpoint to load.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.list_checkpoints">
+<code class="descname">list_checkpoints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.list_checkpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.list_checkpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all checkpoints in the checkpoints directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of Checkpoint namedtuple (see above).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt id="speechbrain.utils.checkpoints.Checkpointer.delete_checkpoints">
+<code class="descname">delete_checkpoints</code><span class="sig-paren">(</span><em>*, num_to_keep=1, min_keys=None, max_keys=None, importance_keys=[&lt;function ckpt_recency&gt;], ckpt_predicate=None, verbosity=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#Checkpointer.delete_checkpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.Checkpointer.delete_checkpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes least important checkpoints.</p>
+<p>Since there can be many ways to define importance (e.g. lowest WER,
+lowest loss), the user should provide a list of sort key functions,
+each defining a particular importance order. In essence, each
+importance key function extracts one importance metric (higher is more
+important). For each of these orders, num_to_keep checkpoints are kept.
+However if there is overlap between each orders’ preserved checkpoints,
+the additional checkpoints are not preserved, so the total number of
+preserved checkpoints can be less than:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">num_to_keep</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">importance_keys</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>num_to_keep</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Number of checkpoints to keep.
+Defaults to 10. You choose to keep 0. This deletes all
+checkpoints remaining after filtering. Must be &gt;=0</li>
+<li><strong>min_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – List of strings representing keys in the meta. The lowest of
+these values will be kept, up to num_to_keep.</li>
+<li><strong>max_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – List of strings representing keys in the meta. The highest of
+these values will be kept, up to num_to_keep.</li>
+<li><strong>importance_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>, </em><em>optional</em>) – A list of key functions used in sorting (see the sorted built-in).
+Each callable defines a sort order and num_to_keep checkpoints are
+kept for  callable. To be clear, those with the highest key are
+kept.
+The functions are called with Checkpoint namedtuples
+(see above). See also the default (ckpt_recency,
+above). The default deletes all but the latest checkpoint.</li>
+<li><strong>ckpt_predicate</strong> (<em>callable</em><em>, </em><em>optional</em>) – Use this to exclude some checkpoints from deletion. Before any
+sorting, the list of checkpoints is filtered with this predicate.
+Only the checkpoints for which ckpt_predicate is True can be
+deleted. The function is called with Checkpoint namedtuples
+(see above).</li>
+<li><strong>verbosity</strong> (<em>logging level</em>) – Set logging level for this deletion.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Must be called with keyword arguments, as a signoff that you
+know what you are doing. Deletion is permanent.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.average_state_dicts">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">average_state_dicts</code><span class="sig-paren">(</span><em><span class="n">state_dicts</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#average_state_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.average_state_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces an average state_dict from an iterator over state_dicts.</p>
+<p>Note that at one time, this keeps two of the state_dicts in memory, which
+is the minimum memory requirement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state_dicts</strong> (<em>iterator</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The state_dicts to average.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The averaged state_dict.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">state_dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py function">
+<dt id="speechbrain.utils.checkpoints.average_checkpoints">
+<code class="descclassname">speechbrain.utils.checkpoints.</code><code class="descname">average_checkpoints</code><span class="sig-paren">(</span><em>checkpoint_list</em>, <em>recoverable_name</em>, <em>parameter_loader=&lt;function load&gt;</em>, <em>averager=&lt;function average_state_dicts&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/speechbrain/utils/checkpoints.html#average_checkpoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#speechbrain.utils.checkpoints.average_checkpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Average parameters from multiple checkpoints.</p>
+<p>Use Checkpointer.find_checkpoints() to get the list of checkpoints to
+average over.
+Averaging parameters from some of the last checkpoints in training has been
+shown to sometimes improve performance.</p>
+<p>The default loader and averager work for standard PyTorch modules.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>checkpoint_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of checkpoints to average.</li>
+<li><strong>recoverable_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the recoverable, the parameters of which are loaded and
+averaged.</li>
+<li><strong>parameter_loader</strong> (<em>function</em>) – A function which takes a single argument, the path to a parameter file,
+and loads the parameters from that file. By default, torch.load,
+which produces state_dict dictionaries.</li>
+<li><strong>averager</strong> (<em>function</em>) – A function which takes an iterator over the parameters from each
+checkpoint, as loaded by parameter_loader, and produces their average.
+Note that the function is called with an iterator, so the length is
+initially unknown; the implementation should simply count the number of
+different parameter sets as they are yielded. See average_state_dicts
+above for an example. It is the default averager, and averages
+state_dicts.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The output of the averager function.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Any</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Consider this toy Module again:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Recoverable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">param</span><span class="p">]))</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now let&#39;s make some checkpoints:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Recoverable</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tempdir</span> <span class="o">=</span> <span class="n">getfixture</span><span class="p">(</span><span class="s1">&#39;tmpdir&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkpointer</span> <span class="o">=</span> <span class="n">Checkpointer</span><span class="p">(</span><span class="n">tempdir</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">new_param</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">model</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">new_param</span><span class="p">)])</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">()</span>  <span class="c1"># Suppress output with assignment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Let&#39;s average the 3 latest checkpoints</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># (parameter values 7, 8, 9 -&gt; avg=8)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ckpt_list</span> <span class="o">=</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">find_checkpoints</span><span class="p">(</span><span class="n">max_num_checkpoints</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">averaged_state</span> <span class="o">=</span> <span class="n">average_checkpoints</span><span class="p">(</span><span class="n">ckpt_list</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now load that state in the normal way:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">averaged_state</span><span class="p">)</span>  <span class="c1"># Suppress output</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">data</span>
+<span class="go">tensor([8.])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="speechbrain.utils.convert_model.html" class="btn btn-neutral float-right" title="speechbrain.utils.convert_model module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="speechbrain.utils.DER.html" class="btn btn-neutral float-left" title="speechbrain.utils.DER module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

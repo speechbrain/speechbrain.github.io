@@ -1,0 +1,1627 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.processing.diarization &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.processing.diarization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.processing.diarization</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This script contains basic functions used for speaker diarization.</span>
+<span class="sd">This script has an optional dependency on open source sklearn library.</span>
+<span class="sd">A few sklearn functions are modified in this script as per requirement.</span>
+
+<span class="sd">Reference</span>
+<span class="sd">---------</span>
+<span class="sd">- Von Luxburg, U. A tutorial on spectral clustering. Stat Comput 17, 395–416 (2007).</span>
+<span class="sd">  https://doi.org/10.1007/s11222-007-9033-z</span>
+
+<span class="sd">- sklearn:</span>
+<span class="sd">  https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/cluster/_spectral.py</span>
+
+<span class="sd">Authors</span>
+<span class="sd"> * Nauman Dawalatabad 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">sparse</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">import</span> <span class="n">eigsh</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.csgraph</span> <span class="k">import</span> <span class="n">connected_components</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.csgraph</span> <span class="k">import</span> <span class="n">laplacian</span> <span class="k">as</span> <span class="n">csgraph_laplacian</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">pytest</span><span class="o">.</span><span class="n">importorskip</span><span class="p">(</span><span class="s2">&quot;sklearn&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sklearn</span>
+    <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">kneighbors_graph</span>
+    <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">SpectralClustering</span>
+    <span class="kn">from</span> <span class="nn">sklearn.cluster._kmeans</span> <span class="k">import</span> <span class="n">k_means</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">err_msg</span> <span class="o">=</span> <span class="s2">&quot;The optional dependency sklearn is used in this module</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;Cannot import sklearn. </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;Please follow the below instructions</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;=============================</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;Using pip:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;pip install sklearn</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;================================ </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;Using conda:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">err_msg</span> <span class="o">+=</span> <span class="s2">&quot;conda install sklearn&quot;</span>
+    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_rttm"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.read_rttm">[docs]</a><span class="k">def</span> <span class="nf">read_rttm</span><span class="p">(</span><span class="n">rttm_file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reads and returns RTTM in list format.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    rttm_file_path : str</span>
+<span class="sd">        Path to the RTTM file to be read.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rttm : list</span>
+<span class="sd">        List containing rows of RTTM file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rttm</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">rttm_file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">rttm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rttm</span></div>
+
+
+<div class="viewcode-block" id="write_ders_file"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.write_ders_file">[docs]</a><span class="k">def</span> <span class="nf">write_ders_file</span><span class="p">(</span><span class="n">ref_rttm</span><span class="p">,</span> <span class="n">DER</span><span class="p">,</span> <span class="n">out_der_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write the final DERs for individual recording.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    ref_rttm : str</span>
+<span class="sd">        Reference RTTM file.</span>
+<span class="sd">    DER : array</span>
+<span class="sd">        Array containing DER values of each recording.</span>
+<span class="sd">    out_der_file : str</span>
+<span class="sd">        File to write the DERs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rttm</span> <span class="o">=</span> <span class="n">read_rttm</span><span class="p">(</span><span class="n">ref_rttm</span><span class="p">)</span>
+    <span class="n">spkr_info</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;SPKR-INFO&quot;</span><span class="p">),</span> <span class="n">rttm</span><span class="p">))</span>
+
+    <span class="n">rec_id_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_der_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">spkr_info</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="n">rec_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rec_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rec_id_list</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">rec_id</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">DER</span><span class="p">[</span><span class="n">count</span><span class="p">],</span> <span class="mi">2</span><span class="p">))]</span>
+                <span class="n">rec_id_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rec_id</span><span class="p">)</span>
+                <span class="n">line_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">line_str</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;OVERALL &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">DER</span><span class="p">[</span><span class="n">count</span><span class="p">],</span> <span class="mi">2</span><span class="p">))]</span>
+        <span class="n">line_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">line_str</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="prepare_subset_csv"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.prepare_subset_csv">[docs]</a><span class="k">def</span> <span class="nf">prepare_subset_csv</span><span class="p">(</span><span class="n">full_diary_csv</span><span class="p">,</span> <span class="n">rec_id</span><span class="p">,</span> <span class="n">out_csv_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prepares csv for a given recording ID.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    full_diary_csv : csv</span>
+<span class="sd">        Full csv containing all the recordings</span>
+<span class="sd">    rec_id : str</span>
+<span class="sd">        The recording ID for which csv has to be prepared</span>
+<span class="sd">    out_csv_file : str</span>
+<span class="sd">        Path of the output csv file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">out_csv_head</span> <span class="o">=</span> <span class="p">[</span><span class="n">full_diary_csv</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">full_diary_csv</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">rec_id</span><span class="p">):</span>
+            <span class="n">entry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="n">out_csv</span> <span class="o">=</span> <span class="n">out_csv_head</span> <span class="o">+</span> <span class="n">entry</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_csv_file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+        <span class="n">csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span>
+            <span class="n">csv_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">out_csv</span><span class="p">:</span>
+            <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">r</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_overlapped"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.is_overlapped">[docs]</a><span class="k">def</span> <span class="nf">is_overlapped</span><span class="p">(</span><span class="n">end1</span><span class="p">,</span> <span class="n">start2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns True if segments are overlapping.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    end1 : float</span>
+<span class="sd">        End time of the first segment.</span>
+<span class="sd">    start2 : float</span>
+<span class="sd">        Start time of the second segment.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    overlapped : bool</span>
+<span class="sd">        True of segments overlapped else False.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; diar.is_overlapped(5.5, 3.4)</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; diar.is_overlapped(5.5, 6.4)</span>
+<span class="sd">    False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">start2</span> <span class="o">&gt;</span> <span class="n">end1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="merge_ssegs_same_speaker"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.merge_ssegs_same_speaker">[docs]</a><span class="k">def</span> <span class="nf">merge_ssegs_same_speaker</span><span class="p">(</span><span class="n">lol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Merge adjacent sub-segs from the same speaker.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    lol : list of list</span>
+<span class="sd">        Each list contains [rec_id, sseg_start, sseg_end, spkr_id].</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new_lol : list of list</span>
+<span class="sd">        new_lol contains adjacent segments merged from the same speaker ID.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; lol=[[&#39;r1&#39;, 5.5, 7.0, &#39;s1&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 6.5, 9.0, &#39;s1&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 8.0, 11.0, &#39;s1&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 11.5, 13.0, &#39;s2&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 14.0, 15.0, &#39;s2&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 14.5, 15.0, &#39;s1&#39;]]</span>
+<span class="sd">    &gt;&gt;&gt; diar.merge_ssegs_same_speaker(lol)</span>
+<span class="sd">    [[&#39;r1&#39;, 5.5, 11.0, &#39;s1&#39;], [&#39;r1&#39;, 11.5, 13.0, &#39;s2&#39;], [&#39;r1&#39;, 14.0, 15.0, &#39;s2&#39;], [&#39;r1&#39;, 14.5, 15.0, &#39;s1&#39;]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">new_lol</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Start from the first sub-seg</span>
+    <span class="n">sseg</span> <span class="o">=</span> <span class="n">lol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lol</span><span class="p">)):</span>
+        <span class="n">next_sseg</span> <span class="o">=</span> <span class="n">lol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># IF sub-segments overlap AND has same speaker THEN merge</span>
+        <span class="k">if</span> <span class="n">is_overlapped</span><span class="p">(</span><span class="n">sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">next_sseg</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="ow">and</span> <span class="n">sseg</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">next_sseg</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+            <span class="n">sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># just update the end time</span>
+            <span class="c1"># This is important. For the last sseg, if it is the same speaker the merge</span>
+            <span class="c1"># Make sure we don&#39;t append the last segment once more. Hence, set FLAG=True</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">lol</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sseg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sseg</span><span class="p">)</span>
+            <span class="n">sseg</span> <span class="o">=</span> <span class="n">next_sseg</span>
+
+    <span class="c1"># Add last segment only when it was skipped earlier.</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lol</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">new_lol</span></div>
+
+
+<div class="viewcode-block" id="distribute_overlap"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.distribute_overlap">[docs]</a><span class="k">def</span> <span class="nf">distribute_overlap</span><span class="p">(</span><span class="n">lol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Distributes the overlapped speech equally among the adjacent segments</span>
+<span class="sd">    with different speakers.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    lol : list of list</span>
+<span class="sd">        It has each list structure as [rec_id, sseg_start, sseg_end, spkr_id].</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new_lol : list of list</span>
+<span class="sd">        It contains the overlapped part equally divided among the adjacent</span>
+<span class="sd">        segments with different speaker IDs.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; lol = [[&#39;r1&#39;, 5.5, 9.0, &#39;s1&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 8.0, 11.0, &#39;s2&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 11.5, 13.0, &#39;s2&#39;],</span>
+<span class="sd">    ... [&#39;r1&#39;, 12.0, 15.0, &#39;s1&#39;]]</span>
+<span class="sd">    &gt;&gt;&gt; diar.distribute_overlap(lol)</span>
+<span class="sd">    [[&#39;r1&#39;, 5.5, 8.5, &#39;s1&#39;], [&#39;r1&#39;, 8.5, 11.0, &#39;s2&#39;], [&#39;r1&#39;, 11.5, 12.5, &#39;s2&#39;], [&#39;r1&#39;, 12.5, 15.0, &#39;s1&#39;]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">new_lol</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sseg</span> <span class="o">=</span> <span class="n">lol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Add first sub-segment here to avoid error at: &quot;if new_lol[-1] != sseg:&quot; when new_lol is empty</span>
+    <span class="c1"># new_lol.append(sseg)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lol</span><span class="p">)):</span>
+        <span class="n">next_sseg</span> <span class="o">=</span> <span class="n">lol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="c1"># No need to check if they are different speakers.</span>
+        <span class="c1"># Because if segments are overlapped then they always have different speakers.</span>
+        <span class="c1"># This is because similar speaker&#39;s adjacent sub-segments are already merged by &quot;merge_ssegs_same_speaker()&quot;</span>
+
+        <span class="k">if</span> <span class="n">is_overlapped</span><span class="p">(</span><span class="n">sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">next_sseg</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+
+            <span class="c1"># Get overlap duration.</span>
+            <span class="c1"># Now this overlap will be divided equally between adjacent segments.</span>
+            <span class="n">overlap</span> <span class="o">=</span> <span class="n">sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">next_sseg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="c1"># Update end time of old seg</span>
+            <span class="n">sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sseg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">overlap</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+
+            <span class="c1"># Update start time of next seg</span>
+            <span class="n">next_sseg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_sseg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">overlap</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_lol</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># For first sub-segment entry</span>
+                <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sseg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># To avoid duplicate entries</span>
+                <span class="k">if</span> <span class="n">new_lol</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">sseg</span><span class="p">:</span>
+                    <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sseg</span><span class="p">)</span>
+
+            <span class="c1"># Current sub-segment is next sub-segment</span>
+            <span class="n">sseg</span> <span class="o">=</span> <span class="n">next_sseg</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For the first sseg</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_lol</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sseg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># To avoid duplicate entries</span>
+                <span class="k">if</span> <span class="n">new_lol</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">sseg</span><span class="p">:</span>
+                    <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sseg</span><span class="p">)</span>
+
+            <span class="c1"># Update the current sub-segment</span>
+            <span class="n">sseg</span> <span class="o">=</span> <span class="n">next_sseg</span>
+
+    <span class="c1"># Add the remaning last sub-segment</span>
+    <span class="n">new_lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_sseg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_lol</span></div>
+
+
+<div class="viewcode-block" id="write_rttm"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.write_rttm">[docs]</a><span class="k">def</span> <span class="nf">write_rttm</span><span class="p">(</span><span class="n">segs_list</span><span class="p">,</span> <span class="n">out_rttm_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Writes the segment list in RTTM format (A standard NIST format).</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    segs_list : list of list</span>
+<span class="sd">        Each list contains [rec_id, sseg_start, sseg_end, spkr_id].</span>
+<span class="sd">    out_rttm_file : str</span>
+<span class="sd">        Path of the output RTTM file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rttm</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rec_id</span> <span class="o">=</span> <span class="n">segs_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segs_list</span><span class="p">:</span>
+        <span class="n">new_row</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;SPEAKER&quot;</span><span class="p">,</span>
+            <span class="n">rec_id</span><span class="p">,</span>
+            <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">seg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">)),</span>
+            <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">seg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">seg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">)),</span>
+            <span class="s2">&quot;&lt;NA&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&lt;NA&gt;&quot;</span><span class="p">,</span>
+            <span class="n">seg</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+            <span class="s2">&quot;&lt;NA&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&lt;NA&gt;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">rttm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_rttm_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rttm</span><span class="p">:</span>
+            <span class="n">line_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">line_str</span><span class="p">)</span></div>
+
+
+<span class="c1">#######################################</span>
+
+
+<span class="k">def</span> <span class="nf">_graph_connected_component</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Find the largest graph connected components that contains one</span>
+<span class="sd">    given node.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    graph : array-like, shape: (n_samples, n_samples)</span>
+<span class="sd">        Adjacency matrix of the graph, non-zero weight means an edge</span>
+<span class="sd">        between the nodes.</span>
+<span class="sd">    node_id : int</span>
+<span class="sd">        The index of the query node of the graph.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    connected_components_matrix : array-like</span>
+<span class="sd">        shape - (n_samples,).</span>
+<span class="sd">        An array of bool value indicating the indexes of the nodes belonging</span>
+<span class="sd">        to the largest connected components of the given query node.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n_node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+        <span class="c1"># speed up row-wise access to boolean connection mask</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+    <span class="n">connected_nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_node</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+    <span class="n">nodes_to_explore</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_node</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+    <span class="n">nodes_to_explore</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_node</span><span class="p">):</span>
+        <span class="n">last_num_component</span> <span class="o">=</span> <span class="n">connected_nodes</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">connected_nodes</span><span class="p">,</span> <span class="n">nodes_to_explore</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">connected_nodes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">last_num_component</span> <span class="o">&gt;=</span> <span class="n">connected_nodes</span><span class="o">.</span><span class="n">sum</span><span class="p">():</span>
+            <span class="k">break</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">nodes_to_explore</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">nodes_to_explore</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+                <span class="n">neighbors</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">neighbors</span> <span class="o">=</span> <span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">nodes_to_explore</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">nodes_to_explore</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">connected_nodes</span>
+
+
+<span class="k">def</span> <span class="nf">_graph_is_connected</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return whether the graph is connected (True) or Not (False)</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    graph : array-like or sparse matrix, shape: (n_samples, n_samples)</span>
+<span class="sd">        Adjacency matrix of the graph, non-zero weight means an edge between the nodes.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    is_connected : bool</span>
+<span class="sd">        True means the graph is fully connected and False means not.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">isspmatrix</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+        <span class="c1"># sparse graph, find all the connected components</span>
+        <span class="n">n_connected_components</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">connected_components</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">n_connected_components</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># dense graph, find all connected components start from node 0</span>
+        <span class="k">return</span> <span class="n">_graph_connected_component</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="n">graph</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_set_diag</span><span class="p">(</span><span class="n">laplacian</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">norm_laplacian</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set the diagonal of the laplacian matrix and convert it to a sparse</span>
+<span class="sd">    format well suited for eigenvalue decomposition.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    laplacian : array or sparse matrix</span>
+<span class="sd">        The graph laplacian.</span>
+<span class="sd">    value : float</span>
+<span class="sd">        The value of the diagonal.</span>
+<span class="sd">    norm_laplacian : bool</span>
+<span class="sd">        Whether the value of the diagonal should be changed or not.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    laplacian : array or sparse matrix</span>
+<span class="sd">        An array of matrix in a form that is well suited to fast eigenvalue</span>
+<span class="sd">        decomposition, depending on the bandwidth of the matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n_nodes</span> <span class="o">=</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># We need all entries in the diagonal to values</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sparse</span><span class="o">.</span><span class="n">isspmatrix</span><span class="p">(</span><span class="n">laplacian</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">norm_laplacian</span><span class="p">:</span>
+            <span class="n">laplacian</span><span class="o">.</span><span class="n">flat</span><span class="p">[::</span> <span class="n">n_nodes</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">laplacian</span> <span class="o">=</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">tocoo</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">norm_laplacian</span><span class="p">:</span>
+            <span class="n">diag_idx</span> <span class="o">=</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">row</span> <span class="o">==</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">col</span>
+            <span class="n">laplacian</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">diag_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="c1"># If the matrix has a small number of diagonals (as in the</span>
+        <span class="c1"># case of structured matrices coming from images), the</span>
+        <span class="c1"># dia format might be best suited for matvec products:</span>
+        <span class="n">n_diags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">laplacian</span><span class="o">.</span><span class="n">row</span> <span class="o">-</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">if</span> <span class="n">n_diags</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="c1"># 3 or less outer diagonals on each side</span>
+            <span class="n">laplacian</span> <span class="o">=</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">todia</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># csr has the fastest matvec and is thus best suited to</span>
+            <span class="c1"># arpack</span>
+            <span class="n">laplacian</span> <span class="o">=</span> <span class="n">laplacian</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">laplacian</span>
+
+
+<span class="k">def</span> <span class="nf">_deterministic_vector_sign_flip</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Modify the sign of vectors for reproducibility. Flips the sign of</span>
+<span class="sd">    elements of all the vectors (rows of u) such that the absolute</span>
+<span class="sd">    maximum element of each vector is positive.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    u : ndarray</span>
+<span class="sd">        Array with vectors as its rows.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    u_flipped : ndarray</span>
+<span class="sd">        Array with the sign flipped vectors as its rows. The same shape as `u`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">max_abs_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">signs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">max_abs_rows</span><span class="p">])</span>
+    <span class="n">u</span> <span class="o">*=</span> <span class="n">signs</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+
+<span class="k">def</span> <span class="nf">_check_random_state</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Turn seed into a np.random.RandomState instance.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    seed : None | int | instance of RandomState</span>
+<span class="sd">        If seed is None, return the RandomState singleton used by np.random.</span>
+<span class="sd">        If seed is an int, return a new RandomState instance seeded with seed.</span>
+<span class="sd">        If seed is already a RandomState instance, return it.</span>
+<span class="sd">        Otherwise raise ValueError.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">seed</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">mtrand</span><span class="o">.</span><span class="n">_rand</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">seed</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">%r</span><span class="s2"> cannot be used to seed a np.random.RandomState&quot;</span> <span class="s2">&quot; instance&quot;</span> <span class="o">%</span> <span class="n">seed</span>
+    <span class="p">)</span>
+
+
+<span class="c1">#####################</span>
+
+
+<div class="viewcode-block" id="get_oracle_num_spkrs"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.get_oracle_num_spkrs">[docs]</a><span class="k">def</span> <span class="nf">get_oracle_num_spkrs</span><span class="p">(</span><span class="n">rec_id</span><span class="p">,</span> <span class="n">spkr_info</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns actual number of speakers in a recording from the ground-truth.</span>
+<span class="sd">    This can be used when the condition is oracle number of speakers.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    rec_id : str</span>
+<span class="sd">        Recording ID for which the number of speakers have to be obtained.</span>
+<span class="sd">    spkr_info : list</span>
+<span class="sd">        Header of the RTTM file. Starting with `SPKR-INFO`.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; spkr_info = [&#39;SPKR-INFO ES2011a 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011a.A &lt;NA&gt; &lt;NA&gt;&#39;,</span>
+<span class="sd">    ... &#39;SPKR-INFO ES2011a 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011a.B &lt;NA&gt; &lt;NA&gt;&#39;,</span>
+<span class="sd">    ... &#39;SPKR-INFO ES2011a 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011a.C &lt;NA&gt; &lt;NA&gt;&#39;,</span>
+<span class="sd">    ... &#39;SPKR-INFO ES2011a 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011a.D &lt;NA&gt; &lt;NA&gt;&#39;,</span>
+<span class="sd">    ... &#39;SPKR-INFO ES2011b 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011b.A &lt;NA&gt; &lt;NA&gt;&#39;,</span>
+<span class="sd">    ... &#39;SPKR-INFO ES2011b 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011b.B &lt;NA&gt; &lt;NA&gt;&#39;,</span>
+<span class="sd">    ... &#39;SPKR-INFO ES2011b 0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; unknown ES2011b.C &lt;NA&gt; &lt;NA&gt;&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; diar.get_oracle_num_spkrs(&#39;ES2011a&#39;, spkr_info)</span>
+<span class="sd">    4</span>
+<span class="sd">    &gt;&gt;&gt; diar.get_oracle_num_spkrs(&#39;ES2011b&#39;, spkr_info)</span>
+<span class="sd">    3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">num_spkrs</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">spkr_info</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">rec_id</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="c1"># Since rec_id is prefix for each speaker</span>
+            <span class="n">num_spkrs</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">num_spkrs</span></div>
+
+
+<div class="viewcode-block" id="spectral_embedding_sb"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.spectral_embedding_sb">[docs]</a><span class="k">def</span> <span class="nf">spectral_embedding_sb</span><span class="p">(</span>
+    <span class="n">adjacency</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">norm_laplacian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns spectral embeddings.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    adjacency : array-like or sparse graph</span>
+<span class="sd">        shape - (n_samples, n_samples)</span>
+<span class="sd">        The adjacency matrix of the graph to embed.</span>
+<span class="sd">    n_components : int</span>
+<span class="sd">        The dimension of the projection subspace.</span>
+<span class="sd">    norm_laplacian : bool</span>
+<span class="sd">        If True, then compute normalized Laplacian.</span>
+<span class="sd">    drop_first : bool</span>
+<span class="sd">        Whether to drop the first eigenvector.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    embedding : array</span>
+<span class="sd">        Spectral embeddings for each sample.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; affinity = np.array([[1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0.5],</span>
+<span class="sd">    ... [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],</span>
+<span class="sd">    ... [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0.5, 0, 0, 1, 1, 1, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],</span>
+<span class="sd">    ... [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],</span>
+<span class="sd">    ... [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],</span>
+<span class="sd">    ... [0.5, 0, 0, 0, 0, 0, 1, 1, 1, 1]])</span>
+<span class="sd">    &gt;&gt;&gt; embs = diar.spectral_embedding_sb(affinity, 3)</span>
+<span class="sd">    &gt;&gt;&gt; # Notice similar embeddings</span>
+<span class="sd">    &gt;&gt;&gt; print(np.around(embs , decimals=3))</span>
+<span class="sd">    [[ 0.075  0.244  0.285]</span>
+<span class="sd">     [ 0.083  0.356 -0.203]</span>
+<span class="sd">     [ 0.083  0.356 -0.203]</span>
+<span class="sd">     [ 0.26  -0.149  0.154]</span>
+<span class="sd">     [ 0.29  -0.218 -0.11 ]</span>
+<span class="sd">     [ 0.29  -0.218 -0.11 ]</span>
+<span class="sd">     [-0.198 -0.084 -0.122]</span>
+<span class="sd">     [-0.198 -0.084 -0.122]</span>
+<span class="sd">     [-0.198 -0.084 -0.122]</span>
+<span class="sd">     [-0.167 -0.044  0.316]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Whether to drop the first eigenvector</span>
+    <span class="k">if</span> <span class="n">drop_first</span><span class="p">:</span>
+        <span class="n">n_components</span> <span class="o">=</span> <span class="n">n_components</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_graph_is_connected</span><span class="p">(</span><span class="n">adjacency</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;Graph is not fully connected, spectral embedding&quot;</span>
+            <span class="s2">&quot; may not work as expected.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">laplacian</span><span class="p">,</span> <span class="n">dd</span> <span class="o">=</span> <span class="n">csgraph_laplacian</span><span class="p">(</span>
+        <span class="n">adjacency</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="n">norm_laplacian</span><span class="p">,</span> <span class="n">return_diag</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">laplacian</span> <span class="o">=</span> <span class="n">_set_diag</span><span class="p">(</span><span class="n">laplacian</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">norm_laplacian</span><span class="p">)</span>
+
+    <span class="n">laplacian</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">vals</span><span class="p">,</span> <span class="n">diffusion_map</span> <span class="o">=</span> <span class="n">eigsh</span><span class="p">(</span>
+        <span class="n">laplacian</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;LM&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">diffusion_map</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">n_components</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">norm_laplacian</span><span class="p">:</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="n">embedding</span> <span class="o">/</span> <span class="n">dd</span>
+
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">_deterministic_vector_sign_flip</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">drop_first</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">embedding</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n_components</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">embedding</span><span class="p">[:</span><span class="n">n_components</span><span class="p">]</span><span class="o">.</span><span class="n">T</span></div>
+
+
+<div class="viewcode-block" id="spectral_clustering_sb"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.spectral_clustering_sb">[docs]</a><span class="k">def</span> <span class="nf">spectral_clustering_sb</span><span class="p">(</span>
+    <span class="n">affinity</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Performs spectral clustering.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    affinity : matrix</span>
+<span class="sd">        Affinity matrix.</span>
+<span class="sd">    n_clusters : int</span>
+<span class="sd">        Number of clusters for kmeans.</span>
+<span class="sd">    n_components : int</span>
+<span class="sd">        Number of components to retain while estimating spectral embeddings.</span>
+<span class="sd">    random_state : int</span>
+<span class="sd">        A pseudo random number generator used by kmeans.</span>
+<span class="sd">     n_init : int</span>
+<span class="sd">        Number of time the k-means algorithm will be run with different centroid seeds.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    labels : array</span>
+<span class="sd">        Cluster label for each sample.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; affinity = np.array([[1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0.5],</span>
+<span class="sd">    ... [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],</span>
+<span class="sd">    ... [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0.5, 0, 0, 1, 1, 1, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],</span>
+<span class="sd">    ... [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],</span>
+<span class="sd">    ... [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],</span>
+<span class="sd">    ... [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],</span>
+<span class="sd">    ... [0.5, 0, 0, 0, 0, 0, 1, 1, 1, 1]])</span>
+<span class="sd">    &gt;&gt;&gt; labs = diar.spectral_clustering_sb(affinity, 3)</span>
+<span class="sd">    &gt;&gt;&gt; # print (labs) # [2 2 2 1 1 1 0 0 0 0]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">_check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="n">n_clusters</span> <span class="k">if</span> <span class="n">n_components</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">n_components</span>
+
+    <span class="n">maps</span> <span class="o">=</span> <span class="n">spectral_embedding_sb</span><span class="p">(</span>
+        <span class="n">affinity</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">k_means</span><span class="p">(</span>
+        <span class="n">maps</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="n">n_init</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="Spec_Cluster"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Cluster">[docs]</a><span class="k">class</span> <span class="nc">Spec_Cluster</span><span class="p">(</span><span class="n">SpectralClustering</span><span class="p">):</span>
+<div class="viewcode-block" id="Spec_Cluster.perform_sc"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Cluster.perform_sc">[docs]</a>    <span class="k">def</span> <span class="nf">perform_sc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs spectral clustering using sklearn on embeddings.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        X : array (n_samples, n_features)</span>
+<span class="sd">            Embeddings to be clustered.</span>
+<span class="sd">        n_neighbors : int</span>
+<span class="sd">            Number of neighbors in estimating affinity matrix.</span>
+
+<span class="sd">        Reference</span>
+<span class="sd">        ---------</span>
+<span class="sd">        https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/cluster/_spectral.py</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Computation of affinity matrix</span>
+        <span class="n">connectivity</span> <span class="o">=</span> <span class="n">kneighbors_graph</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">include_self</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">affinity_matrix_</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">connectivity</span> <span class="o">+</span> <span class="n">connectivity</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="c1"># Perform spectral clustering on affinity matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="n">spectral_clustering_sb</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">affinity_matrix_</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_clusters</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+
+
+<span class="c1">#####################</span>
+
+
+<div class="viewcode-block" id="Spec_Clust_unorm"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm">[docs]</a><span class="k">class</span> <span class="nc">Spec_Clust_unorm</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class implements the spectral clustering with unnormalized affinity matrix.</span>
+<span class="sd">    Useful when affinity matrix is based on cosine similarities.</span>
+
+<span class="sd">    Reference</span>
+<span class="sd">    ---------</span>
+<span class="sd">    Von Luxburg, U. A tutorial on spectral clustering. Stat Comput 17, 395–416 (2007).</span>
+<span class="sd">    https://doi.org/10.1007/s11222-007-9033-z</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; from speechbrain.processing import diarization as diar</span>
+<span class="sd">    &gt;&gt;&gt; clust = diar.Spec_Clust_unorm(min_num_spkrs=2, max_num_spkrs=10)</span>
+<span class="sd">    &gt;&gt;&gt; emb = [[ 2.1, 3.1, 4.1, 4.2, 3.1],</span>
+<span class="sd">    ... [ 2.2, 3.1, 4.2, 4.2, 3.2],</span>
+<span class="sd">    ... [ 2.0, 3.0, 4.0, 4.1, 3.0],</span>
+<span class="sd">    ... [ 8.0, 7.0, 7.0, 8.1, 9.0],</span>
+<span class="sd">    ... [ 8.1, 7.1, 7.2, 8.1, 9.2],</span>
+<span class="sd">    ... [ 8.3, 7.4, 7.0, 8.4, 9.0],</span>
+<span class="sd">    ... [ 0.3, 0.4, 0.4, 0.5, 0.8],</span>
+<span class="sd">    ... [ 0.4, 0.3, 0.6, 0.7, 0.8],</span>
+<span class="sd">    ... [ 0.2, 0.3, 0.2, 0.3, 0.7],</span>
+<span class="sd">    ... [ 0.3, 0.4, 0.4, 0.4, 0.7],]</span>
+<span class="sd">    &gt;&gt;&gt; # Estimating similarity matrix</span>
+<span class="sd">    &gt;&gt;&gt; sim_mat = clust.get_sim_mat(emb)</span>
+<span class="sd">    &gt;&gt;&gt; print (np.around(sim_mat[5:,5:], decimals=3))</span>
+<span class="sd">    [[1.    0.957 0.961 0.904 0.966]</span>
+<span class="sd">     [0.957 1.    0.977 0.982 0.997]</span>
+<span class="sd">     [0.961 0.977 1.    0.928 0.972]</span>
+<span class="sd">     [0.904 0.982 0.928 1.    0.976]</span>
+<span class="sd">     [0.966 0.997 0.972 0.976 1.   ]]</span>
+<span class="sd">    &gt;&gt;&gt; # Prunning</span>
+<span class="sd">    &gt;&gt;&gt; prunned_sim_mat = clust.p_pruning(sim_mat, 0.3)</span>
+<span class="sd">    &gt;&gt;&gt; print (np.around(prunned_sim_mat[5:,5:], decimals=3))</span>
+<span class="sd">    [[1.    0.    0.    0.    0.   ]</span>
+<span class="sd">     [0.    1.    0.    0.982 0.997]</span>
+<span class="sd">     [0.    0.977 1.    0.    0.972]</span>
+<span class="sd">     [0.    0.982 0.    1.    0.976]</span>
+<span class="sd">     [0.    0.997 0.    0.976 1.   ]]</span>
+<span class="sd">    &gt;&gt;&gt; # Symmetrization</span>
+<span class="sd">    &gt;&gt;&gt; sym_prund_sim_mat = 0.5 * (prunned_sim_mat + prunned_sim_mat.T)</span>
+<span class="sd">    &gt;&gt;&gt; print (np.around(sym_prund_sim_mat[5:,5:], decimals=3))</span>
+<span class="sd">    [[1.    0.    0.    0.    0.   ]</span>
+<span class="sd">     [0.    1.    0.489 0.982 0.997]</span>
+<span class="sd">     [0.    0.489 1.    0.    0.486]</span>
+<span class="sd">     [0.    0.982 0.    1.    0.976]</span>
+<span class="sd">     [0.    0.997 0.486 0.976 1.   ]]</span>
+<span class="sd">    &gt;&gt;&gt; # Laplacian</span>
+<span class="sd">    &gt;&gt;&gt; laplacian = clust.get_laplacian(sym_prund_sim_mat)</span>
+<span class="sd">    &gt;&gt;&gt; print (np.around(laplacian[5:,5:], decimals=3))</span>
+<span class="sd">    [[ 1.999  0.     0.     0.     0.   ]</span>
+<span class="sd">     [ 0.     2.468 -0.489 -0.982 -0.997]</span>
+<span class="sd">     [ 0.    -0.489  0.975  0.    -0.486]</span>
+<span class="sd">     [ 0.    -0.982  0.     1.958 -0.976]</span>
+<span class="sd">     [ 0.    -0.997 -0.486 -0.976  2.458]]</span>
+<span class="sd">    &gt;&gt;&gt; # Spectral Embeddings</span>
+<span class="sd">    &gt;&gt;&gt; spec_emb, num_of_spk = clust.get_spec_embs(laplacian, 3)</span>
+<span class="sd">    &gt;&gt;&gt; print(num_of_spk)</span>
+<span class="sd">    3</span>
+<span class="sd">    &gt;&gt;&gt; # Clustering</span>
+<span class="sd">    &gt;&gt;&gt; clust.cluster_embs(spec_emb, num_of_spk)</span>
+<span class="sd">    &gt;&gt;&gt; # print (clust.labels_) # [0 0 0 2 2 2 1 1 1 1]</span>
+<span class="sd">    &gt;&gt;&gt; # Complete spectral clustering</span>
+<span class="sd">    &gt;&gt;&gt; clust.do_spec_clust(emb, k_oracle=3, p_val=0.3)</span>
+<span class="sd">    &gt;&gt;&gt; # print(clust.labels_) # [0 0 0 2 2 2 1 1 1 1]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_num_spkrs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_num_spkrs</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_num_spkrs</span> <span class="o">=</span> <span class="n">min_num_spkrs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_num_spkrs</span> <span class="o">=</span> <span class="n">max_num_spkrs</span>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.do_spec_clust"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.do_spec_clust">[docs]</a>    <span class="k">def</span> <span class="nf">do_spec_clust</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">k_oracle</span><span class="p">,</span> <span class="n">p_val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function for spectral clustering.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        X : array</span>
+<span class="sd">            (n_samples, n_features).</span>
+<span class="sd">            Embeddings extracted from the model.</span>
+<span class="sd">        k_oracle : int</span>
+<span class="sd">            Number of speakers (when oracle number of speakers).</span>
+<span class="sd">        p_val : float</span>
+<span class="sd">            p percent value to prune the affinity matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Similarity matrix computation</span>
+        <span class="n">sim_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sim_mat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># Refining similarity matrix with p_val</span>
+        <span class="n">prunned_sim_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_pruning</span><span class="p">(</span><span class="n">sim_mat</span><span class="p">,</span> <span class="n">p_val</span><span class="p">)</span>
+
+        <span class="c1"># Symmetrization</span>
+        <span class="n">sym_prund_sim_mat</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">prunned_sim_mat</span> <span class="o">+</span> <span class="n">prunned_sim_mat</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="c1"># Laplacian calculation</span>
+        <span class="n">laplacian</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_laplacian</span><span class="p">(</span><span class="n">sym_prund_sim_mat</span><span class="p">)</span>
+
+        <span class="c1"># Get Spectral Embeddings</span>
+        <span class="n">emb</span><span class="p">,</span> <span class="n">num_of_spk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spec_embs</span><span class="p">(</span><span class="n">laplacian</span><span class="p">,</span> <span class="n">k_oracle</span><span class="p">)</span>
+
+        <span class="c1"># Perform clustering</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cluster_embs</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">num_of_spk</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.get_sim_mat"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.get_sim_mat">[docs]</a>    <span class="k">def</span> <span class="nf">get_sim_mat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the similarity matrix based on cosine similarities.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        X : array</span>
+<span class="sd">            (n_samples, n_features).</span>
+<span class="sd">            Embeddings extracted from the model.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        M : array</span>
+<span class="sd">            (n_samples, n_samples).</span>
+<span class="sd">            Similarity matrix with cosine similarities between each pair of embedding.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Cosine similarities</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">pairwise</span><span class="o">.</span><span class="n">cosine_similarity</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">M</span></div>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.p_pruning"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.p_pruning">[docs]</a>    <span class="k">def</span> <span class="nf">p_pruning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">pval</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Refine the affinity matrix by zeroing less similar values.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        A : array</span>
+<span class="sd">            (n_samples, n_samples).</span>
+<span class="sd">            Affinity matrix.</span>
+<span class="sd">        pval : float</span>
+<span class="sd">            p-value to be retained in each row of the affinity matrix.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A : array</span>
+<span class="sd">            (n_samples, n_samples).</span>
+<span class="sd">            Prunned affinity matrix based on p_val.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">n_elems</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pval</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1"># For each row in a affinity matrix</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">low_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">low_indexes</span> <span class="o">=</span> <span class="n">low_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_elems</span><span class="p">]</span>
+
+            <span class="c1"># Replace smaller similarity values by 0s</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">low_indexes</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">A</span></div>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.get_laplacian"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.get_laplacian">[docs]</a>    <span class="k">def</span> <span class="nf">get_laplacian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the un-normalized laplacian for the given affinity matrix.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        M : array</span>
+<span class="sd">            (n_samples, n_samples)</span>
+<span class="sd">            Affinity matrix.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        L : array</span>
+<span class="sd">            (n_samples, n_samples)</span>
+<span class="sd">            Laplacian matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">M</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag_indices</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">M</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">D</span> <span class="o">-</span> <span class="n">M</span>
+        <span class="k">return</span> <span class="n">L</span></div>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.get_spec_embs"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.get_spec_embs">[docs]</a>    <span class="k">def</span> <span class="nf">get_spec_embs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">k_oracle</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns spectral embeddings and estimates the number of speakers</span>
+<span class="sd">        using maximum Eigen gap.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        L : array (n_samples, n_samples)</span>
+<span class="sd">            Laplacian matrix.</span>
+<span class="sd">        k_oracle : int</span>
+<span class="sd">            Number of speakers when the condition is oracle number of speakers,</span>
+<span class="sd">            else None.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        emb : array (n_samples, n_components)</span>
+<span class="sd">            Spectral embedding for each sample with n Eigen components.</span>
+<span class="sd">        num_of_spk : int</span>
+<span class="sd">            Estimated number of speakers. If the condition is set to the oracle</span>
+<span class="sd">            number of speakers then returns k_oracle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">lambdas</span><span class="p">,</span> <span class="n">eig_vecs</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+
+        <span class="c1"># if params[&quot;oracle_n_spkrs&quot;] is True:</span>
+        <span class="k">if</span> <span class="n">k_oracle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">num_of_spk</span> <span class="o">=</span> <span class="n">k_oracle</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lambda_gap_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEigenGaps</span><span class="p">(</span><span class="n">lambdas</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_num_spkrs</span><span class="p">])</span>
+
+            <span class="n">num_of_spk</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
+                    <span class="n">lambda_gap_list</span><span class="p">[</span>
+                        <span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_num_spkrs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lambda_gap_list</span><span class="p">))</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+                <span class="o">+</span> <span class="mi">2</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">num_of_spk</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_num_spkrs</span><span class="p">:</span>
+                <span class="n">num_of_spk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_num_spkrs</span>
+
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">eig_vecs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">num_of_spk</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">emb</span><span class="p">,</span> <span class="n">num_of_spk</span></div>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.cluster_embs"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.cluster_embs">[docs]</a>    <span class="k">def</span> <span class="nf">cluster_embs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Clusters the embeddings using kmeans.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        emb : array (n_samples, n_components)</span>
+<span class="sd">            Spectral embedding for each sample with n Eigen components.</span>
+<span class="sd">        k : int</span>
+<span class="sd">            Number of clusters to kmeans.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self.labels_ : self</span>
+<span class="sd">            Labels for each sample embedding.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">k_means</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Spec_Clust_unorm.getEigenGaps"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.Spec_Clust_unorm.getEigenGaps">[docs]</a>    <span class="k">def</span> <span class="nf">getEigenGaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eig_vals</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the difference (gaps) between the Eigen values.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        eig_vals : list</span>
+<span class="sd">            List of eigen values</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        eig_vals_gap_list : list</span>
+<span class="sd">            List of differences (gaps) between adjancent Eigen values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">eig_vals_gap_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">eig_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">gap</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">eig_vals</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">eig_vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="c1"># eig_vals_gap_list.append(float(eig_vals[i + 1]) - float(eig_vals[i]))</span>
+            <span class="n">eig_vals_gap_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">eig_vals_gap_list</span></div></div>
+
+
+<span class="c1">#####################</span>
+
+
+<div class="viewcode-block" id="do_spec_clustering"><a class="viewcode-back" href="../../../speechbrain.processing.diarization.html#speechbrain.processing.diarization.do_spec_clustering">[docs]</a><span class="k">def</span> <span class="nf">do_spec_clustering</span><span class="p">(</span>
+    <span class="n">diary_obj</span><span class="p">,</span> <span class="n">out_rttm_file</span><span class="p">,</span> <span class="n">rec_id</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">pval</span><span class="p">,</span> <span class="n">affinity_type</span><span class="p">,</span> <span class="n">n_neighbors</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs spectral clustering on embeddings. This function calls specific</span>
+<span class="sd">    clustering algorithms as per affinity.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    diary_obj : StatObject_SB type</span>
+<span class="sd">        Contains embeddings in diary_obj.stat1 and segment IDs in diary_obj.segset.</span>
+<span class="sd">    out_rttm_file : str</span>
+<span class="sd">        Path of the output RTTM file.</span>
+<span class="sd">    rec_id : str</span>
+<span class="sd">        Recording ID for the recording under processing.</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Number of speaker (None, if it has to be estimated).</span>
+<span class="sd">    pval : float</span>
+<span class="sd">        `pval` for prunning affinity matrix.</span>
+<span class="sd">    affinity_type : str</span>
+<span class="sd">        Type of similarity to be used to get affinity matrix (cos or nn).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">affinity_type</span> <span class="o">==</span> <span class="s2">&quot;cos&quot;</span><span class="p">:</span>
+        <span class="n">clust_obj</span> <span class="o">=</span> <span class="n">Spec_Clust_unorm</span><span class="p">(</span><span class="n">min_num_spkrs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_num_spkrs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">k_oracle</span> <span class="o">=</span> <span class="n">k</span>  <span class="c1"># use it only when oracle num of speakers</span>
+        <span class="n">clust_obj</span><span class="o">.</span><span class="n">do_spec_clust</span><span class="p">(</span><span class="n">diary_obj</span><span class="o">.</span><span class="n">stat1</span><span class="p">,</span> <span class="n">k_oracle</span><span class="p">,</span> <span class="n">pval</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">clust_obj</span><span class="o">.</span><span class="n">labels_</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">clust_obj</span> <span class="o">=</span> <span class="n">Spec_Cluster</span><span class="p">(</span>
+            <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span>
+            <span class="n">assign_labels</span><span class="o">=</span><span class="s2">&quot;kmeans&quot;</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span>
+            <span class="n">affinity</span><span class="o">=</span><span class="s2">&quot;nearest_neighbors&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">clust_obj</span><span class="o">.</span><span class="n">perform_sc</span><span class="p">(</span><span class="n">diary_obj</span><span class="o">.</span><span class="n">stat1</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">clust_obj</span><span class="o">.</span><span class="n">labels_</span>
+
+    <span class="c1"># Convert labels to speaker boundaries</span>
+    <span class="n">subseg_ids</span> <span class="o">=</span> <span class="n">diary_obj</span><span class="o">.</span><span class="n">segset</span>
+    <span class="n">lol</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">spkr_id</span> <span class="o">=</span> <span class="n">rec_id</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">sub_seg</span> <span class="o">=</span> <span class="n">subseg_ids</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">splitted</span> <span class="o">=</span> <span class="n">sub_seg</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">rec_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">splitted</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">sseg_start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">splitted</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">sseg_end</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">splitted</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">rec_id</span><span class="p">,</span> <span class="n">sseg_start</span><span class="p">,</span> <span class="n">sseg_end</span><span class="p">,</span> <span class="n">spkr_id</span><span class="p">]</span>
+        <span class="n">lol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="c1"># Sorting based on start time of sub-segment</span>
+    <span class="n">lol</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="c1"># Merge and split in 2 simple steps: (i) Merge sseg of same speakers then (ii) split different speakers</span>
+    <span class="c1"># Step 1: Merge adjacent sub-segments that belong to same speaker (or cluster)</span>
+    <span class="n">lol</span> <span class="o">=</span> <span class="n">merge_ssegs_same_speaker</span><span class="p">(</span><span class="n">lol</span><span class="p">)</span>
+
+    <span class="c1"># Step 2: Distribute duration of adjacent overlapping sub-segments belonging to different speakers (or cluster)</span>
+    <span class="c1"># Taking mid-point as the splitting time location.</span>
+    <span class="n">lol</span> <span class="o">=</span> <span class="n">distribute_overlap</span><span class="p">(</span><span class="n">lol</span><span class="p">)</span>
+
+    <span class="c1"># logger.info(&quot;Completed diarizing &quot; + rec_id)</span>
+    <span class="n">write_rttm</span><span class="p">(</span><span class="n">lol</span><span class="p">,</span> <span class="n">out_rttm_file</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

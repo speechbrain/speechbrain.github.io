@@ -1,0 +1,1122 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>speechbrain.lobes.augment &mdash; SpeechBrain 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SpeechBrain
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Quick installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-via-pypi">Install via PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#install-locally">Install locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiment.html">Running an experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#yaml-basics">YAML basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#running-arguments">Running arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiment.html#tensor-format">Tensor format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../multigpu.html">Basics of multi-GPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-data-parallel">Multi-GPU training using Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../multigpu.html#multi-gpu-training-using-distributed-data-parallel-ddp">Multi-GPU training using Distributed Data Parallel (DDP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../multigpu.html#with-multiple-machines-suppose-you-have-2-servers-with-2-gpus">With multiple machines (suppose you have 2 servers with 2 GPUs):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#zen-of-speechbrain">Zen of Speechbrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-get-your-code-in-speechbrain">How to get your code in SpeechBrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#python">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#version">Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#formatting">Formatting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#adding-dependencies">Adding dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-tools">Development tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#flake8">flake8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pre-commit">pre-commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-commit-hooks">the git pre-commit hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#the-git-pre-push-hooks">the git pre-push hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pytest-doctests">pytest doctests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#continuous-integration">Continuous integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#what-is-ci">What is CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#ci-cd-pipelines">CI / CD Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#our-test-suite">Our test suite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-review-guide">Pull Request review guide</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../speechbrain.html">Core library (speechbrain)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.core.html">speechbrain.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.core.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.yaml.html">speechbrain.yaml module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.alignment.html">speechbrain.alignment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html">speechbrain.alignment.aligner module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.alignment.aligner.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.dataio.html">speechbrain.dataio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.batch.html">speechbrain.dataio.batch module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.batch.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html">speechbrain.dataio.dataio module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html">speechbrain.dataio.dataloader module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataloader.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html">speechbrain.dataio.dataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.dataset.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html">speechbrain.dataio.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.encoder.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html">speechbrain.dataio.legacy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.legacy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html">speechbrain.dataio.sampler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.sampler.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.wer.html">speechbrain.dataio.wer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.dataio.wer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.dataio.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.decoders.html">speechbrain.decoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html">speechbrain.decoders.ctc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.ctc.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html">speechbrain.decoders.seq2seq module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.seq2seq.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html">speechbrain.decoders.transducer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.decoders.transducer.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lm.html">speechbrain.lm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.arpa.html">speechbrain.lm.arpa module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.arpa.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.counting.html">speechbrain.lm.counting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.counting.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lm.ngram.html">speechbrain.lm.ngram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lm.ngram.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.lobes.html">speechbrain.lobes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.augment.html">speechbrain.lobes.augment module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.augment.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.features.html">speechbrain.lobes.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.lobes.models.html">speechbrain.lobes.models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.CRDNN.html">speechbrain.lobes.models.CRDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ContextNet.html">speechbrain.lobes.models.ContextNet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ECAPA_TDNN.html">speechbrain.lobes.models.ECAPA_TDNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.ESPnetVGG.html">speechbrain.lobes.models.ESPnetVGG module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.MetricGAN_D.html">speechbrain.lobes.models.MetricGAN_D module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.RNNLM.html">speechbrain.lobes.models.RNNLM module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.VanillaNN.html">speechbrain.lobes.models.VanillaNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.Xvector.html">speechbrain.lobes.models.Xvector module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.conv_tasnet.html">speechbrain.lobes.models.conv_tasnet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.convolution.html">speechbrain.lobes.models.convolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.dual_path.html">speechbrain.lobes.models.dual_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.lobes.models.transformer.html">speechbrain.lobes.models.transformer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.nnet.html">speechbrain.nnet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html">speechbrain.nnet.CNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.CNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html">speechbrain.nnet.RNN module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.RNN.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.activations.html">speechbrain.nnet.activations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.activations.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.attention.html">speechbrain.nnet.attention module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.attention.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.containers.html">speechbrain.nnet.containers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.containers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html">speechbrain.nnet.dropout module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.dropout.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html">speechbrain.nnet.embedding module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.embedding.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.linear.html">speechbrain.nnet.linear module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.linear.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.losses.html">speechbrain.nnet.losses module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.losses.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html">speechbrain.nnet.normalization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.normalization.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html">speechbrain.nnet.pooling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.pooling.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html">speechbrain.nnet.schedulers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.schedulers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.html">speechbrain.nnet.complex_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_CNN.html">speechbrain.nnet.complex_networks.c_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_RNN.html">speechbrain.nnet.complex_networks.c_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_linear.html">speechbrain.nnet.complex_networks.c_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_normalization.html">speechbrain.nnet.complex_networks.c_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.complex_networks.c_ops.html">speechbrain.nnet.complex_networks.c_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.loss.html">speechbrain.nnet.loss</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.stoi_loss.html">speechbrain.nnet.loss.stoi_loss module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.loss.transducer_loss.html">speechbrain.nnet.loss.transducer_loss module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.html">speechbrain.nnet.quaternion_networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_CNN.html">speechbrain.nnet.quaternion_networks.q_CNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_RNN.html">speechbrain.nnet.quaternion_networks.q_RNN module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_linear.html">speechbrain.nnet.quaternion_networks.q_linear module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_normalization.html">speechbrain.nnet.quaternion_networks.q_normalization module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.quaternion_networks.q_ops.html">speechbrain.nnet.quaternion_networks.q_ops module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.transducer.html">speechbrain.nnet.transducer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.nnet.transducer.transducer_joint.html">speechbrain.nnet.transducer.transducer_joint module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.nnet.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.processing.html">speechbrain.processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.NMF.html">speechbrain.processing.NMF module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.NMF.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html">speechbrain.processing.PLDA_LDA module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.PLDA_LDA.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html">speechbrain.processing.decomposition module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.decomposition.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.diarization.html">speechbrain.processing.diarization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#reference">Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.diarization.html#id1">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.features.html">speechbrain.processing.features module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.features.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html">speechbrain.processing.multi_mic module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.multi_mic.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html">speechbrain.processing.signal_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.signal_processing.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html">speechbrain.processing.speech_augmentation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.processing.speech_augmentation.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.tokenizers.html">speechbrain.tokenizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html">speechbrain.tokenizers.SentencePiece module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.tokenizers.SentencePiece.html#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.utils.html">speechbrain.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html">speechbrain.utils.Accuracy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.Accuracy.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.DER.html">speechbrain.utils.DER module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.DER.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html">speechbrain.utils.checkpoints module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.checkpoints.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.convert_model.html">speechbrain.utils.convert_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html">speechbrain.utils.data_pipeline module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_pipeline.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html">speechbrain.utils.data_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.data_utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html">speechbrain.utils.depgraph module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.depgraph.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.distributed.html">speechbrain.utils.distributed module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.distributed.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html">speechbrain.utils.edit_distance module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.edit_distance.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html">speechbrain.utils.epoch_loop module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.epoch_loop.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.logger.html">speechbrain.utils.logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html">speechbrain.utils.metric_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.metric_stats.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html">speechbrain.utils.parameter_transfer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.parameter_transfer.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html">speechbrain.utils.superpowers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.superpowers.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html">speechbrain.utils.train_logger module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../speechbrain.utils.train_logger.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../speechbrain.utils.html#reference">Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../speechbrain.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Runnable Tools (tools)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.compute_wer.html">tools.compute_wer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.compute_wer.html#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SpeechBrain</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>speechbrain.lobes.augment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for speechbrain.lobes.augment</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Combinations of processing algorithms to implement common augmentations.</span>
+
+<span class="sd">Examples:</span>
+<span class="sd"> * SpecAugment</span>
+<span class="sd"> * Environmental corruption (noise, reverberation)</span>
+
+<span class="sd">Authors</span>
+<span class="sd"> * Peter Plantinga 2020</span>
+<span class="sd"> * Jianyuan Zhong 2020</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchaudio</span>
+<span class="kn">import</span> <span class="nn">speechbrain</span> <span class="k">as</span> <span class="nn">sb</span>
+<span class="kn">from</span> <span class="nn">speechbrain.utils.data_utils</span> <span class="k">import</span> <span class="n">download_file</span>
+<span class="kn">from</span> <span class="nn">speechbrain.processing.speech_augmentation</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">SpeedPerturb</span><span class="p">,</span>
+    <span class="n">DropFreq</span><span class="p">,</span>
+    <span class="n">DropChunk</span><span class="p">,</span>
+    <span class="n">AddBabble</span><span class="p">,</span>
+    <span class="n">AddNoise</span><span class="p">,</span>
+    <span class="n">AddReverb</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">torchaudio</span><span class="o">.</span><span class="n">set_audio_backend</span><span class="p">(</span><span class="s2">&quot;sox_io&quot;</span><span class="p">)</span>
+<span class="n">OPENRIR_URL</span> <span class="o">=</span> <span class="s2">&quot;http://www.openslr.org/resources/28/rirs_noises.zip&quot;</span>
+
+
+<div class="viewcode-block" id="SpecAugment"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.SpecAugment">[docs]</a><span class="k">class</span> <span class="nc">SpecAugment</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An implementation of SpecAugment algorithm.</span>
+
+<span class="sd">    Reference:</span>
+<span class="sd">        https://arxiv.org/abs/1904.08779</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    time_warp : bool</span>
+<span class="sd">        Whether applying time warping.</span>
+<span class="sd">    time_warp_window : int</span>
+<span class="sd">        Time warp window.</span>
+<span class="sd">    time_warp_mode : str</span>
+<span class="sd">        Interpolation mode for time warping (default &quot;bicubic&quot;).</span>
+<span class="sd">    freq_mask : bool1</span>
+<span class="sd">        Whether applying freq mask.</span>
+<span class="sd">    freq_mask_width : int or tuple</span>
+<span class="sd">        Freq mask width range.</span>
+<span class="sd">    n_freq_mask : int</span>
+<span class="sd">        Number of freq mask.</span>
+<span class="sd">    time_mask : int</span>
+<span class="sd">        Whether applying time mask.</span>
+<span class="sd">    time_mask_width : int or tuple</span>
+<span class="sd">        Time mask width range.</span>
+<span class="sd">    n_time_mask : int</span>
+<span class="sd">        Number of time mask.</span>
+<span class="sd">    replace_with_zero : bool</span>
+<span class="sd">        If True, replace masked value with 0, else replace masked value with mean of the input tensor.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; aug = SpecAugment()</span>
+<span class="sd">    &gt;&gt;&gt; a = torch.rand([8, 120, 80])</span>
+<span class="sd">    &gt;&gt;&gt; a = aug(a)</span>
+<span class="sd">    &gt;&gt;&gt; print(a.shape)</span>
+<span class="sd">    torch.Size([8, 120, 80])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">time_warp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">time_warp_window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">time_warp_mode</span><span class="o">=</span><span class="s2">&quot;bicubic&quot;</span><span class="p">,</span>
+        <span class="n">freq_mask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">freq_mask_width</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+        <span class="n">n_freq_mask</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">time_mask</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">time_mask_width</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="n">n_time_mask</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">replace_with_zero</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">time_warp</span> <span class="ow">or</span> <span class="n">freq_mask</span> <span class="ow">or</span> <span class="n">time_mask</span>
+        <span class="p">),</span> <span class="s2">&quot;at least one of time_warp, time_mask, or freq_mask should be applied&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_time_warp</span> <span class="o">=</span> <span class="n">time_warp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_warp_window</span> <span class="o">=</span> <span class="n">time_warp_window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_warp_mode</span> <span class="o">=</span> <span class="n">time_warp_mode</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq_mask</span> <span class="o">=</span> <span class="n">freq_mask</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">freq_mask_width</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">freq_mask_width</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">freq_mask_width</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq_mask_width</span> <span class="o">=</span> <span class="n">freq_mask_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_freq_mask</span> <span class="o">=</span> <span class="n">n_freq_mask</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_mask</span> <span class="o">=</span> <span class="n">time_mask</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_mask_width</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">time_mask_width</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">time_mask_width</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_mask_width</span> <span class="o">=</span> <span class="n">time_mask_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_time_mask</span> <span class="o">=</span> <span class="n">n_time_mask</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">replace_with_zero</span> <span class="o">=</span> <span class="n">replace_with_zero</span>
+
+<div class="viewcode-block" id="SpecAugment.forward"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.SpecAugment.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_time_warp</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_warp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_mask</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask_along_axis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_mask</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask_along_axis</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span></div>
+
+<div class="viewcode-block" id="SpecAugment.time_warp"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.SpecAugment.time_warp">[docs]</a>    <span class="k">def</span> <span class="nf">time_warp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Time warping with torch.nn.functional.interpolate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">original_size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_warp_window</span>
+
+        <span class="c1"># 2d interpolation requires 4D or higher dimension tensors</span>
+        <span class="c1"># x: (Batch, Time, Freq) -&gt; (Batch, 1, Time, Freq)</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">time</span> <span class="o">-</span> <span class="n">window</span> <span class="o">&lt;=</span> <span class="n">window</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">original_size</span><span class="p">)</span>
+
+        <span class="c1"># compute center and corepoding window</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">time</span> <span class="o">-</span> <span class="n">window</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">window</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">window</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">left</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="n">c</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+            <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time_warp_mode</span><span class="p">,</span>
+            <span class="n">align_corners</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">c</span><span class="p">:],</span>
+            <span class="p">(</span><span class="n">time</span> <span class="o">-</span> <span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+            <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time_warp_mode</span><span class="p">,</span>
+            <span class="n">align_corners</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">w</span><span class="p">:]</span> <span class="o">=</span> <span class="n">right</span>
+
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">original_size</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpecAugment.mask_along_axis"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.SpecAugment.mask_along_axis">[docs]</a>    <span class="k">def</span> <span class="nf">mask_along_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Mask along time or frequency axis.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        x : tensor</span>
+<span class="sd">            Input tensor.</span>
+<span class="sd">        dim : int</span>
+<span class="sd">            Corresponding dimension to mask.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">original_size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="n">batch</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">fea</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="n">time</span>
+            <span class="n">n_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_time_mask</span>
+            <span class="n">width_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_mask_width</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="n">fea</span>
+            <span class="n">n_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_freq_mask</span>
+            <span class="n">width_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq_mask_width</span>
+
+        <span class="n">mask_len</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+            <span class="n">width_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">n_mask</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">mask_pos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span> <span class="o">-</span> <span class="n">mask_len</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">n_mask</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># compute masks</span>
+        <span class="n">arange</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">mask_pos</span> <span class="o">&lt;=</span> <span class="n">arange</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">arange</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">mask_pos</span> <span class="o">+</span> <span class="n">mask_len</span><span class="p">))</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">replace_with_zero</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">masked_fill_</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">original_size</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TimeDomainSpecAugment"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.TimeDomainSpecAugment">[docs]</a><span class="k">class</span> <span class="nc">TimeDomainSpecAugment</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A time-domain approximation of the SpecAugment algorithm.</span>
+
+<span class="sd">    This augmentation module implements three augmentations in</span>
+<span class="sd">    the time-domain.</span>
+
+<span class="sd">     1. Drop chunks of the audio (zero amplitude or white noise)</span>
+<span class="sd">     2. Drop frequency bands (with band-drop filters)</span>
+<span class="sd">     3. Speed peturbation (via resampling to slightly different rate)</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    perturb_prob : float from 0 to 1</span>
+<span class="sd">        The probability that a batch will have speed perturbation applied.</span>
+<span class="sd">    drop_freq_prob : float from 0 to 1</span>
+<span class="sd">        The probability that a batch will have frequencies dropped.</span>
+<span class="sd">    drop_chunk_prob : float from 0 to 1</span>
+<span class="sd">        The probability that a batch will have chunks dropped.</span>
+<span class="sd">    speeds : list of ints</span>
+<span class="sd">        A set of different speeds to use to perturb each batch.</span>
+<span class="sd">        See ``speechbrain.processing.speech_augmentation.SpeedPerturb``</span>
+<span class="sd">    sample_rate : int</span>
+<span class="sd">        Sampling rate of the input waveforms.</span>
+<span class="sd">    drop_freq_count_low : int</span>
+<span class="sd">        Lowest number of frequencies that could be dropped.</span>
+<span class="sd">    drop_freq_count_high : int</span>
+<span class="sd">        Highest number of frequencies that could be dropped.</span>
+<span class="sd">    drop_chunk_count_low : int</span>
+<span class="sd">        Lowest number of chunks that could be dropped.</span>
+<span class="sd">    drop_chunk_count_high : int</span>
+<span class="sd">        Highest number of chunks that could be dropped.</span>
+<span class="sd">    drop_chunk_length_low : int</span>
+<span class="sd">        Lowest length of chunks that could be dropped.</span>
+<span class="sd">    drop_chunk_length_high : int</span>
+<span class="sd">        Highest length of chunks that could be dropped.</span>
+<span class="sd">    drop_chunk_noise_factor : float</span>
+<span class="sd">        The noise factor used to scale the white noise inserted, relative to</span>
+<span class="sd">        the average amplitude of the utterance. Default 0 (no noise inserted).</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; inputs = torch.randn([10, 16000])</span>
+<span class="sd">    &gt;&gt;&gt; feature_maker = TimeDomainSpecAugment(speeds=[80])</span>
+<span class="sd">    &gt;&gt;&gt; feats = feature_maker(inputs, torch.ones(10))</span>
+<span class="sd">    &gt;&gt;&gt; feats.shape</span>
+<span class="sd">    torch.Size([10, 12800])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">perturb_prob</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">drop_freq_prob</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">drop_chunk_prob</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">speeds</span><span class="o">=</span><span class="p">[</span><span class="mi">95</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">105</span><span class="p">],</span>
+        <span class="n">sample_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span>
+        <span class="n">drop_freq_count_low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">drop_freq_count_high</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">drop_chunk_count_low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">drop_chunk_count_high</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">drop_chunk_length_low</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">drop_chunk_length_high</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+        <span class="n">drop_chunk_noise_factor</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_perturb</span> <span class="o">=</span> <span class="n">SpeedPerturb</span><span class="p">(</span>
+            <span class="n">perturb_prob</span><span class="o">=</span><span class="n">perturb_prob</span><span class="p">,</span> <span class="n">orig_freq</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span> <span class="n">speeds</span><span class="o">=</span><span class="n">speeds</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop_freq</span> <span class="o">=</span> <span class="n">DropFreq</span><span class="p">(</span>
+            <span class="n">drop_prob</span><span class="o">=</span><span class="n">drop_freq_prob</span><span class="p">,</span>
+            <span class="n">drop_count_low</span><span class="o">=</span><span class="n">drop_freq_count_low</span><span class="p">,</span>
+            <span class="n">drop_count_high</span><span class="o">=</span><span class="n">drop_freq_count_high</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop_chunk</span> <span class="o">=</span> <span class="n">DropChunk</span><span class="p">(</span>
+            <span class="n">drop_prob</span><span class="o">=</span><span class="n">drop_chunk_prob</span><span class="p">,</span>
+            <span class="n">drop_count_low</span><span class="o">=</span><span class="n">drop_chunk_count_low</span><span class="p">,</span>
+            <span class="n">drop_count_high</span><span class="o">=</span><span class="n">drop_chunk_count_high</span><span class="p">,</span>
+            <span class="n">drop_length_low</span><span class="o">=</span><span class="n">drop_chunk_length_low</span><span class="p">,</span>
+            <span class="n">drop_length_high</span><span class="o">=</span><span class="n">drop_chunk_length_high</span><span class="p">,</span>
+            <span class="n">noise_factor</span><span class="o">=</span><span class="n">drop_chunk_noise_factor</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="TimeDomainSpecAugment.forward"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.TimeDomainSpecAugment.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveforms</span><span class="p">,</span> <span class="n">lengths</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the distorted waveforms.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        waveforms : torch.Tensor</span>
+<span class="sd">            The waveforms to distort</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Augmentation</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="n">waveforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed_perturb</span><span class="p">(</span><span class="n">waveforms</span><span class="p">)</span>
+                <span class="n">waveforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_freq</span><span class="p">(</span><span class="n">waveforms</span><span class="p">)</span>
+                <span class="n">waveforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop_chunk</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">waveforms</span></div></div>
+
+
+<div class="viewcode-block" id="EnvCorrupt"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.EnvCorrupt">[docs]</a><span class="k">class</span> <span class="nc">EnvCorrupt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Environmental Corruptions for speech signals: noise, reverb, babble.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    reverb_prob : float from 0 to 1</span>
+<span class="sd">        The probability that each batch will have reverberation applied.</span>
+<span class="sd">    babble_prob : float from 0 to 1</span>
+<span class="sd">        The probability that each batch will have babble added.</span>
+<span class="sd">    noise_prob : float from 0 to 1</span>
+<span class="sd">        The probability that each batch will have noise added.</span>
+<span class="sd">    openrir_folder : str</span>
+<span class="sd">        If provided, download and prepare openrir to this location. The</span>
+<span class="sd">        reverberation csv and noise csv will come from here unless overridden</span>
+<span class="sd">        by the ``reverb_csv`` or ``noise_csv`` arguments.</span>
+<span class="sd">    openrir_max_noise_len : float</span>
+<span class="sd">        The maximum length in seconds for a noise segment from openrir. Only</span>
+<span class="sd">        takes effect if ``openrir_folder`` is used for noises. Cuts longer</span>
+<span class="sd">        noises into segments equal to or less than this length.</span>
+<span class="sd">    reverb_csv : str</span>
+<span class="sd">        A prepared csv file for loading room impulse responses.</span>
+<span class="sd">    noise_csv : str</span>
+<span class="sd">        A prepared csv file for loading noise data.</span>
+<span class="sd">    noise_num_workers : int</span>
+<span class="sd">        Number of workers to use for loading noises.</span>
+<span class="sd">    babble_speaker_count : int</span>
+<span class="sd">        Number of speakers to use for babble. Must be less than batch size.</span>
+<span class="sd">    babble_snr_low : int</span>
+<span class="sd">        Lowest generated SNR of reverbed signal to babble.</span>
+<span class="sd">    babble_snr_high : int</span>
+<span class="sd">        Highest generated SNR of reverbed signal to babble.</span>
+<span class="sd">    noise_snr_low : int</span>
+<span class="sd">        Lowest generated SNR of babbled signal to noise.</span>
+<span class="sd">    noise_snr_high : int</span>
+<span class="sd">        Highest generated SNR of babbled signal to noise.</span>
+<span class="sd">    rir_scale_factor : float</span>
+<span class="sd">        It compresses or dilates the given impulse response.</span>
+<span class="sd">        If ``0 &lt; rir_scale_factor &lt; 1``, the impulse response is compressed</span>
+<span class="sd">        (less reverb), while if ``rir_scale_factor &gt; 1`` it is dilated</span>
+<span class="sd">        (more reverb).</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    &gt;&gt;&gt; inputs = torch.randn([10, 16000])</span>
+<span class="sd">    &gt;&gt;&gt; corrupter = EnvCorrupt(babble_speaker_count=9)</span>
+<span class="sd">    &gt;&gt;&gt; feats = corrupter(inputs, torch.ones(10))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">reverb_prob</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">babble_prob</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">noise_prob</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">openrir_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">openrir_max_noise_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">reverb_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">noise_csv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">noise_num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">babble_speaker_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">babble_snr_low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">babble_snr_high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">noise_snr_low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">noise_snr_high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">rir_scale_factor</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Download and prepare openrir</span>
+        <span class="k">if</span> <span class="n">openrir_folder</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">reverb_csv</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">noise_csv</span><span class="p">):</span>
+            <span class="n">open_reverb_csv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">openrir_folder</span><span class="p">,</span> <span class="s2">&quot;reverb.csv&quot;</span><span class="p">)</span>
+            <span class="n">open_noise_csv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">openrir_folder</span><span class="p">,</span> <span class="s2">&quot;noise.csv&quot;</span><span class="p">)</span>
+            <span class="n">_prepare_openrir</span><span class="p">(</span>
+                <span class="n">openrir_folder</span><span class="p">,</span>
+                <span class="n">open_reverb_csv</span><span class="p">,</span>
+                <span class="n">open_noise_csv</span><span class="p">,</span>
+                <span class="n">openrir_max_noise_len</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Override if they aren&#39;t specified</span>
+            <span class="n">reverb_csv</span> <span class="o">=</span> <span class="n">reverb_csv</span> <span class="ow">or</span> <span class="n">open_reverb_csv</span>
+            <span class="n">noise_csv</span> <span class="o">=</span> <span class="n">noise_csv</span> <span class="ow">or</span> <span class="n">open_noise_csv</span>
+
+        <span class="c1"># Initialize corrupters</span>
+        <span class="k">if</span> <span class="n">reverb_csv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">reverb_prob</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_reverb</span> <span class="o">=</span> <span class="n">AddReverb</span><span class="p">(</span>
+                <span class="n">reverb_prob</span><span class="o">=</span><span class="n">reverb_prob</span><span class="p">,</span>
+                <span class="n">csv_file</span><span class="o">=</span><span class="n">reverb_csv</span><span class="p">,</span>
+                <span class="n">rir_scale_factor</span><span class="o">=</span><span class="n">rir_scale_factor</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">babble_speaker_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">babble_prob</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_babble</span> <span class="o">=</span> <span class="n">AddBabble</span><span class="p">(</span>
+                <span class="n">mix_prob</span><span class="o">=</span><span class="n">babble_prob</span><span class="p">,</span>
+                <span class="n">speaker_count</span><span class="o">=</span><span class="n">babble_speaker_count</span><span class="p">,</span>
+                <span class="n">snr_low</span><span class="o">=</span><span class="n">babble_snr_low</span><span class="p">,</span>
+                <span class="n">snr_high</span><span class="o">=</span><span class="n">babble_snr_high</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">noise_csv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">noise_prob</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span> <span class="o">=</span> <span class="n">AddNoise</span><span class="p">(</span>
+                <span class="n">mix_prob</span><span class="o">=</span><span class="n">noise_prob</span><span class="p">,</span>
+                <span class="n">csv_file</span><span class="o">=</span><span class="n">noise_csv</span><span class="p">,</span>
+                <span class="n">num_workers</span><span class="o">=</span><span class="n">noise_num_workers</span><span class="p">,</span>
+                <span class="n">snr_low</span><span class="o">=</span><span class="n">noise_snr_low</span><span class="p">,</span>
+                <span class="n">snr_high</span><span class="o">=</span><span class="n">noise_snr_high</span><span class="p">,</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="EnvCorrupt.forward"><a class="viewcode-back" href="../../../speechbrain.lobes.augment.html#speechbrain.lobes.augment.EnvCorrupt.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveforms</span><span class="p">,</span> <span class="n">lengths</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the distorted waveforms.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        waveforms : torch.Tensor</span>
+<span class="sd">            The waveforms to distort.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Augmentation</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;add_reverb&quot;</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">waveforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_reverb</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;add_babble&quot;</span><span class="p">):</span>
+                    <span class="n">waveforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_babble</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;add_noise&quot;</span><span class="p">):</span>
+                    <span class="n">waveforms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="n">waveforms</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">waveforms</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_prepare_openrir</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">reverb_csv</span><span class="p">,</span> <span class="n">noise_csv</span><span class="p">,</span> <span class="n">max_noise_len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prepare the openrir dataset for adding reverb and noises.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    folder : str</span>
+<span class="sd">        The location of the folder containing the dataset.</span>
+<span class="sd">    reverb_csv : str</span>
+<span class="sd">        Filename for storing the prepared reverb csv.</span>
+<span class="sd">    noise_csv : str</span>
+<span class="sd">        Filename for storing the prepared noise csv.</span>
+<span class="sd">    max_noise_len : float</span>
+<span class="sd">        The maximum noise length in seconds. Noises longer</span>
+<span class="sd">        than this will be cut into pieces.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Download and unpack if necessary</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;rirs_noises.zip&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;RIRS_NOISES&quot;</span><span class="p">)):</span>
+        <span class="n">download_file</span><span class="p">(</span><span class="n">OPENRIR_URL</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">download_file</span><span class="p">(</span><span class="n">OPENRIR_URL</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+
+    <span class="c1"># Prepare reverb csv if necessary</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">reverb_csv</span><span class="p">):</span>
+        <span class="n">rir_filelist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;RIRS_NOISES&quot;</span><span class="p">,</span> <span class="s2">&quot;real_rirs_isotropic_noises&quot;</span><span class="p">,</span> <span class="s2">&quot;rir_list&quot;</span>
+        <span class="p">)</span>
+        <span class="n">_prepare_csv</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">rir_filelist</span><span class="p">,</span> <span class="n">reverb_csv</span><span class="p">)</span>
+
+    <span class="c1"># Prepare noise csv if necessary</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">noise_csv</span><span class="p">):</span>
+        <span class="n">noise_filelist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;RIRS_NOISES&quot;</span><span class="p">,</span> <span class="s2">&quot;pointsource_noises&quot;</span><span class="p">,</span> <span class="s2">&quot;noise_list&quot;</span>
+        <span class="p">)</span>
+        <span class="n">_prepare_csv</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">noise_filelist</span><span class="p">,</span> <span class="n">noise_csv</span><span class="p">,</span> <span class="n">max_noise_len</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_prepare_csv</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">filelist</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Iterate a set of wavs and write the corresponding csv file.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    folder : str</span>
+<span class="sd">        The folder relative to which the files in the list are listed.</span>
+<span class="sd">    filelist : str</span>
+<span class="sd">        The location of a file listing the files to be used.</span>
+<span class="sd">    csvfile : str</span>
+<span class="sd">        The location to use for writing the csv file.</span>
+<span class="sd">    max_length : float</span>
+<span class="sd">        The maximum length in seconds. Waveforms longer</span>
+<span class="sd">        than this will be cut into pieces.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sb</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">if_main_process</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
+                <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ID,duration,wav,wav_format,wav_opts</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">filelist</span><span class="p">):</span>
+
+                    <span class="c1"># Read file for duration/channel info</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">signal</span><span class="p">,</span> <span class="n">rate</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+                    <span class="c1"># Ensure only one channel</span>
+                    <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="n">torchaudio</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">rate</span><span class="p">)</span>
+
+                    <span class="n">ID</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+                    <span class="n">duration</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">rate</span>
+
+                    <span class="c1"># Handle long waveforms</span>
+                    <span class="k">if</span> <span class="n">max_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">duration</span> <span class="o">&gt;</span> <span class="n">max_length</span><span class="p">:</span>
+                        <span class="c1"># Delete old file</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">duration</span> <span class="o">/</span> <span class="n">max_length</span><span class="p">)):</span>
+                            <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_length</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">rate</span><span class="p">)</span>
+                            <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                                <span class="nb">min</span><span class="p">(</span><span class="n">max_length</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">duration</span><span class="p">)</span> <span class="o">*</span> <span class="n">rate</span>
+                            <span class="p">)</span>
+                            <span class="n">new_filename</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="n">filename</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;.</span><span class="si">{ext}</span><span class="s2">&quot;</span><span class="p">)]</span> <span class="o">+</span> <span class="n">f</span><span class="s2">&quot;_</span><span class="si">{i}</span><span class="s2">.</span><span class="si">{ext}</span><span class="s2">&quot;</span>
+                            <span class="p">)</span>
+                            <span class="n">torchaudio</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                                <span class="n">new_filename</span><span class="p">,</span> <span class="n">signal</span><span class="p">[:,</span> <span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">],</span> <span class="n">rate</span>
+                            <span class="p">)</span>
+                            <span class="n">csv_row</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="n">f</span><span class="s2">&quot;</span><span class="si">{ID}</span><span class="s2">_</span><span class="si">{i}</span><span class="s2">&quot;</span><span class="p">,</span>
+                                <span class="nb">str</span><span class="p">((</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">rate</span><span class="p">),</span>
+                                <span class="n">new_filename</span><span class="p">,</span>
+                                <span class="n">ext</span><span class="p">,</span>
+                                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                            <span class="p">)</span>
+                            <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_row</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">w</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                            <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">ID</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">duration</span><span class="p">),</span> <span class="n">filename</span><span class="p">,</span> <span class="n">ext</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+                        <span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">sb</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">ddp_barrier</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, SpeechBrain
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
