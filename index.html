@@ -277,13 +277,13 @@
     def compute_forward(self, batch, stage):
 
       # Compute features (mfcc, fbanks, etc.) on the fly
-      feats = self.hparams.compute_feats(batch.wavs)
+      features = self.hparams.compute_features(batch.wavs)
 
       # Improve robustness with pre-built augmentations
-      feats = self.hparams.augment(feats)
+      features = self.hparams.augment(features)
 
       # Apply your custom model
-      return self.modules.myCustomModel(feats)
+      return self.modules.myCustomModel(features)
                       </code></pre>
   									</div>
   								</div>
