@@ -6,7 +6,7 @@
    xml:space="preserve"
    version="1.1"
    id="svg223"
-   sodipodi:docname="speechbrain-logo-text-horiz-min.svg"
+   sodipodi:docname="horiz-logo.svg"
    inkscape:export-filename="speechbrain-logo-text-horiz-min.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -25,9 +25,9 @@
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
    showgrid="false"
-   inkscape:zoom="0.34690578"
-   inkscape:cx="1203.4968"
-   inkscape:cy="341.59131"
+   inkscape:zoom="0.24529943"
+   inkscape:cx="1261.7233"
+   inkscape:cy="-226.25409"
    inkscape:window-width="1440"
    inkscape:window-height="876"
    inkscape:window-x="1440"
@@ -50,39 +50,49 @@
    cy="90.5"
    rx="89.8"
    ry="90"
-   id="ellipse179" />
+   id="ellipse179"
+   inkscape:label="ellipse179" />
     <path
    style="fill:#fff;fill-opacity:1;stroke:none;stroke-width:10.3339;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers"
    d="M91.4.5h609.4v180H91.4z"
    id="path181" />
-    <text
-   xml:space="preserve"
-   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-9.26042px;fill:#328ce7;fill-opacity:1;stroke:none;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers"
-   x="209.8"
-   y="123.3"
-   id="text187"><tspan
-     style="font-size:110.772px;fill:#328ce7;fill-opacity:1;stroke-width:5.82083"
-     x="209.8"
-     y="123.3"
-     id="tspan185"><tspan
-   style="font-size:110.772px;letter-spacing:-11.9062px"
-   id="tspan183">S</tspan>peech</tspan></text>
-    <text
-   xml:space="preserve"
-   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-10.5833px;fill:#328ce7;fill-opacity:1;stroke:none;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers"
-   x="527.7"
-   y="125"
-   id="text197"><tspan
-     style="font-size:110.772px;fill:#595959;fill-opacity:1;stroke-width:5.82083"
-     x="527.7"
-     y="125"
-     id="tspan195"><tspan
-       style="font-size:110.772px;letter-spacing:-12.1708px"
-       id="tspan189">B</tspan><tspan
-       style="font-size:110.772px;letter-spacing:-8.46667px"
-       id="tspan191">r</tspan><tspan
-       style="font-size:110.772px;letter-spacing:-12.1708px"
-       id="tspan193">ain</tspan></tspan></text>
+    <path
+   d="m 264.52137,52.405921 c -3.76625,-5.095512 -11.63106,-9.526392 -22.1544,-9.526392 -11.52029,0 -25.03447,6.424776 -25.03447,21.60054 0,14.178817 10.63411,18.720469 21.04668,21.932857 9.96948,3.101616 19.16356,5.870916 19.16356,16.837344 0,10.08025 -9.30485,15.17576 -17.39121,15.17576 -8.19713,0 -14.51113,-4.3201 -17.94506,-9.8587 l -6.86787,5.09551 c 5.64938,7.75404 15.17577,11.63106 24.70216,11.63106 12.40646,0 25.58833,-6.86787 25.58833,-22.59749 0,-15.729624 -12.18492,-19.274328 -23.26212,-22.929804 -8.75099,-2.880072 -17.05889,-5.427828 -17.05889,-15.397309 0,-10.080252 8.97254,-14.732676 16.72658,-14.732676 7.42172,0 12.84955,3.101616 16.17271,7.864812 z"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-11.9062px;fill:#328ce7;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers"
+   id="path4413"
+   inkscape:label="path4413" /><path
+   d="m 277.8711,114.54901 h 0.33231 c 4.32011,6.42478 12.07415,10.08026 19.49588,10.08026 16.17271,0 26.80682,-11.96338 26.80682,-27.249916 0,-15.286536 -10.63411,-27.249912 -26.80682,-27.249912 -7.42173,0 -15.17577,3.544704 -19.49588,10.301796 h -0.33231 v -8.972532 h -7.5325 v 78.426574 h 7.5325 z m 38.65943,-17.169656 c 0,11.520286 -7.08941,20.825136 -19.60665,20.825136 -11.63106,0 -19.93896,-8.97253 -19.93896,-20.825136 0,-11.852604 8.3079,-20.935908 19.93896,-20.935908 12.51724,0 19.60665,9.41562 19.60665,20.935908 z"
+   id="path4415"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-9.26042px;fill:#328ce7;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers"
+   inkscape:label="path4415" /><path
+   d="m 335.62755,93.391562 c 0.66464,-8.86176 8.08636,-16.948116 18.16661,-16.948116 10.74489,0 16.72658,7.20018 17.16966,16.948116 z m 42.97954,2.436984 c 0,-14.178816 -8.52944,-25.699104 -24.81293,-25.699104 -14.73267,0 -26.14219,11.63106 -26.14219,27.249912 0,15.618856 11.40952,27.249916 26.80683,27.249916 8.52944,0 16.17271,-3.21239 22.26517,-10.96643 l -5.64937,-4.43088 c -2.88008,4.65242 -8.86176,8.97253 -16.6158,8.97253 -10.63412,0 -18.72047,-8.41867 -18.94202,-18.83124 h 42.97954 c 0.11077,-1.329264 0.11077,-2.547756 0.11077,-3.544704 z"
+   id="path4417"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-9.26042px;fill:#328ce7;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers" /><path
+   d="m 389.72856,93.391562 c 0.66463,-8.86176 8.08636,-16.948116 18.16661,-16.948116 10.74488,0 16.72657,7.20018 17.16966,16.948116 z m 42.97954,2.436984 c 0,-14.178816 -8.52945,-25.699104 -24.81293,-25.699104 -14.73268,0 -26.14219,11.63106 -26.14219,27.249912 0,15.618856 11.40951,27.249916 26.80682,27.249916 8.52944,0 16.17271,-3.21239 22.26517,-10.96643 l -5.64937,-4.43088 c -2.88007,4.65242 -8.86176,8.97253 -16.6158,8.97253 -10.63411,0 -18.72047,-8.41867 -18.94201,-18.83124 h 42.97954 c 0.11077,-1.329264 0.11077,-2.547756 0.11077,-3.544704 z"
+   id="path4419"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-9.26042px;fill:#328ce7;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers" /><path
+   d="m 482.82132,79.101974 c -4.43088,-5.981688 -12.29569,-8.972532 -19.27433,-8.972532 -16.72657,0 -27.693,11.63106 -27.693,27.249912 0,15.618856 10.96643,27.249916 27.693,27.249916 8.97253,0 15.28654,-3.54471 19.71742,-8.97254 l -5.64938,-4.20933 c -2.99084,3.98779 -7.53249,6.75709 -14.06804,6.75709 -12.07415,0 -19.71742,-9.0833 -19.71742,-20.825136 0,-11.852604 7.75404,-20.935908 19.82819,-20.935908 5.64937,0 10.85566,2.880072 13.29264,6.867864 z"
+   id="path4421"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-9.26042px;fill:#328ce7;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers" /><path
+   d="M 493.49966,79.98815 V 39.556369 h -7.5325 V 123.3 h 7.5325 V 96.714722 c 0,-13.8465 7.75404,-20.271276 15.72962,-20.271276 10.85566,0 14.06805,7.310952 14.06805,18.166608 V 123.3 h 7.53249 V 91.508438 c 0,-12.849552 -6.53554,-21.378996 -19.71741,-21.378996 -7.31095,0 -14.62191,3.87702 -17.39121,9.858708 z"
+   id="path4423"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-9.26042px;fill:#328ce7;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers" />
+    <path
+   d="m 538.11258,125 h 23.26212 c 18.05584,0 29.24381,-8.64022 29.24381,-21.71131 0,-11.409519 -7.5325,-18.498927 -17.72352,-19.606647 v -0.221544 c 8.3079,-1.883124 13.8465,-8.640216 13.8465,-16.837345 0,-15.729624 -13.29264,-20.049732 -25.25602,-20.049732 h -23.37289 z m 7.97558,-71.558714 h 13.84651 c 10.30179,0 18.83124,3.766248 18.83124,13.735728 0,10.412569 -8.97254,13.735729 -16.6158,13.735729 h -16.06195 z m 0,34.007005 h 16.28349 c 12.73878,0 20.1605,5.095512 20.1605,15.397309 0,10.96643 -10.08025,15.28654 -21.60054,15.28654 h -14.84345 z"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-12.1708px;fill:#585858;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers;fill-opacity:1"
+   id="path4432" /><path
+   d="M 595.94965,84.568219 V 125 h 7.5325 V 98.414719 c 0,-13.8465 7.20018,-19.606644 15.17576,-19.606644 1.9939,0 4.43088,0.332316 5.31706,0.664632 l 0.99695,-7.089409 c -1.55081,-0.443088 -3.10162,-0.55386 -4.98474,-0.55386 -7.31096,0 -13.73573,4.209337 -16.6158,10.191025 h -0.22155 c 0,-2.21544 -0.22154,-6.09246 -0.44309,-8.86176 h -7.20018 c 0.33232,3.544704 0.44309,8.640216 0.44309,11.409516 z"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-8.46667px;fill:#585858;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers;fill-opacity:1"
+   id="path4434" /><path
+   d="m 660.0385,93.208435 c -18.94201,0 -36.55476,1.440036 -36.55476,17.391205 0,11.52029 10.08025,15.72962 17.94507,15.72962 8.3079,0 14.06804,-2.88007 18.83124,-9.74793 h 0.22154 c 0,2.7693 0.33232,5.87091 0.7754,8.41867 h 6.7571 c -0.55386,-2.88007 -0.88618,-7.64327 -0.88618,-11.63106 V 90.660679 c 0,-12.628008 -8.97253,-18.831241 -20.1605,-18.831241 -8.86176,0 -16.17272,3.212389 -20.38205,7.421725 l 4.20933,4.98474 c 3.65548,-3.655476 9.30485,-6.09246 15.39731,-6.09246 8.97253,0 13.8465,4.43088 13.8465,13.403412 z m 0,5.870916 v 3.877019 c 0,9.19408 -5.98169,17.16966 -16.6158,17.16966 -5.87091,0 -12.18492,-2.43698 -12.18492,-9.85871 0,-9.8587 14.28959,-11.187969 26.58528,-11.187969 z"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-12.1708px;fill:#585858;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers;fill-opacity:1"
+   id="path4436" /><path
+   d="m 681.98531,73.158703 h -7.5325 V 125 h 7.5325 z m 1.55081,-19.938961 c 0,-3.101616 -2.65853,-5.317056 -5.31706,-5.317056 -2.65853,0 -5.31706,2.21544 -5.31706,5.317056 0,3.101616 2.65853,5.317056 5.31706,5.317056 2.65853,0 5.31706,-2.21544 5.31706,-5.317056 z"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-12.1708px;fill:#585858;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers;fill-opacity:1"
+   id="path4438" /><path
+   d="m 689.42094,73.158703 c 0.33231,3.544704 0.44309,8.640216 0.44309,11.409516 V 125 h 7.53249 V 98.414719 c 0,-13.8465 7.75404,-20.271276 15.72963,-20.271276 10.85565,0 14.06804,7.310952 14.06804,18.166608 V 125 h 7.5325 V 93.208435 c 0,-12.849552 -6.53555,-21.378997 -19.71742,-21.378997 -7.31095,0 -14.84345,4.209337 -17.72352,10.191025 h -0.22154 c 0,-2.21544 -0.22155,-6.09246 -0.44309,-8.86176 z"
+   style="font-size:110.772px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro';letter-spacing:-12.1708px;fill:#585858;stroke-width:5.82083;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;paint-order:stroke fill markers;fill-opacity:1"
+   id="path4440" />
     <path
    style="fill:none;stroke:#585858;stroke-width:8.51318;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.6;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
    d="M112.9 126.5s11 21 32.1 32l5.2-5.5c-10.3-8.8-13.3-24-13.3-24s24.1-1.2 30.5-22.6C193 86 182 61.8 165.2 45.8s-31-20.1-58.7-16.5c-29-3.6-53.2 18.1-62.8 37.2-16.5 39.7 11.8 45 28.5 49.6 9.3 17.6 40.7 10.4 40.7 10.4z"
@@ -90,7 +100,8 @@
     <path
    style="fill:none;fill-opacity:0;stroke:#328ce7;stroke-width:8.51318;stroke-linecap:round;stroke-miterlimit:8.9;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
    d="M77.1 71v14.7M88 59.7V97M99.1 66.9v22.9M110 50.3v56M121 55.2v46.3M132 71.3v14M143 63.5v29.7"
-   id="path201" />
+   id="path201"
+   inkscape:label="path201" />
     <path
    style="fill:#328ce7;fill-opacity:1;stroke-width:3.07137;stroke-linecap:round;stroke-linejoin:round"
    d="M148.9 78.4a6 6 0 0 0 6.2 6.2c3.8 0 3.7-3 3.7-6.4 0-3.5.1-6.2-3.7-6.2-3.8 0-6.2 3-6.2 6.4z"
