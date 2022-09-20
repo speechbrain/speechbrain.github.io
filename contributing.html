@@ -86,23 +86,14 @@
 	      <br>
               <h3> Zen of SpeechBrain </h3>
               <p class="justified large"> SpeechBrain could be used for research, academic, commercial, non-commercial purposes.
-              Ideally, the code should have the following features: <p> <br/>
-	      <ul>
-  	      <li>Simple</li>
-  	      <li>Readable</li>
-  	      <li>Efficient</li>
-	      <li>Modular</li>
-	      <li>Well-documented</li>
-	      </ul>
-		    
+the code must be easy to understand even by students or users that are not professional programmers or speech researchers.
+ Design your code such that it can be easily read. Given alternatives with the same level of performance, code the simplest one. <br/><br/>
 
-              <p class="justified large"> <b> Simple: </b> the code must be easy to understand even by students or by users that are not professional programmers or speech researchers.
-                Try to design your code such that it can be easily read. Given alternatives with the same level of performance, code the simplest one (i.e the most explicit manner is preferred). <br/><br/>
-                <b>Readable: </b> SpeechBrain mostly adopts the code style conventions of PEP8. The code written by the users must be compliant with that.  <br/><br/>
-                <b>Efficient:</b> The code should be as efficient as possible. Contributors should maximize the use of pytorch native operations. Test the code carefully with your favorite profiler (e.g, torch.utils.bottleneck https://pytorch.org/docs/stable/bottleneck.html ) to make sure there are no bottlenecks in your code. Since we are not working in c++ directly, the speed can be an issue. <br/><br/>
-                <b>Modular:</b> Write your code such that it is very modular and fits well with the other functionalities of the toolkit. The idea is to develop a bunch of models that can be naturally interconnected with each other. <br/><br/>
-                <b>Well documented:</b> Given the goals of SpeechBrain, writing rich and good documentation is a crucial step.
-              </p>
+                <b>Efficient:</b> The code should be as efficient as possible. Contributors should maximize the use of pytorch native operations
+<br/><br/>
+                <b>Modular:</b> Write your code to be modular and well-fitting with the other functionalities of the toolkit. The idea is to develop a bunch of models that can be naturally interconnected with each other. <br/><br/>
+                <b>Well documented:</b> Given the goals of SpeechBrain, writing rich and good documentation is a crucial step. Write docstrings with runnable examples (as done in PyTorch code).
+		      
               <h3> How to get my code into SpeechBrain? </h3>
               <p class="justified large"> SpeechBrain is hosted via <a href="https://github.com/speechbrain/speechbrain"> GitHub </a>. Hence, the process of integrating your code
                 to the toolkit will be done via this plateform. Then, three steps can be followed: <br/><br/>
