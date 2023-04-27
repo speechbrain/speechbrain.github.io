@@ -361,7 +361,7 @@ button:focus {
   .home_banner_area .banner_inner {
 
     width: 100%; }
-    .home_banner_area .banner_inner .home_left_img {
+    .home_banner_area .banner_inner {
       padding-top: 230px;
       padding-bottom: 230px; }
     .home_banner_area .banner_inner .col-lg-7 {
