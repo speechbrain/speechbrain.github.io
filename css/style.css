@@ -899,6 +899,10 @@ button:focus {
   background-color: #3bacf0;
   border-color: #eee; }
 
+.tabulation {
+  display: inline-block;
+  width: 4ch;
+}
 
 .speaker-cards {
   display: flex;
