@@ -932,6 +932,7 @@ button:focus {
   margin-bottom: 20px;
 }
 
+
 .speaker-image img {
   width: 100%;
   height: 100%;
@@ -946,6 +947,7 @@ button:focus {
 .speaker-info h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: black;
 }
 
 .speaker-info p {
@@ -953,6 +955,28 @@ button:focus {
   line-height: 1.5;
   text-align: justify;
 }
+
+
+.speaker-info .title {
+    color: #38a4ff; 
+}
+
+.speaker-info h3 {
+  color: black;
+}
+
+.speaker-info h4 {
+  color: black; 
+}
+
+.speaker-info p {
+  color: black; 
+}
+
+.speaker-info i {
+  font-style: italic;
+}
+
 
   
 /*============ Start Blog Single Styles  =============*/
