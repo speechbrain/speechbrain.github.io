@@ -5,7 +5,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="img/favicon.ico">
-        <title>SpeechBrain: Speech Processing</title>
+        
+        <script type="text/javascript">
+            window.location.href = "https://speechbrain.readthedocs.io/";
+        </script>
+        <title>SpeechBrain Tutorials</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="vendors/linericon/style.css">
@@ -19,45 +23,32 @@
         <link rel="stylesheet" href="css/responsive.css">
     </head>
     <body>
-      
 
         <!--================Header Menu Area =================-->
         <header class="header_area">
             <div class="main_menu">
-            	<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container box_1620">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="index.html"><img src="img/speechbrain-horiz-logo.svg" width="175px" alt=""></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-							<ul class="nav navbar-nav menu_nav justify-content-center">
-								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-								<li class="nav-item"><a class="nav-link" href="about.html">About SpeechBrain</a>
-								<li class="nav-item"><a class="nav-link" href="contributing.html">Contributing</a>
-								<li class="nav-item"><a class="nav-link" href="https://speechbrain.readthedocs.io/en/latest/index.html">Documentation</a>
-								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tutorials</a>
-									<ul class="dropdown-menu">
-                    							<li class="nav-item"><a class="nav-link" href="tutorial_basics.html">SpeechBrain Basics</a></li>
-                    							<li class="nav-item"><a class="nav-link" href="tutorial_advanced.html">SpeechBrain Advanced</a></li>
-                    							<li class="nav-item"><a class="nav-link" href="tutorial_asr.html">Speech Recognition</a></li>
-                    							<li class="nav-item"><a class="nav-link" href="tutorial_separation.html">Source Separation</a></li>
-                    							<li class="nav-item"><a class="nav-link" href="tutorial_enhancement.html">Speech Enhancement</a></li>
-		    							<li class="nav-item"><a class="nav-link" href="tutorial_classification.html">Speech Classification</a></li>
-                    							<li class="nav-item"><a class="nav-link" href="tutorial_processing.html">Speech Processing</a></li>
-		    							<li class="nav-item"><a class="nav-link" href="tutorial_nn.html">Neural Architectures</a></li>
-									</ul>
-								<li class="nav-item"><a class="nav-link" href="https://github.com/speechbrain/benchmarks">Benchmarks</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-            	</nav>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container box_1620">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="index.html"><img src="img/speechbrain-horiz-logo.svg" width="175px" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav justify-content-center">
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="about.html">About SpeechBrain</a></li>
+                                <li class="nav-item"><a class="nav-link" href="contributing.html">Contributing</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://speechbrain.readthedocs.io/">Documentation</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://speechbrain.readthedocs.io/">Tutorials</a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://github.com/speechbrain/benchmarks">Benchmarks</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </header>
         <!--================Header Menu Area =================-->
@@ -65,232 +56,71 @@
         <!--================Home Banner Area =================-->
         <section class="home_banner_area blog_banner">
             <div class="banner_inner d-flex align-items-center">
-            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
-				<div class="container">
-					<div class="blog_b_text text-center">
-						<h2>SpeechBrain Tutorials</h2>
-						<h3>Speech Processing</h3>
+                <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+                <div class="container">
+                    <div class="blog_b_text text-center">
+                        <h2>Tutorials have moved</h2>
+                        <h3><br>Click <a style="color: white; font-weight: bold; text-decoration: underline;" href="https://speechbrain.readthedocs.io/">here</a> if you are not being redirected.</h3>
 
-					</div>
-				</div>
+                    </div>
+                </div>
             </div>
         </section>
         <!--================End Home Banner Area =================-->
-	<div class="alert alert-primary" role="alert" style="text-align: center; font-size: 24px;">
-	    🎉 SpeechBrain 1.0 is out.  <a href="https://colab.research.google.com/drive/1IEPfKRuvJRSjoxu22GZhb3czfVHsAy0s?usp=sharing"><strong> Check out what's new!</strong></a>
-	</div>
+    <div class="alert alert-primary" role="alert" style="text-align: center; font-size: 24px;">
+        🎉 SpeechBrain 1.0 is out.  <a href="https://colab.research.google.com/drive/1IEPfKRuvJRSjoxu22GZhb3czfVHsAy0s?usp=sharing"><strong> Check out what's new!</strong></a>
+    </div>
         <!--================Blog Categorie Area =================-->
         <section class="blog_categorie_area">
-          <!-- We don't have category for now -->
+            <!-- We don't have category for now -->
         </section>
         <!--================Blog Categorie Area =================-->
 
         <!--================Blog Area =================-->
         <section class="blog_area">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="blog_left_sidebar">
-                            <article class="row blog_item">
-                               <div class="col-md-3">
-                                   <div class="blog_info text-right">
-                                        <div class="post_tag">
-                                            <a class="active" href="#">Speech Processing</a>
-                                        </div>
-                                        <ul class="blog_meta list">
-                                            <li><a href="about.html">Ravanelli M.<i class="lnr lnr-user"></i></a></li>
-                                            <li><a href="#">Jan. 2021<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li><a href="#">Difficulty: easy<i class="lnr lnr-cog"></i></a></li>
-                                            <li><a href="#">Time: 20min<i class="lnr lnr-hourglass"></i></a></li>
-                                        </ul>
-                                    </div>
-                               </div>
-                                <div class="col-md-9">
-                                    <div class="blog_post">
-                                        <div class="blog_details">
-                                            <h2>Speech Augmentation</h2>
-                                            <p>A popular saying in machine learning is "there is no better data than more data". However, collecting new data can be expensive
-                                              and we must cleverly use the available dataset. One popular technique is called speech augmentation. The idea is to artificially
-                                              corrupt the original speech signals to give the network the "illusion" that we are processing a new signal. This acts as a powerful regularizer,
-                                              that normally helps neural networks improving generalization and thus achieve better performance on test data.</p>
-                                            <a href="https://colab.research.google.com/drive/1JJc4tBhHNXRSDM2xbQ3Z0jdDQUw4S5lr?usp=sharing" class="blog_btn">Open in Google Colab</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="row blog_item">
-                               <div class="col-md-3">
-                                   <div class="blog_info text-right">
-                                        <div class="post_tag">
-                                            <a class="active" href="#">Speech Processing</a>
-                                        </div>
-                                        <ul class="blog_meta list">
-                                            <li><a href="about.html">Ravanelli M.<i class="lnr lnr-user"></i></a></li>
-                                            <li><a href="#">Jan. 2021<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li><a href="#">Difficulty: easy<i class="lnr lnr-cog"></i></a></li>
-                                            <li><a href="#">Time: 20min<i class="lnr lnr-hourglass"></i></a></li>
-                                        </ul>
-                                    </div>
-                               </div>
-                                <div class="col-md-9">
-                                    <div class="blog_post">
-                                        <div class="blog_details">
-                                            <h2>Fourier Transform and Spectrograms</h2>
-                                            <p>In speech and audio processing, the signal in the time-domain is often transformed into another domain.
-                                              Ok, but why do we need to transform an audio signal? Some speech characteristics/patterns of the signal (e.g, pitch, formats)
-                                              might not be very evident when looking at the audio in the time-domain. With properly designed transformations,
-                                              it might be easier to extract the needed information from the signal itself. The most popular transformation is the
-                                              Fourier Transform, which turns the time-domain signal into an equivalent representation in the frequency domain.
-                                              In the following sections, we will describe the Fourier transforms along with other related transformations such as
-                                              Short-Term Fourier Transform (STFT) and spectrograms.</p>
-                                            <a href="https://colab.research.google.com/drive/18IgBv3Ip0rWXjYoZywttSmW7Y2AIK1vJ?usp=sharing" class="blog_btn">Open in Google Colab</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="row blog_item">
-                               <div class="col-md-3">
-                                   <div class="blog_info text-right">
-                                        <div class="post_tag">
-                                            <a class="active" href="#">Speech Processing</a>
-                                        </div>
-                                        <ul class="blog_meta list">
-                                            <li><a href="about.html">Ravanelli M.<i class="lnr lnr-user"></i></a></li>
-                                            <li><a href="#">Jan. 2021<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li><a href="#">Difficulty: easy<i class="lnr lnr-cog"></i></a></li>
-                                            <li><a href="#">Time: 20min<i class="lnr lnr-hourglass"></i></a></li>
-                                        </ul>
-                                    </div>
-                               </div>
-                                <div class="col-md-9">
-                                    <div class="blog_post">
-                                        <div class="blog_details">
-                                            <h2>Speech Features</h2>
-                                            <p>Speech is a very high-dimensional signal. For instance, when the sampling frequency is 16 kHz,
-                                              we have 16000 samples for each second. Working with such very high dimensional data can be critical from a machine learning perspective.
-                                              The goal of feature extraction is to find more compact ways to represent speech.</p>
-                                            <a href="https://colab.research.google.com/drive/1CI72Xyay80mmmagfLaIIeRoDgswWHT_g?usp=sharing" class="blog_btn">Open in Google Colab</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="row blog_item">
-                               <div class="col-md-3">
-                                   <div class="blog_info text-right">
-                                        <div class="post_tag">
-                                            <a class="active" href="#">Speech Processing</a>
-                                        </div>
-                                        <ul class="blog_meta list">
-                                            <li><a href="about.html">Ravanelli M.<i class="lnr lnr-user"></i></a></li>
-                                            <li><a href="#">Feb. 2021<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li><a href="#">Difficulty: medium<i class="lnr lnr-cog"></i></a></li>
-                                            <li><a href="#">Time: 20min<i class="lnr lnr-hourglass"></i></a></li>
-                                        </ul>
-                                    </div>
-                               </div>
-                                <div class="col-md-9">
-                                    <div class="blog_post">
-                                        <div class="blog_details">
-                                            <h2>Environmental corruption</h2>
-                                            <p>In realistic speech processing applications, the signal recorded by the microphone is corrupted by noise and reverberation.
-                                              This is particularly harmful in distant-talking (far-field) scenarios, where the speaker and the reference microphone are distant
-                                              (think about popular devices such as Google Home, Amazon Echo, Kinect, and similar devices).</p>
-                                            <a href="https://colab.research.google.com/drive/1mAimqZndq0BwQj63VcDTr6_uCMC6i6Un?usp=sharing" class="blog_btn">Open in Google Colab</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="row blog_item">
-                               <div class="col-md-3">
-                                   <div class="blog_info text-right">
-                                        <div class="post_tag">
-                                            <a class="active" href="#">Speech Processing</a>
-                                        </div>
-                                        <ul class="blog_meta list">
-                                            <li><a href="about.html">Grondin F. & Aris W.<i class="lnr lnr-user"></i></a></li>
-                                            <li><a href="#">Jan. 2021<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li><a href="#">Difficulty: medium<i class="lnr lnr-cog"></i></a></li>
-                                            <li><a href="#">Time: 20min<i class="lnr lnr-hourglass"></i></a></li>
-                                        </ul>
-                                    </div>
-                               </div>
-                                <div class="col-md-9">
-                                    <div class="blog_post">
-                                        <div class="blog_details">
-                                            <h2>Multi-microphone Beamforming</h2>
-                                            <p>Using a microphone array can be very handy to improve the signal quality
-                                              (e.g. reduce reverberation and noise) prior to performing speech recognition tasks.
-                                              Microphone arrays can also estimate the direction of arrival of a sound source, and this information can later
-                                              be used to "listen" in the direction of the source of interest.</p>
-                                            <a href="https://colab.research.google.com/drive/1UVoYDUiIrwMpBTghQPbA6rC1mc9IBzi6?usp=sharing" class="blog_btn">Open in Google Colab</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <nav class="blog-pagination justify-content-center d-flex">
-		                        <ul class="pagination">
-		                            <li class="page-item">
-		                                <a href="#" class="page-link" aria-label="Previous">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-left"></span>
-		                                    </span>
-		                                </a>
-		                            </li>
-		                            <li class="page-item active"><a href="#" class="page-link">1</a></li>
-		                            <li class="page-item">
-		                                <a href="#" class="page-link" aria-label="Next">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-right"></span>
-		                                    </span>
-		                                </a>
-		                            </li>
-		                        </ul>
-		                    </nav>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <!--================Blog Area =================-->
 
         <!--================Footer Area =================-->
         <footer class="footer_area p_120">
-        	<div class="container">
-        		<div class="row footer_inner">
-        			<div class="col-lg-5 col-sm-6">
-        				<aside class="f_widget ab_widget">
-        					<div class="f_title">
-        						<h3>About Us</h3>
-        					</div>
-        					<p style="text-align:justify">SpeechBrain isn't a company or an association.
+            <div class="container">
+                <div class="row footer_inner">
+                    <div class="col-lg-5 col-sm-6">
+                        <aside class="f_widget ab_widget">
+                            <div class="f_title">
+                                <h3>About Us</h3>
+                            </div>
+                            <p style="text-align:justify">SpeechBrain isn't a company or an association.
                     It is an open-source toolkit and a community created by Dr. Mirco Ravanelli and co-created by Dr. Titouan Parcollet.
                     We aim at making speech technologies more accessible for the community. </p>
-        					<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
-        				</aside>
-        			</div>
-        			<div class="col-lg-5 col-sm-6">
-        				<aside class="f_widget news_widget">
-        					<div class="f_title">
-        						<h3>Opportunities</h3>
-        					</div>
-        					<p>Thanks to our sponsors, we often recruit talented candidates to continue expanding the functionalities of SpeechBrain.
+                        </aside>
+                    </div>
+                    <div class="col-lg-5 col-sm-6">
+                        <aside class="f_widget news_widget">
+                            <div class="f_title">
+                                <h3>Opportunities</h3>
+                            </div>
+                            <p>Thanks to our sponsors, we often recruit talented candidates to continue expanding the functionalities of SpeechBrain.
                     Feel free to contact us at: speechbrainproject@gmail.com</p>
-        				</aside>
-        			</div>
-        			<div class="col-lg-2">
-        				<aside class="f_widget social_widget">
-        					<div class="f_title">
-        						<h3>Follow Us</h3>
-        					</div>
-        					<p>Let us be social</p>
-        					<ul class="list">
-        						<li><a href="https://twitter.com/SpeechBrain1"><i class="fa fa-twitter"></i></a></li>
-        					</ul>
-        				</aside>
-        			</div>
-        		</div>
-        	</div>
+                        </aside>
+                    </div>
+                    <div class="col-lg-2">
+                        <aside class="f_widget social_widget">
+                            <div class="f_title">
+                                <h3>Follow Us</h3>
+                            </div>
+                            <p>Let us be social</p>
+                            <ul class="list">
+                                <li><a href="https://twitter.com/SpeechBrain1"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div>
         </footer>
         <!--================End Footer Area =================-->
 
