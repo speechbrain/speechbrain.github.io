@@ -81,15 +81,10 @@ The following benchmarks are currently available:
  <br/><br/>
 This package facilitates the integration and evaluation of new algorithms (e.g., a novel deep learning architecture or a novel data augmentation strategy) in standardized EEG decoding pipelines based on MOABB-supported tasks, i.e., motor imagery (MI), P300, and steady-state visual evoked potential (SSVEP). 
  <br/><br/>
-It not only offers an interface for easy model integration and testing but also proposes a fair and robust protocol for comparing different decoding pipelines, fully described in our paper: 
-<ul>
-  <li>
-    Davide Borra, Francesco Paissan, and Mirco Ravanelli. <i>SpeechBrain-MOABB: An open-source Python library for benchmarking deep neural networks applied to EEG signals.</i> Computers in Biology and Medicine, Volume 182, 2024. <a href="https://www.sciencedirect.com/science/article/pii/S001048252401182X" target="_blank">[Paper]</a>
-  </li> <br/><br/>
-  <li>
-    Davide Borra, Elisa Magosso, and Mirco Ravanelli. <i>https://www.sciencedirect.com/science/article/pii/S0893608024007718</i> Neural Networks, Page 106847, 2024. <a href="https://www.sciencedirect.com/science/article/pii/S001048252401182X" target="_blank">[Paper]</a>
-  </li>
-</ul> <br><br>
+ Davide Borra, Francesco Paissan, and Mirco Ravanelli. <i>SpeechBrain-MOABB: An open-source Python library for benchmarking deep neural networks applied to EEG signals.</i> Computers in Biology and Medicine, Volume 182, 2024. <a href="https://www.sciencedirect.com/science/article/pii/S001048252401182X" target="_blank">[Paper]</a>
+ <br/><br/>
+ Davide Borra, Elisa Magosso, and Mirco Ravanelli. <i>https://www.sciencedirect.com/science/article/pii/S0893608024007718</i> Neural Networks, Page 106847, 2024. <a href="https://www.sciencedirect.com/science/article/pii/S001048252401182X" target="_blank">[Paper]</a>
+ <br><br>
 
 
 <a href="https://github.com/speechbrain/benchmarks/tree/main/benchmarks/DASB" target="_blank">
@@ -101,19 +96,15 @@ The package helps integrate and evaluate new audio tokenizers in speech tasks of
 <br><br>
 It offers an interface for easy model integration and testing and a protocol for comparing different audio tokenizers.
   
-<ul>
-  <li>
   Pooneh Mousavi, Luca Della Libera, Jarod Duret, Arten Ploujnikov, Cem Subakan, Mirco Ravanelli, 
   <em>DASB - Discrete Audio and Speech Benchmark</em>, 2024
   arXiv preprint arXiv:2406.14294.
-  </li>  <a href="https://arxiv.org/abs/2406.14294" target="_blank">[Paper]
-</ul> <br><br>
+<a href="https://arxiv.org/abs/2406.14294" target="_blank">[Paper]
+<br><br>
 
 
-<a href="https://github.com/speechbrain/benchmarks/tree/main/benchmarks/CL_MASR" target="_blank">
-    <img src="logo_image_url_here" alt="CL-MASR Logo" style="width: 50px; vertical-align: middle; margin-right: 10px;">
-</a>
-              <p class="justified large"> <a href="https://github.com/speechbrain/benchmarks/tree/main/benchmarks/CL_MASR" target="_blank">CL-MASR</a> 
+
+<p class="justified large"> <a href="https://github.com/speechbrain/benchmarks/tree/main/benchmarks/CL_MASR" target="_blank">CL-MASR</a> 
 is a Continual Learning Benchmark for Multilingual ASR.
 <br><br>
 It includes scripts to train Whisper and WavLM-based ASR systems on a subset of 20 languages selected from Common Voice 13 in a continual learning fashion using a handful of methods including rehearsal-based, architecture-based, and regularization-based approaches.
@@ -122,18 +113,13 @@ The goal is to continually learn new languages while limiting forgetting the pre
 
 <br><br>
 An ideal method should achieve both positive forward transfer (i.e. improve performance on new tasks leveraging shared knowledge from previous tasks) and positive backward transfer (i.e. improve performance on previous tasks leveraging shared knowledge from new tasks).
-              
-<ul>
-  <li>
+<br><br>              
+
 Luca Della Libera, Pooneh Mousavi, Salah Zaiem, Cem Subakan, Mirco Ravanelli, (2024). CL-MASR: A continual learning benchmark for multilingual ASR. <i>IEEE/ACM Transactions on Audio, Speech, and Language Processing, 32</i>, 4931–4944.
+<a href="https://arxiv.org/abs/2310.16931" target="_blank">[Paper]
+<<br><br>
 
-  </li>  <a href="https://arxiv.org/abs/2310.16931" target="_blank">[Paper]
-</ul> <br><br>
 
-
-<a href="https://github.com/speechbrain/benchmarks/tree/main/benchmarks/MP3S" target="_blank">
-    <img src="logo_image_url_here" alt="MP3S Logo" style="width: 50px; vertical-align: middle; margin-right: 10px;">
-</a>
 <p class="justified large"> <a href="https://github.com/speechbrain/benchmarks/tree/main/benchmarks/MP3S" target="_blank">MP23 - Multi-probe Speech Self Supervision Benchmark</a> aims to evaluate self-supervised representations on various downstream tasks, including <i>ASR</i>, <i>speaker verification</i>, <i>emotion recognition</i>, and <i>intent classification</i>.
 <br><br>
 The key feature of this benchmark is that it allows users to choose their desired probing head for downstream training. 
@@ -142,17 +128,12 @@ This is why we called it the Multi-probe Speech Self Supervision Benchmark (MP3S
 <br><br>
 
               
-<ul>
-  <li>
 Salah Zaiem,  Youcef Kemiche, Titouan Parcollet, Slim Essid, Mirco Ravanelli, (2023). Speech Self-Supervised Representation Benchmarking: Are We Doing it Right? <i>Proceedings of Interspeech 2023</i>
-
-</li>  <a href="https://arxiv.org/abs/2306.00452" target="_blank">[Paper]</a>
-  <br><br>
-    <li>
+<a href="https://arxiv.org/abs/2306.00452" target="_blank">[Paper]</a>
+<br><br>
 Salah Zaiem,  Youcef Kemiche, Titouan Parcollet, Slim Essid, Mirco Ravanelli, (2023). Speech self-supervised representations benchmarking: a case for larger probing heads. <i>Computer Speech & Language, 89</i>, 101695.</i>
-
-  </li>  <a href="https://www.sciencedirect.com/science/article/pii/S0885230824000780" target="_blank">[Paper]
-</ul> <br><br>
+<a href="https://www.sciencedirect.com/science/article/pii/S0885230824000780" target="_blank">[Paper]
+<br><br>
 
 
         </section>
