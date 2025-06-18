@@ -472,6 +472,43 @@ button:focus {
           .banner_area .banner_inner .banner_content .page_link a:last-child:before {
             display: none; }
 
+.discord-btn {
+    background-color: #5865F2; 
+    color: white; 
+    padding: 6px 12px; 
+    border-radius: 6px; 
+    text-decoration: none; 
+    font-size: 14px; 
+    font-weight: 500; 
+    display: inline-flex; 
+    align-items: center; 
+    height: 30px; 
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.discord-btn:hover {
+    background-color: #4752C4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(88, 101, 242, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.discord-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(88, 101, 242, 0.2);
+}
+
+.discord-btn svg {
+    margin-right: 6px;
+    transition: transform 0.2s ease;
+}
+
+.discord-btn:hover svg {
+    transform: scale(1.1);
+}
+
 /* End Home Banner Area css
 ============================================================================================ */
 /*---------------------------------------------------- */
